@@ -13,13 +13,13 @@ exports.ClientsService = void 0;
 const common_1 = require("@nestjs/common");
 const bcrypt = require("bcrypt");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
-const client_1 = require("@prisma/client");
 let ClientsService = class ClientsService {
     constructor(prisma) {
         this.prisma = prisma;
     }
     async findClientAccountByEmail(email) {
-        const account = await this.prisma.clientAccount.findFirst({
+        const db = this.prisma;
+        const account = await db.clientAccount.findFirst({
             where: { email: email.trim().toLowerCase(), isActive: true },
             include: {
                 client: {
@@ -42,8 +42,7 @@ let ClientsService = class ClientsService {
         const account = await this.findClientAccountByEmail(email);
         if (!account)
             throw new common_1.UnauthorizedException('Invalid email or password');
-        if (!account.client.isActive ||
-            account.client.status !== client_1.ClientStatus.ACTIVE) {
+        if (!account.client.isActive || account.client.status !== 'ACTIVE') {
             throw new common_1.UnauthorizedException('Client account is not active');
         }
         if (!account.passwordHash)
@@ -52,6 +51,79 @@ let ClientsService = class ClientsService {
         if (!valid)
             throw new common_1.UnauthorizedException('Invalid email or password');
         return account;
+    }
+    async create(dto) {
+        const db = this.prisma;
+        return db.client.create({
+            data: {
+                code: dto.code.trim(),
+                name: dto.name.trim(),
+                contactEmail: dto.contactEmail?.trim(),
+                contactPhone: dto.contactPhone?.trim(),
+                addressLine1: dto.addressLine1?.trim(),
+                city: dto.city?.trim(),
+                stateRegion: dto.stateRegion?.trim(),
+                postalCode: dto.postalCode?.trim(),
+                countryCode: dto.countryCode?.trim(),
+                status: dto.status ?? 'ACTIVE',
+                isActive: dto.isActive ?? true,
+                currency: dto.currency ?? 'USD',
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.isActive !== undefined)
+            where.isActive = filter.isActive;
+        if (filter?.status !== undefined)
+            where.status = filter.status;
+        const db = this.prisma;
+        return db.client.findMany({
+            where,
+            orderBy: { code: 'asc' },
+        });
+    }
+    async findOne(id) {
+        const db = this.prisma;
+        const client = await db.client.findUnique({ where: { id } });
+        if (!client)
+            throw new common_1.NotFoundException('Client not found');
+        return client;
+    }
+    async update(id, dto) {
+        await this.findOne(id);
+        const db = this.prisma;
+        return db.client.update({
+            where: { id },
+            data: {
+                ...(dto.code !== undefined && { code: dto.code.trim() }),
+                ...(dto.name !== undefined && { name: dto.name.trim() }),
+                ...(dto.contactEmail !== undefined && {
+                    contactEmail: dto.contactEmail?.trim(),
+                }),
+                ...(dto.contactPhone !== undefined && {
+                    contactPhone: dto.contactPhone?.trim(),
+                }),
+                ...(dto.addressLine1 !== undefined && {
+                    addressLine1: dto.addressLine1?.trim(),
+                }),
+                ...(dto.city !== undefined && { city: dto.city?.trim() }),
+                ...(dto.stateRegion !== undefined && {
+                    stateRegion: dto.stateRegion?.trim(),
+                }),
+                ...(dto.postalCode !== undefined && {
+                    postalCode: dto.postalCode?.trim(),
+                }),
+                ...(dto.countryCode !== undefined && {
+                    countryCode: dto.countryCode?.trim(),
+                }),
+                ...(dto.status !== undefined && {
+                    status: dto.status,
+                }),
+                ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+                ...(dto.currency !== undefined && { currency: dto.currency }),
+            },
+        });
     }
 };
 exports.ClientsService = ClientsService;

@@ -4,15 +4,15 @@ export declare class ActorsService {
     constructor(prisma: PrismaService);
     findByUserId(userId: string): Promise<({
         user: {
+            isActive: boolean;
+            passwordHash: string | null;
             id: string;
             email: string;
-            passwordHash: string | null;
             firstName: string;
             lastName: string;
-            isActive: boolean;
+            internalRoleId: string | null;
             createdAt: Date;
             updatedAt: Date;
-            internalRoleId: string | null;
         } | null;
     } & {
         id: string;
@@ -24,16 +24,16 @@ export declare class ActorsService {
     }) | null>;
     findByClientAccountId(clientAccountId: string): Promise<({
         clientAccount: {
-            id: string;
-            clientId: string;
-            clientRoleId: string;
-            email: string;
+            isActive: boolean;
             passwordHash: string | null;
+            id: string;
+            email: string;
             firstName: string;
             lastName: string;
-            isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
+            clientId: string;
+            clientRoleId: string;
         } | null;
     } & {
         id: string;

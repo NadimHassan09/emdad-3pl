@@ -1,5 +1,7 @@
 import { PrismaService } from '../../database/prisma/prisma.service';
-import { ClientStatus } from '@prisma/client';
+import { CreateClientDto } from './dto/create-client.dto';
+import { UpdateClientDto } from './dto/update-client.dto';
+import { ClientFilterDto } from './dto/client-filter.dto';
 export interface ClientAccountWithRelations {
     id: string;
     clientId: string;
@@ -13,7 +15,7 @@ export interface ClientAccountWithRelations {
         id: string;
         code: string;
         name: string;
-        status: ClientStatus;
+        status: string;
         isActive: boolean;
     };
     clientRole: {
@@ -27,4 +29,8 @@ export declare class ClientsService {
     constructor(prisma: PrismaService);
     findClientAccountByEmail(email: string): Promise<ClientAccountWithRelations | null>;
     validateClientAccountCredentials(email: string, password: string): Promise<ClientAccountWithRelations>;
+    create(dto: CreateClientDto): Promise<unknown>;
+    findMany(filter?: ClientFilterDto): Promise<unknown[]>;
+    findOne(id: string): Promise<{}>;
+    update(id: string, dto: UpdateClientDto): Promise<unknown>;
 }

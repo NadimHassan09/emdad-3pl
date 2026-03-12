@@ -1,7 +1,35 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  NotFoundException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../../database/prisma/prisma.service';
-import { ClientStatus } from '@prisma/client';
+import { CreateClientDto } from './dto/create-client.dto';
+import { UpdateClientDto } from './dto/update-client.dto';
+import { ClientFilterDto } from './dto/client-filter.dto';
+
+/** Type for Prisma delegate access when PrismaClient types are not resolved. */
+interface PrismaWithClients {
+  client: {
+    create: (args: { data: Record<string, unknown> }) => Promise<unknown>;
+    findMany: (args: {
+      where?: Record<string, unknown>;
+      orderBy?: Record<string, string>;
+    }) => Promise<unknown[]>;
+    findUnique: (args: { where: { id: string } }) => Promise<unknown>;
+    update: (args: {
+      where: { id: string };
+      data: Record<string, unknown>;
+    }) => Promise<unknown>;
+  };
+  clientAccount: {
+    findFirst: (args: {
+      where: { email: string; isActive: boolean };
+      include: Record<string, unknown>;
+    }) => Promise<ClientAccountWithRelations | null>;
+  };
+}
 
 export interface ClientAccountWithRelations {
   id: string;
@@ -16,7 +44,7 @@ export interface ClientAccountWithRelations {
     id: string;
     code: string;
     name: string;
-    status: ClientStatus;
+    status: string;
     isActive: boolean;
   };
   clientRole: {
@@ -36,7 +64,8 @@ export class ClientsService {
   async findClientAccountByEmail(
     email: string,
   ): Promise<ClientAccountWithRelations | null> {
-    const account = await this.prisma.clientAccount.findFirst({
+    const db = this.prisma as unknown as PrismaWithClients;
+    const account = await db.clientAccount.findFirst({
       where: { email: email.trim().toLowerCase(), isActive: true },
       include: {
         client: {
@@ -53,7 +82,7 @@ export class ClientsService {
         },
       },
     });
-    return account as ClientAccountWithRelations | null;
+    return account;
   }
 
   /**
@@ -67,10 +96,7 @@ export class ClientsService {
     const account = await this.findClientAccountByEmail(email);
     if (!account) throw new UnauthorizedException('Invalid email or password');
 
-    if (
-      !account.client.isActive ||
-      account.client.status !== ClientStatus.ACTIVE
-    ) {
+    if (!account.client.isActive || account.client.status !== 'ACTIVE') {
       throw new UnauthorizedException('Client account is not active');
     }
 
@@ -80,5 +106,82 @@ export class ClientsService {
     if (!valid) throw new UnauthorizedException('Invalid email or password');
 
     return account;
+  }
+
+  async create(dto: CreateClientDto) {
+    const db = this.prisma as unknown as PrismaWithClients;
+    return db.client.create({
+      data: {
+        code: dto.code.trim(),
+        name: dto.name.trim(),
+        contactEmail: dto.contactEmail?.trim(),
+        contactPhone: dto.contactPhone?.trim(),
+        addressLine1: dto.addressLine1?.trim(),
+        city: dto.city?.trim(),
+        stateRegion: dto.stateRegion?.trim(),
+        postalCode: dto.postalCode?.trim(),
+        countryCode: dto.countryCode?.trim(),
+        status: (dto.status as 'ACTIVE' | 'SUSPENDED' | 'CLOSED') ?? 'ACTIVE',
+        isActive: dto.isActive ?? true,
+        currency: dto.currency ?? 'USD',
+      },
+    });
+  }
+
+  async findMany(filter?: ClientFilterDto) {
+    const where: {
+      isActive?: boolean;
+      status?: 'ACTIVE' | 'SUSPENDED' | 'CLOSED';
+    } = {};
+    if (filter?.isActive !== undefined) where.isActive = filter.isActive;
+    if (filter?.status !== undefined) where.status = filter.status;
+    const db = this.prisma as unknown as PrismaWithClients;
+    return db.client.findMany({
+      where,
+      orderBy: { code: 'asc' },
+    });
+  }
+
+  async findOne(id: string) {
+    const db = this.prisma as unknown as PrismaWithClients;
+    const client = await db.client.findUnique({ where: { id } });
+    if (!client) throw new NotFoundException('Client not found');
+    return client;
+  }
+
+  async update(id: string, dto: UpdateClientDto) {
+    await this.findOne(id);
+    const db = this.prisma as unknown as PrismaWithClients;
+    return db.client.update({
+      where: { id },
+      data: {
+        ...(dto.code !== undefined && { code: dto.code.trim() }),
+        ...(dto.name !== undefined && { name: dto.name.trim() }),
+        ...(dto.contactEmail !== undefined && {
+          contactEmail: dto.contactEmail?.trim(),
+        }),
+        ...(dto.contactPhone !== undefined && {
+          contactPhone: dto.contactPhone?.trim(),
+        }),
+        ...(dto.addressLine1 !== undefined && {
+          addressLine1: dto.addressLine1?.trim(),
+        }),
+        ...(dto.city !== undefined && { city: dto.city?.trim() }),
+        ...(dto.stateRegion !== undefined && {
+          stateRegion: dto.stateRegion?.trim(),
+        }),
+        ...(dto.postalCode !== undefined && {
+          postalCode: dto.postalCode?.trim(),
+        }),
+        ...(dto.countryCode !== undefined && {
+          countryCode: dto.countryCode?.trim(),
+        }),
+        ...(dto.status !== undefined && {
+          status: dto.status as 'ACTIVE' | 'SUSPENDED' | 'CLOSED',
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+        ...(dto.currency !== undefined && { currency: dto.currency }),
+      },
+    });
   }
 }

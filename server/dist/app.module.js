@@ -11,6 +11,12 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const database_module_1 = require("./database/database.module");
 const auth_module_1 = require("./modules/auth/auth.module");
+const clients_module_1 = require("./modules/clients/clients.module");
+const warehouses_module_1 = require("./modules/warehouses/warehouses.module");
+const locations_module_1 = require("./modules/locations/locations.module");
+const uom_module_1 = require("./modules/uom/uom.module");
+const products_module_1 = require("./modules/products/products.module");
+const batches_module_1 = require("./modules/batches/batches.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -23,6 +29,12 @@ exports.AppModule = AppModule = __decorate([
             }),
             database_module_1.DatabaseModule,
             auth_module_1.AuthModule,
+            clients_module_1.ClientsModule,
+            warehouses_module_1.WarehousesModule,
+            locations_module_1.LocationsModule,
+            uom_module_1.UomModule,
+            products_module_1.ProductsModule,
+            batches_module_1.BatchesModule,
         ],
         controllers: [],
         providers: [],
