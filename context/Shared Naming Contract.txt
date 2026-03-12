@@ -1,0 +1,104 @@
+Shared naming contract for all backend modules:
+
+Core entities:
+- Client
+- ClientAccount
+- ClientRole
+- User
+- UserRole
+- Actor
+- Warehouse
+- Location
+- Uom
+- Product
+- Batch
+- BillingPlan
+- ClientBillingPlan
+- Vas
+- VasPricing
+- InboundOrder
+- InboundOrderItem
+- InboundOrderItemBatch
+- OutboundOrder
+- OutboundOrderItem
+- OutboundOrderItemBatch
+- StockReservation
+- OutboundAllocation
+- TaskWorkOrder
+- Adjustment
+- ReturnOrder
+- Approval
+- InventoryLedger
+- CurrentStock
+- Invoice
+- InvoiceLine
+- BillingTransaction
+- AuditLog
+
+Required service naming:
+- XxxService for main application service
+- XxxQueryService for read-heavy query use cases if needed
+- XxxDomainService for reusable business logic if needed
+- XxxRepository only if repository pattern is introduced consistently
+
+Required controller naming:
+- XxxController
+
+Required DTO naming:
+- CreateXxxDto
+- UpdateXxxDto
+- XxxFilterDto
+- XxxQueryDto
+- XxxResponseDto where needed
+
+Required enum naming:
+- XxxStatus
+- XxxType
+- XxxDisposition
+- XxxPriority
+- XxxReferenceType
+
+Required actor naming:
+- createdByActorId
+- approvedByActorId
+- requestedByActorId
+- assignedUserId
+
+Required stock naming:
+- qtyOrdered
+- qtyReceived
+- qtyShipped
+- qtyChange
+- reservedQty
+- pickedQty
+- shippedQty
+- qtyBefore
+- qtyAfter
+
+Required reference naming:
+- referenceType
+- referenceId
+- referenceItemId
+
+Required dates/timestamps naming:
+- expectedDate
+- expectedShipDate
+- decisionAt
+- issuedAt
+- paidAt
+- createdAt
+- updatedAt
+
+Required API route naming:
+- kebab-case plural resources
+- examples:
+  - /inbound-orders
+  - /outbound-orders
+  - /stock-reservations
+  - /task-work-orders
+  - /billing-transactions
+
+Important:
+Do not invent alternative names for the same concept.
+Do not rename shared concepts.
+Use exactly the names above to avoid merge conflicts.
