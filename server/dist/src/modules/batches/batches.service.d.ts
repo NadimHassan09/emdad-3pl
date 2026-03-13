@@ -6,8 +6,8 @@ export declare class BatchesService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(dto: CreateBatchDto): Promise<{
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         batchCode: string;
         expiryDate: Date | null;
@@ -25,8 +25,8 @@ export declare class BatchesService {
             sku: string;
         };
     } & {
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         batchCode: string;
         expiryDate: Date | null;
@@ -39,19 +39,19 @@ export declare class BatchesService {
     })[]>;
     findOne(id: string): Promise<{
         product: {
-            isActive: boolean;
-            clientId: string;
-            createdAt: Date;
             id: string;
             name: string;
+            isActive: boolean;
+            createdAt: Date;
             updatedAt: Date;
+            clientId: string;
             sku: string;
             minThreshold: import("@prisma/client/runtime/library").Decimal | null;
             defaultUomId: string;
         };
     } & {
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         batchCode: string;
         expiryDate: Date | null;
@@ -63,8 +63,8 @@ export declare class BatchesService {
         productId: string;
     }>;
     update(id: string, dto: UpdateBatchDto): Promise<{
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         batchCode: string;
         expiryDate: Date | null;

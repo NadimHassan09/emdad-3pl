@@ -33,11 +33,11 @@ export declare class InboundOrdersService {
             } | null;
         };
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -67,21 +67,21 @@ export declare class InboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
             qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
-            uomId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -127,8 +127,8 @@ export declare class InboundOrdersService {
                     batchCode: string;
                 } | null;
             } & {
-                createdAt: Date;
                 id: string;
+                createdAt: Date;
                 updatedAt: Date;
                 batchId: string | null;
                 locationId: string | null;
@@ -141,21 +141,21 @@ export declare class InboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
             qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
-            uomId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -185,21 +185,21 @@ export declare class InboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
             qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
-            uomId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -218,14 +218,14 @@ export declare class InboundOrdersService {
             sku: string;
         };
     } & {
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         productId: string;
         qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
         qtyReceived: import("@prisma/client/runtime/library").Decimal;
         inboundOrderId: string;
-        uomId: string;
     }>;
     receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
         client: {
@@ -266,8 +266,8 @@ export declare class InboundOrdersService {
                     batchCode: string;
                 } | null;
             } & {
-                createdAt: Date;
                 id: string;
+                createdAt: Date;
                 updatedAt: Date;
                 batchId: string | null;
                 locationId: string | null;
@@ -280,21 +280,21 @@ export declare class InboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
             qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
-            uomId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;

@@ -22,6 +22,7 @@ const inbound_orders_module_1 = require("./modules/inbound-orders/inbound-orders
 const outbound_orders_module_1 = require("./modules/outbound-orders/outbound-orders.module");
 const task_work_orders_module_1 = require("./modules/task-work-orders/task-work-orders.module");
 const stock_reservations_module_1 = require("./modules/stock-reservations/stock-reservations.module");
+const adjustments_module_1 = require("./modules/adjustments/adjustments.module");
 const approvals_module_1 = require("./modules/approvals/approvals.module");
 const audit_module_1 = require("./modules/audit/audit.module");
 const billing_module_1 = require("./modules/billing/billing.module");
@@ -49,6 +50,7 @@ exports.AppModule = AppModule = __decorate([
             outbound_orders_module_1.OutboundOrdersModule,
             task_work_orders_module_1.TaskWorkOrdersModule,
             stock_reservations_module_1.StockReservationsModule,
+            adjustments_module_1.AdjustmentsModule,
             approvals_module_1.ApprovalsModule,
             audit_module_1.AuditModule,
             billing_module_1.BillingModule,

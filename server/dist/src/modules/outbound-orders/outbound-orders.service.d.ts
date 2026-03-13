@@ -30,11 +30,11 @@ export declare class OutboundOrdersService {
             } | null;
         };
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -64,21 +64,21 @@ export declare class OutboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            outboundOrderId: string;
             qtyShipped: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -124,8 +124,8 @@ export declare class OutboundOrdersService {
                     batchCode: string;
                 } | null;
             } & {
-                createdAt: Date;
                 id: string;
+                createdAt: Date;
                 updatedAt: Date;
                 batchId: string | null;
                 locationId: string | null;
@@ -138,21 +138,21 @@ export declare class OutboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            outboundOrderId: string;
             qtyShipped: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -182,21 +182,21 @@ export declare class OutboundOrdersService {
                 sku: string;
             };
         } & {
-            createdAt: Date;
             id: string;
+            createdAt: Date;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            outboundOrderId: string;
             qtyShipped: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderId: string;
         })[];
     } & {
-        clientId: string;
-        createdAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -215,13 +215,13 @@ export declare class OutboundOrdersService {
             sku: string;
         };
     } & {
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         productId: string;
         qtyOrdered: import("@prisma/client/runtime/library").Decimal;
         uomId: string;
-        outboundOrderId: string;
         qtyShipped: import("@prisma/client/runtime/library").Decimal;
+        outboundOrderId: string;
     }>;
 }

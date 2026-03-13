@@ -4,9 +4,9 @@ export declare class ActorsService {
     constructor(prisma: PrismaService);
     findByUserId(userId: string): Promise<({
         user: {
+            id: string;
             isActive: boolean;
             createdAt: Date;
-            id: string;
             updatedAt: Date;
             email: string;
             passwordHash: string | null;
@@ -15,8 +15,8 @@ export declare class ActorsService {
             internalRoleId: string | null;
         } | null;
     } & {
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;
@@ -24,36 +24,36 @@ export declare class ActorsService {
     }) | null>;
     findByClientAccountId(clientAccountId: string): Promise<({
         clientAccount: {
-            isActive: boolean;
-            clientId: string;
-            createdAt: Date;
             id: string;
+            isActive: boolean;
+            createdAt: Date;
             updatedAt: Date;
             email: string;
             passwordHash: string | null;
             firstName: string;
             lastName: string;
+            clientId: string;
             clientRoleId: string;
         } | null;
     } & {
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;
         clientAccountId: string | null;
     }) | null>;
     getOrCreateForUser(userId: string): Promise<{
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;
         clientAccountId: string | null;
     }>;
     getOrCreateForClientAccount(clientAccountId: string): Promise<{
-        createdAt: Date;
         id: string;
+        createdAt: Date;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;

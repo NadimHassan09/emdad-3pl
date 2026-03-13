@@ -13,6 +13,7 @@ import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.mod
 import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.module';
 import { TaskWorkOrdersModule } from './modules/task-work-orders/task-work-orders.module';
 import { StockReservationsModule } from './modules/stock-reservations/stock-reservations.module';
+import { AdjustmentsModule } from './modules/adjustments/adjustments.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuditModule } from './modules/audit/audit.module';
 import { BillingModule } from './modules/billing/billing.module';
@@ -37,6 +38,7 @@ import { VasModule } from './modules/vas/vas.module';
     OutboundOrdersModule,
     TaskWorkOrdersModule,
     StockReservationsModule,
+    AdjustmentsModule,
     ApprovalsModule,
     AuditModule,
     BillingModule,

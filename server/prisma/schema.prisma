@@ -64,6 +64,7 @@ model Client {
   taskWorkOrders TaskWorkOrder[]
   stockReservations StockReservation[]
   outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
   clientBillingPlans ClientBillingPlan[]
   invoices       Invoice[]
   billingTransactions BillingTransaction[]
@@ -143,6 +144,7 @@ model Actor {
   clientAccount ClientAccount? @relation(fields: [clientAccountId], references: [id], onDelete: Cascade)
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
+  adjustments Adjustment[]
   requestedApprovals Approval[] @relation("RequestedApprovals")
   approvedApprovals  Approval[] @relation("ApprovedApprovals")
   auditLogs          AuditLog[]
@@ -235,6 +237,14 @@ enum TaskPriority {
   @@map("task_priority")
 }
 
+enum AdjustmentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  APPLIED
+  @@map("adjustment_status")
+}
+
 enum ReservationStatus {
   DRAFT
   CONFIRMED
@@ -291,6 +301,7 @@ model Warehouse {
   taskWorkOrders TaskWorkOrder[]
   stockReservations StockReservation[]
   outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
   @@map("warehouse")
 }
 
@@ -315,6 +326,7 @@ model Location {
   inboundOrderItemBatches InboundOrderItemBatch[]
   outboundOrderItemBatches OutboundOrderItemBatch[]
   outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
   @@unique([warehouseId, code])
   @@index([warehouseId, parentLocationId])
   @@map("location")
@@ -339,6 +351,7 @@ model Product {
   inboundOrderItems InboundOrderItem[]
   outboundOrderItems OutboundOrderItem[]
   outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
   @@unique([clientId, sku])
   @@map("product")
 }
@@ -362,6 +375,7 @@ model Batch {
   inboundOrderItemBatches InboundOrderItemBatch[]
   outboundOrderItemBatches OutboundOrderItemBatch[]
   outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
   @@unique([productId, batchCode])
   @@index([batchStatus])
   @@map("batch")
@@ -621,6 +635,35 @@ model TaskWorkOrder {
   @@index([referenceType, referenceId])
   @@index([referenceType, referenceItemId])
   @@map("task_work_order")
+}
+
+// -----------------------------------------------------------------------------
+// Adjustments (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model Adjustment {
+  id                String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId          String          @map("client_id") @db.Uuid
+  warehouseId       String          @map("warehouse_id") @db.Uuid
+  productId         String?         @map("product_id") @db.Uuid
+  batchId           String?         @map("batch_id") @db.Uuid
+  locationId        String?         @map("location_id") @db.Uuid
+  qtyChange         Decimal         @map("qty_change") @db.Decimal(18, 4)
+  reason            String?         @db.Text
+  status            AdjustmentStatus @default(PENDING)
+  createdByActorId  String          @map("created_by_actor_id") @db.Uuid
+  createdAt         DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime        @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  client            Client          @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse       @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  product           Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  batch             Batch?          @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location          Location?       @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  createdByActor    Actor           @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
+
+  @@index([clientId, warehouseId])
+  @@map("adjustment")
 }
 
 // -----------------------------------------------------------------------------
