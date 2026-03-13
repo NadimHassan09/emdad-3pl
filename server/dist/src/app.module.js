@@ -17,17 +17,6 @@ const locations_module_1 = require("./modules/locations/locations.module");
 const uom_module_1 = require("./modules/uom/uom.module");
 const products_module_1 = require("./modules/products/products.module");
 const batches_module_1 = require("./modules/batches/batches.module");
-const inventory_module_1 = require("./modules/inventory/inventory.module");
-const inbound_orders_module_1 = require("./modules/inbound-orders/inbound-orders.module");
-const outbound_orders_module_1 = require("./modules/outbound-orders/outbound-orders.module");
-const task_work_orders_module_1 = require("./modules/task-work-orders/task-work-orders.module");
-const stock_reservations_module_1 = require("./modules/stock-reservations/stock-reservations.module");
-const adjustments_module_1 = require("./modules/adjustments/adjustments.module");
-const return_orders_module_1 = require("./modules/return-orders/return-orders.module");
-const approvals_module_1 = require("./modules/approvals/approvals.module");
-const audit_module_1 = require("./modules/audit/audit.module");
-const billing_module_1 = require("./modules/billing/billing.module");
-const vas_module_1 = require("./modules/vas/vas.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -46,17 +35,6 @@ exports.AppModule = AppModule = __decorate([
             uom_module_1.UomModule,
             products_module_1.ProductsModule,
             batches_module_1.BatchesModule,
-            inventory_module_1.InventoryModule,
-            inbound_orders_module_1.InboundOrdersModule,
-            outbound_orders_module_1.OutboundOrdersModule,
-            task_work_orders_module_1.TaskWorkOrdersModule,
-            stock_reservations_module_1.StockReservationsModule,
-            adjustments_module_1.AdjustmentsModule,
-            return_orders_module_1.ReturnOrdersModule,
-            approvals_module_1.ApprovalsModule,
-            audit_module_1.AuditModule,
-            billing_module_1.BillingModule,
-            vas_module_1.VasModule,
         ],
         controllers: [],
         providers: [],

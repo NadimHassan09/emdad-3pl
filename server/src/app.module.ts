@@ -8,17 +8,6 @@ import { LocationsModule } from './modules/locations/locations.module';
 import { UomModule } from './modules/uom/uom.module';
 import { ProductsModule } from './modules/products/products.module';
 import { BatchesModule } from './modules/batches/batches.module';
-import { InventoryModule } from './modules/inventory/inventory.module';
-import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.module';
-import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.module';
-import { TaskWorkOrdersModule } from './modules/task-work-orders/task-work-orders.module';
-import { StockReservationsModule } from './modules/stock-reservations/stock-reservations.module';
-import { AdjustmentsModule } from './modules/adjustments/adjustments.module';
-import { ReturnOrdersModule } from './modules/return-orders/return-orders.module';
-import { ApprovalsModule } from './modules/approvals/approvals.module';
-import { AuditModule } from './modules/audit/audit.module';
-import { BillingModule } from './modules/billing/billing.module';
-import { VasModule } from './modules/vas/vas.module';
 
 @Module({
   imports: [
@@ -34,17 +23,6 @@ import { VasModule } from './modules/vas/vas.module';
     UomModule,
     ProductsModule,
     BatchesModule,
-    InventoryModule,
-    InboundOrdersModule,
-    OutboundOrdersModule,
-    TaskWorkOrdersModule,
-    StockReservationsModule,
-    AdjustmentsModule,
-    ReturnOrdersModule,
-    ApprovalsModule,
-    AuditModule,
-    BillingModule,
-    VasModule,
   ],
   controllers: [],
   providers: [],
