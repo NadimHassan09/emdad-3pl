@@ -9,10 +9,10 @@ export declare class WarehouseLocationsController {
     private readonly locations;
     constructor(locations: LocationsService);
     create(warehouseId: string, dto: CreateLocationDto): Promise<{
-        id: string;
-        code: string;
         isActive: boolean;
         createdAt: Date;
+        id: string;
+        code: string;
         updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
@@ -31,10 +31,10 @@ export declare class WarehouseLocationsController {
             code: string;
         } | null;
     } & {
-        id: string;
-        code: string;
         isActive: boolean;
         createdAt: Date;
+        id: string;
+        code: string;
         updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;

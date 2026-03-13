@@ -35,11 +35,11 @@ export declare class OutboundOrdersController {
             } | null;
         };
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
+        createdAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -69,21 +69,21 @@ export declare class OutboundOrdersController {
                 sku: string;
             };
         } & {
-            id: string;
             createdAt: Date;
+            id: string;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
+        createdAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -129,8 +129,8 @@ export declare class OutboundOrdersController {
                     batchCode: string;
                 } | null;
             } & {
-                id: string;
                 createdAt: Date;
+                id: string;
                 updatedAt: Date;
                 batchId: string | null;
                 locationId: string | null;
@@ -143,21 +143,21 @@ export declare class OutboundOrdersController {
                 sku: string;
             };
         } & {
-            id: string;
             createdAt: Date;
+            id: string;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
+        createdAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -187,21 +187,21 @@ export declare class OutboundOrdersController {
                 sku: string;
             };
         } & {
-            id: string;
             createdAt: Date;
+            id: string;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
+        createdAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
@@ -220,14 +220,14 @@ export declare class OutboundOrdersController {
             sku: string;
         };
     } & {
-        id: string;
         createdAt: Date;
+        id: string;
         updatedAt: Date;
         productId: string;
         qtyOrdered: import("@prisma/client/runtime/library").Decimal;
         uomId: string;
-        qtyShipped: import("@prisma/client/runtime/library").Decimal;
         outboundOrderId: string;
+        qtyShipped: import("@prisma/client/runtime/library").Decimal;
     }>;
     createReservation(outboundOrderId: string, dto: CreateReservationDto): Promise<{
         client: {
@@ -241,8 +241,8 @@ export declare class OutboundOrdersController {
             name: string;
         };
         outboundOrder: {
-            id: string;
             status: import(".prisma/client").$Enums.OrderStatus;
+            id: string;
             orderNumber: string | null;
         };
         allocations: ({
@@ -269,27 +269,27 @@ export declare class OutboundOrdersController {
                 qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             };
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
+            createdAt: Date;
+            status: import(".prisma/client").$Enums.AllocationStatus;
+            id: string;
+            updatedAt: Date;
             warehouseId: string;
             productId: string;
             batchId: string | null;
             locationId: string | null;
-            outboundOrderItemId: string;
             reservedQty: import("@prisma/client/runtime/library").Decimal;
             pickedQty: import("@prisma/client/runtime/library").Decimal;
             shippedQty: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderItemId: string;
             stockReservationId: string;
         })[];
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
+        createdAt: Date;
+        status: import(".prisma/client").$Enums.ReservationStatus;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         outboundOrderId: string;
     }>;
@@ -320,8 +320,8 @@ export declare class OutboundOrdersController {
                     batchCode: string;
                 } | null;
             } & {
-                id: string;
                 createdAt: Date;
+                id: string;
                 updatedAt: Date;
                 batchId: string | null;
                 locationId: string | null;
@@ -334,21 +334,21 @@ export declare class OutboundOrdersController {
                 sku: string;
             };
         } & {
-            id: string;
             createdAt: Date;
+            id: string;
             updatedAt: Date;
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
+        createdAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;

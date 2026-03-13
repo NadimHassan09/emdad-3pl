@@ -12,12 +12,12 @@ export declare class ProductsService {
             name: string;
         };
     } & {
+        isActive: boolean;
+        clientId: string;
+        createdAt: Date;
         id: string;
         name: string;
-        isActive: boolean;
-        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         sku: string;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
@@ -29,23 +29,25 @@ export declare class ProductsService {
             name: string;
         };
     } & {
+        isActive: boolean;
+        clientId: string;
+        createdAt: Date;
         id: string;
         name: string;
-        isActive: boolean;
-        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         sku: string;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     })[]>;
     findOne(id: string): Promise<{
         client: {
+            isActive: boolean;
+            createdAt: Date;
+            currency: string;
+            status: import(".prisma/client").$Enums.ClientStatus;
             id: string;
             code: string;
             name: string;
-            isActive: boolean;
-            createdAt: Date;
             updatedAt: Date;
             contactEmail: string | null;
             contactPhone: string | null;
@@ -55,37 +57,35 @@ export declare class ProductsService {
             postalCode: string | null;
             countryCode: string | null;
             balanceCents: bigint;
-            currency: string;
-            status: import(".prisma/client").$Enums.ClientStatus;
         };
         defaultUom: {
+            isActive: boolean;
+            createdAt: Date;
             id: string;
             code: string;
             name: string;
             dimension: import(".prisma/client").$Enums.UomDimension;
             baseConversion: import("@prisma/client/runtime/library").Decimal;
-            isActive: boolean;
-            createdAt: Date;
             updatedAt: Date;
         };
     } & {
+        isActive: boolean;
+        clientId: string;
+        createdAt: Date;
         id: string;
         name: string;
-        isActive: boolean;
-        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         sku: string;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     update(id: string, dto: UpdateProductDto): Promise<{
+        isActive: boolean;
+        clientId: string;
+        createdAt: Date;
         id: string;
         name: string;
-        isActive: boolean;
-        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         sku: string;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;

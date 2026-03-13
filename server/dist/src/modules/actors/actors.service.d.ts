@@ -4,9 +4,9 @@ export declare class ActorsService {
     constructor(prisma: PrismaService);
     findByUserId(userId: string): Promise<({
         user: {
-            id: string;
             isActive: boolean;
             createdAt: Date;
+            id: string;
             updatedAt: Date;
             email: string;
             passwordHash: string | null;
@@ -15,8 +15,8 @@ export declare class ActorsService {
             internalRoleId: string | null;
         } | null;
     } & {
-        id: string;
         createdAt: Date;
+        id: string;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;
@@ -24,36 +24,36 @@ export declare class ActorsService {
     }) | null>;
     findByClientAccountId(clientAccountId: string): Promise<({
         clientAccount: {
-            id: string;
             isActive: boolean;
+            clientId: string;
             createdAt: Date;
+            id: string;
             updatedAt: Date;
             email: string;
             passwordHash: string | null;
             firstName: string;
             lastName: string;
-            clientId: string;
             clientRoleId: string;
         } | null;
     } & {
-        id: string;
         createdAt: Date;
+        id: string;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;
         clientAccountId: string | null;
     }) | null>;
     getOrCreateForUser(userId: string): Promise<{
-        id: string;
         createdAt: Date;
+        id: string;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;
         clientAccountId: string | null;
     }>;
     getOrCreateForClientAccount(clientAccountId: string): Promise<{
-        id: string;
         createdAt: Date;
+        id: string;
         updatedAt: Date;
         actorType: import(".prisma/client").$Enums.ActorType;
         userId: string | null;

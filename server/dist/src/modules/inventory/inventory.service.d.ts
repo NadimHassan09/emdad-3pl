@@ -30,15 +30,15 @@ export declare class InventoryService {
             batchCode: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         clientId: string;
+        createdAt: Date;
+        quantity: import("@prisma/client/runtime/library").Decimal;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;
-        quantity: import("@prisma/client/runtime/library").Decimal;
     })[]>;
     findCurrentStockByProduct(productId: string, filter?: CurrentStockFilterDto): Promise<({
         client: {
@@ -65,15 +65,15 @@ export declare class InventoryService {
             batchCode: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         clientId: string;
+        createdAt: Date;
+        quantity: import("@prisma/client/runtime/library").Decimal;
+        id: string;
+        updatedAt: Date;
         warehouseId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;
-        quantity: import("@prisma/client/runtime/library").Decimal;
     })[]>;
     findLedger(filter?: InventoryLedgerFilterDto): Promise<({
         client: {
@@ -100,17 +100,17 @@ export declare class InventoryService {
             batchCode: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
         clientId: string;
+        createdAt: Date;
+        referenceType: string | null;
+        referenceId: string | null;
+        id: string;
         warehouseId: string;
         productId: string;
         movementType: import(".prisma/client").$Enums.MovementType;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         qtyBefore: import("@prisma/client/runtime/library").Decimal;
         qtyAfter: import("@prisma/client/runtime/library").Decimal;
-        referenceType: string | null;
-        referenceId: string | null;
         batchId: string | null;
         locationId: string | null;
     })[]>;
@@ -139,17 +139,17 @@ export declare class InventoryService {
             batchCode: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
         clientId: string;
+        createdAt: Date;
+        referenceType: string | null;
+        referenceId: string | null;
+        id: string;
         warehouseId: string;
         productId: string;
         movementType: import(".prisma/client").$Enums.MovementType;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         qtyBefore: import("@prisma/client/runtime/library").Decimal;
         qtyAfter: import("@prisma/client/runtime/library").Decimal;
-        referenceType: string | null;
-        referenceId: string | null;
         batchId: string | null;
         locationId: string | null;
     }>;

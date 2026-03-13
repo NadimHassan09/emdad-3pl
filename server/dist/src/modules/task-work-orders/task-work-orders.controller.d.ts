@@ -24,14 +24,14 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
+        createdAt: Date;
         referenceType: string | null;
         referenceId: string | null;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        id: string;
+        updatedAt: Date;
+        warehouseId: string;
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
@@ -55,14 +55,14 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
+        createdAt: Date;
         referenceType: string | null;
         referenceId: string | null;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        id: string;
+        updatedAt: Date;
+        warehouseId: string;
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
@@ -86,14 +86,14 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
+        createdAt: Date;
         referenceType: string | null;
         referenceId: string | null;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        id: string;
+        updatedAt: Date;
+        warehouseId: string;
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
@@ -117,14 +117,14 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
+        createdAt: Date;
         referenceType: string | null;
         referenceId: string | null;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        id: string;
+        updatedAt: Date;
+        warehouseId: string;
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
@@ -148,14 +148,14 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
+        createdAt: Date;
         referenceType: string | null;
         referenceId: string | null;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        id: string;
+        updatedAt: Date;
+        warehouseId: string;
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
@@ -179,14 +179,14 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
+        createdAt: Date;
         referenceType: string | null;
         referenceId: string | null;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        id: string;
+        updatedAt: Date;
+        warehouseId: string;
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;

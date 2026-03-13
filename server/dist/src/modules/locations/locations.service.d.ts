@@ -12,10 +12,10 @@ export declare class LocationsService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(warehouseId: string, dto: CreateLocationDto): Promise<{
-        id: string;
-        code: string;
         isActive: boolean;
         createdAt: Date;
+        id: string;
+        code: string;
         updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
@@ -34,10 +34,10 @@ export declare class LocationsService {
             code: string;
         } | null;
     } & {
-        id: string;
-        code: string;
         isActive: boolean;
         createdAt: Date;
+        id: string;
+        code: string;
         updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
@@ -47,30 +47,30 @@ export declare class LocationsService {
     })[]>;
     findOne(id: string): Promise<{
         capacityUom: {
+            isActive: boolean;
+            createdAt: Date;
             id: string;
             code: string;
             name: string;
             dimension: import(".prisma/client").$Enums.UomDimension;
             baseConversion: import("@prisma/client/runtime/library").Decimal;
-            isActive: boolean;
-            createdAt: Date;
             updatedAt: Date;
         } | null;
         warehouse: {
+            isActive: boolean;
+            createdAt: Date;
             id: string;
             code: string;
             name: string;
-            isActive: boolean;
-            createdAt: Date;
             updatedAt: Date;
             capacityValue: import("@prisma/client/runtime/library").Decimal | null;
             capacityUomId: string | null;
         };
         parentLocation: {
-            id: string;
-            code: string;
             isActive: boolean;
             createdAt: Date;
+            id: string;
+            code: string;
             updatedAt: Date;
             capacityValue: import("@prisma/client/runtime/library").Decimal | null;
             capacityUomId: string | null;
@@ -79,10 +79,10 @@ export declare class LocationsService {
             parentLocationId: string | null;
         } | null;
     } & {
-        id: string;
-        code: string;
         isActive: boolean;
         createdAt: Date;
+        id: string;
+        code: string;
         updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
@@ -91,10 +91,10 @@ export declare class LocationsService {
         parentLocationId: string | null;
     }>;
     update(id: string, dto: UpdateLocationDto): Promise<{
-        id: string;
-        code: string;
         isActive: boolean;
         createdAt: Date;
+        id: string;
+        code: string;
         updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
