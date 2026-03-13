@@ -14,9 +14,9 @@ import { MovementType } from '../../common/enums/movement-type.enum';
 
 /**
  * Inbound Orders Service
- * 
+ *
  * Handles inbound order creation, item management, and receiving operations.
- * 
+ *
  * Receiving flow:
  * 1. Validate order item exists and is receivable
  * 2. For each batch/location combination:
@@ -25,7 +25,7 @@ import { MovementType } from '../../common/enums/movement-type.enum';
  *    - Insert RECEIPT ledger entry via InventoryService
  * 3. Update item qtyReceived
  * 4. Update order status if all items received
- * 
+ *
  * Never writes to current_stock directly - all stock changes go through inventory_ledger.
  */
 @Injectable()
@@ -70,7 +70,15 @@ export class InboundOrdersService {
     const where: {
       clientId?: string;
       warehouseId?: string;
-      status?: 'DRAFT' | 'PENDING' | 'CONFIRMED' | 'IN_PROGRESS' | 'RECEIVING' | 'SHIPPED' | 'COMPLETED' | 'CANCELLED';
+      status?:
+        | 'DRAFT'
+        | 'PENDING'
+        | 'CONFIRMED'
+        | 'IN_PROGRESS'
+        | 'RECEIVING'
+        | 'SHIPPED'
+        | 'COMPLETED'
+        | 'CANCELLED';
       orderNumber?: { contains: string; mode?: 'insensitive' };
     } = {};
 
@@ -368,4 +376,3 @@ export class InboundOrdersService {
     return this.findOne(orderId);
   }
 }
-

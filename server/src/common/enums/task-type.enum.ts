@@ -12,4 +12,3 @@ export enum TaskType {
   REPLENISHMENT = 'REPLENISHMENT',
   ADJUSTMENT = 'ADJUSTMENT',
 }
-

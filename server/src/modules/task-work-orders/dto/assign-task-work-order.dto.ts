@@ -5,4 +5,3 @@ export class AssignTaskWorkOrderDto {
   @IsNotEmpty()
   assignedUserId: string;
 }
-

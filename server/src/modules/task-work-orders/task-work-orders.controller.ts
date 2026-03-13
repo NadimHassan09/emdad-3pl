@@ -57,4 +57,3 @@ export class TaskWorkOrdersController {
     return this.taskWorkOrders.complete(id);
   }
 }
-

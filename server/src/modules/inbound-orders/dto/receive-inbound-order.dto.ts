@@ -1,4 +1,14 @@
-import { IsUUID, IsNotEmpty, IsNumber, IsOptional, Min, ValidateNested, IsArray, IsString, IsDateString } from 'class-validator';
+import {
+  IsUUID,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  Min,
+  ValidateNested,
+  IsArray,
+  IsString,
+  IsDateString,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class ReceiveBatchDto {
@@ -51,4 +61,3 @@ export class ReceiveInboundOrderDto {
   @Type(() => ReceiveBatchDto)
   batches: ReceiveBatchDto[];
 }
-

@@ -36,4 +36,3 @@ export class TaskWorkOrderFilterDto {
   @IsUUID()
   referenceId?: string;
 }
-

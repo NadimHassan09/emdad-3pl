@@ -7,18 +7,18 @@ import { MovementType } from '../../common/enums/movement-type.enum';
 
 /**
  * Inventory Service
- * 
+ *
  * CRITICAL ARCHITECTURE RULES:
- * 
+ *
  * 1. inventory_ledger is the SOURCE OF TRUTH for all stock movements.
  *    - It is append-only (UPDATE/DELETE blocked by DB trigger).
  *    - Every stock-changing operation MUST insert into inventory_ledger.
- * 
+ *
  * 2. current_stock is a DERIVED snapshot table.
  *    - It is automatically updated by DB trigger when inventory_ledger entries are inserted.
  *    - Application code MUST NEVER write directly to current_stock.
  *    - The DB trigger sync_current_stock_on_ledger_insert() handles all current_stock updates.
- * 
+ *
  * 3. Stock-changing modules (inbound, outbound, adjustments, returns) should use
  *    createLedgerEntry() to safely record stock movements.
  */
@@ -32,7 +32,7 @@ export class InventoryService {
    */
   async findCurrentStock(filter?: CurrentStockFilterDto) {
     const where: any = {};
-    
+
     if (filter?.clientId) where.clientId = filter.clientId;
     if (filter?.warehouseId) where.warehouseId = filter.warehouseId;
     if (filter?.productId) where.productId = filter.productId;
@@ -63,7 +63,10 @@ export class InventoryService {
   /**
    * Query current stock for a specific product.
    */
-  async findCurrentStockByProduct(productId: string, filter?: CurrentStockFilterDto) {
+  async findCurrentStockByProduct(
+    productId: string,
+    filter?: CurrentStockFilterDto,
+  ) {
     return this.findCurrentStock({
       ...filter,
       productId,
@@ -120,17 +123,17 @@ export class InventoryService {
 
   /**
    * Create a ledger entry and automatically update current_stock via DB trigger.
-   * 
+   *
    * This is the SAFE contract for stock-changing operations.
    * Other modules (inbound, outbound, adjustments, returns) should use this method.
-   * 
+   *
    * The method:
    * 1. Queries current_stock to get qtyBefore
    * 2. Calculates qtyAfter = qtyBefore + qtyChange
    * 3. Validates that qtyAfter >= 0 (prevents negative stock)
    * 4. Inserts into inventory_ledger
    * 5. DB trigger automatically updates current_stock
-   * 
+   *
    * @throws BadRequestException if the operation would result in negative stock
    */
   async createLedgerEntry(dto: CreateLedgerEntryDto) {
@@ -147,8 +150,10 @@ export class InventoryService {
     });
 
     // Handle Prisma Decimal type - quantity may be Decimal or number depending on Prisma version
-    const qtyBefore = currentStock?.quantity 
-      ? (typeof currentStock.quantity === 'number' ? currentStock.quantity : (currentStock.quantity as any).toNumber())
+    const qtyBefore = currentStock?.quantity
+      ? typeof currentStock.quantity === 'number'
+        ? currentStock.quantity
+        : (currentStock.quantity as any).toNumber()
       : 0;
     const qtyAfter = qtyBefore + dto.qtyChange;
 
@@ -185,4 +190,3 @@ export class InventoryService {
     });
   }
 }
-

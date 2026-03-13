@@ -18,4 +18,3 @@ export class UpdateOutboundOrderDto {
   @IsDateString()
   expectedShipDate?: string;
 }
-

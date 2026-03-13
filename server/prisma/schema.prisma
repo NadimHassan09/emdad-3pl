@@ -138,6 +138,8 @@ model Actor {
   clientAccount ClientAccount? @relation(fields: [clientAccountId], references: [id], onDelete: Cascade)
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
+  requestedApprovals Approval[] @relation("RequestedApprovals")
+  approvedApprovals  Approval[] @relation("ApprovedApprovals")
   @@index([actorType])
   @@map("actor")
 }
@@ -534,4 +536,46 @@ model TaskWorkOrder {
   @@index([referenceType, referenceId])
   @@index([referenceType, referenceItemId])
   @@map("task_work_order")
+}
+
+// -----------------------------------------------------------------------------
+// Approvals (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  @@map("approval_status")
+}
+
+enum ApprovalReferenceType {
+  ADJUSTMENT
+  RETURN
+  INVOICE
+  ORDER
+  @@map("approval_reference_type")
+}
+
+model Approval {
+  id                  String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  referenceType       ApprovalReferenceType @map("reference_type")
+  referenceId         String                @map("reference_id") @db.Uuid
+  approvalStep        String                @default("INITIAL") @map("approval_step") @db.VarChar(50)
+  sequenceNo          Int                   @default(1) @map("sequence_no")
+  requestedByActorId  String                @map("requested_by_actor_id") @db.Uuid
+  approvedByActorId   String?               @map("approved_by_actor_id") @db.Uuid
+  status              ApprovalStatus        @default(PENDING)
+  requestNotes        String?               @map("request_notes")
+  decisionNotes       String?               @map("decision_notes")
+  decisionAt          DateTime?             @map("decision_at") @db.Timestamptz(6)
+  createdAt           DateTime              @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt           DateTime              @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  requestedByActor    Actor                 @relation("RequestedApprovals", fields: [requestedByActorId], references: [id], onDelete: Restrict)
+  approvedByActor     Actor?                @relation("ApprovedApprovals", fields: [approvedByActorId], references: [id], onDelete: SetNull)
+
+  @@index([referenceType, referenceId], name: "idx_approval_reference")
+  @@index([requestedByActorId], name: "idx_approval_requested")
+  @@map("approval")
 }

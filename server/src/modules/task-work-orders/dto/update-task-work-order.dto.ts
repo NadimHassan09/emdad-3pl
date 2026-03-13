@@ -28,4 +28,3 @@ export class UpdateTaskWorkOrderDto {
   @IsEnum(TaskStatus)
   status?: TaskStatus;
 }
-

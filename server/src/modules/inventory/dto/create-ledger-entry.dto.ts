@@ -1,11 +1,18 @@
-import { IsUUID, IsEnum, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import {
+  IsUUID,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 import { MovementType } from '../../../common/enums/movement-type.enum';
 import { Type } from 'class-transformer';
 
 /**
  * DTO for creating inventory ledger entries.
  * This is the safe contract for stock-changing operations.
- * 
+ *
  * IMPORTANT: Never write directly to current_stock. This DTO is used to insert
  * into inventory_ledger, which triggers automatic current_stock updates via DB trigger.
  */
@@ -52,4 +59,3 @@ export class CreateLedgerEntryDto {
   @IsUUID()
   referenceId?: string;
 }
-

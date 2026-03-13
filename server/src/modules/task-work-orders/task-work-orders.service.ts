@@ -12,23 +12,23 @@ import { TaskStatus } from '../../common/enums/task-status.enum';
 
 /**
  * Task Work Orders Service
- * 
+ *
  * Handles physical warehouse work task management.
- * 
+ *
  * Tasks can reference:
  * - Inbound orders (receiving, putaway)
  * - Outbound orders (picking, packing, shipping)
  * - Adjustments
  * - Return orders
  * - Specific item rows (via referenceItemId)
- * 
+ *
  * Task lifecycle:
  * - PENDING: Created, not yet assigned
  * - ASSIGNED: Assigned to a user, ready to start
  * - IN_PROGRESS: User has started working on it
  * - COMPLETED: Task finished successfully
  * - CANCELLED: Task cancelled before completion
- * 
+ *
  * This module is reusable for all warehouse task types:
  * - Receiving, Putaway, Picking, Packing, Shipping
  * - Cycle Count, Replenishment, Adjustment
@@ -97,10 +97,7 @@ export class TaskWorkOrdersService {
           select: { id: true, email: true, firstName: true, lastName: true },
         },
       },
-      orderBy: [
-        { priority: 'desc' },
-        { createdAt: 'asc' },
-      ],
+      orderBy: [{ priority: 'desc' }, { createdAt: 'asc' }],
     });
   }
 
@@ -204,4 +201,3 @@ export class TaskWorkOrdersService {
     });
   }
 }
-

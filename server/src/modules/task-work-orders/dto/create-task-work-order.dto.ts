@@ -1,4 +1,10 @@
-import { IsUUID, IsNotEmpty, IsOptional, IsString, IsEnum } from 'class-validator';
+import {
+  IsUUID,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsEnum,
+} from 'class-validator';
 import { TaskType } from '../../../common/enums/task-type.enum';
 import { TaskPriority } from '../../../common/enums/task-priority.enum';
 
@@ -31,4 +37,3 @@ export class CreateTaskWorkOrderDto {
   @IsEnum(TaskPriority)
   priority?: TaskPriority;
 }
-

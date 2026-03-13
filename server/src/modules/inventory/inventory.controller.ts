@@ -37,4 +37,3 @@ export class InventoryController {
     return this.inventoryService.findLedger(filter);
   }
 }
-

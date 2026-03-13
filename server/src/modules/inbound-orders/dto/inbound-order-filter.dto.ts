@@ -18,4 +18,3 @@ export class InboundOrderFilterDto {
   @IsString()
   orderNumber?: string;
 }
-

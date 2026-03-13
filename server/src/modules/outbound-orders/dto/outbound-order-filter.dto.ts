@@ -18,4 +18,3 @@ export class OutboundOrderFilterDto {
   @IsString()
   orderNumber?: string;
 }
-

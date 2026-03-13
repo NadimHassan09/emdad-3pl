@@ -11,4 +11,3 @@ import { InventoryModule } from '../inventory/inventory.module';
   exports: [InboundOrdersService],
 })
 export class InboundOrdersModule {}
-

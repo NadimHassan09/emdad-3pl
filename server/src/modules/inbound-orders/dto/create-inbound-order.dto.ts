@@ -1,4 +1,10 @@
-import { IsUUID, IsNotEmpty, IsOptional, IsString, IsDateString } from 'class-validator';
+import {
+  IsUUID,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsDateString,
+} from 'class-validator';
 
 export class CreateInboundOrderDto {
   @IsUUID()
@@ -21,4 +27,3 @@ export class CreateInboundOrderDto {
   @IsDateString()
   expectedDate?: string;
 }
-

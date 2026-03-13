@@ -57,4 +57,3 @@ export class OutboundOrdersController {
     return this.outboundOrders.addItem(orderId, dto);
   }
 }
-

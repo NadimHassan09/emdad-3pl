@@ -66,4 +66,3 @@ export class InboundOrdersController {
     return this.inboundOrders.receive(orderId, dto);
   }
 }
-

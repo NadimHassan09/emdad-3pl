@@ -11,17 +11,17 @@ import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
 
 /**
  * Outbound Orders Service
- * 
+ *
  * Handles outbound order creation and item management.
- * 
+ *
  * This module focuses on order management structure:
  * - Creating outbound orders
  * - Adding items to orders
  * - Updating order details
- * 
+ *
  * Shipping execution (reservation, picking, shipping) is handled by other modules.
  * This service provides the foundation for batch/location-aware fulfillment.
- * 
+ *
  * Service methods are designed to integrate cleanly with:
  * - Stock reservation logic (reserves stock for order items)
  * - Shipping logic (updates qtyShipped and creates ledger entries)
@@ -67,7 +67,15 @@ export class OutboundOrdersService {
     const where: {
       clientId?: string;
       warehouseId?: string;
-      status?: 'DRAFT' | 'PENDING' | 'CONFIRMED' | 'IN_PROGRESS' | 'RECEIVING' | 'SHIPPED' | 'COMPLETED' | 'CANCELLED';
+      status?:
+        | 'DRAFT'
+        | 'PENDING'
+        | 'CONFIRMED'
+        | 'IN_PROGRESS'
+        | 'RECEIVING'
+        | 'SHIPPED'
+        | 'COMPLETED'
+        | 'CANCELLED';
       orderNumber?: { contains: string; mode?: 'insensitive' };
     } = {};
 
@@ -195,4 +203,3 @@ export class OutboundOrdersService {
     });
   }
 }
-

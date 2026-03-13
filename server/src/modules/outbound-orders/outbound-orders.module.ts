@@ -9,4 +9,3 @@ import { PrismaService } from '../../database/prisma/prisma.service';
   exports: [OutboundOrdersService],
 })
 export class OutboundOrdersModule {}
-
