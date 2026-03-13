@@ -60,6 +60,7 @@ model Client {
   inventoryLedgers InventoryLedger[]
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]
+  outboundOrders OutboundOrder[]
   @@map("client")
 }
 
@@ -134,6 +135,7 @@ model Actor {
   user          User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
   clientAccount ClientAccount? @relation(fields: [clientAccountId], references: [id], onDelete: Cascade)
   inboundOrders InboundOrder[]
+  outboundOrders OutboundOrder[]
   @@index([actorType])
   @@map("actor")
 }
@@ -208,6 +210,7 @@ model Uom {
   locations      Location[]
   products       Product[]
   inboundOrderItems InboundOrderItem[]
+  outboundOrderItems OutboundOrderItem[]
   @@map("uom")
 }
 
@@ -226,6 +229,7 @@ model Warehouse {
   inventoryLedgers InventoryLedger[]
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]
+  outboundOrders OutboundOrder[]
   @@map("warehouse")
 }
 
@@ -248,6 +252,7 @@ model Location {
   inventoryLedgers InventoryLedger[]
   currentStocks   CurrentStock[]
   inboundOrderItemBatches InboundOrderItemBatch[]
+  outboundOrderItemBatches OutboundOrderItemBatch[]
   @@unique([warehouseId, code])
   @@index([warehouseId, parentLocationId])
   @@map("location")
@@ -270,6 +275,7 @@ model Product {
   inventoryLedgers InventoryLedger[]
   currentStocks   CurrentStock[]
   inboundOrderItems InboundOrderItem[]
+  outboundOrderItems OutboundOrderItem[]
   @@unique([clientId, sku])
   @@map("product")
 }
@@ -291,6 +297,7 @@ model Batch {
   inventoryLedgers InventoryLedger[]
   currentStocks   CurrentStock[]
   inboundOrderItemBatches InboundOrderItemBatch[]
+  outboundOrderItemBatches OutboundOrderItemBatch[]
   @@unique([productId, batchCode])
   @@index([batchStatus])
   @@map("batch")
@@ -406,4 +413,65 @@ model InboundOrderItemBatch {
 
   @@index([inboundOrderItemId])
   @@map("inbound_order_item_batch")
+}
+
+// -----------------------------------------------------------------------------
+// Outbound Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model OutboundOrder {
+  id                String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId          String      @map("client_id") @db.Uuid
+  warehouseId       String      @map("warehouse_id") @db.Uuid
+  orderNumber       String?     @map("order_number") @db.VarChar(50)
+  status            OrderStatus @default(DRAFT)
+  currentStage      String?     @map("current_stage") @db.VarChar(100)
+  expectedShipDate  DateTime?   @map("expected_ship_date") @db.Date
+  createdByActorId  String      @map("created_by_actor_id") @db.Uuid
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  client            Client              @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse           @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  createdByActor    Actor               @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
+  items             OutboundOrderItem[]
+
+  @@index([clientId, warehouseId])
+  @@map("outbound_order")
+}
+
+model OutboundOrderItem {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  outboundOrderId String    @map("outbound_order_id") @db.Uuid
+  productId       String    @map("product_id") @db.Uuid
+  qtyOrdered      Decimal   @map("qty_ordered") @db.Decimal(18, 4)
+  qtyShipped      Decimal   @default(0) @map("qty_shipped") @db.Decimal(18, 4)
+  uomId           String    @map("uom_id") @db.Uuid
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  outboundOrder   OutboundOrder         @relation(fields: [outboundOrderId], references: [id], onDelete: Cascade)
+  product         Product               @relation(fields: [productId], references: [id], onDelete: Restrict)
+  uom             Uom                   @relation(fields: [uomId], references: [id], onDelete: Restrict)
+  batches         OutboundOrderItemBatch[]
+
+  @@index([outboundOrderId])
+  @@map("outbound_order_item")
+}
+
+model OutboundOrderItemBatch {
+  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  outboundOrderItemId String    @map("outbound_order_item_id") @db.Uuid
+  batchId             String?   @map("batch_id") @db.Uuid
+  locationId          String?   @map("location_id") @db.Uuid
+  qtyShipped          Decimal   @default(0) @map("qty_shipped") @db.Decimal(18, 4)
+  createdAt           DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt           DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  outboundOrderItem   OutboundOrderItem  @relation(fields: [outboundOrderItemId], references: [id], onDelete: Cascade)
+  batch               Batch?             @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location            Location?          @relation(fields: [locationId], references: [id], onDelete: SetNull)
+
+  @@index([outboundOrderItemId])
+  @@map("outbound_order_item_batch")
 }
