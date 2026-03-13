@@ -1,0 +1,11 @@
+export declare enum MovementType {
+    RECEIPT = "RECEIPT",
+    PUTAWAY = "PUTAWAY",
+    PICK = "PICK",
+    SHIPMENT = "SHIPMENT",
+    ADJUSTMENT = "ADJUSTMENT",
+    TRANSFER_IN = "TRANSFER_IN",
+    TRANSFER_OUT = "TRANSFER_OUT",
+    RETURN = "RETURN",
+    CYCLE_COUNT = "CYCLE_COUNT"
+}

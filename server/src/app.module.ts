@@ -8,6 +8,7 @@ import { LocationsModule } from './modules/locations/locations.module';
 import { UomModule } from './modules/uom/uom.module';
 import { ProductsModule } from './modules/products/products.module';
 import { BatchesModule } from './modules/batches/batches.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { BatchesModule } from './modules/batches/batches.module';
     UomModule,
     ProductsModule,
     BatchesModule,
+    InventoryModule,
   ],
   controllers: [],
   providers: [],
