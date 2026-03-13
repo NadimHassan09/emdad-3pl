@@ -61,6 +61,7 @@ model Client {
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
+  returnOrders ReturnOrder[]
   taskWorkOrders TaskWorkOrder[]
   stockReservations StockReservation[]
   outboundAllocations OutboundAllocation[]
@@ -245,6 +246,14 @@ enum AdjustmentStatus {
   @@map("adjustment_status")
 }
 
+enum ReturnDisposition {
+  RESTOCK
+  DAMAGED
+  QUARANTINE
+  DISPOSAL
+  @@map("return_disposition")
+}
+
 enum ReservationStatus {
   DRAFT
   CONFIRMED
@@ -298,6 +307,7 @@ model Warehouse {
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
+  returnOrders ReturnOrder[]
   taskWorkOrders TaskWorkOrder[]
   stockReservations StockReservation[]
   outboundAllocations OutboundAllocation[]
@@ -350,6 +360,7 @@ model Product {
   currentStocks   CurrentStock[]
   inboundOrderItems InboundOrderItem[]
   outboundOrderItems OutboundOrderItem[]
+  returnOrders ReturnOrder[]
   outboundAllocations OutboundAllocation[]
   adjustments Adjustment[]
   @@unique([clientId, sku])
@@ -374,6 +385,7 @@ model Batch {
   currentStocks   CurrentStock[]
   inboundOrderItemBatches InboundOrderItemBatch[]
   outboundOrderItemBatches OutboundOrderItemBatch[]
+  returnOrders ReturnOrder[]
   outboundAllocations OutboundAllocation[]
   adjustments Adjustment[]
   @@unique([productId, batchCode])
@@ -514,6 +526,7 @@ model OutboundOrder {
   createdByActor    Actor               @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
   items             OutboundOrderItem[]
   stockReservations StockReservation[]
+  returnOrders      ReturnOrder[]
 
   @@index([clientId, warehouseId])
   @@map("outbound_order")
@@ -664,6 +677,34 @@ model Adjustment {
 
   @@index([clientId, warehouseId])
   @@map("adjustment")
+}
+
+// -----------------------------------------------------------------------------
+// Return Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model ReturnOrder {
+  id                String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId          String          @map("client_id") @db.Uuid
+  warehouseId       String          @map("warehouse_id") @db.Uuid
+  outboundOrderId   String          @map("outbound_order_id") @db.Uuid
+  returnNumber      String          @map("return_number") @db.VarChar(50)
+  productId         String          @map("product_id") @db.Uuid
+  batchId           String?         @map("batch_id") @db.Uuid
+  qty               Decimal         @db.Decimal(18, 4)
+  disposition       ReturnDisposition @default(RESTOCK)
+  createdAt         DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime        @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  client            Client          @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse       @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  outboundOrder     OutboundOrder   @relation(fields: [outboundOrderId], references: [id], onDelete: Restrict)
+  product           Product         @relation(fields: [productId], references: [id], onDelete: Restrict)
+  batch             Batch?          @relation(fields: [batchId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, warehouseId])
+  @@index([outboundOrderId])
+  @@map("return_order")
 }
 
 // -----------------------------------------------------------------------------
