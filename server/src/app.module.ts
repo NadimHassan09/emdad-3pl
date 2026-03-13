@@ -15,6 +15,8 @@ import { TaskWorkOrdersModule } from './modules/task-work-orders/task-work-order
 import { StockReservationsModule } from './modules/stock-reservations/stock-reservations.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuditModule } from './modules/audit/audit.module';
+import { BillingModule } from './modules/billing/billing.module';
+import { VasModule } from './modules/vas/vas.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { AuditModule } from './modules/audit/audit.module';
     StockReservationsModule,
     ApprovalsModule,
     AuditModule,
+    BillingModule,
+    VasModule,
   ],
   controllers: [],
   providers: [],

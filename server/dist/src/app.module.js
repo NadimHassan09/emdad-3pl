@@ -24,6 +24,8 @@ const task_work_orders_module_1 = require("./modules/task-work-orders/task-work-
 const stock_reservations_module_1 = require("./modules/stock-reservations/stock-reservations.module");
 const approvals_module_1 = require("./modules/approvals/approvals.module");
 const audit_module_1 = require("./modules/audit/audit.module");
+const billing_module_1 = require("./modules/billing/billing.module");
+const vas_module_1 = require("./modules/vas/vas.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -49,6 +51,8 @@ exports.AppModule = AppModule = __decorate([
             stock_reservations_module_1.StockReservationsModule,
             approvals_module_1.ApprovalsModule,
             audit_module_1.AuditModule,
+            billing_module_1.BillingModule,
+            vas_module_1.VasModule,
         ],
         controllers: [],
         providers: [],
