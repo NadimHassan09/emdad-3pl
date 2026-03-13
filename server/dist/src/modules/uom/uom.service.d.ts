@@ -7,42 +7,42 @@ export declare class UomService {
     constructor(prisma: PrismaService);
     create(dto: CreateUomDto): Promise<{
         id: string;
-        code: string;
-        name: string;
-        dimension: import(".prisma/client").$Enums.UomDimension;
-        baseConversion: import("@prisma/client/runtime/library").Decimal;
-        isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        name: string;
+        isActive: boolean;
+        dimension: import(".prisma/client").$Enums.UomDimension;
+        baseConversion: import("@prisma/client/runtime/library").Decimal;
     }>;
     findMany(filter?: UomFilterDto): Promise<{
         id: string;
-        code: string;
-        name: string;
-        dimension: import(".prisma/client").$Enums.UomDimension;
-        baseConversion: import("@prisma/client/runtime/library").Decimal;
-        isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        name: string;
+        isActive: boolean;
+        dimension: import(".prisma/client").$Enums.UomDimension;
+        baseConversion: import("@prisma/client/runtime/library").Decimal;
     }[]>;
     findOne(id: string): Promise<{
         id: string;
-        code: string;
-        name: string;
-        dimension: import(".prisma/client").$Enums.UomDimension;
-        baseConversion: import("@prisma/client/runtime/library").Decimal;
-        isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        name: string;
+        isActive: boolean;
+        dimension: import(".prisma/client").$Enums.UomDimension;
+        baseConversion: import("@prisma/client/runtime/library").Decimal;
     }>;
     update(id: string, dto: UpdateUomDto): Promise<{
         id: string;
-        code: string;
-        name: string;
-        dimension: import(".prisma/client").$Enums.UomDimension;
-        baseConversion: import("@prisma/client/runtime/library").Decimal;
-        isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        name: string;
+        isActive: boolean;
+        dimension: import(".prisma/client").$Enums.UomDimension;
+        baseConversion: import("@prisma/client/runtime/library").Decimal;
     }>;
 }

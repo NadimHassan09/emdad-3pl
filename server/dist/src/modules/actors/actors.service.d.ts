@@ -5,9 +5,9 @@ export declare class ActorsService {
     findByUserId(userId: string): Promise<({
         user: {
             id: string;
-            isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
+            isActive: boolean;
             email: string;
             passwordHash: string | null;
             firstName: string;
@@ -25,14 +25,14 @@ export declare class ActorsService {
     findByClientAccountId(clientAccountId: string): Promise<({
         clientAccount: {
             id: string;
-            isActive: boolean;
+            clientId: string;
             createdAt: Date;
             updatedAt: Date;
+            isActive: boolean;
             email: string;
             passwordHash: string | null;
             firstName: string;
             lastName: string;
-            clientId: string;
             clientRoleId: string;
         } | null;
     } & {

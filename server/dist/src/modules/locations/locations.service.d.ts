@@ -13,15 +13,15 @@ export declare class LocationsService {
     constructor(prisma: PrismaService);
     create(warehouseId: string, dto: CreateLocationDto): Promise<{
         id: string;
-        code: string;
-        isActive: boolean;
+        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        isActive: boolean;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
-        locationType: import(".prisma/client").$Enums.LocationType;
-        warehouseId: string;
         parentLocationId: string | null;
+        locationType: import(".prisma/client").$Enums.LocationType;
     }>;
     findManyByWarehouse(warehouseId: string): Promise<({
         capacityUom: {
@@ -35,72 +35,72 @@ export declare class LocationsService {
         } | null;
     } & {
         id: string;
-        code: string;
-        isActive: boolean;
+        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        isActive: boolean;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
-        locationType: import(".prisma/client").$Enums.LocationType;
-        warehouseId: string;
         parentLocationId: string | null;
+        locationType: import(".prisma/client").$Enums.LocationType;
     })[]>;
     findOne(id: string): Promise<{
-        capacityUom: {
-            id: string;
-            code: string;
-            name: string;
-            dimension: import(".prisma/client").$Enums.UomDimension;
-            baseConversion: import("@prisma/client/runtime/library").Decimal;
-            isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
-        } | null;
         warehouse: {
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
             code: string;
             name: string;
             isActive: boolean;
-            createdAt: Date;
-            updatedAt: Date;
             capacityValue: import("@prisma/client/runtime/library").Decimal | null;
             capacityUomId: string | null;
         };
-        parentLocation: {
+        capacityUom: {
             id: string;
-            code: string;
-            isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
+            code: string;
+            name: string;
+            isActive: boolean;
+            dimension: import(".prisma/client").$Enums.UomDimension;
+            baseConversion: import("@prisma/client/runtime/library").Decimal;
+        } | null;
+        parentLocation: {
+            id: string;
+            warehouseId: string;
+            createdAt: Date;
+            updatedAt: Date;
+            code: string;
+            isActive: boolean;
             capacityValue: import("@prisma/client/runtime/library").Decimal | null;
             capacityUomId: string | null;
-            locationType: import(".prisma/client").$Enums.LocationType;
-            warehouseId: string;
             parentLocationId: string | null;
+            locationType: import(".prisma/client").$Enums.LocationType;
         } | null;
     } & {
         id: string;
-        code: string;
-        isActive: boolean;
+        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        isActive: boolean;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
-        locationType: import(".prisma/client").$Enums.LocationType;
-        warehouseId: string;
         parentLocationId: string | null;
+        locationType: import(".prisma/client").$Enums.LocationType;
     }>;
     update(id: string, dto: UpdateLocationDto): Promise<{
         id: string;
-        code: string;
-        isActive: boolean;
+        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
+        code: string;
+        isActive: boolean;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
-        locationType: import(".prisma/client").$Enums.LocationType;
-        warehouseId: string;
         parentLocationId: string | null;
+        locationType: import(".prisma/client").$Enums.LocationType;
     }>;
     findTree(): Promise<LocationTreeNode[]>;
 }
