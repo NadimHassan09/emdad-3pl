@@ -2,14 +2,12 @@ import {
   Controller,
   Get,
   Post,
-  Patch,
   Body,
   Param,
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { LocationsService } from './locations.service';
 import { CreateLocationDto } from './dto/create-location.dto';
-import { UpdateLocationDto } from './dto/update-location.dto';
 
 @Controller('locations')
 export class LocationsController {
@@ -18,19 +16,6 @@ export class LocationsController {
   @Get('tree')
   findTree() {
     return this.locations.findTree();
-  }
-
-  @Get(':id')
-  findOne(@Param('id', ParseUUIDPipe) id: string) {
-    return this.locations.findOne(id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Body() dto: UpdateLocationDto,
-  ) {
-    return this.locations.update(id, dto);
   }
 }
 

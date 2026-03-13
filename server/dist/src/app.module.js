@@ -18,6 +18,7 @@ const uom_module_1 = require("./modules/uom/uom.module");
 const products_module_1 = require("./modules/products/products.module");
 const batches_module_1 = require("./modules/batches/batches.module");
 const inventory_module_1 = require("./modules/inventory/inventory.module");
+const inbound_orders_module_1 = require("./modules/inbound-orders/inbound-orders.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -37,6 +38,7 @@ exports.AppModule = AppModule = __decorate([
             products_module_1.ProductsModule,
             batches_module_1.BatchesModule,
             inventory_module_1.InventoryModule,
+            inbound_orders_module_1.InboundOrdersModule,
         ],
         controllers: [],
         providers: [],
