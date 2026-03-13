@@ -16,12 +16,19 @@ exports.WarehouseLocationsController = exports.LocationsController = void 0;
 const common_1 = require("@nestjs/common");
 const locations_service_1 = require("./locations.service");
 const create_location_dto_1 = require("./dto/create-location.dto");
+const update_location_dto_1 = require("./dto/update-location.dto");
 let LocationsController = class LocationsController {
     constructor(locations) {
         this.locations = locations;
     }
     findTree() {
         return this.locations.findTree();
+    }
+    findOne(id) {
+        return this.locations.findOne(id);
+    }
+    update(id, dto) {
+        return this.locations.update(id, dto);
     }
 };
 exports.LocationsController = LocationsController;
@@ -31,6 +38,21 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], LocationsController.prototype, "findTree", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], LocationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_location_dto_1.UpdateLocationDto]),
+    __metadata("design:returntype", void 0)
+], LocationsController.prototype, "update", null);
 exports.LocationsController = LocationsController = __decorate([
     (0, common_1.Controller)('locations'),
     __metadata("design:paramtypes", [locations_service_1.LocationsService])
