@@ -23,6 +23,7 @@ const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
 const stock_reservations_service_1 = require("../stock-reservations/stock-reservations.service");
 const create_reservation_dto_1 = require("../stock-reservations/dto/create-reservation.dto");
+const ship_order_dto_1 = require("../stock-reservations/dto/ship-order.dto");
 let OutboundOrdersController = class OutboundOrdersController {
     constructor(outboundOrders, stockReservations) {
         this.outboundOrders = outboundOrders;
@@ -45,6 +46,9 @@ let OutboundOrdersController = class OutboundOrdersController {
     }
     createReservation(outboundOrderId, dto) {
         return this.stockReservations.createReservation(outboundOrderId, dto);
+    }
+    shipOrder(outboundOrderId, dto) {
+        return this.stockReservations.shipOrder(outboundOrderId, dto);
     }
 };
 exports.OutboundOrdersController = OutboundOrdersController;
@@ -94,6 +98,14 @@ __decorate([
     __metadata("design:paramtypes", [String, create_reservation_dto_1.CreateReservationDto]),
     __metadata("design:returntype", void 0)
 ], OutboundOrdersController.prototype, "createReservation", null);
+__decorate([
+    (0, common_1.Post)(':id/ship'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, ship_order_dto_1.ShipOrderDto]),
+    __metadata("design:returntype", void 0)
+], OutboundOrdersController.prototype, "shipOrder", null);
 exports.OutboundOrdersController = OutboundOrdersController = __decorate([
     (0, common_1.Controller)('outbound-orders'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

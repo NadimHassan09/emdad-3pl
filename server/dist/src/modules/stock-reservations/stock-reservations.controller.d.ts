@@ -1,4 +1,5 @@
 import { StockReservationsService } from './stock-reservations.service';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
 export declare class StockReservationsController {
     private readonly stockReservations;
     constructor(stockReservations: StockReservationsService);
@@ -193,5 +194,59 @@ export declare class StockReservationsController {
         clientId: string;
         warehouseId: string;
         outboundOrderId: string;
+    }>;
+    pickAllocation(id: string, dto: PickAllocationDto): Promise<{
+        location: {
+            id: string;
+            code: string;
+        } | null;
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+        batch: {
+            id: string;
+            batchCode: string;
+        } | null;
+        outboundOrderItem: {
+            id: string;
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        };
+        stockReservation: {
+            outboundOrder: {
+                id: string;
+                status: import(".prisma/client").$Enums.OrderStatus;
+                orderNumber: string | null;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            status: import(".prisma/client").$Enums.ReservationStatus;
+            clientId: string;
+            warehouseId: string;
+            outboundOrderId: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.AllocationStatus;
+        clientId: string;
+        warehouseId: string;
+        productId: string;
+        batchId: string | null;
+        locationId: string | null;
+        outboundOrderItemId: string;
+        reservedQty: import("@prisma/client/runtime/library").Decimal;
+        pickedQty: import("@prisma/client/runtime/library").Decimal;
+        shippedQty: import("@prisma/client/runtime/library").Decimal;
+        stockReservationId: string;
     }>;
 }

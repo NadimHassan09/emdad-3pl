@@ -6,6 +6,7 @@ import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { StockReservationsService } from '../stock-reservations/stock-reservations.service';
 import { CreateReservationDto } from '../stock-reservations/dto/create-reservation.dto';
+import { ShipOrderDto } from '../stock-reservations/dto/ship-order.dto';
 export declare class OutboundOrdersController {
     private readonly outboundOrders;
     private readonly stockReservations;
@@ -291,5 +292,67 @@ export declare class OutboundOrdersController {
         clientId: string;
         warehouseId: string;
         outboundOrderId: string;
+    }>;
+    shipOrder(outboundOrderId: string, dto: ShipOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyShipped: import("@prisma/client/runtime/library").Decimal;
+                outboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderId: string;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedShipDate: Date | null;
     }>;
 }

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StockReservationsController = void 0;
 const common_1 = require("@nestjs/common");
 const stock_reservations_service_1 = require("./stock-reservations.service");
+const pick_allocation_dto_1 = require("./dto/pick-allocation.dto");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 let StockReservationsController = class StockReservationsController {
     constructor(stockReservations) {
@@ -28,6 +29,9 @@ let StockReservationsController = class StockReservationsController {
     }
     release(id) {
         return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
     }
 };
 exports.StockReservationsController = StockReservationsController;
@@ -52,6 +56,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
 exports.StockReservationsController = StockReservationsController = __decorate([
     (0, common_1.Controller)('stock-reservations'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

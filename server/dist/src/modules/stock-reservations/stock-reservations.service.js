@@ -12,9 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StockReservationsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
+const allocation_status_enum_1 = require("../../common/enums/allocation-status.enum");
+const inventory_service_1 = require("../inventory/inventory.service");
+const movement_type_enum_1 = require("../../common/enums/movement-type.enum");
+const order_status_enum_1 = require("../../common/enums/order-status.enum");
 let StockReservationsService = class StockReservationsService {
-    constructor(prisma) {
+    constructor(prisma, inventoryService) {
         this.prisma = prisma;
+        this.inventoryService = inventoryService;
     }
     async createReservation(outboundOrderId, dto) {
         const order = await this.prisma.outboundOrder.findUniqueOrThrow({
@@ -251,10 +256,254 @@ let StockReservationsService = class StockReservationsService {
             }
         }
     }
+    async pickAllocation(id, dto) {
+        const allocation = await this.prisma.outboundAllocation.findUnique({
+            where: { id },
+            include: {
+                stockReservation: {
+                    include: {
+                        outboundOrder: true,
+                    },
+                },
+                outboundOrderItem: true,
+            },
+        });
+        if (!allocation) {
+            throw new common_1.NotFoundException('Outbound allocation not found');
+        }
+        const reservedQty = allocation.reservedQty.toNumber();
+        const currentPickedQty = allocation.pickedQty.toNumber();
+        const newPickedQty = dto.pickedQty;
+        if (newPickedQty > reservedQty) {
+            throw new common_1.BadRequestException(`Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`);
+        }
+        if (newPickedQty < currentPickedQty) {
+            throw new common_1.BadRequestException(`Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`);
+        }
+        let newStatus;
+        if (newPickedQty === 0) {
+            newStatus = allocation_status_enum_1.AllocationStatus.RESERVED;
+        }
+        else if (newPickedQty < reservedQty) {
+            newStatus = allocation_status_enum_1.AllocationStatus.PARTIALLY_PICKED;
+        }
+        else {
+            newStatus = allocation_status_enum_1.AllocationStatus.PICKED;
+        }
+        const updatedAllocation = await this.prisma.outboundAllocation.update({
+            where: { id },
+            data: {
+                pickedQty: newPickedQty,
+                status: newStatus,
+            },
+            include: {
+                stockReservation: {
+                    include: {
+                        outboundOrder: {
+                            select: {
+                                id: true,
+                                orderNumber: true,
+                                status: true,
+                            },
+                        },
+                    },
+                },
+                outboundOrderItem: {
+                    select: {
+                        id: true,
+                        qtyOrdered: true,
+                        product: { select: { id: true, sku: true, name: true } },
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+        return updatedAllocation;
+    }
+    async shipOrder(outboundOrderId, dto) {
+        const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: outboundOrderId },
+            include: {
+                items: true,
+                stockReservations: {
+                    include: {
+                        allocations: true,
+                    },
+                },
+            },
+        });
+        const orderAllocationIds = new Set();
+        for (const reservation of order.stockReservations) {
+            for (const allocation of reservation.allocations) {
+                orderAllocationIds.add(allocation.id);
+            }
+        }
+        for (const shipAlloc of dto.allocations) {
+            if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+                throw new common_1.BadRequestException(`Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`);
+            }
+        }
+        const updatedAllocations = [];
+        for (const shipAlloc of dto.allocations) {
+            const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow({
+                where: { id: shipAlloc.allocationId },
+                include: {
+                    outboundOrderItem: true,
+                    product: true,
+                    batch: true,
+                    location: true,
+                },
+            });
+            const pickedQty = allocation.pickedQty.toNumber();
+            const currentShippedQty = allocation.shippedQty.toNumber();
+            const newShippedQty = shipAlloc.shippedQty;
+            if (newShippedQty > pickedQty) {
+                throw new common_1.BadRequestException(`Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`);
+            }
+            if (newShippedQty < currentShippedQty) {
+                throw new common_1.BadRequestException(`Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`);
+            }
+            let newStatus;
+            if (newShippedQty === 0) {
+                newStatus =
+                    allocation.status === 'PICKED'
+                        ? allocation_status_enum_1.AllocationStatus.PICKED
+                        : allocation_status_enum_1.AllocationStatus.PARTIALLY_PICKED;
+            }
+            else if (newShippedQty < pickedQty) {
+                newStatus = allocation_status_enum_1.AllocationStatus.PARTIALLY_SHIPPED;
+            }
+            else {
+                newStatus = allocation_status_enum_1.AllocationStatus.SHIPPED;
+            }
+            const updatedAllocation = await this.prisma.outboundAllocation.update({
+                where: { id: shipAlloc.allocationId },
+                data: {
+                    shippedQty: newShippedQty,
+                    status: newStatus,
+                },
+            });
+            const batchId = shipAlloc.batchId || allocation.batchId;
+            const locationId = shipAlloc.locationId || allocation.locationId;
+            if (batchId || locationId) {
+                const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst({
+                    where: {
+                        outboundOrderItemId: allocation.outboundOrderItemId,
+                        batchId: batchId || null,
+                        locationId: locationId || null,
+                    },
+                });
+                if (existingBatch) {
+                    await this.prisma.outboundOrderItemBatch.update({
+                        where: { id: existingBatch.id },
+                        data: {
+                            qtyShipped: newShippedQty,
+                        },
+                    });
+                }
+                else {
+                    await this.prisma.outboundOrderItemBatch.create({
+                        data: {
+                            outboundOrderItemId: allocation.outboundOrderItemId,
+                            batchId: batchId || null,
+                            locationId: locationId || null,
+                            qtyShipped: newShippedQty,
+                        },
+                    });
+                }
+            }
+            const qtyToShip = newShippedQty - currentShippedQty;
+            if (qtyToShip > 0) {
+                await this.inventoryService.createLedgerEntry({
+                    clientId: allocation.clientId,
+                    warehouseId: allocation.warehouseId,
+                    productId: allocation.productId,
+                    batchId: batchId || undefined,
+                    locationId: locationId || undefined,
+                    movementType: movement_type_enum_1.MovementType.SHIPMENT,
+                    qtyChange: -qtyToShip,
+                    referenceType: 'OUTBOUND_ORDER',
+                    referenceId: outboundOrderId,
+                });
+            }
+            updatedAllocations.push(updatedAllocation);
+        }
+        const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+            where: {
+                stockReservation: {
+                    outboundOrderId,
+                },
+            },
+        });
+        const itemTotalShippedMap = new Map();
+        for (const alloc of allOrderAllocations) {
+            const itemId = alloc.outboundOrderItemId;
+            const current = itemTotalShippedMap.get(itemId) || 0;
+            const shipped = alloc.shippedQty.toNumber();
+            itemTotalShippedMap.set(itemId, current + shipped);
+        }
+        for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+            await this.prisma.outboundOrderItem.update({
+                where: { id: itemId },
+                data: { qtyShipped: totalShippedQty },
+            });
+        }
+        const orderItems = await this.prisma.outboundOrderItem.findMany({
+            where: { outboundOrderId },
+        });
+        let allItemsShipped = true;
+        let someItemsShipped = false;
+        for (const item of orderItems) {
+            const qtyOrdered = item.qtyOrdered.toNumber();
+            const qtyShipped = item.qtyShipped.toNumber();
+            if (qtyShipped > 0) {
+                someItemsShipped = true;
+            }
+            if (qtyShipped < qtyOrdered) {
+                allItemsShipped = false;
+            }
+        }
+        let newOrderStatus;
+        if (allItemsShipped) {
+            newOrderStatus = order_status_enum_1.OrderStatus.SHIPPED;
+        }
+        else if (someItemsShipped) {
+            newOrderStatus = order_status_enum_1.OrderStatus.IN_PROGRESS;
+        }
+        else {
+            newOrderStatus = order.status;
+        }
+        const updatedOrder = await this.prisma.outboundOrder.update({
+            where: { id: outboundOrderId },
+            data: {
+                status: newOrderStatus,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                items: {
+                    include: {
+                        product: { select: { id: true, sku: true, name: true } },
+                        uom: { select: { id: true, code: true, name: true } },
+                        batches: {
+                            include: {
+                                batch: { select: { id: true, batchCode: true } },
+                                location: { select: { id: true, code: true } },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+        return updatedOrder;
+    }
 };
 exports.StockReservationsService = StockReservationsService;
 exports.StockReservationsService = StockReservationsService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
 ], StockReservationsService);
 //# sourceMappingURL=stock-reservations.service.js.map

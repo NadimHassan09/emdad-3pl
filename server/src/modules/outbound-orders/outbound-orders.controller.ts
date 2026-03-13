@@ -19,6 +19,7 @@ import { CurrentActor } from '../../common/decorators/current-actor.decorator';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { StockReservationsService } from '../stock-reservations/stock-reservations.service';
 import { CreateReservationDto } from '../stock-reservations/dto/create-reservation.dto';
+import { ShipOrderDto } from '../stock-reservations/dto/ship-order.dto';
 
 @Controller('outbound-orders')
 @UseGuards(JwtAuthGuard)
@@ -68,5 +69,13 @@ export class OutboundOrdersController {
     @Body() dto: CreateReservationDto,
   ) {
     return this.stockReservations.createReservation(outboundOrderId, dto);
+  }
+
+  @Post(':id/ship')
+  shipOrder(
+    @Param('id', ParseUUIDPipe) outboundOrderId: string,
+    @Body() dto: ShipOrderDto,
+  ) {
+    return this.stockReservations.shipOrder(outboundOrderId, dto);
   }
 }
