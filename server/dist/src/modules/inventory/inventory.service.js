@@ -107,7 +107,9 @@ let InventoryService = class InventoryService {
             },
         });
         const qtyBefore = currentStock?.quantity
-            ? (typeof currentStock.quantity === 'number' ? currentStock.quantity : currentStock.quantity.toNumber())
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
             : 0;
         const qtyAfter = qtyBefore + dto.qtyChange;
         if (qtyAfter < 0) {

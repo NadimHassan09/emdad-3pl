@@ -69,10 +69,7 @@ let TaskWorkOrdersService = class TaskWorkOrdersService {
                     select: { id: true, email: true, firstName: true, lastName: true },
                 },
             },
-            orderBy: [
-                { priority: 'desc' },
-                { createdAt: 'asc' },
-            ],
+            orderBy: [{ priority: 'desc' }, { createdAt: 'asc' }],
         });
     }
     async findOne(id) {

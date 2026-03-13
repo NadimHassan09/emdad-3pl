@@ -22,6 +22,7 @@ const inbound_orders_module_1 = require("./modules/inbound-orders/inbound-orders
 const outbound_orders_module_1 = require("./modules/outbound-orders/outbound-orders.module");
 const task_work_orders_module_1 = require("./modules/task-work-orders/task-work-orders.module");
 const approvals_module_1 = require("./modules/approvals/approvals.module");
+const audit_module_1 = require("./modules/audit/audit.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -45,6 +46,7 @@ exports.AppModule = AppModule = __decorate([
             outbound_orders_module_1.OutboundOrdersModule,
             task_work_orders_module_1.TaskWorkOrdersModule,
             approvals_module_1.ApprovalsModule,
+            audit_module_1.AuditModule,
         ],
         controllers: [],
         providers: [],

@@ -140,6 +140,7 @@ model Actor {
   outboundOrders OutboundOrder[]
   requestedApprovals Approval[] @relation("RequestedApprovals")
   approvedApprovals  Approval[] @relation("ApprovedApprovals")
+  auditLogs          AuditLog[]
   @@index([actorType])
   @@map("actor")
 }
@@ -578,4 +579,26 @@ model Approval {
   @@index([referenceType, referenceId], name: "idx_approval_reference")
   @@index([requestedByActorId], name: "idx_approval_requested")
   @@map("approval")
+}
+
+// -----------------------------------------------------------------------------
+// System Audit (append-only, immutable; aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model AuditLog {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  actorId      String?  @map("actor_id") @db.Uuid
+  action       String   @db.VarChar(100)
+  resourceType String   @map("resource_type") @db.VarChar(100)
+  resourceId   String?  @map("resource_id") @db.Uuid
+  ipAddress    String?  @map("ip_address") @db.Inet
+  detailsJson  Json     @default("{}") @map("details_json") @db.JsonB
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  actor Actor? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([actorId], name: "idx_audit_log_actor")
+  @@index([resourceType, resourceId], name: "idx_audit_log_resource")
+  @@index([createdAt], name: "idx_audit_log_created")
+  @@map("audit_log")
 }

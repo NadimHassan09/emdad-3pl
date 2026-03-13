@@ -13,6 +13,7 @@ import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.mod
 import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.module';
 import { TaskWorkOrdersModule } from './modules/task-work-orders/task-work-orders.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
+import { AuditModule } from './modules/audit/audit.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ApprovalsModule } from './modules/approvals/approvals.module';
     OutboundOrdersModule,
     TaskWorkOrdersModule,
     ApprovalsModule,
+    AuditModule,
   ],
   controllers: [],
   providers: [],
