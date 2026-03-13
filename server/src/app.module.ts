@@ -11,6 +11,7 @@ import { BatchesModule } from './modules/batches/batches.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.module';
 import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.module';
+import { TaskWorkOrdersModule } from './modules/task-work-orders/task-work-orders.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.
     InventoryModule,
     InboundOrdersModule,
     OutboundOrdersModule,
+    TaskWorkOrdersModule,
   ],
   controllers: [],
   providers: [],

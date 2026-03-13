@@ -61,6 +61,7 @@ model Client {
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
+  taskWorkOrders TaskWorkOrder[]
   @@map("client")
 }
 
@@ -120,6 +121,7 @@ model User {
 
   internalRole UserRole? @relation(fields: [internalRoleId], references: [id], onDelete: SetNull)
   actor        Actor?
+  assignedTasks TaskWorkOrder[]
   @@index([internalRoleId])
   @@map("users")
 }
@@ -196,6 +198,35 @@ enum OrderStatus {
   @@map("order_status")
 }
 
+enum TaskType {
+  RECEIVING
+  PUTAWAY
+  PICKING
+  PACKING
+  SHIPPING
+  CYCLE_COUNT
+  REPLENISHMENT
+  ADJUSTMENT
+  @@map("task_type")
+}
+
+enum TaskStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  @@map("task_status")
+}
+
+enum TaskPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+  @@map("task_priority")
+}
+
 model Uom {
   id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   code            String       @unique @db.VarChar(20)
@@ -230,6 +261,7 @@ model Warehouse {
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
+  taskWorkOrders TaskWorkOrder[]
   @@map("warehouse")
 }
 
@@ -474,4 +506,32 @@ model OutboundOrderItemBatch {
 
   @@index([outboundOrderItemId])
   @@map("outbound_order_item_batch")
+}
+
+// -----------------------------------------------------------------------------
+// Task Work Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model TaskWorkOrder {
+  id                String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId          String      @map("client_id") @db.Uuid
+  warehouseId       String      @map("warehouse_id") @db.Uuid
+  taskType          TaskType    @map("task_type")
+  referenceType     String?     @map("reference_type") @db.VarChar(50)
+  referenceId       String?     @map("reference_id") @db.Uuid
+  referenceItemId   String?     @map("reference_item_id") @db.Uuid
+  assignedUserId    String?     @map("assigned_user_id") @db.Uuid
+  priority          TaskPriority @default(NORMAL)
+  status            TaskStatus  @default(PENDING)
+  createdAt         DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  client            Client      @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse   @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  assignedUser      User?       @relation(fields: [assignedUserId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, warehouseId])
+  @@index([referenceType, referenceId])
+  @@index([referenceType, referenceItemId])
+  @@map("task_work_order")
 }
