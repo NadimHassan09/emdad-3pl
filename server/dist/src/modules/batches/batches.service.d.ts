@@ -7,7 +7,6 @@ export declare class BatchesService {
     constructor(prisma: PrismaService);
     create(dto: CreateBatchDto): Promise<{
         id: string;
-        productId: string;
         createdAt: Date;
         updatedAt: Date;
         batchCode: string;
@@ -17,6 +16,7 @@ export declare class BatchesService {
         lotNumber: string | null;
         supplierBatchCode: string | null;
         batchStatus: import(".prisma/client").$Enums.BatchStatus;
+        productId: string;
     }>;
     findMany(filter?: BatchFilterDto): Promise<({
         product: {
@@ -26,7 +26,6 @@ export declare class BatchesService {
         };
     } & {
         id: string;
-        productId: string;
         createdAt: Date;
         updatedAt: Date;
         batchCode: string;
@@ -36,22 +35,22 @@ export declare class BatchesService {
         lotNumber: string | null;
         supplierBatchCode: string | null;
         batchStatus: import(".prisma/client").$Enums.BatchStatus;
+        productId: string;
     })[]>;
     findOne(id: string): Promise<{
         product: {
             id: string;
-            clientId: string;
-            createdAt: Date;
-            updatedAt: Date;
             name: string;
             isActive: boolean;
+            createdAt: Date;
+            updatedAt: Date;
+            clientId: string;
             sku: string;
-            defaultUomId: string;
             minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+            defaultUomId: string;
         };
     } & {
         id: string;
-        productId: string;
         createdAt: Date;
         updatedAt: Date;
         batchCode: string;
@@ -61,10 +60,10 @@ export declare class BatchesService {
         lotNumber: string | null;
         supplierBatchCode: string | null;
         batchStatus: import(".prisma/client").$Enums.BatchStatus;
+        productId: string;
     }>;
     update(id: string, dto: UpdateBatchDto): Promise<{
         id: string;
-        productId: string;
         createdAt: Date;
         updatedAt: Date;
         batchCode: string;
@@ -74,5 +73,6 @@ export declare class BatchesService {
         lotNumber: string | null;
         supplierBatchCode: string | null;
         batchStatus: import(".prisma/client").$Enums.BatchStatus;
+        productId: string;
     }>;
 }

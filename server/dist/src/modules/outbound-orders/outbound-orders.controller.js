@@ -21,9 +21,12 @@ const outbound_order_filter_dto_1 = require("./dto/outbound-order-filter.dto");
 const add_outbound_order_item_dto_1 = require("./dto/add-outbound-order-item.dto");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
+const stock_reservations_service_1 = require("../stock-reservations/stock-reservations.service");
+const create_reservation_dto_1 = require("../stock-reservations/dto/create-reservation.dto");
 let OutboundOrdersController = class OutboundOrdersController {
-    constructor(outboundOrders) {
+    constructor(outboundOrders, stockReservations) {
         this.outboundOrders = outboundOrders;
+        this.stockReservations = stockReservations;
     }
     create(dto, payload) {
         return this.outboundOrders.create(dto, payload.actorId);
@@ -39,6 +42,9 @@ let OutboundOrdersController = class OutboundOrdersController {
     }
     addItem(orderId, dto) {
         return this.outboundOrders.addItem(orderId, dto);
+    }
+    createReservation(outboundOrderId, dto) {
+        return this.stockReservations.createReservation(outboundOrderId, dto);
     }
 };
 exports.OutboundOrdersController = OutboundOrdersController;
@@ -80,9 +86,18 @@ __decorate([
     __metadata("design:paramtypes", [String, add_outbound_order_item_dto_1.AddOutboundOrderItemDto]),
     __metadata("design:returntype", void 0)
 ], OutboundOrdersController.prototype, "addItem", null);
+__decorate([
+    (0, common_1.Post)(':id/reservations'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_reservation_dto_1.CreateReservationDto]),
+    __metadata("design:returntype", void 0)
+], OutboundOrdersController.prototype, "createReservation", null);
 exports.OutboundOrdersController = OutboundOrdersController = __decorate([
     (0, common_1.Controller)('outbound-orders'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    __metadata("design:paramtypes", [outbound_orders_service_1.OutboundOrdersService])
+    __metadata("design:paramtypes", [outbound_orders_service_1.OutboundOrdersService,
+        stock_reservations_service_1.StockReservationsService])
 ], OutboundOrdersController);
 //# sourceMappingURL=outbound-orders.controller.js.map

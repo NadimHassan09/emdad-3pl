@@ -12,6 +12,7 @@ import { InventoryModule } from './modules/inventory/inventory.module';
 import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.module';
 import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.module';
 import { TaskWorkOrdersModule } from './modules/task-work-orders/task-work-orders.module';
+import { StockReservationsModule } from './modules/stock-reservations/stock-reservations.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuditModule } from './modules/audit/audit.module';
 
@@ -33,6 +34,7 @@ import { AuditModule } from './modules/audit/audit.module';
     InboundOrdersModule,
     OutboundOrdersModule,
     TaskWorkOrdersModule,
+    StockReservationsModule,
     ApprovalsModule,
     AuditModule,
   ],

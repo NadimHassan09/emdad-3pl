@@ -15,6 +15,10 @@ export declare class InventoryController {
             code: string;
             name: string;
         };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -24,20 +28,16 @@ export declare class InventoryController {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         clientId: string;
         warehouseId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;
         quantity: import("@prisma/client/runtime/library").Decimal;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     findCurrentStockByProduct(productId: string, filter: CurrentStockFilterDto): Promise<({
         client: {
@@ -50,6 +50,10 @@ export declare class InventoryController {
             code: string;
             name: string;
         };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -59,20 +63,16 @@ export declare class InventoryController {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         clientId: string;
         warehouseId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;
         quantity: import("@prisma/client/runtime/library").Decimal;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     findLedger(filter: InventoryLedgerFilterDto): Promise<({
         client: {
@@ -85,6 +85,10 @@ export declare class InventoryController {
             code: string;
             name: string;
         };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -94,23 +98,19 @@ export declare class InventoryController {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
     } & {
         id: string;
+        createdAt: Date;
         clientId: string;
         warehouseId: string;
         productId: string;
-        batchId: string | null;
-        locationId: string | null;
-        createdAt: Date;
         movementType: import(".prisma/client").$Enums.MovementType;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         qtyBefore: import("@prisma/client/runtime/library").Decimal;
         qtyAfter: import("@prisma/client/runtime/library").Decimal;
         referenceType: string | null;
         referenceId: string | null;
+        batchId: string | null;
+        locationId: string | null;
     })[]>;
 }

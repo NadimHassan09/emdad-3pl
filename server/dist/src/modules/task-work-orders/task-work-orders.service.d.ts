@@ -25,11 +25,11 @@ export declare class TaskWorkOrdersService {
         } | null;
     } & {
         id: string;
-        clientId: string;
-        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.TaskStatus;
+        clientId: string;
+        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -56,11 +56,11 @@ export declare class TaskWorkOrdersService {
         } | null;
     } & {
         id: string;
-        clientId: string;
-        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.TaskStatus;
+        clientId: string;
+        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -87,11 +87,11 @@ export declare class TaskWorkOrdersService {
         } | null;
     } & {
         id: string;
-        clientId: string;
-        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.TaskStatus;
+        clientId: string;
+        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -118,11 +118,11 @@ export declare class TaskWorkOrdersService {
         } | null;
     } & {
         id: string;
-        clientId: string;
-        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.TaskStatus;
+        clientId: string;
+        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -149,11 +149,11 @@ export declare class TaskWorkOrdersService {
         } | null;
     } & {
         id: string;
-        clientId: string;
-        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.TaskStatus;
+        clientId: string;
+        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -180,11 +180,11 @@ export declare class TaskWorkOrdersService {
         } | null;
     } & {
         id: string;
-        clientId: string;
-        warehouseId: string;
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.TaskStatus;
+        clientId: string;
+        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;

@@ -11,11 +11,13 @@ const common_1 = require("@nestjs/common");
 const outbound_orders_service_1 = require("./outbound-orders.service");
 const outbound_orders_controller_1 = require("./outbound-orders.controller");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
+const stock_reservations_module_1 = require("../stock-reservations/stock-reservations.module");
 let OutboundOrdersModule = class OutboundOrdersModule {
 };
 exports.OutboundOrdersModule = OutboundOrdersModule;
 exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
     (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
         controllers: [outbound_orders_controller_1.OutboundOrdersController],
         providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
         exports: [outbound_orders_service_1.OutboundOrdersService],

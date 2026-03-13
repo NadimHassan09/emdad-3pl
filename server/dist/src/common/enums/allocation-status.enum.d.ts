@@ -1,0 +1,8 @@
+export declare enum AllocationStatus {
+    RESERVED = "RESERVED",
+    PARTIALLY_PICKED = "PARTIALLY_PICKED",
+    PICKED = "PICKED",
+    PARTIALLY_SHIPPED = "PARTIALLY_SHIPPED",
+    SHIPPED = "SHIPPED",
+    CANCELLED = "CANCELLED"
+}

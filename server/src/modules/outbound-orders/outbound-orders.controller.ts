@@ -17,11 +17,16 @@ import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentActor } from '../../common/decorators/current-actor.decorator';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { StockReservationsService } from '../stock-reservations/stock-reservations.service';
+import { CreateReservationDto } from '../stock-reservations/dto/create-reservation.dto';
 
 @Controller('outbound-orders')
 @UseGuards(JwtAuthGuard)
 export class OutboundOrdersController {
-  constructor(private readonly outboundOrders: OutboundOrdersService) {}
+  constructor(
+    private readonly outboundOrders: OutboundOrdersService,
+    private readonly stockReservations: StockReservationsService,
+  ) {}
 
   @Post()
   create(
@@ -55,5 +60,13 @@ export class OutboundOrdersController {
     @Body() dto: AddOutboundOrderItemDto,
   ) {
     return this.outboundOrders.addItem(orderId, dto);
+  }
+
+  @Post(':id/reservations')
+  createReservation(
+    @Param('id', ParseUUIDPipe) outboundOrderId: string,
+    @Body() dto: CreateReservationDto,
+  ) {
+    return this.stockReservations.createReservation(outboundOrderId, dto);
   }
 }

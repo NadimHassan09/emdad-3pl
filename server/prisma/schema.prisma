@@ -62,6 +62,8 @@ model Client {
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
   taskWorkOrders TaskWorkOrder[]
+  stockReservations StockReservation[]
+  outboundAllocations OutboundAllocation[]
   @@map("client")
 }
 
@@ -230,6 +232,24 @@ enum TaskPriority {
   @@map("task_priority")
 }
 
+enum ReservationStatus {
+  DRAFT
+  CONFIRMED
+  RELEASED
+  CANCELLED
+  @@map("reservation_status")
+}
+
+enum AllocationStatus {
+  RESERVED
+  PARTIALLY_PICKED
+  PICKED
+  PARTIALLY_SHIPPED
+  SHIPPED
+  CANCELLED
+  @@map("allocation_status")
+}
+
 model Uom {
   id              String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   code            String       @unique @db.VarChar(20)
@@ -265,6 +285,8 @@ model Warehouse {
   inboundOrders InboundOrder[]
   outboundOrders OutboundOrder[]
   taskWorkOrders TaskWorkOrder[]
+  stockReservations StockReservation[]
+  outboundAllocations OutboundAllocation[]
   @@map("warehouse")
 }
 
@@ -288,6 +310,7 @@ model Location {
   currentStocks   CurrentStock[]
   inboundOrderItemBatches InboundOrderItemBatch[]
   outboundOrderItemBatches OutboundOrderItemBatch[]
+  outboundAllocations OutboundAllocation[]
   @@unique([warehouseId, code])
   @@index([warehouseId, parentLocationId])
   @@map("location")
@@ -311,6 +334,7 @@ model Product {
   currentStocks   CurrentStock[]
   inboundOrderItems InboundOrderItem[]
   outboundOrderItems OutboundOrderItem[]
+  outboundAllocations OutboundAllocation[]
   @@unique([clientId, sku])
   @@map("product")
 }
@@ -333,6 +357,7 @@ model Batch {
   currentStocks   CurrentStock[]
   inboundOrderItemBatches InboundOrderItemBatch[]
   outboundOrderItemBatches OutboundOrderItemBatch[]
+  outboundAllocations OutboundAllocation[]
   @@unique([productId, batchCode])
   @@index([batchStatus])
   @@map("batch")
@@ -470,6 +495,7 @@ model OutboundOrder {
   warehouse         Warehouse           @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
   createdByActor    Actor               @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
   items             OutboundOrderItem[]
+  stockReservations StockReservation[]
 
   @@index([clientId, warehouseId])
   @@map("outbound_order")
@@ -489,6 +515,7 @@ model OutboundOrderItem {
   product         Product               @relation(fields: [productId], references: [id], onDelete: Restrict)
   uom             Uom                   @relation(fields: [uomId], references: [id], onDelete: Restrict)
   batches         OutboundOrderItemBatch[]
+  allocations    OutboundAllocation[]
 
   @@index([outboundOrderId])
   @@map("outbound_order_item")
@@ -509,6 +536,59 @@ model OutboundOrderItemBatch {
 
   @@index([outboundOrderItemId])
   @@map("outbound_order_item_batch")
+}
+
+// -----------------------------------------------------------------------------
+// Stock Reservations (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model StockReservation {
+  id                String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId          String            @map("client_id") @db.Uuid
+  warehouseId       String            @map("warehouse_id") @db.Uuid
+  outboundOrderId   String            @map("outbound_order_id") @db.Uuid
+  status            ReservationStatus @default(DRAFT)
+  createdAt         DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime          @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  client            Client            @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse         @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  outboundOrder     OutboundOrder     @relation(fields: [outboundOrderId], references: [id], onDelete: Cascade)
+  allocations       OutboundAllocation[]
+
+  @@index([outboundOrderId])
+  @@index([clientId, warehouseId])
+  @@map("stock_reservation")
+}
+
+model OutboundAllocation {
+  id                  String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  stockReservationId  String          @map("stock_reservation_id") @db.Uuid
+  outboundOrderItemId String          @map("outbound_order_item_id") @db.Uuid
+  clientId            String          @map("client_id") @db.Uuid
+  warehouseId         String          @map("warehouse_id") @db.Uuid
+  productId           String          @map("product_id") @db.Uuid
+  batchId             String?         @map("batch_id") @db.Uuid
+  locationId          String?         @map("location_id") @db.Uuid
+  reservedQty         Decimal         @default(0) @map("reserved_qty") @db.Decimal(18, 4)
+  pickedQty           Decimal         @default(0) @map("picked_qty") @db.Decimal(18, 4)
+  shippedQty          Decimal         @default(0) @map("shipped_qty") @db.Decimal(18, 4)
+  status              AllocationStatus @default(RESERVED)
+  createdAt           DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt           DateTime        @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  stockReservation   StockReservation  @relation(fields: [stockReservationId], references: [id], onDelete: Cascade)
+  outboundOrderItem  OutboundOrderItem @relation(fields: [outboundOrderItemId], references: [id], onDelete: Cascade)
+  client             Client            @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse          Warehouse         @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  product            Product           @relation(fields: [productId], references: [id], onDelete: Restrict)
+  batch              Batch?            @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location           Location?         @relation(fields: [locationId], references: [id], onDelete: SetNull)
+
+  @@index([stockReservationId])
+  @@index([outboundOrderItemId])
+  @@index([clientId, warehouseId, productId])
+  @@map("outbound_allocation")
 }
 
 // -----------------------------------------------------------------------------

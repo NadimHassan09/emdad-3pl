@@ -10,15 +10,15 @@ export declare class WarehouseLocationsController {
     constructor(locations: LocationsService);
     create(warehouseId: string, dto: CreateLocationDto): Promise<{
         id: string;
-        warehouseId: string;
-        createdAt: Date;
-        updatedAt: Date;
         code: string;
         isActive: boolean;
+        createdAt: Date;
+        updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
-        parentLocationId: string | null;
         locationType: import(".prisma/client").$Enums.LocationType;
+        warehouseId: string;
+        parentLocationId: string | null;
     }>;
     findMany(warehouseId: string): Promise<({
         capacityUom: {
@@ -32,14 +32,14 @@ export declare class WarehouseLocationsController {
         } | null;
     } & {
         id: string;
-        warehouseId: string;
-        createdAt: Date;
-        updatedAt: Date;
         code: string;
         isActive: boolean;
+        createdAt: Date;
+        updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
-        parentLocationId: string | null;
         locationType: import(".prisma/client").$Enums.LocationType;
+        warehouseId: string;
+        parentLocationId: string | null;
     })[]>;
 }

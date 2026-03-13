@@ -7,42 +7,42 @@ export declare class UomService {
     constructor(prisma: PrismaService);
     create(dto: CreateUomDto): Promise<{
         id: string;
-        createdAt: Date;
-        updatedAt: Date;
         code: string;
         name: string;
-        isActive: boolean;
         dimension: import(".prisma/client").$Enums.UomDimension;
         baseConversion: import("@prisma/client/runtime/library").Decimal;
+        isActive: boolean;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     findMany(filter?: UomFilterDto): Promise<{
         id: string;
-        createdAt: Date;
-        updatedAt: Date;
         code: string;
         name: string;
-        isActive: boolean;
         dimension: import(".prisma/client").$Enums.UomDimension;
         baseConversion: import("@prisma/client/runtime/library").Decimal;
+        isActive: boolean;
+        createdAt: Date;
+        updatedAt: Date;
     }[]>;
     findOne(id: string): Promise<{
         id: string;
-        createdAt: Date;
-        updatedAt: Date;
         code: string;
         name: string;
-        isActive: boolean;
         dimension: import(".prisma/client").$Enums.UomDimension;
         baseConversion: import("@prisma/client/runtime/library").Decimal;
+        isActive: boolean;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     update(id: string, dto: UpdateUomDto): Promise<{
         id: string;
-        createdAt: Date;
-        updatedAt: Date;
         code: string;
         name: string;
-        isActive: boolean;
         dimension: import(".prisma/client").$Enums.UomDimension;
         baseConversion: import("@prisma/client/runtime/library").Decimal;
+        isActive: boolean;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
 }
