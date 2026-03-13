@@ -19,6 +19,7 @@ const products_module_1 = require("./modules/products/products.module");
 const batches_module_1 = require("./modules/batches/batches.module");
 const inventory_module_1 = require("./modules/inventory/inventory.module");
 const inbound_orders_module_1 = require("./modules/inbound-orders/inbound-orders.module");
+const outbound_orders_module_1 = require("./modules/outbound-orders/outbound-orders.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -39,6 +40,7 @@ exports.AppModule = AppModule = __decorate([
             batches_module_1.BatchesModule,
             inventory_module_1.InventoryModule,
             inbound_orders_module_1.InboundOrdersModule,
+            outbound_orders_module_1.OutboundOrdersModule,
         ],
         controllers: [],
         providers: [],

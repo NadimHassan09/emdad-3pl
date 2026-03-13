@@ -9,30 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateInboundOrderDto = void 0;
+exports.AddOutboundOrderItemDto = void 0;
 const class_validator_1 = require("class-validator");
-const order_status_enum_1 = require("../../../common/enums/order-status.enum");
-class UpdateInboundOrderDto {
+const class_transformer_1 = require("class-transformer");
+class AddOutboundOrderItemDto {
 }
-exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+exports.AddOutboundOrderItemDto = AddOutboundOrderItemDto;
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+], AddOutboundOrderItemDto.prototype, "productId", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
-    __metadata("design:type", String)
-], UpdateInboundOrderDto.prototype, "status", void 0);
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddOutboundOrderItemDto.prototype, "qtyOrdered", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UpdateInboundOrderDto.prototype, "currentStage", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsDateString)(),
-    __metadata("design:type", String)
-], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
-//# sourceMappingURL=update-inbound-order.dto.js.map
+], AddOutboundOrderItemDto.prototype, "uomId", void 0);
+//# sourceMappingURL=add-outbound-order-item.dto.js.map

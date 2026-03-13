@@ -1,13 +1,4 @@
-export declare enum OrderStatus {
-    DRAFT = "DRAFT",
-    PENDING = "PENDING",
-    CONFIRMED = "CONFIRMED",
-    IN_PROGRESS = "IN_PROGRESS",
-    RECEIVING = "RECEIVING",
-    SHIPPED = "SHIPPED",
-    COMPLETED = "COMPLETED",
-    CANCELLED = "CANCELLED"
-}
+import { OrderStatus } from '../../../common/enums/order-status.enum';
 export declare class InboundOrderFilterDto {
     clientId?: string;
     warehouseId?: string;

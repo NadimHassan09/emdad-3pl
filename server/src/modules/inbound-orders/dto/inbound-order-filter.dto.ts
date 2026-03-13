@@ -1,15 +1,5 @@
 import { IsOptional, IsUUID, IsString, IsEnum } from 'class-validator';
-
-export enum OrderStatus {
-  DRAFT = 'DRAFT',
-  PENDING = 'PENDING',
-  CONFIRMED = 'CONFIRMED',
-  IN_PROGRESS = 'IN_PROGRESS',
-  RECEIVING = 'RECEIVING',
-  SHIPPED = 'SHIPPED',
-  COMPLETED = 'COMPLETED',
-  CANCELLED = 'CANCELLED',
-}
+import { OrderStatus } from '../../../common/enums/order-status.enum';
 
 export class InboundOrderFilterDto {
   @IsOptional()

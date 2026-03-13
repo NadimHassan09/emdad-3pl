@@ -1,7 +1,7 @@
 import { OrderStatus } from '../../../common/enums/order-status.enum';
-export declare class UpdateInboundOrderDto {
+export declare class UpdateOutboundOrderDto {
     orderNumber?: string;
     status?: OrderStatus;
     currentStage?: string;
-    expectedDate?: string;
+    expectedShipDate?: string;
 }

@@ -1,7 +1,7 @@
 import { IsOptional, IsString, IsDateString, IsEnum } from 'class-validator';
 import { OrderStatus } from '../../../common/enums/order-status.enum';
 
-export class UpdateInboundOrderDto {
+export class UpdateOutboundOrderDto {
   @IsOptional()
   @IsString()
   orderNumber?: string;
@@ -16,6 +16,6 @@ export class UpdateInboundOrderDto {
 
   @IsOptional()
   @IsDateString()
-  expectedDate?: string;
+  expectedShipDate?: string;
 }
 

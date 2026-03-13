@@ -10,6 +10,7 @@ import { ProductsModule } from './modules/products/products.module';
 import { BatchesModule } from './modules/batches/batches.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.module';
+import { OutboundOrdersModule } from './modules/outbound-orders/outbound-orders.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { InboundOrdersModule } from './modules/inbound-orders/inbound-orders.mod
     BatchesModule,
     InventoryModule,
     InboundOrdersModule,
+    OutboundOrdersModule,
   ],
   controllers: [],
   providers: [],
