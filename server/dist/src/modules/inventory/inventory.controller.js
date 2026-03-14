@@ -17,9 +17,14 @@ const common_1 = require("@nestjs/common");
 const inventory_service_1 = require("./inventory.service");
 const current_stock_filter_dto_1 = require("./dto/current-stock-filter.dto");
 const inventory_ledger_filter_dto_1 = require("./dto/inventory-ledger-filter.dto");
+const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
+const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
 let InventoryController = class InventoryController {
     constructor(inventoryService) {
         this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
     }
     findCurrentStock(filter) {
         return this.inventoryService.findCurrentStock(filter);
@@ -32,6 +37,14 @@ let InventoryController = class InventoryController {
     }
 };
 exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
 __decorate([
     (0, common_1.Get)('current-stock'),
     __param(0, (0, common_1.Query)()),

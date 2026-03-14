@@ -1,11 +1,31 @@
-import { Controller, Get, Query, Param, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
 import { InventoryService } from './inventory.service';
 import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
 import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 
 @Controller('inventory')
 export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
 
   /**
    * GET /inventory/current-stock

@@ -11,6 +11,8 @@ async function bootstrap() {
     origin: [
       'http://localhost:5173', // Admin app
       'http://localhost:5174', // Client portal
+      'http://127.0.0.1:5173', // Admin app (IPv4)
+      'http://127.0.0.1:5174', // Client portal (IPv4)
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

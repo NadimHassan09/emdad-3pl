@@ -26,6 +26,172 @@ import { MovementType } from '../../common/enums/movement-type.enum';
 export class InventoryService {
   constructor(private readonly prisma: PrismaService) {}
 
+  private toNumber(value: unknown): number {
+    if (typeof value === 'number') return value;
+    if (value && typeof value === 'object' && 'toNumber' in value) {
+      return (value as { toNumber: () => number }).toNumber();
+    }
+    return Number(value) || 0;
+  }
+
+  private formatMonthLabel(date: Date): string {
+    const month = date.toLocaleString('ar-SA', { month: 'short' });
+    return `${month} ${date.getFullYear()}`;
+  }
+
+  private formatWeekLabel(date: Date): string {
+    return `W${date.getDate()}/${date.getMonth() + 1}`;
+  }
+
+  async getDashboard(clientId?: string) {
+    const stockWhere = clientId ? { clientId } : {};
+    const ordersWhere = clientId ? { clientId } : {};
+    const ledgerWhere = clientId ? { clientId } : {};
+
+    const now = new Date();
+    const sixMonthsAgo = new Date(now);
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+    sixMonthsAgo.setDate(1);
+    sixMonthsAgo.setHours(0, 0, 0, 0);
+
+    const eightWeeksAgo = new Date(now);
+    eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+    eightWeeksAgo.setHours(0, 0, 0, 0);
+
+    const [currentStock, inboundOrdersCount, outboundOrdersCount, recentLedger, chartLedger] =
+      await Promise.all([
+        this.prisma.currentStock.findMany({
+          where: stockWhere,
+          include: {
+            product: { select: { id: true, name: true, sku: true } },
+          },
+        }),
+        this.prisma.inboundOrder.count({
+          where: ordersWhere,
+        }),
+        this.prisma.outboundOrder.count({
+          where: ordersWhere,
+        }),
+        this.prisma.inventoryLedger.findMany({
+          where: ledgerWhere,
+          include: {
+            product: { select: { sku: true } },
+          },
+          orderBy: { createdAt: 'desc' },
+          take: 5,
+        }),
+        this.prisma.inventoryLedger.findMany({
+          where: {
+            ...ledgerWhere,
+            createdAt: {
+              gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+            },
+          },
+          select: {
+            movementType: true,
+            qtyChange: true,
+            createdAt: true,
+            productId: true,
+          },
+          orderBy: { createdAt: 'asc' },
+        }),
+      ]);
+
+    const totalStock = currentStock.reduce(
+      (sum, row) => sum + this.toNumber(row.quantity),
+      0,
+    );
+    const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+
+    const movementByMonthMap = new Map<string, { name: string; inbound: number; outbound: number }>();
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now);
+      d.setMonth(d.getMonth() - i);
+      d.setDate(1);
+      d.setHours(0, 0, 0, 0);
+      const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+      movementByMonthMap.set(key, {
+        name: this.formatMonthLabel(d),
+        inbound: 0,
+        outbound: 0,
+      });
+    }
+
+    const weeklyTrendMap = new Map<string, { name: string; value: number }>();
+    for (let i = 7; i >= 0; i--) {
+      const d = new Date(now);
+      d.setDate(d.getDate() - i * 7);
+      const weekStart = new Date(d);
+      weekStart.setDate(d.getDate() - d.getDay());
+      weekStart.setHours(0, 0, 0, 0);
+      const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+      weeklyTrendMap.set(key, {
+        name: this.formatWeekLabel(weekStart),
+        value: 0,
+      });
+    }
+
+    for (const entry of chartLedger) {
+      const qty = this.toNumber(entry.qtyChange);
+      const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+      const monthBucket = movementByMonthMap.get(monthKey);
+      if (monthBucket) {
+        if (qty >= 0) monthBucket.inbound += qty;
+        else monthBucket.outbound += Math.abs(qty);
+      }
+
+      const weekStart = new Date(entry.createdAt);
+      weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+      weekStart.setHours(0, 0, 0, 0);
+      const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+      const weekBucket = weeklyTrendMap.get(weekKey);
+      if (weekBucket) {
+        weekBucket.value += Math.abs(qty);
+      }
+    }
+
+    const productStockMap = new Map<string, { name: string; value: number }>();
+    for (const row of currentStock) {
+      const productName = row.product?.name || 'منتج غير معروف';
+      const current = productStockMap.get(row.productId);
+      const quantity = this.toNumber(row.quantity);
+      if (!current) {
+        productStockMap.set(row.productId, { name: productName, value: quantity });
+      } else {
+        current.value += quantity;
+      }
+    }
+
+    const stockDistribution = Array.from(productStockMap.values())
+      .sort((a, b) => b.value - a.value)
+      .slice(0, 5);
+
+    const recentMovements = recentLedger.map((entry) => {
+      const qty = this.toNumber(entry.qtyChange);
+      return {
+        date: entry.createdAt,
+        movementType: entry.movementType,
+        sku: entry.product?.sku || '',
+        qtyChange: qty,
+        referenceId: entry.referenceId,
+      };
+    });
+
+    return {
+      stats: {
+        totalProducts,
+        totalStock,
+        incomingOrders: inboundOrdersCount,
+        outgoingOrders: outboundOrdersCount,
+        recentMovements: recentMovements.length,
+      },
+      movementByMonth: Array.from(movementByMonthMap.values()),
+      stockDistribution,
+      weeklyTrend: Array.from(weeklyTrendMap.values()),
+      recentMovements,
+    };
+  }
+
   /**
    * Query current stock with optional filters.
    * Returns the derived snapshot from current_stock table.

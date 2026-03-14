@@ -21,6 +21,7 @@ import { ApprovalsModule } from './modules/approvals/approvals.module';
 import { AuditModule } from './modules/audit/audit.module';
 import { BillingModule } from './modules/billing/billing.module';
 import { VasModule } from './modules/vas/vas.module';
+import { ClientSettingsModule } from './modules/client-settings/client-settings.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { VasModule } from './modules/vas/vas.module';
     AuditModule,
     BillingModule,
     VasModule,
+    ClientSettingsModule,
   ],
   controllers: [],
   providers: [],

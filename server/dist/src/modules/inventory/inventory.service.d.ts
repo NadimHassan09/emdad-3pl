@@ -5,6 +5,38 @@ import { CreateLedgerEntryDto } from './dto/create-ledger-entry.dto';
 export declare class InventoryService {
     private readonly prisma;
     constructor(prisma: PrismaService);
+    private toNumber;
+    private formatMonthLabel;
+    private formatWeekLabel;
+    getDashboard(clientId?: string): Promise<{
+        stats: {
+            totalProducts: number;
+            totalStock: number;
+            incomingOrders: number;
+            outgoingOrders: number;
+            recentMovements: number;
+        };
+        movementByMonth: {
+            name: string;
+            inbound: number;
+            outbound: number;
+        }[];
+        stockDistribution: {
+            name: string;
+            value: number;
+        }[];
+        weeklyTrend: {
+            name: string;
+            value: number;
+        }[];
+        recentMovements: {
+            date: Date;
+            movementType: import(".prisma/client").$Enums.MovementType;
+            sku: string;
+            qtyChange: number;
+            referenceId: string | null;
+        }[];
+    }>;
     findCurrentStock(filter?: CurrentStockFilterDto): Promise<({
         client: {
             id: string;

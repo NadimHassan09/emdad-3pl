@@ -1,9 +1,39 @@
 import { InventoryService } from './inventory.service';
 import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
 import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 export declare class InventoryController {
     private readonly inventoryService;
     constructor(inventoryService: InventoryService);
+    getDashboard(actor: JwtPayload): Promise<{
+        stats: {
+            totalProducts: number;
+            totalStock: number;
+            incomingOrders: number;
+            outgoingOrders: number;
+            recentMovements: number;
+        };
+        movementByMonth: {
+            name: string;
+            inbound: number;
+            outbound: number;
+        }[];
+        stockDistribution: {
+            name: string;
+            value: number;
+        }[];
+        weeklyTrend: {
+            name: string;
+            value: number;
+        }[];
+        recentMovements: {
+            date: Date;
+            movementType: import(".prisma/client").$Enums.MovementType;
+            sku: string;
+            qtyChange: number;
+            referenceId: string | null;
+        }[];
+    }>;
     findCurrentStock(filter: CurrentStockFilterDto): Promise<({
         client: {
             id: string;

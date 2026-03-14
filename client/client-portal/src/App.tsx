@@ -78,9 +78,18 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { apiFetch } from '@/lib/api';
+import type { ApiError } from '@/lib/api';
 import { LoginPage } from '@/components/LoginPage';
 import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
 import type { UserInfo } from '@/lib/auth';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 
 // Sidebar navigation items
 const sidebarItems = [
@@ -97,36 +106,39 @@ const sidebarItems = [
   { icon: Settings, label: 'الإعدادات', active: false },
 ];
 
+const labelToRoute: Record<string, string> = {
+  'لوحة التحكم': '/dashboard',
+  'المخزون': '/inventory',
+  'الطلبات': '/orders',
+  'الحركات': '/movements',
+  'التقارير': '/reports',
+  'الفوترة': '/billing',
+  'الفواتير': '/invoices',
+  'المستخدمون': '/users',
+  'الإشعارات': '/notifications',
+  'الدعم': '/support',
+  'الإعدادات': '/settings',
+};
+
+function getActiveSidebarLabel(pathname: string): string {
+  if (pathname.startsWith('/orders')) return 'الطلبات';
+  if (pathname.startsWith('/invoices')) return 'الفواتير';
+  if (pathname.startsWith('/dashboard')) return 'لوحة التحكم';
+  if (pathname.startsWith('/inventory')) return 'المخزون';
+  if (pathname.startsWith('/movements')) return 'الحركات';
+  if (pathname.startsWith('/reports')) return 'التقارير';
+  if (pathname.startsWith('/billing')) return 'الفوترة';
+  if (pathname.startsWith('/users')) return 'المستخدمون';
+  if (pathname.startsWith('/notifications')) return 'الإشعارات';
+  if (pathname.startsWith('/support')) return 'الدعم';
+  if (pathname.startsWith('/settings')) return 'الإعدادات';
+  return 'لوحة التحكم';
+}
+
 // Stats cards data - moved to DashboardPage component
 
 // Table data
 // tableData moved to DashboardPage component
-
-// Chart data
-const inventoryData = [
-  { name: 'يناير', وارد: 400, صادر: 240 },
-  { name: 'فبراير', وارد: 300, صادر: 139 },
-  { name: 'مارس', وارد: 200, صادر: 980 },
-  { name: 'أبريل', وارد: 278, صادر: 390 },
-  { name: 'مايو', وارد: 189, صادر: 480 },
-  { name: 'يونيو', وارد: 239, صادر: 380 },
-  { name: 'يوليو', وارد: 349, صادر: 430 },
-];
-
-const categoryData = [
-  { name: 'إلكترونيات', value: 35, color: '#3b82f6' },
-  { name: 'ملابس', value: 25, color: '#10b981' },
-  { name: 'مواد غذائية', value: 20, color: '#f59e0b' },
-  { name: 'أثاث', value: 15, color: '#ef4444' },
-  { name: 'أخرى', value: 5, color: '#8b5cf6' },
-];
-
-const trendData = [
-  { name: 'الأسبوع 1', value: 2400 },
-  { name: 'الأسبوع 2', value: 1398 },
-  { name: 'الأسبوع 3', value: 9800 },
-  { name: 'الأسبوع 4', value: 3908 },
-];
 
 // Inventory table data now comes from live API (inventory/current-stock).
 type InventoryRow = {
@@ -656,43 +668,85 @@ function DashboardPage() {
     outgoingOrders: 0,
     recentMovements: 0,
   });
-  // @ts-ignore - setRecentMovements used in useEffect
-  const [recentMovements, setRecentMovements] = useState<any[]>([]);
-  // @ts-ignore - setLoading used in useEffect
+  const [movementByMonth, setMovementByMonth] = useState<
+    { name: string; inbound: number; outbound: number }[]
+  >([]);
+  const [stockDistribution, setStockDistribution] = useState<
+    { name: string; value: number; color: string }[]
+  >([]);
+  const [weeklyTrend, setWeeklyTrend] = useState<{ name: string; value: number }[]>([]);
+  const [recentMovements, setRecentMovements] = useState<
+    {
+      date: string;
+      type: string;
+      typeColor: string;
+      sku: string;
+      change: string;
+      reference: string;
+    }[]
+  >([]);
   const [loading, setLoading] = useState(true);
-  // @ts-ignore - setError used in useEffect
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
+
     async function load() {
       try {
         setLoading(true);
         setError(null);
-        const [stock, inbound, outbound, ledger] = await Promise.all([
-          apiFetch<any[]>('/inventory/current-stock'),
-          apiFetch<any[]>('/inbound-orders'),
-          apiFetch<any[]>('/outbound-orders'),
-          apiFetch<any[]>('/inventory/ledger?limit=5'),
-        ]);
+
+        const dashboard = await apiFetch<{
+          stats: {
+            totalProducts: number;
+            totalStock: number;
+            incomingOrders: number;
+            outgoingOrders: number;
+            recentMovements: number;
+          };
+          movementByMonth: { name: string; inbound: number; outbound: number }[];
+          stockDistribution: { name: string; value: number }[];
+          weeklyTrend: { name: string; value: number }[];
+          recentMovements: {
+            date: string;
+            movementType: string;
+            sku: string;
+            qtyChange: number;
+            referenceId: string | null;
+          }[];
+        }>('/inventory/dashboard');
+
         if (!active) return;
-        
-        const totalStock = stock.reduce((sum, s) => sum + (Number(s.quantity) || 0), 0);
-        const uniqueProducts = new Set(stock.map(s => s.productId)).size;
-        
-        setStats({
-          totalProducts: uniqueProducts,
-          totalStock,
-          incomingOrders: inbound.length,
-          outgoingOrders: outbound.length,
-          recentMovements: ledger.length,
-        });
-        
-        const mappedMovements = ledger.slice(0, 5).map((entry) => ({
-          date: entry.createdAt ? new Date(entry.createdAt).toLocaleString('ar-SA') : '',
-          type: entry.movementType === 'RECEIPT' ? 'وارد' : entry.movementType === 'SHIPMENT' ? 'صادر' : entry.movementType === 'RETURN' ? 'إرجاع' : 'تعديل',
-          typeColor: entry.movementType === 'RECEIPT' ? 'bg-green-100 text-green-700' : entry.movementType === 'SHIPMENT' ? 'bg-rose-100 text-rose-700' : 'bg-gray-100 text-gray-700',
-          sku: entry.product?.sku || '',
+
+        setStats(dashboard.stats);
+        setMovementByMonth(dashboard.movementByMonth);
+        setWeeklyTrend(dashboard.weeklyTrend);
+
+        const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+        setStockDistribution(
+          dashboard.stockDistribution.map((item, index) => ({
+            ...item,
+            color: colors[index % colors.length],
+          })),
+        );
+
+        const mappedMovements = dashboard.recentMovements.map((entry) => ({
+          date: entry.date ? new Date(entry.date).toLocaleString('ar-SA') : '',
+          type:
+            entry.movementType === 'RECEIPT'
+              ? 'وارد'
+              : entry.movementType === 'SHIPMENT'
+                ? 'صادر'
+                : entry.movementType === 'RETURN'
+                  ? 'إرجاع'
+                  : 'تعديل',
+          typeColor:
+            entry.movementType === 'RECEIPT'
+              ? 'bg-green-100 text-green-700'
+              : entry.movementType === 'SHIPMENT'
+                ? 'bg-rose-100 text-rose-700'
+                : 'bg-gray-100 text-gray-700',
+          sku: entry.sku || '',
           change: `${entry.qtyChange > 0 ? '+' : ''}${entry.qtyChange}`,
           reference: entry.referenceId || '-',
         }));
@@ -707,15 +761,17 @@ function DashboardPage() {
       }
     }
     void load();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
   const statsCards = [
-    { title: 'إجمالي المنتجات', value: stats.totalProducts, trend: '+5.2%', icon: Package, color: 'bg-blue-500' },
-    { title: 'إجمالي المخزون', value: stats.totalStock.toLocaleString('ar-SA'), trend: '+12.5%', icon: TrendingUp, color: 'bg-green-500' },
-    { title: 'طلبات وارد', value: stats.incomingOrders, trend: '+8.1%', icon: ArrowDown, color: 'bg-purple-500' },
-    { title: 'طلبات صادر', value: stats.outgoingOrders, trend: '+3.7%', icon: ArrowUp, color: 'bg-orange-500' },
-    { title: 'حركات حديثة', value: stats.recentMovements, trend: '+15.3%', icon: Activity, color: 'bg-pink-500' },
+    { title: 'إجمالي المنتجات', value: stats.totalProducts, icon: Package, color: 'bg-blue-500' },
+    { title: 'إجمالي المخزون', value: stats.totalStock.toLocaleString('ar-SA'), icon: TrendingUp, color: 'bg-green-500' },
+    { title: 'طلبات وارد', value: stats.incomingOrders, icon: ArrowDown, color: 'bg-purple-500' },
+    { title: 'طلبات صادر', value: stats.outgoingOrders, icon: ArrowUp, color: 'bg-orange-500' },
+    { title: 'حركات حديثة', value: stats.recentMovements, icon: Activity, color: 'bg-pink-500' },
   ];
 
   return (
@@ -741,8 +797,8 @@ function DashboardPage() {
                 <div>
                   <p className="text-sm text-gray-500 mb-1">{card.title}</p>
                   <p className="text-2xl font-bold text-gray-900">{card.value}</p>
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600 mt-2">
-                    {card.trend}
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 mt-2">
+                    مباشر من النظام
                   </span>
                 </div>
                 <div className={`${card.color} p-3 rounded-xl`}>
@@ -769,7 +825,7 @@ function DashboardPage() {
           <CardContent>
             <div className="chart-container">
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={inventoryData}>
+                <BarChart data={movementByMonth}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} />
@@ -781,8 +837,8 @@ function DashboardPage() {
                       fontSize: '12px',
                     }}
                   />
-                  <Bar dataKey="وارد" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="صادر" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="inbound" name="وارد" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="outbound" name="صادر" fill="#ef4444" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -804,7 +860,7 @@ function DashboardPage() {
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
-                    data={categoryData}
+                    data={stockDistribution}
                     cx="50%"
                     cy="50%"
                     innerRadius={60}
@@ -812,7 +868,7 @@ function DashboardPage() {
                     paddingAngle={4}
                     dataKey="value"
                   >
-                    {categoryData.map((entry, index) => (
+                    {stockDistribution.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
@@ -849,7 +905,7 @@ function DashboardPage() {
         <CardContent>
           <div className="chart-container">
             <ResponsiveContainer width="100%" height={250}>
-              <AreaChart data={trendData}>
+              <AreaChart data={weeklyTrend}>
                 <defs>
                   <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
@@ -4133,36 +4189,191 @@ function SupportPage() {
 
 // Settings Page Component
 function SettingsPage() {
-  const [firstName, setFirstName] = useState('أحمد');
-  const [lastName, setLastName] = useState('محمد');
-  const [email, setEmail] = useState('ahmed.mohamed@example.com');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [language, setLanguage] = useState('العربية');
-  const [timezone, setTimezone] = useState('Asia/Riyadh');
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
 
-  const handleSaveAccount = () => {
-    // Handle save account
-    console.log('Saving account:', { firstName, lastName, email });
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
   };
 
-  const handleChangePassword = () => {
-    // Handle change password
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
-      alert('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
       return;
     }
-    console.log('Changing password');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
   };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
 
   return (
     <>
       <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
 
       {/* Section 1: My Profile */}
       <Card className="border-0 shadow-sm">
@@ -4227,9 +4438,10 @@ function SettingsPage() {
             <div className="flex items-center justify-end pt-4">
               <Button
                 onClick={handleSaveAccount}
+                disabled={savingAccount}
                 className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
               >
-                حفظ
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
               </Button>
             </div>
           </div>
@@ -4282,9 +4494,10 @@ function SettingsPage() {
             <div className="flex items-center justify-end pt-4">
               <Button
                 onClick={handleChangePassword}
+                disabled={savingPassword}
                 className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
               >
-                تغيير كلمة المرور
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
               </Button>
             </div>
           </div>
@@ -4351,10 +4564,11 @@ function SettingsPage() {
             </div>
             <div className="flex items-center justify-end pt-4">
               <Button
-                onClick={() => console.log('Saving preferences')}
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
                 className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
               >
-                حفظ التفضيلات
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
               </Button>
             </div>
           </div>
@@ -4372,22 +4586,24 @@ function SettingsPage() {
               <div>
                 <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
                 <p className="text-xs text-gray-500 mt-1">
-                  أضف طبقة إضافية من الأمان لحسابك
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
                 </p>
               </div>
-              <Button variant="outline" size="sm">
-                تفعيل
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
               </Button>
             </div>
             <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
               <div>
                 <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
                 <p className="text-xs text-gray-500 mt-1">
-                  عرض وإدارة جلسات تسجيل الدخول النشطة
+                  عدد الجلسات النشطة حالياً: {activeSessions}
                 </p>
               </div>
-              <Button variant="outline" size="sm">
-                عرض الجلسات
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
               </Button>
             </div>
           </div>
@@ -4397,17 +4613,37 @@ function SettingsPage() {
   );
 }
 
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderNumber } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderNumber={decodeURIComponent(orderNumber ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [authenticated, setAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [user, setUser] = useState<UserInfo | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeItem, setActiveItem] = useState('لوحة التحكم');
-  const [currentPage, setCurrentPage] = useState<'main' | 'create-order' | 'order-details' | 'invoice-details'>('main');
-  const [orderType, setOrderType] = useState<'وارد' | 'صادر'>('وارد');
-  const [selectedOrderNumber, setSelectedOrderNumber] = useState('');
-  const [selectedOrderType, setSelectedOrderType] = useState<'وارد' | 'صادر'>('وارد');
-  const [selectedInvoiceId, setSelectedInvoiceId] = useState('');
+  const activeItem = getActiveSidebarLabel(location.pathname);
 
   // Check authentication on mount
   useEffect(() => {
@@ -4437,6 +4673,7 @@ function App() {
     if (userInfo) {
       setUser(userInfo);
       setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
     }
   };
 
@@ -4492,7 +4729,10 @@ function App() {
           {sidebarItems.map((item) => (
             <button
               key={item.label}
-              onClick={() => setActiveItem(item.label)}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
               className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                 activeItem === item.label
                   ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
@@ -4570,81 +4810,75 @@ function App() {
 
         {/* Page Content */}
         <div className="p-6 space-y-6">
-          {currentPage === 'create-order' ? (
-            <CreateOrderPage
-              orderType={orderType}
-              onCancel={() => {
-                setCurrentPage('main');
-                setActiveItem('الطلبات');
-              }}
-            />
-          ) : currentPage === 'order-details' ? (
-            <OrderDetailsPage
-              orderNumber={selectedOrderNumber}
-              orderType={selectedOrderType}
-              onBack={() => {
-                setCurrentPage('main');
-                setActiveItem('الطلبات');
-              }}
-            />
-          ) : currentPage === 'invoice-details' ? (
-            <InvoiceDetailsPage
-              invoiceId={selectedInvoiceId}
-              onBack={() => {
-                setCurrentPage('main');
-                setActiveItem('الفواتير');
-              }}
-            />
-          ) : (
-            <>
-              {activeItem === 'لوحة التحكم' && <DashboardPage />}
-              {activeItem === 'المخزون' && <InventoryPage />}
-              {activeItem === 'الحركات' && <MovementsPage />}
-              {activeItem === 'التقارير' && <ReportsPage />}
-              {activeItem === 'الفوترة' && <BillingPage />}
-              {activeItem === 'الفواتير' && (
-                <InvoicesPage
-                  onViewInvoice={(invoiceId: string) => {
-                    setSelectedInvoiceId(invoiceId);
-                    setCurrentPage('invoice-details');
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderNumber: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderNumber)}`);
                   }}
                 />
-              )}
-              {activeItem === 'المستخدمون' && <UsersPage />}
-              {activeItem === 'الدعم' && <SupportPage />}
-              {activeItem === 'الإعدادات' && <SettingsPage />}
-              {activeItem === 'الإشعارات' && (
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderNumber"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
                 <NotificationsPage
                   onNavigateToReference={(referenceType: string, referenceId: string) => {
-                    // Navigate based on reference type
-                    if (referenceType === 'طلب وارد' || referenceType === 'طلب صادر') {
-                      setActiveItem('الطلبات');
-                      // Could set order details here if needed
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
                     } else if (referenceType === 'فاتورة') {
-                      setActiveItem('الفواتير');
-                      setSelectedInvoiceId(referenceId);
-                      setCurrentPage('invoice-details');
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
                     } else if (referenceType === 'تقارير') {
-                      setActiveItem('التقارير');
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
                     }
                   }}
                 />
-              )}
-              {activeItem === 'الطلبات' && (
-                <OrdersPage
-                  onCreateOrder={(type: 'وارد' | 'صادر') => {
-                    setOrderType(type);
-                    setCurrentPage('create-order');
-                  }}
-                  onCreateOrderDetails={(orderNumber: string, type: 'وارد' | 'صادر') => {
-                    setSelectedOrderNumber(orderNumber);
-                    setSelectedOrderType(type);
-                    setCurrentPage('order-details');
-                  }}
-                />
-              )}
-            </>
-          )}
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
         </div>
       </main>
 
