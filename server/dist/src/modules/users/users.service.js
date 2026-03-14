@@ -17,6 +17,17 @@ let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
+    async findMany() {
+        const users = await this.prisma.user.findMany({
+            include: {
+                internalRole: {
+                    select: { id: true, roleName: true, permissionsJson: true },
+                },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+        return users;
+    }
     async findUserByEmail(email) {
         const user = await this.prisma.user.findFirst({
             where: { email: email.trim().toLowerCase(), isActive: true },

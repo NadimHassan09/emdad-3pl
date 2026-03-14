@@ -15,6 +15,7 @@ export interface UserWithRole {
 export declare class UsersService {
     private readonly prisma;
     constructor(prisma: PrismaService);
+    findMany(): Promise<UserWithRole[]>;
     findUserByEmail(email: string): Promise<UserWithRole | null>;
     validateUserCredentials(email: string, password: string): Promise<UserWithRole>;
 }

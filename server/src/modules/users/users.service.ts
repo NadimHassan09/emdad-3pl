@@ -21,6 +21,22 @@ export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
   /**
+   * List all internal users with their roles.
+   * Used by admin UI for identity & access management.
+   */
+  async findMany(): Promise<UserWithRole[]> {
+    const users = await this.prisma.user.findMany({
+      include: {
+        internalRole: {
+          select: { id: true, roleName: true, permissionsJson: true },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+    return users as UserWithRole[];
+  }
+
+  /**
    * Find internal user by email; used by auth to resolve staff login.
    */
   async findUserByEmail(email: string): Promise<UserWithRole | null> {

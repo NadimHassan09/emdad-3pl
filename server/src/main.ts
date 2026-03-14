@@ -5,6 +5,18 @@ import { PrismaService } from './database/prisma/prisma.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  
+  // Enable CORS for frontend applications
+  app.enableCors({
+    origin: [
+      'http://localhost:5173', // Admin app
+      'http://localhost:5174', // Client portal
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+  
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

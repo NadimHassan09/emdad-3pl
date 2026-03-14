@@ -6,6 +6,15 @@ const app_module_1 = require("./app.module");
 const prisma_service_1 = require("./database/prisma/prisma.service");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors({
+        origin: [
+            'http://localhost:5173',
+            'http://localhost:5174',
+        ],
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+    });
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         forbidNonWhitelisted: true,

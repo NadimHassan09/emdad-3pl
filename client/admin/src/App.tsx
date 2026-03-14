@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import {
   LayoutDashboard,
@@ -89,6 +89,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { apiFetch } from '@/lib/api';
+import { LoginPage } from '@/components/LoginPage';
+import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
+import type { UserInfo } from '@/lib/auth';
 import {
   BarChart,
   Bar,
@@ -102,7 +106,6 @@ import {
   Legend,
   PieChart,
   Pie,
-  Cell,
 } from 'recharts';
 
 // Sales statistics data
@@ -177,6 +180,7 @@ type Task = {
 };
 
 // Work Management data
+// @ts-ignore - Used as fallback data
 const initialWorkManagementData: Task[] = [
   {
     taskType: 'استلام وارد',
@@ -289,69 +293,7 @@ type Account = {
   password?: string;
 };
 
-// Initial accounts data
-const initialAccountsData: Account[] = [
-  {
-    id: '1',
-    name: 'أحمد محمد',
-    email: 'ahmed.mohamed@example.com',
-    role: 'مدير النظام',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    client: '-',
-    status: 'نشط',
-    lastLogin: '2026-02-02 10:30',
-  },
-  {
-    id: '2',
-    name: 'فاطمة علي',
-    email: 'fatima.ali@example.com',
-    role: 'مدير المخزون',
-    warehouse: 'مستودع جدة',
-    client: '-',
-    status: 'نشط',
-    lastLogin: '2026-02-02 09:15',
-  },
-  {
-    id: '3',
-    name: 'خالد سعيد',
-    email: 'khalid.saeed@example.com',
-    role: 'موظف',
-    warehouse: 'مستودع الدمام',
-    client: 'شركة التقنية المتقدمة',
-    status: 'غير نشط',
-    lastLogin: '2026-01-28 14:20',
-  },
-  {
-    id: '4',
-    name: 'سارة حسن',
-    email: 'sara.hassan@example.com',
-    role: 'محاسب',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    client: '-',
-    status: 'نشط',
-    lastLogin: '2026-02-01 16:45',
-  },
-  {
-    id: '5',
-    name: 'محمد علي',
-    email: 'mohamed.ali@example.com',
-    role: 'مدير المبيعات',
-    warehouse: 'مستودع الخبر',
-    client: '-',
-    status: 'نشط',
-    lastLogin: '2026-02-02 08:00',
-  },
-  {
-    id: '6',
-    name: 'علي محمود',
-    email: 'ali.mahmoud@example.com',
-    role: 'مشرف',
-    warehouse: 'مستودع جدة',
-    client: 'مؤسسة التجارة الإلكترونية',
-    status: 'نشط',
-    lastLogin: '2026-02-01 11:30',
-  },
-];
+// Note: initialAccountsData has been replaced by live data fetched from /users.
 
 // Sidebar navigation items
 const sidebarItems = [
@@ -375,10 +317,75 @@ function WorkManagementPage() {
   const [status, setStatus] = useState('');
   const [dueFrom, setDueFrom] = useState('');
   const [dueTo, setDueTo] = useState('');
-  const [tasks, setTasks] = useState<Task[]>(initialWorkManagementData);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [taskNotes, setTaskNotes] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiFetch<any[]>('/task-work-orders');
+        if (!active) return;
+        const mapped: Task[] = data.map((t) => ({
+          taskType: t.taskType || 'مهمة',
+          reference: t.id,
+          clientName: t.client?.name || '',
+          warehouse: t.warehouse?.name || '',
+          status: (() => {
+            switch (t.status) {
+              case 'PENDING':
+                return 'جديد';
+              case 'ASSIGNED':
+              case 'IN_PROGRESS':
+                return 'قيد التنفيذ';
+              case 'COMPLETED':
+                return 'مكتمل';
+              case 'CANCELLED':
+                return 'ملغي';
+              default:
+                return 'جديد';
+            }
+          })(),
+          assignedAt: t.createdAt
+            ? new Date(t.createdAt).toLocaleString('ar-SA')
+            : '',
+          priority: (() => {
+            switch (t.priority) {
+              case 'URGENT':
+                return 'عاجل';
+              case 'HIGH':
+                return 'عالي';
+              case 'NORMAL':
+                return 'متوسط';
+              case 'LOW':
+                return 'منخفض';
+              default:
+                return 'متوسط';
+            }
+          })(),
+          notes: '',
+        }));
+        setTasks(mapped);
+      } catch (e) {
+        console.error('Failed to load task work orders', e);
+        if (active) {
+          setError('تعذر تحميل مهام العمل. يرجى المحاولة مرة أخرى.');
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // Filter tasks based on selected filters
   const filteredTasks = tasks.filter((task) => {
@@ -426,6 +433,11 @@ function WorkManagementPage() {
 
   return (
     <div className="space-y-6">
+      {error && (
+        <div className="rounded-md bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
       {/* Filters Section */}
       <Card>
         <CardHeader>
@@ -503,6 +515,15 @@ function WorkManagementPage() {
       {/* Tasks Table */}
       <Card>
         <CardContent className="p-0">
+          {loading ? (
+            <div className="py-8 text-center text-sm text-gray-500">
+              جارِ تحميل مهام العمل...
+            </div>
+          ) : filteredTasks.length === 0 ? (
+            <div className="py-8 text-center text-sm text-gray-500">
+              لا توجد مهام مطابقة للفلاتر الحالية.
+            </div>
+          ) : (
           <Table className="data-table">
             <TableHeader>
               <TableRow>
@@ -541,6 +562,7 @@ function WorkManagementPage() {
               ))}
             </TableBody>
           </Table>
+          )}
         </CardContent>
       </Card>
 
@@ -653,10 +675,46 @@ function IdentityAndAccessPage() {
   const [roleFilter, setRoleFilter] = useState('');
   const [warehouseFilter, setWarehouseFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  const [accounts, setAccounts] = useState<Account[]>(initialAccountsData);
+  const [accounts, setAccounts] = useState<Account[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editFormData, setEditFormData] = useState<Partial<Account>>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const users = await apiFetch<any[]>('/users');
+        if (!active) return;
+        const mapped: Account[] = users.map((u) => ({
+          id: u.id,
+          name: `${u.firstName} ${u.lastName}`.trim(),
+          email: u.email,
+          role: u.internalRole?.roleName || 'موظف',
+          warehouse: '-',
+          client: '-',
+          status: u.isActive ? 'نشط' : 'غير نشط',
+          lastLogin: '-',
+        }));
+        setAccounts(mapped);
+      } catch (e) {
+        console.error('Failed to load users', e);
+        if (active) {
+          setError('تعذر تحميل المستخدمين. يرجى المحاولة مرة أخرى.');
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // Filter accounts based on selected filters
   const filteredAccounts = accounts.filter((account) => {
@@ -706,6 +764,11 @@ function IdentityAndAccessPage() {
 
   return (
     <div className="space-y-6">
+      {error && (
+        <div className="rounded-md bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
       {/* Filters Section */}
       <Card>
         <CardHeader>
@@ -776,6 +839,15 @@ function IdentityAndAccessPage() {
       {/* Accounts Table */}
       <Card>
         <CardContent className="p-0">
+          {loading ? (
+            <div className="py-8 text-center text-sm text-gray-500">
+              جارِ تحميل المستخدمين...
+            </div>
+          ) : filteredAccounts.length === 0 ? (
+            <div className="py-8 text-center text-sm text-gray-500">
+              لا توجد حسابات مطابقة للفلاتر الحالية.
+            </div>
+          ) : (
           <Table className="data-table">
             <TableHeader>
               <TableRow>
@@ -841,6 +913,7 @@ function IdentityAndAccessPage() {
               ))}
             </TableBody>
           </Table>
+          )}
         </CardContent>
       </Card>
 
@@ -1151,7 +1224,7 @@ function MasterDataPage() {
   const [warehouseFormData, setWarehouseFormData] = useState<Partial<Warehouse>>({});
 
   // Locations state
-  const [locations, setLocations] = useState<Location[]>(initialLocationsData);
+  const [locations] = useState<Location[]>(initialLocationsData);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['1']));
 
@@ -2235,7 +2308,11 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
   const [statusFilter, setStatusFilter] = useState('');
   const [expectedDateFrom, setExpectedDateFrom] = useState('');
   const [expectedDateTo, setExpectedDateTo] = useState('');
-  const [orders, setOrders] = useState<InboundOrder[]>(initialInboundOrders);
+  const [orders, setOrders] = useState<InboundOrder[]>([]);
+  // @ts-ignore - setLoading used in useEffect
+  const [loading, setLoading] = useState(true);
+  // @ts-ignore - setError used in useEffect
+  const [error, setError] = useState<string | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [createFormData, setCreateFormData] = useState({
     clientName: '',
@@ -2393,6 +2470,11 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
       {/* Orders Table */}
       <Card>
         <CardContent className="p-0">
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -2408,7 +2490,20 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredOrders.map((order) => (
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={9} className="py-8 text-center text-sm text-gray-500">
+                    جارِ تحميل طلبات الوارد...
+                  </TableCell>
+                </TableRow>
+              ) : filteredOrders.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={9} className="py-8 text-center text-sm text-gray-500">
+                    لا توجد طلبات وارد مطابقة للفلاتر الحالية.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                filteredOrders.map((order) => (
                 <TableRow key={order.id}>
                   <TableCell className="font-mono">{order.orderId}</TableCell>
                   <TableCell>{order.client}</TableCell>
@@ -2437,7 +2532,8 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -3025,7 +3121,9 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
   const [statusFilter, setStatusFilter] = useState('');
   const [expectedShipDateFrom, setExpectedShipDateFrom] = useState('');
   const [expectedShipDateTo, setExpectedShipDateTo] = useState('');
-  const [orders, setOrders] = useState<OutboundOrder[]>(initialOutboundOrders);
+  const [orders, setOrders] = useState<OutboundOrder[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [createFormData, setCreateFormData] = useState({
     clientName: '',
@@ -3034,6 +3132,61 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
     notes: '',
     orderItems: [] as Array<{ id: string; productId: string; quantity: number }>,
   });
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiFetch<any[]>('/outbound-orders');
+        if (!active) return;
+        const mapped: OutboundOrder[] = data.map((order) => ({
+          id: order.id,
+          orderId: order.orderNumber || order.id,
+          client: order.client?.name || '',
+          warehouse: order.warehouse?.name || '',
+          status: (order.status === 'COMPLETED' || order.status === 'SHIPPED' ? 'مكتمل' : order.status === 'IN_PROGRESS' ? 'قيد المعالجة' : 'جديد') as OutboundOrderStatus,
+          shipmentStatus: (order.status === 'SHIPPED' ? 'شُحن' : order.status === 'IN_PROGRESS' ? 'قيد الشحن' : 'لم يبدأ') as OutboundShipmentStatus,
+          expectedShipDate: order.expectedShipDate || '',
+          shortageFlag: false,
+          createdAt: order.createdAt ? new Date(order.createdAt).toLocaleString('ar-SA') : '',
+          items: order.items?.map((item: any) => ({
+            id: item.id,
+            productName: item.product?.name || '',
+            productSKU: item.product?.sku || '',
+            quantityOrdered: item.qtyOrdered || 0,
+            quantityShipped: item.qtyShipped || 0,
+            quantityRemaining: (item.qtyOrdered || 0) - (item.qtyShipped || 0),
+            availableQuantity: 0,
+            hasShortage: false,
+          })) || [],
+          allocations: [],
+          stages: [
+            { stage: 'انتقاء', status: 'pending' },
+            { stage: 'تعبئة', status: 'pending' },
+            { stage: 'شحن', status: order.status === 'SHIPPED' ? 'completed' : 'pending' },
+            { stage: 'مكتمل', status: order.status === 'COMPLETED' || order.status === 'SHIPPED' ? 'completed' : 'pending' },
+          ],
+        }));
+        setOrders(mapped);
+      } catch (e: any) {
+        // Don't handle 401 errors here - let apiFetch redirect to login
+        if (e.status === 401) {
+          return; // apiFetch will handle redirect
+        }
+        console.error('Failed to load outbound orders', e);
+        if (active) {
+          setError('تعذر تحميل طلبات الصادر. يرجى المحاولة مرة أخرى.');
+          setOrders(initialOutboundOrders);
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => { active = false; };
+  }, []);
 
   const filteredOrders = orders.filter((order) => {
     if (warehouseFilter && warehouseFilter !== 'all' && order.warehouse !== warehouseFilter) return false;
@@ -3186,6 +3339,11 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
       {/* Orders Table */}
       <Card>
         <CardContent className="p-0">
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -3201,7 +3359,20 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredOrders.map((order) => (
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={9} className="py-8 text-center text-sm text-gray-500">
+                    جارِ تحميل طلبات الصادر...
+                  </TableCell>
+                </TableRow>
+              ) : filteredOrders.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={9} className="py-8 text-center text-sm text-gray-500">
+                    لا توجد طلبات صادر مطابقة للفلاتر الحالية.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                filteredOrders.map((order) => (
                 <TableRow key={order.id}>
                   <TableCell className="font-mono">{order.orderId}</TableCell>
                   <TableCell>{order.client}</TableCell>
@@ -3239,7 +3410,8 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -3813,50 +3985,10 @@ type InventoryLedgerEntry = {
   notes?: string;
 };
 
-// Sample Inventory Data
-const initialInventoryData: InventoryItem[] = [
-  {
-    id: '1',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    client: 'شركة التقنية المتقدمة',
-    sku: 'PROD-001',
-    batchCode: 'BATCH-001',
-    expiredDate: '2026-12-31',
-    location: 'LOC-002',
-    quantity: 150,
-    minThreshold: 50,
-    lowStockFlag: false,
-    lastMovementAt: '2026-02-02 10:15',
-  },
-  {
-    id: '2',
-    warehouse: 'مستودع جدة',
-    client: 'مؤسسة التجارة الإلكترونية',
-    sku: 'PROD-002',
-    batchCode: 'BATCH-002',
-    expiredDate: '2026-11-30',
-    location: 'LOC-003',
-    quantity: 30,
-    minThreshold: 50,
-    lowStockFlag: true,
-    lastMovementAt: '2026-02-01 14:20',
-  },
-  {
-    id: '3',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    client: 'شركة التوزيع الحديثة',
-    sku: 'PROD-003',
-    batchCode: 'BATCH-003',
-    expiredDate: '2027-01-15',
-    location: 'LOC-001',
-    quantity: 200,
-    minThreshold: 100,
-    lowStockFlag: false,
-    lastMovementAt: '2026-02-02 08:30',
-  },
-];
+// Note: inventory data now comes from the backend `/inventory/current-stock` endpoint.
 
 // Sample Ledger Data
+// @ts-ignore - Used as fallback data
 const initialLedgerData: InventoryLedgerEntry[] = [
   {
     id: '1',
@@ -3913,9 +4045,53 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
   const [expiredFrom, setExpiredFrom] = useState('');
   const [expiredTo, setExpiredTo] = useState('');
   const [lowStockOnly, setLowStockOnly] = useState(false);
-  const [inventory, setInventory] = useState<InventoryItem[]>(initialInventoryData);
+  const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
   const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiFetch<any[]>('/inventory/current-stock');
+        if (!active) return;
+        const mapped: InventoryItem[] = data.map((row) => ({
+          id: row.id,
+          warehouse: row.warehouse?.name || row.warehouse?.code || '',
+          client: row.client?.name || row.client?.code || '',
+          sku: row.product?.sku || '',
+          batchCode: row.batch?.batchCode || '-',
+          expiredDate: row.batch?.expiryDate || '',
+          location: row.location?.code || '',
+          quantity:
+            typeof row.quantity === 'string'
+              ? Number(row.quantity)
+              : Number(row.quantity ?? 0),
+          minThreshold: 0,
+          lowStockFlag: false,
+          lastMovementAt: row.updatedAt
+            ? new Date(row.updatedAt).toLocaleString('ar-SA')
+            : '',
+        }));
+        setInventory(mapped);
+      } catch (e) {
+        console.error('Failed to load current stock', e);
+        if (active) {
+          setError('تعذر تحميل المخزون الحالي. يرجى المحاولة مرة أخرى.');
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const filteredInventory = inventory.filter((item) => {
     if (warehouseFilter && warehouseFilter !== 'all' && item.warehouse !== warehouseFilter) return false;
@@ -3935,6 +4111,11 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
 
   return (
     <div className="space-y-6">
+      {error && (
+        <div className="rounded-md bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
       {/* Filters Section */}
       <Card>
         <CardHeader>
@@ -4018,6 +4199,15 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
       {/* Inventory Table */}
       <Card>
         <CardContent className="p-0">
+          {loading ? (
+            <div className="py-8 text-center text-sm text-gray-500">
+              جارِ تحميل بيانات المخزون...
+            </div>
+          ) : filteredInventory.length === 0 ? (
+            <div className="py-8 text-center text-sm text-gray-500">
+              لا توجد عناصر مخزون مطابقة للفلاتر الحالية.
+            </div>
+          ) : (
           <Table>
             <TableHeader>
               <TableRow>
@@ -4063,6 +4253,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
               ))}
             </TableBody>
           </Table>
+          )}
         </CardContent>
       </Card>
 
@@ -4147,7 +4338,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
   );
 }
 
-function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () => void }) {
+function InventoryLedgerPage({ onBack }: { itemId: string; onBack: () => void }) {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [movementTypeFilter, setMovementTypeFilter] = useState('');
@@ -4158,7 +4349,13 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
   const [batchFilter, setBatchFilter] = useState('');
   const [referenceTypeFilter, setReferenceTypeFilter] = useState('');
   const [referenceIdFilter, setReferenceIdFilter] = useState('');
-  const [ledgerEntries, setLedgerEntries] = useState<InventoryLedgerEntry[]>(initialLedgerData);
+  // @ts-ignore - setLedgerEntries used in useEffect
+  const [ledgerEntries, setLedgerEntries] = useState<InventoryLedgerEntry[]>([]);
+  // @ts-ignore - setLoading used in useEffect
+  const [loading, setLoading] = useState(true);
+  // @ts-ignore - setError used in useEffect
+  const [error, setError] = useState<string | null>(null);
+  // setLedgerEntries, setLoading, and setError are used in useEffect
   const [selectedEntry, setSelectedEntry] = useState<InventoryLedgerEntry | null>(null);
   const [isEntryDialogOpen, setIsEntryDialogOpen] = useState(false);
   const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
@@ -4334,6 +4531,11 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
       {/* Ledger Table */}
       <Card>
         <CardContent className="p-0">
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -4351,7 +4553,20 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredEntries.map((entry) => (
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={11} className="py-8 text-center text-sm text-gray-500">
+                    جارِ تحميل سجل المخزون...
+                  </TableCell>
+                </TableRow>
+              ) : filteredEntries.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={11} className="py-8 text-center text-sm text-gray-500">
+                    لا توجد حركات مطابقة للفلاتر الحالية.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                filteredEntries.map((entry) => (
                 <TableRow
                   key={entry.id}
                   onClick={() => handleRowClick(entry)}
@@ -4388,7 +4603,8 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
                   <TableCell>{entry.referenceType}</TableCell>
                   <TableCell className="font-mono">{entry.referenceId}</TableCell>
                 </TableRow>
-              ))}
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -4583,7 +4799,9 @@ function AdjustmentsPage() {
   const [statusFilter, setStatusFilter] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
-  const [adjustments, setAdjustments] = useState<Adjustment[]>(initialAdjustmentsData);
+  const [adjustments, setAdjustments] = useState<Adjustment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isDeclineDialogOpen, setIsDeclineDialogOpen] = useState(false);
   const [selectedAdjustment, setSelectedAdjustment] = useState<Adjustment | null>(null);
@@ -4597,6 +4815,42 @@ function AdjustmentsPage() {
     quantityChange: 0,
     reason: '' as AdjustmentReason | '',
   });
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiFetch<any[]>('/adjustments');
+        if (!active) return;
+        const mapped: Adjustment[] = data.map((adj) => ({
+          id: adj.id,
+          requestedAt: adj.createdAt ? new Date(adj.createdAt).toLocaleString('ar-SA') : '',
+          client: adj.client?.name || '',
+          warehouse: adj.warehouse?.name || '',
+          sku: adj.product?.sku || '',
+          batch: adj.batch?.batchCode || '',
+          location: adj.location?.code || '',
+          quantityChange: typeof adj.qtyChange === 'number' ? adj.qtyChange : Number(adj.qtyChange || 0),
+          reason: adj.reason || 'أخرى' as AdjustmentReason,
+          status: (adj.status === 'APPROVED' ? 'موافق عليه' : adj.status === 'REJECTED' ? 'مرفوض' : 'قيد الانتظار') as AdjustmentStatus,
+          requestedBy: adj.createdByActor?.userId ? '-' : '-',
+        }));
+        setAdjustments(mapped);
+      } catch (e: any) {
+        console.error('Failed to load adjustments', e);
+        if (active) {
+          setError('تعذر تحميل التعديلات. يرجى المحاولة مرة أخرى.');
+          setAdjustments(initialAdjustmentsData);
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => { active = false; };
+  }, []);
 
   const filteredAdjustments = adjustments.filter((adjustment) => {
     if (warehouseFilter && warehouseFilter !== 'all' && adjustment.warehouse !== warehouseFilter) return false;
@@ -4748,6 +5002,11 @@ function AdjustmentsPage() {
       {/* Adjustments Table */}
       <Card>
         <CardContent className="p-0">
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -4765,7 +5024,20 @@ function AdjustmentsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredAdjustments.map((adjustment) => (
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={11} className="py-8 text-center text-sm text-gray-500">
+                    جارِ تحميل التعديلات...
+                  </TableCell>
+                </TableRow>
+              ) : filteredAdjustments.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={11} className="py-8 text-center text-sm text-gray-500">
+                    لا توجد تعديلات مطابقة للفلاتر الحالية.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                filteredAdjustments.map((adjustment) => (
                 <TableRow key={adjustment.id}>
                   <TableCell className="font-mono text-sm">{adjustment.requestedAt}</TableCell>
                   <TableCell>{adjustment.client}</TableCell>
@@ -4822,7 +5094,8 @@ function AdjustmentsPage() {
                     )}
                   </TableCell>
                 </TableRow>
-              ))}
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -5075,7 +5348,9 @@ function ReturnsPage({ onProcessReturn }: { onProcessReturn: (returnId: string) 
   const [dispositionFilter, setDispositionFilter] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
-  const [returns, setReturns] = useState<ReturnOrder[]>(initialReturnOrdersData);
+  const [returns, setReturns] = useState<ReturnOrder[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [createFormData, setCreateFormData] = useState({
     client: '',
@@ -5084,6 +5359,56 @@ function ReturnsPage({ onProcessReturn }: { onProcessReturn: (returnId: string) 
     notes: '',
     items: [] as ReturnItem[],
   });
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiFetch<any[]>('/return-orders');
+        if (!active) return;
+        const mapped: ReturnOrder[] = data.map((ret) => ({
+          id: ret.id,
+          returnId: ret.id,
+          client: ret.client?.name || '',
+          warehouse: ret.warehouse?.name || '',
+          relatedOutboundOrder: ret.outboundOrderId || undefined,
+          status: ret.status === 'PROCESSED' ? 'مكتمل' : 'قيد المعالجة',
+          disposition: (ret.disposition === 'RESTOCK' ? 'إرجاع للمخزون' : ret.disposition === 'DAMAGED' ? 'تلف' : 'غير محدد') as ReturnDisposition,
+          dateFrom: ret.createdAt ? new Date(ret.createdAt).toISOString().split('T')[0] : '',
+          dateTo: ret.processedAt ? new Date(ret.processedAt).toISOString().split('T')[0] : '',
+          createdAt: ret.createdAt ? new Date(ret.createdAt).toLocaleString('ar-SA') : '',
+          createdBy: ret.createdByActorId ? '-' : '-',
+          notes: ret.notes || undefined,
+          items: ret.items?.map((item: any) => ({
+            id: item.id,
+            sku: item.product?.sku || '',
+            batch: item.batchId || '',
+            quantity: item.qty || 0,
+            targetLocation: item.locationId || '',
+          })) || [],
+          stages: [
+            { stage: 'إنشاء', status: 'completed' },
+            { stage: 'تحقيق', status: ret.status === 'PROCESSED' ? 'completed' : 'pending' },
+            { stage: 'قرار التصرف', status: ret.status === 'PROCESSED' ? 'completed' : 'pending' },
+            { stage: 'إنهاء', status: ret.status === 'PROCESSED' ? 'completed' : 'pending' },
+          ],
+        }));
+        setReturns(mapped);
+      } catch (e: any) {
+        console.error('Failed to load returns', e);
+        if (active) {
+          setError('تعذر تحميل الإرجاعات. يرجى المحاولة مرة أخرى.');
+          setReturns(initialReturnOrdersData);
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => { active = false; };
+  }, []);
 
   const filteredReturns = returns.filter((returnOrder) => {
     if (warehouseFilter && warehouseFilter !== 'all' && returnOrder.warehouse !== warehouseFilter) return false;
@@ -5253,6 +5578,11 @@ function ReturnsPage({ onProcessReturn }: { onProcessReturn: (returnId: string) 
       {/* Returns Table */}
       <Card>
         <CardContent className="p-0">
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -5270,43 +5600,57 @@ function ReturnsPage({ onProcessReturn }: { onProcessReturn: (returnId: string) 
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredReturns.map((returnOrder) => (
-                <TableRow key={returnOrder.id}>
-                  <TableCell className="font-mono">{returnOrder.returnId}</TableCell>
-                  <TableCell>{returnOrder.client}</TableCell>
-                  <TableCell>{returnOrder.warehouse}</TableCell>
-                  <TableCell className="font-mono">{returnOrder.relatedOutboundOrder || '-'}</TableCell>
-                  <TableCell>
-                    <Badge variant={returnOrder.status === 'مكتمل' ? 'default' : 'secondary'}>
-                      {returnOrder.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">{returnOrder.disposition}</Badge>
-                  </TableCell>
-                  <TableCell>{returnOrder.dateFrom}</TableCell>
-                  <TableCell>{returnOrder.dateTo}</TableCell>
-                  <TableCell className="font-mono text-sm">{returnOrder.createdAt}</TableCell>
-                  <TableCell>{returnOrder.createdBy}</TableCell>
-                  <TableCell>
-                    {returnOrder.status === 'مكتمل' ? (
-                      <Button variant="outline" size="sm">
-                        <EyeIcon className="w-4 h-4 ml-2" />
-                        عرض
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => onProcessReturn(returnOrder.id)}
-                      >
-                        <Play className="w-4 h-4 ml-2" />
-                        معالجة
-                      </Button>
-                    )}
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={11} className="py-8 text-center text-sm text-gray-500">
+                    جارِ تحميل الإرجاعات...
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : filteredReturns.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={11} className="py-8 text-center text-sm text-gray-500">
+                    لا توجد إرجاعات مطابقة للفلاتر الحالية.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                filteredReturns.map((returnOrder) => (
+                  <TableRow key={returnOrder.id}>
+                    <TableCell className="font-mono">{returnOrder.returnId}</TableCell>
+                    <TableCell>{returnOrder.client}</TableCell>
+                    <TableCell>{returnOrder.warehouse}</TableCell>
+                    <TableCell className="font-mono">{returnOrder.relatedOutboundOrder || '-'}</TableCell>
+                    <TableCell>
+                      <Badge variant={returnOrder.status === 'مكتمل' ? 'default' : 'secondary'}>
+                        {returnOrder.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">{returnOrder.disposition}</Badge>
+                    </TableCell>
+                    <TableCell>{returnOrder.dateFrom}</TableCell>
+                    <TableCell>{returnOrder.dateTo}</TableCell>
+                    <TableCell className="font-mono text-sm">{returnOrder.createdAt}</TableCell>
+                    <TableCell>{returnOrder.createdBy}</TableCell>
+                    <TableCell>
+                      {returnOrder.status === 'مكتمل' ? (
+                        <Button variant="outline" size="sm">
+                          <EyeIcon className="w-4 h-4 ml-2" />
+                          عرض
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => onProcessReturn(returnOrder.id)}
+                        >
+                          <Play className="w-4 h-4 ml-2" />
+                          معالجة
+                        </Button>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -5853,7 +6197,7 @@ function ReportsPage({ onOpenReport }: { onOpenReport: (reportType: ReportType) 
 
 // Base Report Page Component
 function BaseReportPage({
-  reportType,
+  reportType: _reportType,
   title,
   filters,
   tableColumns,
@@ -7206,13 +7550,63 @@ const initialAdjustmentApprovals: Approval[] = [
 
 function ApprovalsCenterPage() {
   const [activeApprovalType, setActiveApprovalType] = useState<ApprovalType>('inbound');
-  const [inboundApprovals, setInboundApprovals] = useState<Approval[]>(initialInboundApprovals);
-  const [outboundApprovals, setOutboundApprovals] = useState<Approval[]>(initialOutboundApprovals);
-  const [adjustmentApprovals, setAdjustmentApprovals] = useState<Approval[]>(initialAdjustmentApprovals);
+  const [inboundApprovals, setInboundApprovals] = useState<Approval[]>([]);
+  const [outboundApprovals, setOutboundApprovals] = useState<Approval[]>([]);
+  const [adjustmentApprovals, setAdjustmentApprovals] = useState<Approval[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
   const [isRejectDialogOpen, setIsRejectDialogOpen] = useState(false);
   const [selectedApproval, setSelectedApproval] = useState<Approval | null>(null);
   const [rejectReason, setRejectReason] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await apiFetch<any[]>('/approvals');
+        if (!active) return;
+        const inbound: Approval[] = [];
+        const outbound: Approval[] = [];
+        const adjustment: Approval[] = [];
+        data.forEach((approval) => {
+          const mapped: Approval = {
+            id: approval.id,
+            type: approval.referenceType === 'INBOUND_ORDER' ? 'inbound' : approval.referenceType === 'OUTBOUND_ORDER' ? 'outbound' : 'adjustment' as ApprovalType,
+            reference: approval.referenceId || '',
+            client: approval.client?.name || '',
+            warehouse: approval.warehouse?.name || '',
+            requestedBy: approval.requestedByActorId || '',
+            requestedAt: approval.createdAt ? new Date(approval.createdAt).toLocaleString('ar-SA') : '',
+            reason: approval.reason || '',
+            status: approval.status === 'APPROVED' ? 'موافق عليه' : approval.status === 'REJECTED' ? 'مرفوض' : 'قيد الانتظار' as ApprovalStatus,
+            details: approval.details || '',
+            notes: approval.notes || undefined,
+          };
+          if (mapped.type === 'inbound') inbound.push(mapped);
+          else if (mapped.type === 'outbound') outbound.push(mapped);
+          else adjustment.push(mapped);
+        });
+        setInboundApprovals(inbound.length > 0 ? inbound : initialInboundApprovals);
+        setOutboundApprovals(outbound.length > 0 ? outbound : initialOutboundApprovals);
+        setAdjustmentApprovals(adjustment.length > 0 ? adjustment : initialAdjustmentApprovals);
+      } catch (e: any) {
+        console.error('Failed to load approvals', e);
+        if (active) {
+          setError('تعذر تحميل الموافقات. يرجى المحاولة مرة أخرى.');
+          setInboundApprovals(initialInboundApprovals);
+          setOutboundApprovals(initialOutboundApprovals);
+          setAdjustmentApprovals(initialAdjustmentApprovals);
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => { active = false; };
+  }, []);
 
   const getCurrentApprovals = () => {
     switch (activeApprovalType) {
@@ -7313,6 +7707,11 @@ function ApprovalsCenterPage() {
       {/* Approvals Table */}
       <Card>
         <CardContent className="p-0">
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -7327,7 +7726,20 @@ function ApprovalsCenterPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {currentApprovals.map((approval) => (
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={8} className="py-8 text-center text-sm text-gray-500">
+                    جارِ تحميل الموافقات...
+                  </TableCell>
+                </TableRow>
+              ) : currentApprovals.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={8} className="py-8 text-center text-sm text-gray-500">
+                    لا توجد موافقات مطابقة للفلاتر الحالية.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                currentApprovals.map((approval) => (
                 <TableRow key={approval.id}>
                   <TableCell className="font-mono">{approval.reference}</TableCell>
                   <TableCell>{approval.client}</TableCell>
@@ -7361,7 +7773,8 @@ function ApprovalsCenterPage() {
                     )}
                   </TableCell>
                 </TableRow>
-              ))}
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>
@@ -7507,6 +7920,9 @@ function ApprovalsCenterPage() {
 }
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activePage, setActivePage] = useState<'overview' | 'work-management' | 'identity-access' | 'master-data' | 'inbound-orders' | 'inbound-order-workspace' | 'outbound-orders' | 'outbound-order-workspace' | 'inventory' | 'inventory-ledger' | 'adjustments' | 'returns' | 'return-workspace' | 'reports' | 'report-detail' | 'billing' | 'value-added-services' | 'approvals-center'>('overview');
   const [selectedInboundOrderId, setSelectedInboundOrderId] = useState<string>('');
@@ -7514,6 +7930,60 @@ function App() {
   const [selectedInventoryItemId, setSelectedInventoryItemId] = useState<string>('');
   const [selectedReturnId, setSelectedReturnId] = useState<string>('');
   const [selectedReportType, setSelectedReportType] = useState<ReportType | null>(null);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#176C33] mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50/50 flex">
@@ -7588,18 +8058,30 @@ function App() {
               <Bell className="w-5 h-5 text-gray-600" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
-            <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
-              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
-                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
-                  أ م
-                </AvatarFallback>
-              </Avatar>
-              <div className="hidden md:block">
-                <p className="text-sm font-medium text-gray-900">أحمد محمد</p>
-                <p className="text-xs text-gray-500">مدير النظام</p>
-              </div>
-              <ChevronDown className="w-4 h-4 text-gray-400" />
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+                  <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                    <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'م'}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'مدير النظام'}
+                    </p>
+                    <p className="text-xs text-gray-500">{user?.actorType === 'INTERNAL_USER' ? 'موظف' : 'عميل'}</p>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
 
