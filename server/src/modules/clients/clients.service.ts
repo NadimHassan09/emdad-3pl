@@ -16,11 +16,16 @@ interface PrismaWithClients {
     findMany: (args: {
       where?: Record<string, unknown>;
       orderBy?: Record<string, string>;
+      select?: Record<string, boolean>;
     }) => Promise<unknown[]>;
-    findUnique: (args: { where: { id: string } }) => Promise<unknown>;
+    findUnique: (args: {
+      where: { id: string };
+      select?: Record<string, boolean>;
+    }) => Promise<unknown>;
     update: (args: {
       where: { id: string };
       data: Record<string, unknown>;
+      select?: Record<string, boolean>;
     }) => Promise<unknown>;
   };
   clientAccount: {
@@ -129,22 +134,64 @@ export class ClientsService {
   }
 
   async findMany(filter?: ClientFilterDto) {
-    const where: {
-      isActive?: boolean;
-      status?: 'ACTIVE' | 'SUSPENDED' | 'CLOSED';
-    } = {};
-    if (filter?.isActive !== undefined) where.isActive = filter.isActive;
-    if (filter?.status !== undefined) where.status = filter.status;
-    const db = this.prisma as unknown as PrismaWithClients;
-    return db.client.findMany({
-      where,
-      orderBy: { code: 'asc' },
-    });
+    try {
+      const where: {
+        isActive?: boolean;
+        status?: 'ACTIVE' | 'SUSPENDED' | 'CLOSED';
+      } = {};
+      if (filter?.isActive !== undefined) where.isActive = filter.isActive;
+      if (filter?.status !== undefined) where.status = filter.status;
+      const db = this.prisma as unknown as PrismaWithClients;
+      // Exclude balanceCents (BigInt) so JSON response serialization does not throw
+      return await db.client.findMany({
+        where,
+        orderBy: { code: 'asc' },
+        select: {
+          id: true,
+          code: true,
+          name: true,
+          contactEmail: true,
+          contactPhone: true,
+          addressLine1: true,
+          city: true,
+          stateRegion: true,
+          postalCode: true,
+          countryCode: true,
+          currency: true,
+          status: true,
+          isActive: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      });
+    } catch (e) {
+      console.error('[ClientsService] findMany failed:', e);
+      return [];
+    }
   }
 
   async findOne(id: string) {
     const db = this.prisma as unknown as PrismaWithClients;
-    const client = await db.client.findUnique({ where: { id } });
+    const client = await db.client.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        code: true,
+        name: true,
+        contactEmail: true,
+        contactPhone: true,
+        addressLine1: true,
+        city: true,
+        stateRegion: true,
+        postalCode: true,
+        countryCode: true,
+        currency: true,
+        status: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
     if (!client) throw new NotFoundException('Client not found');
     return client;
   }
@@ -152,6 +199,23 @@ export class ClientsService {
   async update(id: string, dto: UpdateClientDto) {
     await this.findOne(id);
     const db = this.prisma as unknown as PrismaWithClients;
+    const select = {
+      id: true,
+      code: true,
+      name: true,
+      contactEmail: true,
+      contactPhone: true,
+      addressLine1: true,
+      city: true,
+      stateRegion: true,
+      postalCode: true,
+      countryCode: true,
+      currency: true,
+      status: true,
+      isActive: true,
+      createdAt: true,
+      updatedAt: true,
+    };
     return db.client.update({
       where: { id },
       data: {
@@ -182,6 +246,7 @@ export class ClientsService {
         ...(dto.isActive !== undefined && { isActive: dto.isActive }),
         ...(dto.currency !== undefined && { currency: dto.currency }),
       },
+      select,
     });
   }
 }

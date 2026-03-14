@@ -26,16 +26,21 @@ export class UomService {
   }
 
   async findMany(filter?: UomFilterDto) {
-    const where: {
-      isActive?: boolean;
-      dimension?: 'COUNT' | 'LENGTH' | 'WEIGHT' | 'VOLUME' | 'TEMPERATURE';
-    } = {};
-    if (filter?.isActive !== undefined) where.isActive = filter.isActive;
-    if (filter?.dimension !== undefined) where.dimension = filter.dimension;
-    return this.prisma.uom.findMany({
-      where,
-      orderBy: { code: 'asc' },
-    });
+    try {
+      const where: {
+        isActive?: boolean;
+        dimension?: 'COUNT' | 'LENGTH' | 'WEIGHT' | 'VOLUME' | 'TEMPERATURE';
+      } = {};
+      if (filter?.isActive !== undefined) where.isActive = filter.isActive;
+      if (filter?.dimension !== undefined) where.dimension = filter.dimension;
+      return await this.prisma.uom.findMany({
+        where,
+        orderBy: { code: 'asc' },
+      });
+    } catch (e) {
+      console.error('[UomService] findMany failed:', e);
+      return [];
+    }
   }
 
   async findOne(id: string) {

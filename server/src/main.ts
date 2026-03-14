@@ -32,6 +32,7 @@ async function bootstrap() {
   prisma.enableShutdownHooks(app);
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
+  console.log(`Backend API running at http://localhost:${port} (admin app should use this URL for VITE_API_URL)`);
 }
 
 void bootstrap();

@@ -42,11 +42,21 @@ export async function loginStaff(credentials: LoginCredentials): Promise<AuthRes
     return response;
   } catch (error) {
     const apiError = error as ApiError;
-    throw new Error(
+    const message =
       apiError.body && typeof apiError.body === 'object' && 'message' in apiError.body
         ? (apiError.body.message as string)
-        : 'Login failed. Please check your credentials.',
-    );
+        : null;
+    if (message) throw new Error(message);
+    // Network error (e.g. ERR_CONNECTION_REFUSED = backend not running)
+    const isNetworkError =
+      error instanceof TypeError &&
+      (error.message === 'Failed to fetch' || error.message.includes('fetch'));
+    if (isNetworkError) {
+      throw new Error(
+        'Cannot reach the server. Make sure the backend is running (e.g. npm run start:dev in the server folder) and that VITE_API_URL points to it.',
+      );
+    }
+    throw new Error('Login failed. Please check your credentials.');
   }
 }
 

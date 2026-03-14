@@ -101,6 +101,7 @@ let LocationsService = class LocationsService {
             code: loc.code,
             locationType: loc.locationType,
             parentLocationId: loc.parentLocationId,
+            warehouseId: loc.warehouseId,
             children: [],
         }));
         const roots = [];

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import {
   LayoutDashboard,
@@ -90,6 +91,47 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { apiFetch } from '@/lib/api';
+import { fetchOverview, type OverviewResponse } from '@/lib/dashboard';
+import {
+  fetchTaskWorkOrders,
+  TASK_TYPE_LABELS,
+  TASK_STATUS_LABELS,
+  TASK_PRIORITY_LABELS,
+} from '@/lib/task-work-orders';
+import {
+  fetchClients,
+  fetchProducts,
+  fetchWarehouses as fetchWarehousesMasterData,
+  fetchLocationsTree,
+  fetchUomList,
+  createClient,
+  updateClient,
+  createProduct,
+  updateProduct,
+  createWarehouse,
+  updateWarehouse,
+  type ClientUi,
+  type ProductUi,
+  type WarehouseUi,
+  type LocationUi,
+} from '@/lib/master-data';
+import {
+  fetchUsers,
+  fetchUserRoles,
+  fetchWarehouses,
+  updateUser,
+  type UserRoleInfo,
+  type WarehouseResponse,
+} from '@/lib/identity-access';
+import {
+  fetchInboundOrders,
+  fetchInboundOrder,
+  createInboundOrder,
+  addInboundOrderItem,
+  updateInboundOrder,
+  INBOUND_STATUS_TO_API,
+  type InboundOrderUi,
+} from '@/lib/inbound-orders';
 import { LoginPage } from '@/components/LoginPage';
 import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
 import type { UserInfo } from '@/lib/auth';
@@ -167,92 +209,20 @@ const activityLogData = [
   },
 ];
 
-// Work Management data type
+// Work Management: task type for UI (display + backend filter)
 type Task = {
+  id: string;
   taskType: string;
+  taskTypeRaw: string;
   reference: string;
   clientName: string;
   warehouse: string;
   status: string;
+  statusRaw: string;
   assignedAt: string;
   priority: string;
   notes?: string;
 };
-
-// Work Management data
-// @ts-ignore - Used as fallback data
-const initialWorkManagementData: Task[] = [
-  {
-    taskType: 'استلام وارد',
-    reference: 'TASK-00123',
-    clientName: 'شركة التقنية المتقدمة',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    status: 'جديد',
-    assignedAt: '2026-02-02 10:15',
-    priority: 'عاجل',
-    notes: ''
-  },
-  {
-    taskType: 'وضع بعيد',
-    reference: 'TASK-00124',
-    clientName: 'مؤسسة التجارة الإلكترونية',
-    warehouse: 'مستودع جدة',
-    status: 'قيد التنفيذ',
-    assignedAt: '2026-02-02 09:30',
-    priority: 'عالي',
-    notes: ''
-  },
-  {
-    taskType: 'مهمة انتقاء',
-    reference: 'TASK-00125',
-    clientName: 'شركة التوزيع الحديثة',
-    warehouse: 'مستودع الدمام',
-    status: 'مكتمل',
-    assignedAt: '2026-02-01 16:45',
-    priority: 'متوسط',
-    notes: ''
-  },
-  {
-    taskType: 'تعبئة',
-    reference: 'TASK-00126',
-    clientName: 'مجموعة الخليج التجارية',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    status: 'قيد التنفيذ',
-    assignedAt: '2026-02-02 08:20',
-    priority: 'عاجل',
-    notes: ''
-  },
-  {
-    taskType: 'شحن',
-    reference: 'TASK-00127',
-    clientName: 'شركة التقنية المتقدمة',
-    warehouse: 'مستودع جدة',
-    status: 'جديد',
-    assignedAt: '2026-02-02 11:00',
-    priority: 'عالي',
-    notes: ''
-  },
-  {
-    taskType: 'نقل مخزون',
-    reference: 'TASK-00128',
-    clientName: 'مؤسسة التجارة الإلكترونية',
-    warehouse: 'مستودع الخبر',
-    status: 'قيد التنفيذ',
-    assignedAt: '2026-02-01 14:30',
-    priority: 'متوسط',
-    notes: ''
-  },
-  {
-    taskType: 'معالجة إرجاع',
-    reference: 'TASK-00129',
-    clientName: 'شركة التوزيع الحديثة',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    status: 'جديد',
-    assignedAt: '2026-02-02 07:15',
-    priority: 'عاجل',
-    notes: ''
-  },
-];
 
 // Warehouses data
 const warehouses = [
@@ -280,12 +250,15 @@ const clients = [
   { id: '4', name: 'مجموعة الخليج التجارية' },
 ];
 
-// Account data type
+// Account data type (identity-access; roleId for API updates)
 type Account = {
   id: string;
+  firstName: string;
+  lastName: string;
   name: string;
   email: string;
   role: string;
+  roleId: string | null;
   warehouse: string;
   client: string;
   status: 'نشط' | 'غير نشط';
@@ -295,7 +268,43 @@ type Account = {
 
 // Note: initialAccountsData has been replaced by live data fetched from /users.
 
-// Sidebar navigation items
+// Sidebar navigation items and route paths (each admin page has a URL)
+type AdminPage =
+  | 'overview'
+  | 'work-management'
+  | 'identity-access'
+  | 'master-data'
+  | 'inbound-orders'
+  | 'inbound-order-workspace'
+  | 'outbound-orders'
+  | 'outbound-order-workspace'
+  | 'inventory'
+  | 'inventory-ledger'
+  | 'adjustments'
+  | 'returns'
+  | 'return-workspace'
+  | 'reports'
+  | 'report-detail'
+  | 'billing'
+  | 'value-added-services'
+  | 'approvals-center';
+
+const PAGE_TO_PATH: Record<string, string> = {
+  overview: '/overview',
+  'work-management': '/work-management',
+  'identity-access': '/identity-access',
+  'master-data': '/master-data',
+  'inbound-orders': '/inbound-orders',
+  'outbound-orders': '/outbound-orders',
+  inventory: '/inventory',
+  adjustments: '/adjustments',
+  returns: '/returns',
+  reports: '/reports',
+  billing: '/billing',
+  'value-added-services': '/value-added-services',
+  'approvals-center': '/approvals',
+};
+
 const sidebarItems = [
   { icon: LayoutDashboard, label: 'نظرة عامة', page: 'overview' },
   { icon: ClipboardList, label: 'إدارة العمل', page: 'work-management' },
@@ -313,8 +322,8 @@ const sidebarItems = [
 ];
 
 function WorkManagementPage() {
-  const [taskType, setTaskType] = useState('');
-  const [status, setStatus] = useState('');
+  const [taskType, setTaskType] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
   const [dueFrom, setDueFrom] = useState('');
   const [dueTo, setDueTo] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -330,45 +339,26 @@ function WorkManagementPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await apiFetch<any[]>('/task-work-orders');
+        const data = await fetchTaskWorkOrders({
+          ...(taskType && { taskType }),
+          ...(status && { status }),
+          ...(dueFrom && { dueFrom }),
+          ...(dueTo && { dueTo }),
+        });
         if (!active) return;
         const mapped: Task[] = data.map((t) => ({
-          taskType: t.taskType || 'مهمة',
+          id: t.id,
+          taskTypeRaw: t.taskType || '',
+          taskType: TASK_TYPE_LABELS[t.taskType as string] || t.taskType || 'مهمة',
           reference: t.id,
           clientName: t.client?.name || '',
           warehouse: t.warehouse?.name || '',
-          status: (() => {
-            switch (t.status) {
-              case 'PENDING':
-                return 'جديد';
-              case 'ASSIGNED':
-              case 'IN_PROGRESS':
-                return 'قيد التنفيذ';
-              case 'COMPLETED':
-                return 'مكتمل';
-              case 'CANCELLED':
-                return 'ملغي';
-              default:
-                return 'جديد';
-            }
-          })(),
+          statusRaw: t.status || '',
+          status: TASK_STATUS_LABELS[t.status as string] || t.status || 'جديد',
           assignedAt: t.createdAt
             ? new Date(t.createdAt).toLocaleString('ar-SA')
             : '',
-          priority: (() => {
-            switch (t.priority) {
-              case 'URGENT':
-                return 'عاجل';
-              case 'HIGH':
-                return 'عالي';
-              case 'NORMAL':
-                return 'متوسط';
-              case 'LOW':
-                return 'منخفض';
-              default:
-                return 'متوسط';
-            }
-          })(),
+          priority: TASK_PRIORITY_LABELS[t.priority as string] || t.priority || 'متوسط',
           notes: '',
         }));
         setTasks(mapped);
@@ -385,15 +375,9 @@ function WorkManagementPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [taskType, status, dueFrom, dueTo]);
 
-  // Filter tasks based on selected filters
-  const filteredTasks = tasks.filter((task) => {
-    if (taskType && task.taskType !== taskType) return false;
-    if (status && task.status !== status) return false;
-    // Date filtering would be implemented here if needed
-    return true;
-  });
+  const filteredTasks = tasks;
 
   const handleRowClick = (task: Task) => {
     setSelectedTask(task);
@@ -404,9 +388,7 @@ function WorkManagementPage() {
   const handleSaveNotes = () => {
     if (selectedTask) {
       const updatedTasks = tasks.map((task) =>
-        task.reference === selectedTask.reference
-          ? { ...task, notes: taskNotes }
-          : task
+        task.id === selectedTask.id ? { ...task, notes: taskNotes } : task
       );
       setTasks(updatedTasks);
       setSelectedTask({ ...selectedTask, notes: taskNotes });
@@ -445,40 +427,40 @@ function WorkManagementPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Task Type */}
+            {/* Task Type - values are API enums for server-side filter */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">
                 نوع المهمة
               </label>
-              <Select value={taskType} onValueChange={setTaskType}>
+              <Select value={taskType || 'all'} onValueChange={(v) => setTaskType(v === 'all' ? '' : v)}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="اختر نوع المهمة" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="استلام وارد">استلام وارد</SelectItem>
-                  <SelectItem value="وضع بعيد">وضع بعيد</SelectItem>
-                  <SelectItem value="مهمة انتقاء">مهمة انتقاء</SelectItem>
-                  <SelectItem value="تعبئة">تعبئة</SelectItem>
-                  <SelectItem value="شحن">شحن</SelectItem>
-                  <SelectItem value="نقل مخزون">نقل مخزون</SelectItem>
-                  <SelectItem value="معالجة إرجاع">معالجة إرجاع</SelectItem>
+                  <SelectItem value="all">الكل</SelectItem>
+                  {Object.entries(TASK_TYPE_LABELS).map(([value, label]) => (
+                    <SelectItem key={value} value={value}>{label}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
 
-            {/* Status */}
+            {/* Status - values are API enums for server-side filter */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">
                 الحالة
               </label>
-              <Select value={status} onValueChange={setStatus}>
+              <Select value={status || 'all'} onValueChange={(v) => setStatus(v === 'all' ? '' : v)}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="اختر الحالة" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="جديد">جديد</SelectItem>
-                  <SelectItem value="قيد التنفيذ">قيد التنفيذ</SelectItem>
-                  <SelectItem value="مكتمل">مكتمل</SelectItem>
+                  <SelectItem value="all">الكل</SelectItem>
+                  <SelectItem value="PENDING">{TASK_STATUS_LABELS.PENDING}</SelectItem>
+                  <SelectItem value="ASSIGNED">{TASK_STATUS_LABELS.ASSIGNED}</SelectItem>
+                  <SelectItem value="IN_PROGRESS">{TASK_STATUS_LABELS.IN_PROGRESS}</SelectItem>
+                  <SelectItem value="COMPLETED">{TASK_STATUS_LABELS.COMPLETED}</SelectItem>
+                  <SelectItem value="CANCELLED">{TASK_STATUS_LABELS.CANCELLED}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -537,9 +519,9 @@ function WorkManagementPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredTasks.map((task, index) => (
+              {filteredTasks.map((task) => (
                 <TableRow
-                  key={index}
+                  key={task.id}
                   onClick={() => handleRowClick(task)}
                   className="cursor-pointer hover:bg-gray-50 transition-colors"
                 >
@@ -676,11 +658,21 @@ function IdentityAndAccessPage() {
   const [warehouseFilter, setWarehouseFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [accounts, setAccounts] = useState<Account[]>([]);
+  const [roles, setRoles] = useState<UserRoleInfo[]>([]);
+  const [warehouses, setWarehouses] = useState<WarehouseResponse[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [editFormData, setEditFormData] = useState<Partial<Account>>({});
+  const [editFormData, setEditFormData] = useState<{
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    roleId?: string | null;
+    warehouse?: string;
+    password?: string;
+  }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -688,13 +680,22 @@ function IdentityAndAccessPage() {
       try {
         setLoading(true);
         setError(null);
-        const users = await apiFetch<any[]>('/users');
+        const [usersData, rolesData, warehousesData] = await Promise.all([
+          fetchUsers(),
+          fetchUserRoles(),
+          fetchWarehouses(),
+        ]);
         if (!active) return;
-        const mapped: Account[] = users.map((u) => ({
+        setRoles(rolesData);
+        setWarehouses(warehousesData);
+        const mapped: Account[] = usersData.map((u) => ({
           id: u.id,
-          name: `${u.firstName} ${u.lastName}`.trim(),
+          firstName: u.firstName || '',
+          lastName: u.lastName || '',
+          name: `${u.firstName || ''} ${u.lastName || ''}`.trim() || '-',
           email: u.email,
           role: u.internalRole?.roleName || 'موظف',
+          roleId: u.internalRole?.id ?? null,
           warehouse: '-',
           client: '-',
           status: u.isActive ? 'نشط' : 'غير نشط',
@@ -702,7 +703,7 @@ function IdentityAndAccessPage() {
         }));
         setAccounts(mapped);
       } catch (e) {
-        console.error('Failed to load users', e);
+        console.error('Failed to load identity-access data', e);
         if (active) {
           setError('تعذر تحميل المستخدمين. يرجى المحاولة مرة أخرى.');
         }
@@ -716,7 +717,6 @@ function IdentityAndAccessPage() {
     };
   }, []);
 
-  // Filter accounts based on selected filters
   const filteredAccounts = accounts.filter((account) => {
     if (roleFilter && roleFilter !== 'all' && account.role !== roleFilter) return false;
     if (warehouseFilter && warehouseFilter !== 'all' && account.warehouse !== warehouseFilter) return false;
@@ -727,39 +727,70 @@ function IdentityAndAccessPage() {
   const handleEdit = (account: Account) => {
     setSelectedAccount(account);
     setEditFormData({
-      name: account.name,
+      firstName: account.firstName,
+      lastName: account.lastName,
       email: account.email,
-      role: account.role,
+      roleId: account.roleId,
       warehouse: account.warehouse,
       password: '',
     });
     setIsEditDialogOpen(true);
   };
 
-  const handleSaveEdit = () => {
-    if (selectedAccount) {
+  const handleSaveEdit = async () => {
+    if (!selectedAccount) return;
+    try {
+      setSaving(true);
+      const payload: Parameters<typeof updateUser>[1] = {
+        firstName: editFormData.firstName?.trim(),
+        lastName: editFormData.lastName?.trim(),
+        email: editFormData.email?.trim(),
+        internalRoleId: editFormData.roleId || null,
+      };
+      if (editFormData.password && editFormData.password.length > 0) {
+        payload.password = editFormData.password;
+      }
+      await updateUser(selectedAccount.id, payload);
       const updatedAccounts = accounts.map((account) =>
         account.id === selectedAccount.id
-          ? { ...account, ...editFormData } as Account
+          ? {
+              ...account,
+              firstName: editFormData.firstName || account.firstName,
+              lastName: editFormData.lastName || account.lastName,
+              name: `${editFormData.firstName || ''} ${editFormData.lastName || ''}`.trim() || account.name,
+              email: editFormData.email || account.email,
+              role: roles.find((r) => r.id === editFormData.roleId)?.roleName || account.role,
+              roleId: editFormData.roleId ?? account.roleId,
+            } as Account
           : account
       );
       setAccounts(updatedAccounts);
       setIsEditDialogOpen(false);
       setSelectedAccount(null);
       setEditFormData({});
+    } catch (e) {
+      console.error('Failed to update user', e);
+      setError(e instanceof Error ? e.message : 'تعذر حفظ التعديلات.');
+    } finally {
+      setSaving(false);
     }
   };
 
-  const handleToggleStatus = (accountId: string) => {
-    const updatedAccounts: Account[] = accounts.map((account) =>
-      account.id === accountId
-        ? {
-            ...account,
-            status: (account.status === 'نشط' ? 'غير نشط' : 'نشط') as 'نشط' | 'غير نشط',
-          } as Account
-        : account
-    );
-    setAccounts(updatedAccounts);
+  const handleToggleStatus = async (account: Account) => {
+    const newActive = account.status !== 'نشط';
+    try {
+      await updateUser(account.id, { isActive: newActive });
+      setAccounts((prev) =>
+        prev.map((a) =>
+          a.id === account.id
+            ? { ...a, status: (newActive ? 'نشط' : 'غير نشط') as 'نشط' | 'غير نشط' }
+            : a
+        )
+      );
+    } catch (e) {
+      console.error('Failed to toggle user status', e);
+      setError(e instanceof Error ? e.message : 'تعذر تغيير الحالة.');
+    }
   };
 
   return (
@@ -787,9 +818,9 @@ function IdentityAndAccessPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
-                  {roles.map((role) => (
-                    <SelectItem key={role} value={role}>
-                      {role}
+                  {roles.map((r) => (
+                    <SelectItem key={r.id} value={r.roleName}>
+                      {r.roleName}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -807,9 +838,9 @@ function IdentityAndAccessPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
-                  {warehouses.map((warehouse) => (
-                    <SelectItem key={warehouse.id} value={warehouse.name}>
-                      {warehouse.name}
+                  {warehouses.map((wh) => (
+                    <SelectItem key={wh.id} value={wh.name}>
+                      {wh.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -898,7 +929,7 @@ function IdentityAndAccessPage() {
                             تعديل
                           </DropdownMenuItem>
                           <DropdownMenuItem
-                            onClick={() => handleToggleStatus(account.id)}
+                            onClick={() => handleToggleStatus(account)}
                             variant={account.status === 'نشط' ? 'destructive' : 'default'}
                             className="cursor-pointer"
                           >
@@ -929,17 +960,31 @@ function IdentityAndAccessPage() {
 
           {selectedAccount && (
             <div className="space-y-4 py-4">
-              {/* Name */}
+              {/* First name */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
-                  الاسم
+                  الاسم الأول
                 </label>
                 <Input
-                  value={editFormData.name || ''}
+                  value={editFormData.firstName || ''}
                   onChange={(e) =>
-                    setEditFormData({ ...editFormData, name: e.target.value })
+                    setEditFormData({ ...editFormData, firstName: e.target.value })
                   }
-                  placeholder="أدخل الاسم"
+                  placeholder="الاسم الأول"
+                />
+              </div>
+
+              {/* Last name */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">
+                  اسم العائلة
+                </label>
+                <Input
+                  value={editFormData.lastName || ''}
+                  onChange={(e) =>
+                    setEditFormData({ ...editFormData, lastName: e.target.value })
+                  }
+                  placeholder="اسم العائلة"
                 />
               </div>
 
@@ -964,25 +1009,25 @@ function IdentityAndAccessPage() {
                   الدور
                 </label>
                 <Select
-                  value={editFormData.role || ''}
+                  value={editFormData.roleId || ''}
                   onValueChange={(value) =>
-                    setEditFormData({ ...editFormData, role: value })
+                    setEditFormData({ ...editFormData, roleId: value || null })
                   }
                 >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="اختر الدور" />
                   </SelectTrigger>
                   <SelectContent>
-                    {roles.map((role) => (
-                      <SelectItem key={role} value={role}>
-                        {role}
+                    {roles.map((r) => (
+                      <SelectItem key={r.id} value={r.id}>
+                        {r.roleName}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Warehouse */}
+              {/* Warehouse (display only; no backend field for user-warehouse yet) */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
                   المستودع
@@ -997,9 +1042,9 @@ function IdentityAndAccessPage() {
                     <SelectValue placeholder="اختر المستودع" />
                   </SelectTrigger>
                   <SelectContent>
-                    {warehouses.map((warehouse) => (
-                      <SelectItem key={warehouse.id} value={warehouse.name}>
-                        {warehouse.name}
+                    {warehouses.map((wh) => (
+                      <SelectItem key={wh.id} value={wh.name}>
+                        {wh.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -1037,7 +1082,9 @@ function IdentityAndAccessPage() {
             >
               إلغاء
             </Button>
-            <Button onClick={handleSaveEdit}>حفظ التغييرات</Button>
+            <Button onClick={handleSaveEdit} disabled={saving}>
+              {saving ? 'جاري الحفظ...' : 'حفظ التغييرات'}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -1048,35 +1095,6 @@ function IdentityAndAccessPage() {
 // Master Data Types
 type MasterDataType = 'clients' | 'products' | 'warehouses' | 'locations' | 'uom' | 'packaging' | 'suppliers' | 'carriers' | 'reasons';
 
-// Client Data Type
-type Client = {
-  id: string;
-  name: string;
-  code: string;
-  contactEmail: string;
-  contactPhone: string;
-  status: 'نشط' | 'غير نشط';
-  createdAt: string;
-  address?: string;
-  password?: string;
-};
-
-// Product Data Type
-type Product = {
-  id: string;
-  name: string;
-  sku: string;
-  clientName: string;
-  status: 'نشط' | 'غير نشط';
-  barcode?: string;
-  baseUOM?: string;
-  weight?: number;
-  volume?: number;
-  handlingRequirements?: string;
-  expiryTracking?: boolean;
-  rotationPolicy?: 'FIFO' | 'FEFO';
-};
-
 type UOMConversion = {
   id: string;
   alternateUOM: string;
@@ -1084,149 +1102,94 @@ type UOMConversion = {
   active: boolean;
 };
 
-// Warehouse Data Type
-type Warehouse = {
-  id: string;
-  name: string;
-  code: string;
-  status: 'نشط' | 'غير نشط';
-  address: string;
-  adjustmentApproverRequired: boolean;
-};
-
-// Location Data Type
-type Location = {
-  id: string;
-  code: string;
-  name: string;
-  type: string;
-  parentId?: string;
-  warehouseId: string;
-  barcode?: string;
-  active: boolean;
-  pickSequence?: number;
-  isoLabel?: string;
-  rackLabel?: string;
-  binLabel?: string;
-  capacity?: number;
-  capacityWeight?: number;
-  palletSlots?: number;
-  rackUnits?: number;
-};
-
-// Sample Data
-const initialClientsData: Client[] = [
-  {
-    id: '1',
-    name: 'شركة التقنية المتقدمة',
-    code: 'CLI-001',
-    contactEmail: 'contact@tech.com',
-    contactPhone: '+966501234567',
-    status: 'نشط',
-    createdAt: '2025-01-15',
-  },
-  {
-    id: '2',
-    name: 'مؤسسة التجارة الإلكترونية',
-    code: 'CLI-002',
-    contactEmail: 'info@ecommerce.com',
-    contactPhone: '+966502345678',
-    status: 'نشط',
-    createdAt: '2025-02-01',
-  },
-];
-
-const initialProductsData: Product[] = [
-  {
-    id: '1',
-    name: 'منتج أ',
-    sku: 'SKU-001',
-    clientName: 'شركة التقنية المتقدمة',
-    status: 'نشط',
-  },
-  {
-    id: '2',
-    name: 'منتج ب',
-    sku: 'SKU-002',
-    clientName: 'مؤسسة التجارة الإلكترونية',
-    status: 'نشط',
-  },
-];
-
-const initialWarehousesData: Warehouse[] = [
-  {
-    id: '1',
-    name: 'المستودع الرئيسي - الرياض',
-    code: 'WH-001',
-    status: 'نشط',
-    address: 'الرياض، المملكة العربية السعودية',
-    adjustmentApproverRequired: true,
-  },
-  {
-    id: '2',
-    name: 'مستودع جدة',
-    code: 'WH-002',
-    status: 'نشط',
-    address: 'جدة، المملكة العربية السعودية',
-    adjustmentApproverRequired: false,
-  },
-];
-
-const initialLocationsData: Location[] = [
-  {
-    id: '1',
-    code: 'LOC-001',
-    name: 'المنطقة أ',
-    type: 'منطقة',
-    warehouseId: '1',
-    active: true,
-  },
-  {
-    id: '2',
-    code: 'LOC-002',
-    name: 'الرف 1',
-    type: 'رف',
-    parentId: '1',
-    warehouseId: '1',
-    active: true,
-  },
-];
-
 function MasterDataPage() {
   const [activeDataType, setActiveDataType] = useState<MasterDataType>('clients');
-  
+
   // Clients state
-  const [clients, setClients] = useState<Client[]>(initialClientsData);
+  const [clients, setClients] = useState<ClientUi[]>([]);
+  const [clientsLoading, setClientsLoading] = useState(false);
   const [clientStatusFilter, setClientStatusFilter] = useState('');
   const [clientCodeFilter, setClientCodeFilter] = useState('');
   const [clientNameFilter, setClientNameFilter] = useState('');
   const [isCreateClientOpen, setIsCreateClientOpen] = useState(false);
-  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const [selectedClient, setSelectedClient] = useState<ClientUi | null>(null);
   const [isEditClientOpen, setIsEditClientOpen] = useState(false);
-  const [clientFormData, setClientFormData] = useState<Partial<Client>>({});
+  const [clientFormData, setClientFormData] = useState<Partial<ClientUi> & { address?: string; password?: string }>({});
 
   // Products state
-  const [products, setProducts] = useState<Product[]>(initialProductsData);
+  const [products, setProducts] = useState<ProductUi[]>([]);
+  const [productsLoading, setProductsLoading] = useState(false);
   const [productClientFilter, setProductClientFilter] = useState('');
   const [productStatusFilter, setProductStatusFilter] = useState('');
   const [isCreateProductOpen, setIsCreateProductOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ProductUi | null>(null);
   const [isEditProductOpen, setIsEditProductOpen] = useState(false);
-  const [productFormData, setProductFormData] = useState<Partial<Product>>({});
+  const [productFormData, setProductFormData] = useState<Partial<ProductUi> & { barcode?: string; baseUOM?: string; weight?: number; volume?: number; handlingRequirements?: string; expiryTracking?: boolean; rotationPolicy?: 'FIFO' | 'FEFO' }>({});
   const [uomConversions, setUomConversions] = useState<UOMConversion[]>([]);
+  const [uomList, setUomList] = useState<{ id: string; code: string; name: string }[]>([]);
 
   // Warehouses state
-  const [warehouses, setWarehouses] = useState<Warehouse[]>(initialWarehousesData);
+  const [warehouses, setWarehouses] = useState<WarehouseUi[]>([]);
+  const [warehousesLoading, setWarehousesLoading] = useState(false);
   const [warehouseNameFilter, setWarehouseNameFilter] = useState('');
   const [isCreateWarehouseOpen, setIsCreateWarehouseOpen] = useState(false);
-  const [selectedWarehouse, setSelectedWarehouse] = useState<Warehouse | null>(null);
+  const [selectedWarehouse, setSelectedWarehouse] = useState<WarehouseUi | null>(null);
   const [isEditWarehouseOpen, setIsEditWarehouseOpen] = useState(false);
-  const [warehouseFormData, setWarehouseFormData] = useState<Partial<Warehouse>>({});
+  const [warehouseFormData, setWarehouseFormData] = useState<Partial<WarehouseUi>>({});
 
-  // Locations state
-  const [locations] = useState<Location[]>(initialLocationsData);
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['1']));
+  // Locations state (tree from API)
+  const [locationTree, setLocationTree] = useState<LocationUi[]>([]);
+  const [locationsLoading, setLocationsLoading] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<LocationUi | null>(null);
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+
+  // Fetch master data when tab or relevant filters change
+  useEffect(() => {
+    if (activeDataType === 'clients') {
+      setClientsLoading(true);
+      fetchClients()
+        .then(setClients)
+        .catch(() => setClients([]))
+        .finally(() => setClientsLoading(false));
+    }
+  }, [activeDataType]);
+
+  useEffect(() => {
+    if (activeDataType === 'products') {
+      setProductsLoading(true);
+      Promise.all([fetchProducts(), fetchClients(), fetchUomList()])
+        .then(([prods, clts, uom]) => {
+          setProducts(prods);
+          setClients(clts);
+          setUomList(uom.map((u) => ({ id: u.id, code: u.code, name: u.name })));
+        })
+        .catch(() => setProducts([]))
+        .finally(() => setProductsLoading(false));
+    }
+  }, [activeDataType]);
+
+  useEffect(() => {
+    if (activeDataType === 'warehouses') {
+      setWarehousesLoading(true);
+      fetchWarehousesMasterData()
+        .then(setWarehouses)
+        .catch(() => setWarehouses([]))
+        .finally(() => setWarehousesLoading(false));
+    }
+  }, [activeDataType]);
+
+  useEffect(() => {
+    if (activeDataType === 'locations') {
+      setLocationsLoading(true);
+      fetchLocationsTree()
+        .then((tree) => {
+          setLocationTree(tree);
+          setExpandedNodes((prev) => (prev.size ? prev : new Set(tree.length ? [tree[0].id] : [])));
+        })
+        .catch(() => setLocationTree([]))
+        .finally(() => setLocationsLoading(false));
+    }
+  }, [activeDataType]);
 
   // Filter functions
   const filteredClients = clients.filter((client) => {
@@ -1237,7 +1200,7 @@ function MasterDataPage() {
   });
 
   const filteredProducts = products.filter((product) => {
-    if (productClientFilter && productClientFilter !== 'all' && product.clientName !== productClientFilter) return false;
+    if (productClientFilter && productClientFilter !== 'all' && product.clientId !== productClientFilter) return false;
     if (productStatusFilter && productStatusFilter !== 'all' && product.status !== productStatusFilter) return false;
     return true;
   });
@@ -1247,24 +1210,6 @@ function MasterDataPage() {
     return true;
   });
 
-  // Location tree functions
-  const buildLocationTree = (): (Location & { children: Location[] })[] => {
-    const tree: { [key: string]: Location & { children: Location[] } } = {};
-    locations.forEach((loc) => {
-      tree[loc.id] = { ...loc, children: [] };
-    });
-    const roots: (Location & { children: Location[] })[] = [];
-    locations.forEach((loc) => {
-      if (loc.parentId && tree[loc.parentId]) {
-        tree[loc.parentId].children.push(tree[loc.id]);
-      } else {
-        roots.push(tree[loc.id]);
-      }
-    });
-    return roots;
-  };
-
-  const locationTree = buildLocationTree();
 
   const toggleNode = (nodeId: string) => {
     const newExpanded = new Set(expandedNodes);
@@ -1276,11 +1221,11 @@ function MasterDataPage() {
     setExpandedNodes(newExpanded);
   };
 
-  const renderLocationTree = (nodes: (Location & { children: Location[] })[], level = 0) => {
+  const renderLocationTree = (nodes: (LocationUi & { children?: LocationUi[] })[], level = 0) => {
     return (
       <div className="space-y-1">
         {nodes.map((node) => {
-          const nodeWithChildren = node as Location & { children: (Location & { children: Location[] })[] };
+          const children = node.children ?? [];
           return (
             <div key={node.id}>
               <div
@@ -1290,7 +1235,7 @@ function MasterDataPage() {
                 style={{ paddingRight: `${level * 1.5}rem` }}
                 onClick={() => setSelectedLocation(node)}
               >
-                {node.children.length > 0 && (
+                {children.length > 0 && (
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -1307,9 +1252,9 @@ function MasterDataPage() {
                 )}
                 <span className="text-sm">{node.name} ({node.code})</span>
               </div>
-              {node.children.length > 0 && expandedNodes.has(node.id) && (
+              {children.length > 0 && expandedNodes.has(node.id) && (
                 <div className="mr-4">
-                  {renderLocationTree(nodeWithChildren.children, level + 1)}
+                  {renderLocationTree(children, level + 1)}
                 </div>
               )}
             </div>
@@ -1444,6 +1389,9 @@ function MasterDataPage() {
           {/* Clients Table */}
           <Card>
             <CardContent className="p-0">
+              {clientsLoading ? (
+                <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
+              ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -1488,12 +1436,14 @@ function MasterDataPage() {
                               تعديل
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onClick={() => {
-                                setClients(clients.map(c => 
-                                  c.id === client.id 
-                                    ? { ...c, status: c.status === 'نشط' ? 'غير نشط' : 'نشط' as 'نشط' | 'غير نشط' }
-                                    : c
-                                ));
+                              onClick={async () => {
+                                try {
+                                  await updateClient(client.id, { isActive: false });
+                                  const list = await fetchClients();
+                                  setClients(list);
+                                } catch {
+                                  // keep state on error
+                                }
                               }}
                               variant="destructive"
                             >
@@ -1507,6 +1457,7 @@ function MasterDataPage() {
                   ))}
                 </TableBody>
               </Table>
+              )}
             </CardContent>
           </Card>
 
@@ -1561,16 +1512,6 @@ function MasterDataPage() {
                       onChange={(e) => setClientFormData({ ...clientFormData, address: e.target.value })}
                     />
                   </div>
-                  {isCreateClientOpen && (
-                    <div className="space-y-2 col-span-2">
-                      <label className="text-sm font-medium">كلمة المرور</label>
-                      <Input
-                        type="password"
-                        value={clientFormData.password || ''}
-                        onChange={(e) => setClientFormData({ ...clientFormData, password: e.target.value })}
-                      />
-                    </div>
-                  )}
                   <div className="flex items-center gap-2 col-span-2">
                     <Checkbox
                       checked={clientFormData.status === 'نشط'}
@@ -1586,19 +1527,43 @@ function MasterDataPage() {
                 <Button variant="outline" onClick={() => {
                   setIsCreateClientOpen(false);
                   setIsEditClientOpen(false);
+                  setSelectedClient(null);
                   setClientFormData({});
                 }}>
                   إلغاء
                 </Button>
-                <Button onClick={() => {
-                  if (isCreateClientOpen) {
-                    setClients([...clients, { ...clientFormData as Client, id: Date.now().toString(), createdAt: new Date().toISOString().split('T')[0] }]);
-                  } else if (selectedClient) {
-                    setClients(clients.map(c => c.id === selectedClient.id ? { ...c, ...clientFormData } as Client : c));
+                <Button onClick={async () => {
+                  try {
+                    if (isCreateClientOpen) {
+                      await createClient({
+                        code: clientFormData.code!,
+                        name: clientFormData.name!,
+                        contactEmail: clientFormData.contactEmail,
+                        contactPhone: clientFormData.contactPhone,
+                        addressLine1: clientFormData.address,
+                        status: clientFormData.status,
+                        isActive: clientFormData.status === 'نشط',
+                      });
+                    } else if (selectedClient) {
+                      await updateClient(selectedClient.id, {
+                        code: clientFormData.code,
+                        name: clientFormData.name,
+                        contactEmail: clientFormData.contactEmail,
+                        contactPhone: clientFormData.contactPhone,
+                        addressLine1: clientFormData.address,
+                        status: clientFormData.status,
+                        isActive: clientFormData.status === 'نشط',
+                      });
+                    }
+                    const list = await fetchClients();
+                    setClients(list);
+                    setIsCreateClientOpen(false);
+                    setIsEditClientOpen(false);
+                    setSelectedClient(null);
+                    setClientFormData({});
+                  } catch {
+                    // leave dialog open on error
                   }
-                  setIsCreateClientOpen(false);
-                  setIsEditClientOpen(false);
-                  setClientFormData({});
                 }}>
                   حفظ
                 </Button>
@@ -1632,7 +1597,7 @@ function MasterDataPage() {
                     <SelectContent>
                       <SelectItem value="all">الكل</SelectItem>
                       {clients.map((c) => (
-                        <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
+                        <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -1656,6 +1621,9 @@ function MasterDataPage() {
 
           <Card>
             <CardContent className="p-0">
+              {productsLoading ? (
+                <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
+              ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -1695,10 +1663,18 @@ function MasterDataPage() {
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               variant="destructive"
-                              onClick={() => setProducts(products.filter(p => p.id !== product.id))}
+                              onClick={async () => {
+                                try {
+                                  await updateProduct(product.id, { isActive: false });
+                                  const list = await fetchProducts();
+                                  setProducts(list);
+                                } catch {
+                                  // keep state on error
+                                }
+                              }}
                             >
                               <Trash2 className="w-4 h-4 ml-2" />
-                              حذف
+                              إلغاء التفعيل
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -1707,6 +1683,7 @@ function MasterDataPage() {
                   ))}
                 </TableBody>
               </Table>
+              )}
             </CardContent>
           </Card>
 
@@ -1729,15 +1706,15 @@ function MasterDataPage() {
                   <div className="space-y-2">
                     <label className="text-sm font-medium">العميل</label>
                     <Select
-                      value={productFormData.clientName || ''}
-                      onValueChange={(v) => setProductFormData({ ...productFormData, clientName: v })}
+                      value={productFormData.clientId || ''}
+                      onValueChange={(v) => setProductFormData({ ...productFormData, clientId: v })}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="اختر العميل" />
                       </SelectTrigger>
                       <SelectContent>
                         {clients.map((c) => (
-                          <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
+                          <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -1757,28 +1734,20 @@ function MasterDataPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">الباركود</label>
-                    <div className="flex gap-2">
-                      <Input
-                        value={productFormData.barcode || ''}
-                        onChange={(e) => setProductFormData({ ...productFormData, barcode: e.target.value })}
-                      />
-                      <Button type="button" variant="outline" onClick={() => {
-                        // Simulate barcode scanning - in real app would open camera
-                        alert('فتح الكاميرا للمسح الضوئي');
-                      }}>
-                        <QrCode className="w-4 h-4 ml-2" />
-                        مسح
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
                     <label className="text-sm font-medium">وحدة القياس الأساسية</label>
-                    <Input
-                      value={productFormData.baseUOM || ''}
-                      onChange={(e) => setProductFormData({ ...productFormData, baseUOM: e.target.value })}
-                      placeholder="مثال: قطعة"
-                    />
+                    <Select
+                      value={productFormData.defaultUomId || ''}
+                      onValueChange={(v) => setProductFormData({ ...productFormData, defaultUomId: v })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="اختر وحدة القياس" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {uomList.map((u) => (
+                          <SelectItem key={u.id} value={u.id}>{u.name} ({u.code})</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium">الوزن</label>
@@ -1923,16 +1892,35 @@ function MasterDataPage() {
                 }}>
                   إلغاء
                 </Button>
-                <Button onClick={() => {
-                  if (isCreateProductOpen) {
-                    setProducts([...products, { ...productFormData as Product, id: Date.now().toString() }]);
-                  } else if (selectedProduct) {
-                    setProducts(products.map(p => p.id === selectedProduct.id ? { ...p, ...productFormData } as Product : p));
+                <Button onClick={async () => {
+                  try {
+                    if (isCreateProductOpen) {
+                      if (!productFormData.clientId || !productFormData.sku || !productFormData.name || !productFormData.defaultUomId) return;
+                      await createProduct({
+                        clientId: productFormData.clientId,
+                        sku: productFormData.sku,
+                        name: productFormData.name,
+                        defaultUomId: productFormData.defaultUomId,
+                        isActive: productFormData.status !== 'غير نشط',
+                      });
+                    } else if (selectedProduct) {
+                      await updateProduct(selectedProduct.id, {
+                        sku: productFormData.sku,
+                        name: productFormData.name,
+                        defaultUomId: productFormData.defaultUomId,
+                        isActive: productFormData.status === 'نشط',
+                      });
+                    }
+                    const list = await fetchProducts();
+                    setProducts(list);
+                    setIsCreateProductOpen(false);
+                    setIsEditProductOpen(false);
+                    setSelectedProduct(null);
+                    setProductFormData({});
+                    setUomConversions([]);
+                  } catch {
+                    // leave dialog open on error
                   }
-                  setIsCreateProductOpen(false);
-                  setIsEditProductOpen(false);
-                  setProductFormData({});
-                  setUomConversions([]);
                 }}>
                   حفظ
                 </Button>
@@ -1969,6 +1957,9 @@ function MasterDataPage() {
 
           <Card>
             <CardContent className="p-0">
+              {warehousesLoading ? (
+                <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
+              ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -2009,12 +2000,14 @@ function MasterDataPage() {
                               تعديل
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                              onClick={() => {
-                                setWarehouses(warehouses.map(w => 
-                                  w.id === warehouse.id 
-                                    ? { ...w, status: w.status === 'نشط' ? 'غير نشط' : 'نشط' as 'نشط' | 'غير نشط' }
-                                    : w
-                                ));
+                              onClick={async () => {
+                                try {
+                                  await updateWarehouse(warehouse.id, { isActive: false });
+                                  const list = await fetchWarehousesMasterData();
+                                  setWarehouses(list);
+                                } catch {
+                                  // keep state on error
+                                }
                               }}
                               variant="destructive"
                             >
@@ -2028,6 +2021,7 @@ function MasterDataPage() {
                   ))}
                 </TableBody>
               </Table>
+              )}
             </CardContent>
           </Card>
 
@@ -2095,15 +2089,31 @@ function MasterDataPage() {
                 }}>
                   إلغاء
                 </Button>
-                <Button onClick={() => {
-                  if (isCreateWarehouseOpen) {
-                    setWarehouses([...warehouses, { ...warehouseFormData as Warehouse, id: Date.now().toString() }]);
-                  } else if (selectedWarehouse) {
-                    setWarehouses(warehouses.map(w => w.id === selectedWarehouse.id ? { ...w, ...warehouseFormData } as Warehouse : w));
+                <Button onClick={async () => {
+                  try {
+                    if (isCreateWarehouseOpen) {
+                      if (!warehouseFormData.code || !warehouseFormData.name) return;
+                      await createWarehouse({
+                        code: warehouseFormData.code,
+                        name: warehouseFormData.name,
+                        isActive: warehouseFormData.status !== 'غير نشط',
+                      });
+                    } else if (selectedWarehouse) {
+                      await updateWarehouse(selectedWarehouse.id, {
+                        code: warehouseFormData.code,
+                        name: warehouseFormData.name,
+                        isActive: warehouseFormData.status === 'نشط',
+                      });
+                    }
+                    const list = await fetchWarehousesMasterData();
+                    setWarehouses(list);
+                    setIsCreateWarehouseOpen(false);
+                    setIsEditWarehouseOpen(false);
+                    setSelectedWarehouse(null);
+                    setWarehouseFormData({});
+                  } catch {
+                    // leave dialog open on error
                   }
-                  setIsCreateWarehouseOpen(false);
-                  setIsEditWarehouseOpen(false);
-                  setWarehouseFormData({});
                 }}>
                   حفظ
                 </Button>
@@ -2123,7 +2133,13 @@ function MasterDataPage() {
             </CardHeader>
             <CardContent>
               <div className="max-h-96 overflow-y-auto">
-                {renderLocationTree(locationTree)}
+                {locationsLoading ? (
+                  <div className="p-4 text-center text-gray-500">جاري التحميل...</div>
+                ) : locationTree.length === 0 ? (
+                  <div className="p-4 text-center text-gray-500">لا توجد مواقع</div>
+                ) : (
+                  renderLocationTree(locationTree)
+                )}
               </div>
             </CardContent>
           </Card>
@@ -2190,45 +2206,9 @@ function MasterDataPage() {
   );
 }
 
-// Inbound Order Types
-type InboundOrderStatus = 'جديد' | 'قيد المعالجة' | 'قيد الاستلام' | 'مكتمل' | 'ملغي';
-type ShipmentStatus = 'لم يبدأ' | 'قيد الشحن' | 'وصل' | 'مكتمل';
+// Inbound Order (use InboundOrderUi from lib; local types for workspace-only fields)
 type OrderStage = 'استلام' | 'فحص' | 'وضع بعيد' | 'مكتمل';
 type StageStatus = 'pending' | 'in-progress' | 'completed';
-
-type InboundOrderItem = {
-  id: string;
-  productName: string;
-  productSKU: string;
-  quantityOrdered: number;
-  quantityReceived: number;
-  quantityRemaining: number;
-};
-
-type InboundOrder = {
-  id: string;
-  orderId: string;
-  client: string;
-  warehouse: string;
-  status: InboundOrderStatus;
-  shipmentStatus: ShipmentStatus;
-  expectedDate: string;
-  assignedTo: string;
-  createdAt: string;
-  items: InboundOrderItem[];
-  stages: Array<{
-    stage: OrderStage;
-    status: StageStatus;
-    assignedWorker?: string;
-    completedAt?: string;
-  }>;
-  approvals?: Array<{
-    id: string;
-    type: string;
-    status: 'pending' | 'approved' | 'rejected';
-    requestedAt: string;
-  }>;
-};
 
 type Worker = {
   id: string;
@@ -2246,90 +2226,63 @@ const workers: Worker[] = [
   { id: '5', name: 'محمد علي', duties: ['استلام', 'فحص', 'وضع بعيد'], currentTasks: 5 },
 ];
 
-// Sample Products for dropdown
-const products = [
-  { id: '1', name: 'منتج أ', code: 'PROD-001' },
-  { id: '2', name: 'منتج ب', code: 'PROD-002' },
-  { id: '3', name: 'منتج ج', code: 'PROD-003' },
-];
-
-// Sample Inbound Orders Data
-const initialInboundOrders: InboundOrder[] = [
-  {
-    id: '1',
-    orderId: 'INB-00041',
-    client: 'شركة التقنية المتقدمة',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    status: 'قيد المعالجة',
-    shipmentStatus: 'قيد الشحن',
-    expectedDate: '2026-02-05',
-    assignedTo: 'أحمد محمد',
-    createdAt: '2026-02-02 10:15',
-    items: [
-      { id: '1', productName: 'منتج أ', productSKU: 'PROD-001', quantityOrdered: 100, quantityReceived: 50, quantityRemaining: 50 },
-      { id: '2', productName: 'منتج ب', productSKU: 'PROD-002', quantityOrdered: 200, quantityReceived: 0, quantityRemaining: 200 },
-    ],
-    stages: [
-      { stage: 'استلام', status: 'completed', assignedWorker: 'أحمد محمد', completedAt: '2026-02-02 11:00' },
-      { stage: 'فحص', status: 'in-progress', assignedWorker: 'فاطمة علي' },
-      { stage: 'وضع بعيد', status: 'pending' },
-      { stage: 'مكتمل', status: 'pending' },
-    ],
-    approvals: [
-      { id: '1', type: 'موافقة الاستلام', status: 'approved', requestedAt: '2026-02-02 10:20' },
-      { id: '2', type: 'موافقة الفحص', status: 'pending', requestedAt: '2026-02-02 11:15' },
-    ],
-  },
-  {
-    id: '2',
-    orderId: 'INB-00042',
-    client: 'مؤسسة التجارة الإلكترونية',
-    warehouse: 'مستودع جدة',
-    status: 'جديد',
-    shipmentStatus: 'لم يبدأ',
-    expectedDate: '2026-02-10',
-    assignedTo: '-',
-    createdAt: '2026-02-02 09:30',
-    items: [
-      { id: '3', productName: 'منتج ج', productSKU: 'PROD-003', quantityOrdered: 150, quantityReceived: 0, quantityRemaining: 150 },
-    ],
-    stages: [
-      { stage: 'استلام', status: 'pending' },
-      { stage: 'فحص', status: 'pending' },
-      { stage: 'وضع بعيد', status: 'pending' },
-      { stage: 'مكتمل', status: 'pending' },
-    ],
-  },
-];
-
 function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => void }) {
   const [warehouseFilter, setWarehouseFilter] = useState('');
   const [clientFilter, setClientFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [expectedDateFrom, setExpectedDateFrom] = useState('');
   const [expectedDateTo, setExpectedDateTo] = useState('');
-  const [orders, setOrders] = useState<InboundOrder[]>([]);
-  // @ts-ignore - setLoading used in useEffect
+  const [orders, setOrders] = useState<InboundOrderUi[]>([]);
   const [loading, setLoading] = useState(true);
-  // @ts-ignore - setError used in useEffect
   const [error, setError] = useState<string | null>(null);
+  const [clients, setClients] = useState<ClientUi[]>([]);
+  const [warehouses, setWarehouses] = useState<WarehouseUi[]>([]);
+  const [products, setProducts] = useState<ProductUi[]>([]);
+  const [uomList, setUomList] = useState<{ id: string; code: string; name: string }[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [createFormData, setCreateFormData] = useState({
-    clientName: '',
-    warehouse: '',
+    clientId: '',
+    warehouseId: '',
     expectedDate: '',
     notes: '',
     orderItems: [] as Array<{ id: string; productId: string; quantity: number }>,
   });
 
-  const filteredOrders = orders.filter((order) => {
-    if (warehouseFilter && warehouseFilter !== 'all' && order.warehouse !== warehouseFilter) return false;
-    if (clientFilter && clientFilter !== 'all' && order.client !== clientFilter) return false;
-    if (statusFilter && statusFilter !== 'all' && order.status !== statusFilter) return false;
-    if (expectedDateFrom && order.expectedDate < expectedDateFrom) return false;
-    if (expectedDateTo && order.expectedDate > expectedDateTo) return false;
-    return true;
-  });
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    const filter: Parameters<typeof fetchInboundOrders>[0] = {};
+    if (clientFilter && clientFilter !== 'all') filter.clientId = clientFilter;
+    if (warehouseFilter && warehouseFilter !== 'all') filter.warehouseId = warehouseFilter;
+    if (statusFilter && statusFilter !== 'all') filter.status = INBOUND_STATUS_TO_API[statusFilter];
+    if (expectedDateFrom) filter.expectedDateFrom = expectedDateFrom;
+    if (expectedDateTo) filter.expectedDateTo = expectedDateTo;
+    fetchInboundOrders(filter)
+      .then(setOrders)
+      .catch((e) => {
+        setError(e instanceof Error ? e.message : 'فشل تحميل الطلبات');
+        setOrders([]);
+      })
+      .finally(() => setLoading(false));
+  }, [clientFilter, warehouseFilter, statusFilter, expectedDateFrom, expectedDateTo]);
+
+  useEffect(() => {
+    Promise.all([
+      fetchClients(),
+      fetchWarehousesMasterData(),
+      fetchProducts(),
+      fetchUomList(),
+    ])
+      .then(([c, w, p, u]) => {
+        setClients(c);
+        setWarehouses(w);
+        setProducts(p);
+        setUomList(u.map((x) => ({ id: x.id, code: x.code, name: x.name })));
+      })
+      .catch(() => {});
+  }, []);
+
+  const filteredOrders = orders;
 
   const addOrderItem = () => {
     setCreateFormData({
@@ -2354,38 +2307,38 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
     });
   };
 
-  const handleCreateOrder = () => {
-    const newOrder: InboundOrder = {
-      id: Date.now().toString(),
-      orderId: `INB-${String(orders.length + 1).padStart(5, '0')}`,
-      client: createFormData.clientName,
-      warehouse: createFormData.warehouse,
-      status: 'جديد',
-      shipmentStatus: 'لم يبدأ',
-      expectedDate: createFormData.expectedDate,
-      assignedTo: '-',
-      createdAt: new Date().toISOString().split('T')[0] + ' ' + new Date().toTimeString().split(' ')[0].slice(0, 5),
-      items: createFormData.orderItems.map(item => {
-        const product = products.find(p => p.id === item.productId);
-        return {
-          id: item.id,
-          productName: product?.name || '',
-          productSKU: product?.code || '',
-          quantityOrdered: item.quantity,
-          quantityReceived: 0,
-          quantityRemaining: item.quantity,
-        };
-      }),
-      stages: [
-        { stage: 'استلام', status: 'pending' },
-        { stage: 'فحص', status: 'pending' },
-        { stage: 'وضع بعيد', status: 'pending' },
-        { stage: 'مكتمل', status: 'pending' },
-      ],
-    };
-    setOrders([...orders, newOrder]);
-    setIsCreateDialogOpen(false);
-    setCreateFormData({ clientName: '', warehouse: '', expectedDate: '', notes: '', orderItems: [] });
+  const handleCreateOrder = async () => {
+    if (!createFormData.clientId || !createFormData.warehouseId) return;
+    setError(null);
+    try {
+      const created = await createInboundOrder({
+        clientId: createFormData.clientId,
+        warehouseId: createFormData.warehouseId,
+        expectedDate: createFormData.expectedDate || undefined,
+      });
+      for (const item of createFormData.orderItems) {
+        if (!item.productId || item.quantity <= 0) continue;
+        const product = products.find((p) => p.id === item.productId);
+        if (!product?.defaultUomId) continue;
+        await addInboundOrderItem(created.id, {
+          productId: item.productId,
+          uomId: product.defaultUomId,
+          qtyOrdered: item.quantity,
+        });
+      }
+      const list = await fetchInboundOrders({
+        clientId: clientFilter !== 'all' ? clientFilter : undefined,
+        warehouseId: warehouseFilter !== 'all' ? warehouseFilter : undefined,
+        status: statusFilter !== 'all' ? INBOUND_STATUS_TO_API[statusFilter] : undefined,
+        expectedDateFrom: expectedDateFrom || undefined,
+        expectedDateTo: expectedDateTo || undefined,
+      });
+      setOrders(list);
+      setIsCreateDialogOpen(false);
+      setCreateFormData({ clientId: '', warehouseId: '', expectedDate: '', notes: '', orderItems: [] });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'فشل إنشاء الطلب');
+    }
   };
 
   return (
@@ -2412,7 +2365,7 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
                   {warehouses.map((w) => (
-                    <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
+                    <SelectItem key={w.id} value={w.id}>{w.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -2426,7 +2379,7 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
                   {clients.map((c) => (
-                    <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
+                    <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -2549,21 +2502,26 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">العميل</label>
-                <Input
-                  value={createFormData.clientName}
-                  onChange={(e) => setCreateFormData({ ...createFormData, clientName: e.target.value })}
-                  placeholder="أدخل اسم العميل"
-                />
+                <Select value={createFormData.clientId} onValueChange={(v) => setCreateFormData({ ...createFormData, clientId: v })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="اختر العميل" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {clients.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">المستودع</label>
-                <Select value={createFormData.warehouse} onValueChange={(v) => setCreateFormData({ ...createFormData, warehouse: v })}>
+                <Select value={createFormData.warehouseId} onValueChange={(v) => setCreateFormData({ ...createFormData, warehouseId: v })}>
                   <SelectTrigger>
                     <SelectValue placeholder="اختر المستودع" />
                   </SelectTrigger>
                   <SelectContent>
                     {warehouses.map((w) => (
-                      <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
+                      <SelectItem key={w.id} value={w.id}>{w.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -2624,7 +2582,7 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
                             </SelectTrigger>
                             <SelectContent>
                               {products.map((p) => (
-                                <SelectItem key={p.id} value={p.id}>{p.name} ({p.code})</SelectItem>
+                                <SelectItem key={p.id} value={p.id}>{p.name} ({p.sku})</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -2665,13 +2623,27 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
 }
 
 function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBack: () => void }) {
-  const [orders] = useState<InboundOrder[]>(initialInboundOrders);
-  const order = orders.find(o => o.id === orderId);
+  const [order, setOrder] = useState<InboundOrderUi | null>(null);
+  const [loading, setLoading] = useState(true);
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedStage, setSelectedStage] = useState<OrderStage | null>(null);
   const [selectedWorker, setSelectedWorker] = useState('');
   const [isApprovalsDialogOpen, setIsApprovalsDialogOpen] = useState(false);
-  const [updatedOrders, setUpdatedOrders] = useState<InboundOrder[]>(initialInboundOrders);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchInboundOrder(orderId)
+      .then(setOrder)
+      .finally(() => setLoading(false));
+  }, [orderId]);
+
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-500">جاري تحميل الطلب...</p>
+      </div>
+    );
+  }
 
   if (!order) {
     return (
@@ -2682,7 +2654,7 @@ function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBac
     );
   }
 
-  const currentOrder = updatedOrders.find(o => o.id === orderId) || order;
+  const currentOrder = order;
 
   const handleAssign = (stage: OrderStage) => {
     setSelectedStage(stage);
@@ -2707,30 +2679,26 @@ function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBac
     if (!selectedStage || !selectedWorker) return;
     const worker = workers.find(w => w.id === selectedWorker);
     if (!worker) return;
-
-    setUpdatedOrders(updatedOrders.map(o => {
-      if (o.id === orderId) {
-        return {
-          ...o,
-          stages: o.stages.map(s =>
-            s.stage === selectedStage ? { ...s, assignedWorker: worker.name, status: 'in-progress' as StageStatus } : s
-          ),
-          assignedTo: o.assignedTo === '-' ? worker.name : o.assignedTo,
-        };
-      }
-      return o;
-    }));
-
+    if (!order.stages) return;
+    setOrder({
+      ...order,
+      stages: order.stages.map(s =>
+        s.stage === selectedStage ? { ...s, assignedWorker: worker.name, status: 'in-progress' } : s
+      ),
+      assignedTo: order.assignedTo === '-' ? worker.name : order.assignedTo,
+    });
     setIsAssignDialogOpen(false);
     setSelectedStage(null);
     setSelectedWorker('');
   };
 
-  const handleCancelOrder = () => {
-    if (confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) {
-      setUpdatedOrders(updatedOrders.map(o =>
-        o.id === orderId ? { ...o, status: 'ملغي' as InboundOrderStatus } : o
-      ));
+  const handleCancelOrder = async () => {
+    if (!confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) return;
+    try {
+      const updated = await updateInboundOrder(orderId, { status: 'CANCELLED' });
+      setOrder(updated);
+    } catch {
+      // keep state on error
     }
   };
 
@@ -7920,16 +7888,111 @@ function ApprovalsCenterPage() {
 }
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [authenticated, setAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [user, setUser] = useState<UserInfo | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activePage, setActivePage] = useState<'overview' | 'work-management' | 'identity-access' | 'master-data' | 'inbound-orders' | 'inbound-order-workspace' | 'outbound-orders' | 'outbound-order-workspace' | 'inventory' | 'inventory-ledger' | 'adjustments' | 'returns' | 'return-workspace' | 'reports' | 'report-detail' | 'billing' | 'value-added-services' | 'approvals-center'>('overview');
+  const [activePage, setActivePage] = useState<AdminPage>('overview');
   const [selectedInboundOrderId, setSelectedInboundOrderId] = useState<string>('');
   const [selectedOutboundOrderId, setSelectedOutboundOrderId] = useState<string>('');
   const [selectedInventoryItemId, setSelectedInventoryItemId] = useState<string>('');
   const [selectedReturnId, setSelectedReturnId] = useState<string>('');
   const [selectedReportType, setSelectedReportType] = useState<ReportType | null>(null);
+  const [overviewData, setOverviewData] = useState<OverviewResponse | null>(null);
+  const [overviewLoading, setOverviewLoading] = useState(false);
+  const [overviewError, setOverviewError] = useState<string | null>(null);
+
+  // Sync URL to state so each admin page has a stable route (bookmarks, back/forward work)
+  // Only run when authenticated to avoid redirecting to /overview and triggering protected API calls
+  useEffect(() => {
+    if (!authenticated) return;
+    const pathname = location.pathname;
+    // Redirect root to overview so overview has a proper route like other pages
+    if (pathname === '/') {
+      navigate('/overview', { replace: true });
+      return;
+    }
+    if (pathname === '/overview') {
+      setActivePage('overview');
+      return;
+    }
+    if (pathname === '/work-management') { setActivePage('work-management'); return; }
+    if (pathname === '/identity-access') { setActivePage('identity-access'); return; }
+    if (pathname === '/master-data') { setActivePage('master-data'); return; }
+    const inboundMatch = pathname.match(/^\/inbound-orders\/([^/]+)$/);
+    if (inboundMatch) {
+      setSelectedInboundOrderId(inboundMatch[1]);
+      setActivePage('inbound-order-workspace');
+      return;
+    }
+    if (pathname === '/inbound-orders') {
+      setActivePage('inbound-orders');
+      setSelectedInboundOrderId('');
+      return;
+    }
+    const outboundMatch = pathname.match(/^\/outbound-orders\/([^/]+)$/);
+    if (outboundMatch) {
+      setSelectedOutboundOrderId(outboundMatch[1]);
+      setActivePage('outbound-order-workspace');
+      return;
+    }
+    if (pathname === '/outbound-orders') {
+      setActivePage('outbound-orders');
+      setSelectedOutboundOrderId('');
+      return;
+    }
+    const ledgerMatch = pathname.match(/^\/inventory\/ledger(?:\/([^/]+))?$/);
+    if (ledgerMatch) {
+      setSelectedInventoryItemId(ledgerMatch[1] || '');
+      setActivePage('inventory-ledger');
+      return;
+    }
+    if (pathname === '/inventory') {
+      setActivePage('inventory');
+      setSelectedInventoryItemId('');
+      return;
+    }
+    if (pathname === '/adjustments') { setActivePage('adjustments'); return; }
+    const returnMatch = pathname.match(/^\/returns\/([^/]+)$/);
+    if (returnMatch) {
+      setSelectedReturnId(returnMatch[1]);
+      setActivePage('return-workspace');
+      return;
+    }
+    if (pathname === '/returns') {
+      setActivePage('returns');
+      setSelectedReturnId('');
+      return;
+    }
+    const reportMatch = pathname.match(/^\/reports\/([^/]+)$/);
+    if (reportMatch) {
+      const reportType = reportMatch[1] as ReportType;
+      setSelectedReportType(reportType);
+      setActivePage('report-detail');
+      return;
+    }
+    if (pathname === '/reports') {
+      setActivePage('reports');
+      setSelectedReportType(null);
+      return;
+    }
+    if (pathname === '/billing') { setActivePage('billing'); return; }
+    if (pathname === '/value-added-services') { setActivePage('value-added-services'); return; }
+    if (pathname === '/approvals') { setActivePage('approvals-center'); return; }
+  }, [location.pathname, authenticated]);
+
+  // Fetch overview data when on overview page (only when authenticated to avoid 401 → redirect loop)
+  useEffect(() => {
+    if (!authenticated || activePage !== 'overview') return;
+    setOverviewLoading(true);
+    setOverviewError(null);
+    fetchOverview()
+      .then(setOverviewData)
+      .catch((e) => setOverviewError(e instanceof Error ? e.message : 'Failed to load overview'))
+      .finally(() => setOverviewLoading(false));
+  }, [activePage, authenticated]);
 
   // Check authentication on mount
   useEffect(() => {
@@ -8014,7 +8077,7 @@ function App() {
           {sidebarItems.map((item) => (
             <button
               key={item.page}
-               onClick={() => setActivePage(item.page as 'overview' | 'work-management' | 'identity-access' | 'master-data' | 'inbound-orders' | 'inbound-order-workspace' | 'outbound-orders' | 'outbound-order-workspace' | 'inventory' | 'inventory-ledger' | 'adjustments' | 'returns' | 'return-workspace' | 'reports' | 'report-detail' | 'billing' | 'value-added-services' | 'approvals-center')}
+              onClick={() => navigate(PAGE_TO_PATH[item.page] ?? '/')}
               className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                 activePage === item.page
                   ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
@@ -8089,11 +8152,22 @@ function App() {
         <div className="p-6 space-y-6">
           {activePage === 'overview' && (
             <div className="space-y-6">
-            {/* Summary Section */}
+            {overviewLoading && (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#176C33]" />
+              </div>
+            )}
+            {overviewError && (
+              <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 text-sm">
+                {overviewError}
+              </div>
+            )}
+            {!overviewLoading && overviewData && (
+            <>
+            {/* Summary Section - dynamic from API */}
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">الملخص</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* Card 1: العملاء */}
                 <Card className="stat-card">
                   <CardHeader>
                     <CardTitle className="text-sm font-medium text-gray-600">العملاء</CardTitle>
@@ -8101,9 +8175,13 @@ function App() {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">1,234</p>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.clientsCount ?? 0).toLocaleString('ar-SA')}</p>
                         <p className="text-xs text-gray-500 mt-1">عدد العملاء</p>
-                        <p className="text-xs text-green-600 mt-1">+45 هذا الشهر</p>
+                        {(overviewData.summary?.clientsCountChangeThisMonth ?? 0) !== 0 && (
+                          <p className={`text-xs mt-1 ${(overviewData.summary?.clientsCountChangeThisMonth ?? 0) > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {(overviewData.summary?.clientsCountChangeThisMonth ?? 0) > 0 ? '+' : ''}{overviewData.summary?.clientsCountChangeThisMonth} هذا الشهر
+                          </p>
+                        )}
                       </div>
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                         <Users className="w-6 h-6 text-blue-600" />
@@ -8112,7 +8190,6 @@ function App() {
                   </CardContent>
                 </Card>
 
-                {/* Card 2: Al-Makhazen */}
                 <Card className="stat-card">
                   <CardHeader>
                     <CardTitle className="text-sm font-medium text-gray-600">المخازن</CardTitle>
@@ -8120,7 +8197,7 @@ function App() {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">12</p>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.warehousesCount ?? 0).toLocaleString('ar-SA')}</p>
                         <p className="text-xs text-gray-500 mt-1">عدد المخازن</p>
                       </div>
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -8130,7 +8207,6 @@ function App() {
                   </CardContent>
                 </Card>
 
-                {/* Card 3: Mustakhdimin Nashitin */}
                 <Card className="stat-card">
                   <CardHeader>
                     <CardTitle className="text-sm font-medium text-gray-600">مستخدمون نشطون</CardTitle>
@@ -8138,7 +8214,7 @@ function App() {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">89</p>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.activeUsersCount ?? 0).toLocaleString('ar-SA')}</p>
                         <p className="text-xs text-gray-500 mt-1">عدد المستخدمين النشطين</p>
                       </div>
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -8148,7 +8224,6 @@ function App() {
                   </CardContent>
                 </Card>
 
-                {/* Card 4: Muwafaqat Maftouha */}
                 <Card className="stat-card">
                   <CardHeader>
                     <CardTitle className="text-sm font-medium text-gray-600">موافقات مفتوحة</CardTitle>
@@ -8156,9 +8231,11 @@ function App() {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">23</p>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.openApprovalsCount ?? 0).toLocaleString('ar-SA')}</p>
                         <p className="text-xs text-gray-500 mt-1">عدد الموافقات المفتوحة</p>
-                        <p className="text-xs text-red-600 mt-1">5 عاجلة</p>
+                        {(overviewData.summary?.urgentApprovalsCount ?? 0) > 0 && (
+                          <p className="text-xs text-red-600 mt-1">{overviewData.summary?.urgentApprovalsCount} عاجلة</p>
+                        )}
                       </div>
                       <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
                         <FileCheck className="w-6 h-6 text-amber-600" />
@@ -8167,7 +8244,6 @@ function App() {
                   </CardContent>
                 </Card>
 
-                {/* Card 5: Al-Misahal Mustakhdama */}
                 <Card className="stat-card">
                   <CardHeader>
                     <CardTitle className="text-sm font-medium text-gray-600">المساحة المستخدمة</CardTitle>
@@ -8175,8 +8251,16 @@ function App() {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">68%</p>
-                        <p className="text-xs text-gray-500 mt-1">15,240 م³ / 22,400 م³</p>
+                        <p className="text-2xl font-bold text-gray-900">
+                          {(overviewData.summary?.capacityTotalM3 ?? 0) > 0
+                            ? `${overviewData.summary?.capacityUsedPercent ?? 0}%`
+                            : '—'}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          {(overviewData.summary?.capacityTotalM3 ?? 0) > 0
+                            ? `${(overviewData.summary?.capacityUsedM3 ?? 0).toLocaleString('ar-SA')} م³ / ${(overviewData.summary?.capacityTotalM3 ?? 0).toLocaleString('ar-SA')} م³`
+                            : 'لا توجد بيانات سعة'}
+                        </p>
                         <p className="text-xs text-gray-500">من إجمالي السعة</p>
                       </div>
                       <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
@@ -8186,7 +8270,6 @@ function App() {
                   </CardContent>
                 </Card>
 
-                {/* Card 6: Stored Products */}
                 <Card className="stat-card">
                   <CardHeader>
                     <CardTitle className="text-sm font-medium text-gray-600">المنتجات المخزنة</CardTitle>
@@ -8194,10 +8277,14 @@ function App() {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">8,456</p>
-                        <p className="text-xs text-gray-500 mt-1">المنتجات المستخدمة: 6,234</p>
-                        <p className="text-xs text-gray-500">المنتجات المخزنة: 2,222</p>
-                        <p className="text-xs text-green-600 mt-1">+127 هذا الأسبوع</p>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.totalProductsStored ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-xs text-gray-500 mt-1">المنتجات المستخدمة: {(overviewData.summary?.productsInUseCount ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-xs text-gray-500">المنتجات المخزنة: {(overviewData.summary?.productsStoredCount ?? 0).toLocaleString('ar-SA')}</p>
+                        {(overviewData.summary?.productsChangeThisWeek ?? 0) !== 0 && (
+                          <p className={`text-xs mt-1 ${(overviewData.summary?.productsChangeThisWeek ?? 0) > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {(overviewData.summary?.productsChangeThisWeek ?? 0) > 0 ? '+' : ''}{overviewData.summary?.productsChangeThisWeek} هذا الأسبوع
+                          </p>
+                        )}
                       </div>
                       <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
                         <Package className="w-6 h-6 text-teal-600" />
@@ -8208,7 +8295,7 @@ function App() {
               </div>
             </div>
 
-            {/* Reports Section */}
+            {/* Reports Section - dynamic charts */}
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">التقارير</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -8220,7 +8307,7 @@ function App() {
                     <div className="h-64 w-full">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
-                          data={salesData}
+                          data={Array.isArray(overviewData.salesByMonth) && overviewData.salesByMonth.length ? overviewData.salesByMonth : []}
                           margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
                         >
                           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -8271,7 +8358,7 @@ function App() {
                     <div className="h-64 w-full">
                       <ResponsiveContainer width="100%" height="100%">
                         <AreaChart
-                          data={inventoryData}
+                          data={Array.isArray(overviewData.inventoryByMonth) && overviewData.inventoryByMonth.length ? overviewData.inventoryByMonth : []}
                           margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
                         >
                           <defs>
@@ -8359,7 +8446,7 @@ function App() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {activityLogData.map((activity, index) => (
+                      {(Array.isArray(overviewData.activityLog) ? overviewData.activityLog : []).map((activity, index) => (
                         <TableRow key={index}>
                           <TableCell className="text-right">{activity.timestamp}</TableCell>
                           <TableCell className="text-right">{activity.user}</TableCell>
@@ -8373,7 +8460,9 @@ function App() {
                 </CardContent>
               </Card>
             </div>
-          </div>
+            </>
+            )}
+            </div>
           )}
 
           {activePage === 'work-management' && <WorkManagementPage />}
@@ -8384,49 +8473,40 @@ function App() {
 
           {activePage === 'inbound-orders' && (
             <InboundOrdersPage
-              onOpenOrder={(orderId) => {
-                setSelectedInboundOrderId(orderId);
-                setActivePage('inbound-order-workspace');
-              }}
+              onOpenOrder={(orderId) => navigate(`/inbound-orders/${orderId}`)}
             />
           )}
 
           {activePage === 'inbound-order-workspace' && (
             <InboundOrderWorkspacePage
               orderId={selectedInboundOrderId}
-              onBack={() => setActivePage('inbound-orders')}
+              onBack={() => navigate('/inbound-orders')}
             />
           )}
 
           {activePage === 'outbound-orders' && (
             <OutboundOrdersPage
-              onOpenOrder={(orderId) => {
-                setSelectedOutboundOrderId(orderId);
-                setActivePage('outbound-order-workspace');
-              }}
+              onOpenOrder={(orderId) => navigate(`/outbound-orders/${orderId}`)}
             />
           )}
 
           {activePage === 'outbound-order-workspace' && (
             <OutboundOrderWorkspacePage
               orderId={selectedOutboundOrderId}
-              onBack={() => setActivePage('outbound-orders')}
+              onBack={() => navigate('/outbound-orders')}
             />
           )}
 
           {activePage === 'inventory' && (
             <InventoryPage
-              onViewLedger={(itemId) => {
-                setSelectedInventoryItemId(itemId);
-                setActivePage('inventory-ledger');
-              }}
+              onViewLedger={(itemId) => navigate(itemId ? `/inventory/ledger/${itemId}` : '/inventory/ledger')}
             />
           )}
 
           {activePage === 'inventory-ledger' && (
             <InventoryLedgerPage
               itemId={selectedInventoryItemId}
-              onBack={() => setActivePage('inventory')}
+              onBack={() => navigate('/inventory')}
             />
           )}
 
@@ -8434,35 +8514,29 @@ function App() {
 
           {activePage === 'returns' && (
             <ReturnsPage
-              onProcessReturn={(returnId) => {
-                setSelectedReturnId(returnId);
-                setActivePage('return-workspace');
-              }}
+              onProcessReturn={(returnId) => navigate(`/returns/${returnId}`)}
             />
           )}
 
           {activePage === 'return-workspace' && (
             <ReturnOrderWorkspacePage
               returnId={selectedReturnId}
-              onBack={() => setActivePage('returns')}
+              onBack={() => navigate('/returns')}
             />
           )}
 
           {activePage === 'reports' && (
             <ReportsPage
-              onOpenReport={(reportType) => {
-                setSelectedReportType(reportType);
-                setActivePage('report-detail');
-              }}
+              onOpenReport={(reportType) => navigate(`/reports/${reportType}`)}
             />
           )}
 
           {activePage === 'report-detail' && selectedReportType === 'inventory' && (
-            <InventoryReportPage onBack={() => setActivePage('reports')} />
+            <InventoryReportPage onBack={() => navigate('/reports')} />
           )}
 
           {activePage === 'report-detail' && selectedReportType === 'orders' && (
-            <OrdersReportPage onBack={() => setActivePage('reports')} />
+            <OrdersReportPage onBack={() => navigate('/reports')} />
           )}
 
           {activePage === 'report-detail' && selectedReportType && !['inventory', 'orders'].includes(selectedReportType) && (
@@ -8558,7 +8632,7 @@ function App() {
                   </Card>
                 </>
               }
-              onBack={() => setActivePage('reports')}
+              onBack={() => navigate('/reports')}
             />
           )}
 

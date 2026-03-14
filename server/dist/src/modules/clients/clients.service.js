@@ -72,20 +72,62 @@ let ClientsService = class ClientsService {
         });
     }
     async findMany(filter) {
-        const where = {};
-        if (filter?.isActive !== undefined)
-            where.isActive = filter.isActive;
-        if (filter?.status !== undefined)
-            where.status = filter.status;
-        const db = this.prisma;
-        return db.client.findMany({
-            where,
-            orderBy: { code: 'asc' },
-        });
+        try {
+            const where = {};
+            if (filter?.isActive !== undefined)
+                where.isActive = filter.isActive;
+            if (filter?.status !== undefined)
+                where.status = filter.status;
+            const db = this.prisma;
+            return await db.client.findMany({
+                where,
+                orderBy: { code: 'asc' },
+                select: {
+                    id: true,
+                    code: true,
+                    name: true,
+                    contactEmail: true,
+                    contactPhone: true,
+                    addressLine1: true,
+                    city: true,
+                    stateRegion: true,
+                    postalCode: true,
+                    countryCode: true,
+                    currency: true,
+                    status: true,
+                    isActive: true,
+                    createdAt: true,
+                    updatedAt: true,
+                },
+            });
+        }
+        catch (e) {
+            console.error('[ClientsService] findMany failed:', e);
+            return [];
+        }
     }
     async findOne(id) {
         const db = this.prisma;
-        const client = await db.client.findUnique({ where: { id } });
+        const client = await db.client.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                code: true,
+                name: true,
+                contactEmail: true,
+                contactPhone: true,
+                addressLine1: true,
+                city: true,
+                stateRegion: true,
+                postalCode: true,
+                countryCode: true,
+                currency: true,
+                status: true,
+                isActive: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
         if (!client)
             throw new common_1.NotFoundException('Client not found');
         return client;
@@ -93,6 +135,23 @@ let ClientsService = class ClientsService {
     async update(id, dto) {
         await this.findOne(id);
         const db = this.prisma;
+        const select = {
+            id: true,
+            code: true,
+            name: true,
+            contactEmail: true,
+            contactPhone: true,
+            addressLine1: true,
+            city: true,
+            stateRegion: true,
+            postalCode: true,
+            countryCode: true,
+            currency: true,
+            status: true,
+            isActive: true,
+            createdAt: true,
+            updatedAt: true,
+        };
         return db.client.update({
             where: { id },
             data: {
@@ -123,6 +182,7 @@ let ClientsService = class ClientsService {
                 ...(dto.isActive !== undefined && { isActive: dto.isActive }),
                 ...(dto.currency !== undefined && { currency: dto.currency }),
             },
+            select,
         });
     }
 };

@@ -31,6 +31,8 @@ const audit_module_1 = require("./modules/audit/audit.module");
 const billing_module_1 = require("./modules/billing/billing.module");
 const vas_module_1 = require("./modules/vas/vas.module");
 const client_settings_module_1 = require("./modules/client-settings/client-settings.module");
+const dashboard_module_1 = require("./modules/dashboard/dashboard.module");
+const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -63,8 +65,9 @@ exports.AppModule = AppModule = __decorate([
             billing_module_1.BillingModule,
             vas_module_1.VasModule,
             client_settings_module_1.ClientSettingsModule,
+            dashboard_module_1.DashboardModule,
         ],
-        controllers: [],
+        controllers: [app_controller_1.AppController],
         providers: [],
     })
 ], AppModule);

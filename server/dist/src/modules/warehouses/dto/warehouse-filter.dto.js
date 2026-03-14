@@ -17,8 +17,14 @@ class WarehouseFilterDto {
 exports.WarehouseFilterDto = WarehouseFilterDto;
 __decorate([
     (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Transform)(({ value }) => {
+        if (value === true || value === 'true')
+            return true;
+        if (value === false || value === 'false')
+            return false;
+        return undefined;
+    }),
     (0, class_validator_1.IsBoolean)(),
-    (0, class_transformer_1.Transform)(({ value }) => value === true || value === 'true'),
     __metadata("design:type", Boolean)
 ], WarehouseFilterDto.prototype, "isActive", void 0);
 //# sourceMappingURL=warehouse-filter.dto.js.map

@@ -75,6 +75,7 @@ export class TaskWorkOrdersService {
       assignedUserId?: string | null;
       referenceType?: string;
       referenceId?: string;
+      createdAt?: { gte?: Date; lte?: Date };
     } = {};
 
     if (filter?.clientId) where.clientId = filter.clientId;
@@ -87,6 +88,15 @@ export class TaskWorkOrdersService {
     }
     if (filter?.referenceType) where.referenceType = filter.referenceType;
     if (filter?.referenceId) where.referenceId = filter.referenceId;
+    if (filter?.dueFrom || filter?.dueTo) {
+      where.createdAt = {};
+      if (filter.dueFrom) (where.createdAt as any).gte = new Date(filter.dueFrom);
+      if (filter.dueTo) {
+        const d = new Date(filter.dueTo);
+        d.setHours(23, 59, 59, 999);
+        (where.createdAt as any).lte = d;
+      }
+    }
 
     return this.prisma.taskWorkOrder.findMany({
       where,

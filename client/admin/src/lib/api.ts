@@ -38,13 +38,13 @@ export async function apiFetch<T = any>(
   if (!res.ok) {
     // Handle 401 Unauthorized - token expired or invalid
     if (res.status === 401) {
-      // Clear invalid token
       if (typeof window !== 'undefined') {
         window.localStorage.removeItem('authToken');
-      }
-      // Redirect to login page
-      if (typeof window !== 'undefined' && !window.location.pathname.includes('login')) {
-        window.location.href = '/';
+        // Redirect to login only if not already on root (avoids redundant reload and redirect loops)
+        const path = window.location.pathname;
+        if (path !== '/' && path !== '') {
+          window.location.href = '/';
+        }
       }
     }
     

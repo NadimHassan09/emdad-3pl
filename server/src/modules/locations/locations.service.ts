@@ -8,6 +8,7 @@ export interface LocationTreeNode {
   code: string;
   locationType: string;
   parentLocationId: string | null;
+  warehouseId: string;
   children: LocationTreeNode[];
 }
 
@@ -119,6 +120,7 @@ export class LocationsService {
         code: loc.code,
         locationType: loc.locationType,
         parentLocationId: loc.parentLocationId,
+        warehouseId: loc.warehouseId,
         children: [],
       }),
     );

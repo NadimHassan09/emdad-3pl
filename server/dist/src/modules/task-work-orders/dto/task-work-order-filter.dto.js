@@ -57,4 +57,14 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     __metadata("design:type", String)
 ], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "dueFrom", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "dueTo", void 0);
 //# sourceMappingURL=task-work-order-filter.dto.js.map

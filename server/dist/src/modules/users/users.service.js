@@ -17,6 +17,19 @@ let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
+    async findAllRoles() {
+        try {
+            return await this.prisma.userRole.findMany({
+                where: { isActive: true },
+                select: { id: true, roleName: true },
+                orderBy: { roleName: 'asc' },
+            });
+        }
+        catch (e) {
+            console.error('[UsersService] findAllRoles failed:', e);
+            return [];
+        }
+    }
     async findMany() {
         const users = await this.prisma.user.findMany({
             include: {
@@ -27,6 +40,42 @@ let UsersService = class UsersService {
             orderBy: { createdAt: 'desc' },
         });
         return users;
+    }
+    async update(id, dto) {
+        const existing = await this.prisma.user.findUnique({ where: { id } });
+        if (!existing)
+            throw new common_1.NotFoundException('User not found');
+        if (dto.email !== undefined && dto.email !== existing.email) {
+            const taken = await this.prisma.user.findUnique({
+                where: { email: dto.email.trim().toLowerCase() },
+            });
+            if (taken)
+                throw new common_1.ConflictException('Email already in use');
+        }
+        const data = {};
+        if (dto.firstName !== undefined)
+            data.firstName = dto.firstName.trim();
+        if (dto.lastName !== undefined)
+            data.lastName = dto.lastName.trim();
+        if (dto.email !== undefined)
+            data.email = dto.email.trim().toLowerCase();
+        if (dto.internalRoleId !== undefined)
+            data.internalRoleId = dto.internalRoleId;
+        if (dto.isActive !== undefined)
+            data.isActive = dto.isActive;
+        if (dto.password !== undefined && dto.password.length > 0) {
+            data.passwordHash = await bcrypt.hash(dto.password, 10);
+        }
+        const user = await this.prisma.user.update({
+            where: { id },
+            data,
+            include: {
+                internalRole: {
+                    select: { id: true, roleName: true, permissionsJson: true },
+                },
+            },
+        });
+        return user;
     }
     async findUserByEmail(email) {
         const user = await this.prisma.user.findFirst({

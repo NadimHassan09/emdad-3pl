@@ -10,4 +10,6 @@ export declare class TaskWorkOrderFilterDto {
     assignedUserId?: string;
     referenceType?: string;
     referenceId?: string;
+    dueFrom?: string;
+    dueTo?: string;
 }

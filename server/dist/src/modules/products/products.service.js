@@ -34,16 +34,25 @@ let ProductsService = class ProductsService {
         });
     }
     async findMany(filter) {
-        const where = {};
-        if (filter?.clientId)
-            where.clientId = filter.clientId;
-        if (filter?.isActive !== undefined)
-            where.isActive = filter.isActive;
-        return this.prisma.product.findMany({
-            where,
-            include: { defaultUom: { select: { id: true, code: true, name: true } } },
-            orderBy: { sku: 'asc' },
-        });
+        try {
+            const where = {};
+            if (filter?.clientId)
+                where.clientId = filter.clientId;
+            if (filter?.isActive !== undefined)
+                where.isActive = filter.isActive;
+            return await this.prisma.product.findMany({
+                where,
+                include: {
+                    client: { select: { id: true, name: true } },
+                    defaultUom: { select: { id: true, code: true, name: true } },
+                },
+                orderBy: { sku: 'asc' },
+            });
+        }
+        catch (e) {
+            console.error('[ProductsService] findMany failed:', e);
+            return [];
+        }
     }
     async findOne(id) {
         const product = await this.prisma.product.findUnique({

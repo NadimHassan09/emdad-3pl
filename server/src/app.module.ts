@@ -22,6 +22,8 @@ import { AuditModule } from './modules/audit/audit.module';
 import { BillingModule } from './modules/billing/billing.module';
 import { VasModule } from './modules/vas/vas.module';
 import { ClientSettingsModule } from './modules/client-settings/client-settings.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -51,8 +53,9 @@ import { ClientSettingsModule } from './modules/client-settings/client-settings.
     BillingModule,
     VasModule,
     ClientSettingsModule,
+    DashboardModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

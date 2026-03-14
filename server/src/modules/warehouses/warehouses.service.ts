@@ -21,15 +21,25 @@ export class WarehousesService {
   }
 
   async findMany(filter?: WarehouseFilterDto) {
-    const where: { isActive?: boolean } = {};
-    if (filter?.isActive !== undefined) where.isActive = filter.isActive;
-    return this.prisma.warehouse.findMany({
-      where,
-      include: {
-        capacityUom: { select: { id: true, code: true, name: true } },
-      },
-      orderBy: { code: 'asc' },
-    });
+    try {
+      const where: { isActive?: boolean } = {};
+      if (filter?.isActive !== undefined) where.isActive = filter.isActive;
+      return await this.prisma.warehouse.findMany({
+        where,
+        select: {
+          id: true,
+          code: true,
+          name: true,
+          isActive: true,
+          capacityValue: true,
+          capacityUomId: true,
+        },
+        orderBy: { code: 'asc' },
+      });
+    } catch (e) {
+      console.error('[WarehousesService] findMany failed:', e);
+      return [];
+    }
   }
 
   async findOne(id: string) {

@@ -9,57 +9,49 @@ export declare class WarehousesService {
         id: string;
         code: string;
         name: string;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }>;
-    findMany(filter?: WarehouseFilterDto): Promise<({
-        capacityUom: {
-            id: string;
-            code: string;
-            name: string;
-        } | null;
-    } & {
+    findMany(filter?: WarehouseFilterDto): Promise<{
         id: string;
         code: string;
         name: string;
-        isActive: boolean;
-        createdAt: Date;
-        updatedAt: Date;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
+        isActive: boolean;
         capacityUomId: string | null;
-    })[]>;
+    }[]>;
     findOne(id: string): Promise<{
         capacityUom: {
             id: string;
             code: string;
             name: string;
-            dimension: import(".prisma/client").$Enums.UomDimension;
-            baseConversion: import("@prisma/client/runtime/library").Decimal;
             isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
+            dimension: import(".prisma/client").$Enums.UomDimension;
+            baseConversion: import("@prisma/client/runtime/library").Decimal;
         } | null;
     } & {
         id: string;
         code: string;
         name: string;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }>;
     update(id: string, dto: UpdateWarehouseDto): Promise<{
         id: string;
         code: string;
         name: string;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }>;
 }

@@ -67,45 +67,58 @@ export class InboundOrdersService {
   }
 
   async findMany(filter?: InboundOrderFilterDto) {
-    const where: {
-      clientId?: string;
-      warehouseId?: string;
-      status?:
-        | 'DRAFT'
-        | 'PENDING'
-        | 'CONFIRMED'
-        | 'IN_PROGRESS'
-        | 'RECEIVING'
-        | 'SHIPPED'
-        | 'COMPLETED'
-        | 'CANCELLED';
-      orderNumber?: { contains: string; mode?: 'insensitive' };
-    } = {};
+    try {
+      const where: {
+        clientId?: string;
+        warehouseId?: string;
+        status?:
+          | 'DRAFT'
+          | 'PENDING'
+          | 'CONFIRMED'
+          | 'IN_PROGRESS'
+          | 'RECEIVING'
+          | 'SHIPPED'
+          | 'COMPLETED'
+          | 'CANCELLED';
+        orderNumber?: { contains: string; mode?: 'insensitive' };
+        expectedDate?: { gte?: Date; lte?: Date };
+      } = {};
 
-    if (filter?.clientId) where.clientId = filter.clientId;
-    if (filter?.warehouseId) where.warehouseId = filter.warehouseId;
-    if (filter?.status) where.status = filter.status;
-    if (filter?.orderNumber) {
-      where.orderNumber = {
-        contains: filter.orderNumber,
-        mode: 'insensitive',
-      };
-    }
+      if (filter?.clientId) where.clientId = filter.clientId;
+      if (filter?.warehouseId) where.warehouseId = filter.warehouseId;
+      if (filter?.status) where.status = filter.status;
+      if (filter?.orderNumber) {
+        where.orderNumber = {
+          contains: filter.orderNumber,
+          mode: 'insensitive',
+        };
+      }
+      if (filter?.expectedDateFrom || filter?.expectedDateTo) {
+        where.expectedDate = {};
+        if (filter.expectedDateFrom)
+          where.expectedDate.gte = new Date(filter.expectedDateFrom);
+        if (filter.expectedDateTo)
+          where.expectedDate.lte = new Date(filter.expectedDateTo);
+      }
 
-    return this.prisma.inboundOrder.findMany({
-      where,
-      include: {
-        client: { select: { id: true, code: true, name: true } },
-        warehouse: { select: { id: true, code: true, name: true } },
-        items: {
-          include: {
-            product: { select: { id: true, sku: true, name: true } },
-            uom: { select: { id: true, code: true, name: true } },
+      return await this.prisma.inboundOrder.findMany({
+        where,
+        include: {
+          client: { select: { id: true, code: true, name: true } },
+          warehouse: { select: { id: true, code: true, name: true } },
+          items: {
+            include: {
+              product: { select: { id: true, sku: true, name: true } },
+              uom: { select: { id: true, code: true, name: true } },
+            },
           },
         },
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+        orderBy: { createdAt: 'desc' },
+      });
+    } catch (e) {
+      console.error('[InboundOrdersService] findMany failed:', e);
+      return [];
+    }
   }
 
   async findOne(id: string) {

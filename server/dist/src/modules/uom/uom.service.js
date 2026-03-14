@@ -28,15 +28,21 @@ let UomService = class UomService {
         });
     }
     async findMany(filter) {
-        const where = {};
-        if (filter?.isActive !== undefined)
-            where.isActive = filter.isActive;
-        if (filter?.dimension !== undefined)
-            where.dimension = filter.dimension;
-        return this.prisma.uom.findMany({
-            where,
-            orderBy: { code: 'asc' },
-        });
+        try {
+            const where = {};
+            if (filter?.isActive !== undefined)
+                where.isActive = filter.isActive;
+            if (filter?.dimension !== undefined)
+                where.dimension = filter.dimension;
+            return await this.prisma.uom.findMany({
+                where,
+                orderBy: { code: 'asc' },
+            });
+        }
+        catch (e) {
+            console.error('[UomService] findMany failed:', e);
+            return [];
+        }
     }
     async findOne(id) {
         const uom = await this.prisma.uom.findUnique({ where: { id } });

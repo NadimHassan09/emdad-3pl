@@ -60,6 +60,16 @@ let TaskWorkOrdersService = class TaskWorkOrdersService {
             where.referenceType = filter.referenceType;
         if (filter?.referenceId)
             where.referenceId = filter.referenceId;
+        if (filter?.dueFrom || filter?.dueTo) {
+            where.createdAt = {};
+            if (filter.dueFrom)
+                where.createdAt.gte = new Date(filter.dueFrom);
+            if (filter.dueTo) {
+                const d = new Date(filter.dueTo);
+                d.setHours(23, 59, 59, 999);
+                where.createdAt.lte = d;
+            }
+        }
         return this.prisma.taskWorkOrder.findMany({
             where,
             include: {
