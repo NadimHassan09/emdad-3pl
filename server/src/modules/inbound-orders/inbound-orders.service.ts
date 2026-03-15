@@ -12,6 +12,16 @@ import { AddInboundOrderItemDto } from './dto/add-inbound-order-item.dto';
 import { ReceiveInboundOrderDto } from './dto/receive-inbound-order.dto';
 import { MovementType } from '../../common/enums/movement-type.enum';
 
+/** Convert Prisma Decimal to number for JSON serialization. */
+function toNumber(value: unknown): number {
+  if (typeof value === 'number' && !Number.isNaN(value)) return value;
+  if (value != null && typeof value === 'object' && typeof (value as { toNumber?: () => number }).toNumber === 'function')
+    return (value as { toNumber: () => number }).toNumber();
+  if (value != null && typeof (value as { toString?: () => string }).toString === 'function')
+    return parseFloat((value as { toString: () => string }).toString()) || 0;
+  return 0;
+}
+
 /**
  * Inbound Orders Service
  *
@@ -101,7 +111,7 @@ export class InboundOrdersService {
           where.expectedDate.lte = new Date(filter.expectedDateTo);
       }
 
-      return await this.prisma.inboundOrder.findMany({
+      const rows = await this.prisma.inboundOrder.findMany({
         where,
         include: {
           client: { select: { id: true, code: true, name: true } },
@@ -115,6 +125,14 @@ export class InboundOrdersService {
         },
         orderBy: { createdAt: 'desc' },
       });
+      return rows.map((order) => ({
+        ...order,
+        items: (order.items || []).map((item: { qtyOrdered?: unknown; qtyReceived?: unknown; [k: string]: unknown }) => ({
+          ...item,
+          qtyOrdered: toNumber(item.qtyOrdered),
+          qtyReceived: toNumber(item.qtyReceived),
+        })),
+      }));
     } catch (e) {
       console.error('[InboundOrdersService] findMany failed:', e);
       return [];
@@ -151,13 +169,31 @@ export class InboundOrdersService {
     });
 
     if (!order) throw new NotFoundException('Inbound order not found');
-    return order;
+    return this.serializeOrder(order);
+  }
+
+  private serializeOrder(order: {
+    items?: Array<{ qtyOrdered?: unknown; qtyReceived?: unknown; batches?: Array<{ qtyReceived?: unknown; [k: string]: unknown }>; [k: string]: unknown }>;
+    [k: string]: unknown;
+  }) {
+    return {
+      ...order,
+      items: (order.items || []).map((item) => ({
+        ...item,
+        qtyOrdered: toNumber(item.qtyOrdered),
+        qtyReceived: toNumber(item.qtyReceived),
+        batches: (item.batches || []).map((b: { qtyReceived?: unknown; [k: string]: unknown }) => ({
+          ...b,
+          qtyReceived: toNumber(b.qtyReceived),
+        })),
+      })),
+    };
   }
 
   async update(id: string, dto: UpdateInboundOrderDto) {
     await this.findOne(id);
 
-    return this.prisma.inboundOrder.update({
+    const updated = await this.prisma.inboundOrder.update({
       where: { id },
       data: {
         ...(dto.orderNumber !== undefined && {
@@ -182,6 +218,7 @@ export class InboundOrdersService {
         },
       },
     });
+    return this.serializeOrder(updated);
   }
 
   async addItem(orderId: string, dto: AddInboundOrderItemDto) {
@@ -203,7 +240,7 @@ export class InboundOrdersService {
       );
     }
 
-    return this.prisma.inboundOrderItem.create({
+    const item = await this.prisma.inboundOrderItem.create({
       data: {
         inboundOrderId: orderId,
         productId: dto.productId,
@@ -215,6 +252,11 @@ export class InboundOrdersService {
         uom: { select: { id: true, code: true, name: true } },
       },
     });
+    return {
+      ...item,
+      qtyOrdered: toNumber(item.qtyOrdered),
+      qtyReceived: toNumber(item.qtyReceived),
+    };
   }
 
   async receive(orderId: string, dto: ReceiveInboundOrderDto) {

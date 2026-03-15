@@ -8,18 +8,18 @@ export declare class ProductsService {
     create(dto: CreateProductDto): Promise<{
         defaultUom: {
             id: string;
-            name: string;
             code: string;
+            name: string;
         };
     } & {
         id: string;
-        sku: string;
         name: string;
-        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
         clientId: string;
+        sku: string;
+        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     findMany(filter?: ProductFilterDto): Promise<({
@@ -29,28 +29,28 @@ export declare class ProductsService {
         };
         defaultUom: {
             id: string;
-            name: string;
             code: string;
+            name: string;
         };
     } & {
         id: string;
-        sku: string;
         name: string;
-        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
         clientId: string;
+        sku: string;
+        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     })[]>;
     findOne(id: string): Promise<{
         client: {
             id: string;
+            code: string;
             name: string;
             isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
-            code: string;
             contactEmail: string | null;
             contactPhone: string | null;
             addressLine1: string | null;
@@ -64,34 +64,34 @@ export declare class ProductsService {
         };
         defaultUom: {
             id: string;
+            code: string;
             name: string;
+            dimension: import(".prisma/client").$Enums.UomDimension;
+            baseConversion: import("@prisma/client/runtime/library").Decimal;
             isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
-            code: string;
-            dimension: import(".prisma/client").$Enums.UomDimension;
-            baseConversion: import("@prisma/client/runtime/library").Decimal;
         };
     } & {
         id: string;
-        sku: string;
         name: string;
-        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
         clientId: string;
+        sku: string;
+        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     update(id: string, dto: UpdateProductDto): Promise<{
         id: string;
-        sku: string;
         name: string;
-        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
         clientId: string;
+        sku: string;
+        minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
 }

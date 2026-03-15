@@ -14,6 +14,15 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 const inventory_service_1 = require("../inventory/inventory.service");
 const movement_type_enum_1 = require("../../common/enums/movement-type.enum");
+function toNumber(value) {
+    if (typeof value === 'number' && !Number.isNaN(value))
+        return value;
+    if (value != null && typeof value === 'object' && typeof value.toNumber === 'function')
+        return value.toNumber();
+    if (value != null && typeof value.toString === 'function')
+        return parseFloat(value.toString()) || 0;
+    return 0;
+}
 let InboundOrdersService = class InboundOrdersService {
     constructor(prisma, inventoryService) {
         this.prisma = prisma;
@@ -69,7 +78,7 @@ let InboundOrdersService = class InboundOrdersService {
                 if (filter.expectedDateTo)
                     where.expectedDate.lte = new Date(filter.expectedDateTo);
             }
-            return await this.prisma.inboundOrder.findMany({
+            const rows = await this.prisma.inboundOrder.findMany({
                 where,
                 include: {
                     client: { select: { id: true, code: true, name: true } },
@@ -83,6 +92,14 @@ let InboundOrdersService = class InboundOrdersService {
                 },
                 orderBy: { createdAt: 'desc' },
             });
+            return rows.map((order) => ({
+                ...order,
+                items: (order.items || []).map((item) => ({
+                    ...item,
+                    qtyOrdered: toNumber(item.qtyOrdered),
+                    qtyReceived: toNumber(item.qtyReceived),
+                })),
+            }));
         }
         catch (e) {
             console.error('[InboundOrdersService] findMany failed:', e);
@@ -119,11 +136,25 @@ let InboundOrdersService = class InboundOrdersService {
         });
         if (!order)
             throw new common_1.NotFoundException('Inbound order not found');
-        return order;
+        return this.serializeOrder(order);
+    }
+    serializeOrder(order) {
+        return {
+            ...order,
+            items: (order.items || []).map((item) => ({
+                ...item,
+                qtyOrdered: toNumber(item.qtyOrdered),
+                qtyReceived: toNumber(item.qtyReceived),
+                batches: (item.batches || []).map((b) => ({
+                    ...b,
+                    qtyReceived: toNumber(b.qtyReceived),
+                })),
+            })),
+        };
     }
     async update(id, dto) {
         await this.findOne(id);
-        return this.prisma.inboundOrder.update({
+        const updated = await this.prisma.inboundOrder.update({
             where: { id },
             data: {
                 ...(dto.orderNumber !== undefined && {
@@ -148,6 +179,7 @@ let InboundOrdersService = class InboundOrdersService {
                 },
             },
         });
+        return this.serializeOrder(updated);
     }
     async addItem(orderId, dto) {
         const order = await this.findOne(orderId);
@@ -161,7 +193,7 @@ let InboundOrdersService = class InboundOrdersService {
         if (product?.clientId !== order.clientId) {
             throw new common_1.BadRequestException('Product does not belong to the order client');
         }
-        return this.prisma.inboundOrderItem.create({
+        const item = await this.prisma.inboundOrderItem.create({
             data: {
                 inboundOrderId: orderId,
                 productId: dto.productId,
@@ -173,6 +205,11 @@ let InboundOrdersService = class InboundOrdersService {
                 uom: { select: { id: true, code: true, name: true } },
             },
         });
+        return {
+            ...item,
+            qtyOrdered: toNumber(item.qtyOrdered),
+            qtyReceived: toNumber(item.qtyReceived),
+        };
     }
     async receive(orderId, dto) {
         const order = await this.findOne(orderId);

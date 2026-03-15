@@ -132,6 +132,15 @@ import {
   INBOUND_STATUS_TO_API,
   type InboundOrderUi,
 } from '@/lib/inbound-orders';
+import {
+  fetchOutboundOrders,
+  fetchOutboundOrder,
+  createOutboundOrder,
+  addOutboundOrderItem,
+  updateOutboundOrder,
+  OUTBOUND_STATUS_TO_API,
+  type OutboundOrderUi,
+} from '@/lib/outbound-orders';
 import { LoginPage } from '@/components/LoginPage';
 import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
 import type { UserInfo } from '@/lib/auth';
@@ -2284,6 +2293,24 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
 
   const filteredOrders = orders;
 
+  /** Products belonging to the selected client only (for create order form). */
+  const productsForSelectedClient = createFormData.clientId
+    ? products.filter((p) => p.clientId === createFormData.clientId)
+    : [];
+
+  /** When client changes, clear product selection from items that no longer belong to the new client. */
+  const clearProductSelectionIfWrongClient = (nextClientId: string) => {
+    if (!nextClientId) return;
+    const allowedIds = new Set(products.filter((p) => p.clientId === nextClientId).map((p) => p.id));
+    const hasInvalid = createFormData.orderItems.some((item) => item.productId && !allowedIds.has(item.productId));
+    if (hasInvalid) {
+      setCreateFormData((prev) => ({
+        ...prev,
+        orderItems: prev.orderItems.map((it) => ({ ...it, productId: '', quantity: 0 })),
+      }));
+    }
+  };
+
   const addOrderItem = () => {
     setCreateFormData({
       ...createFormData,
@@ -2317,13 +2344,14 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
         expectedDate: createFormData.expectedDate || undefined,
       });
       for (const item of createFormData.orderItems) {
-        if (!item.productId || item.quantity <= 0) continue;
-        const product = products.find((p) => p.id === item.productId);
+        const qty = Number(item.quantity);
+        if (!item.productId || qty <= 0) continue;
+        const product = productsForSelectedClient.find((p) => p.id === item.productId) ?? products.find((p) => p.id === item.productId);
         if (!product?.defaultUomId) continue;
         await addInboundOrderItem(created.id, {
           productId: item.productId,
           uomId: product.defaultUomId,
-          qtyOrdered: item.quantity,
+          qtyOrdered: qty,
         });
       }
       const list = await fetchInboundOrders({
@@ -2502,7 +2530,13 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">العميل</label>
-                <Select value={createFormData.clientId} onValueChange={(v) => setCreateFormData({ ...createFormData, clientId: v })}>
+                <Select
+                  value={createFormData.clientId}
+                  onValueChange={(v) => {
+                    clearProductSelectionIfWrongClient(v);
+                    setCreateFormData({ ...createFormData, clientId: v });
+                  }}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="اختر العميل" />
                   </SelectTrigger>
@@ -2549,11 +2583,20 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-sm font-medium">بنود الطلب</label>
-                <Button type="button" variant="outline" size="sm" onClick={addOrderItem}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={addOrderItem}
+                  disabled={!createFormData.clientId}
+                >
                   <Plus className="w-4 h-4 ml-2" />
                   إضافة بند
                 </Button>
               </div>
+              {!createFormData.clientId && (
+                <p className="text-sm text-amber-600">اختر العميل أولاً لعرض منتجاته وإضافة البنود.</p>
+              )}
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -2566,7 +2609,7 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
                   {createFormData.orderItems.length === 0 ? (
                     <TableRow>
                       <TableCell colSpan={3} className="text-center text-gray-500 py-4">
-                        لا توجد بنود. اضغط على "إضافة بند" لإضافة منتج.
+                        لا توجد بنود. اختر العميل ثم اضغط على "إضافة بند" لإضافة منتج.
                       </TableCell>
                     </TableRow>
                   ) : (
@@ -2576,12 +2619,13 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
                           <Select
                             value={item.productId}
                             onValueChange={(v) => updateOrderItem(item.id, 'productId', v)}
+                            disabled={!createFormData.clientId}
                           >
                             <SelectTrigger>
-                              <SelectValue placeholder="اختر المنتج" />
+                              <SelectValue placeholder={createFormData.clientId ? "اختر المنتج" : "اختر العميل أولاً"} />
                             </SelectTrigger>
                             <SelectContent>
-                              {products.map((p) => (
+                              {productsForSelectedClient.map((p) => (
                                 <SelectItem key={p.id} value={p.id}>{p.name} ({p.sku})</SelectItem>
                               ))}
                             </SelectContent>
@@ -3089,81 +3133,55 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
   const [statusFilter, setStatusFilter] = useState('');
   const [expectedShipDateFrom, setExpectedShipDateFrom] = useState('');
   const [expectedShipDateTo, setExpectedShipDateTo] = useState('');
-  const [orders, setOrders] = useState<OutboundOrder[]>([]);
+  const [orders, setOrders] = useState<OutboundOrderUi[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [clients, setClients] = useState<ClientUi[]>([]);
+  const [warehouses, setWarehouses] = useState<WarehouseUi[]>([]);
+  const [products, setProducts] = useState<ProductUi[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [createFormData, setCreateFormData] = useState({
-    clientName: '',
-    warehouse: '',
+    clientId: '',
+    warehouseId: '',
     expectedDate: '',
     notes: '',
     orderItems: [] as Array<{ id: string; productId: string; quantity: number }>,
   });
 
   useEffect(() => {
-    let active = true;
-    async function load() {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await apiFetch<any[]>('/outbound-orders');
-        if (!active) return;
-        const mapped: OutboundOrder[] = data.map((order) => ({
-          id: order.id,
-          orderId: order.orderNumber || order.id,
-          client: order.client?.name || '',
-          warehouse: order.warehouse?.name || '',
-          status: (order.status === 'COMPLETED' || order.status === 'SHIPPED' ? 'مكتمل' : order.status === 'IN_PROGRESS' ? 'قيد المعالجة' : 'جديد') as OutboundOrderStatus,
-          shipmentStatus: (order.status === 'SHIPPED' ? 'شُحن' : order.status === 'IN_PROGRESS' ? 'قيد الشحن' : 'لم يبدأ') as OutboundShipmentStatus,
-          expectedShipDate: order.expectedShipDate || '',
-          shortageFlag: false,
-          createdAt: order.createdAt ? new Date(order.createdAt).toLocaleString('ar-SA') : '',
-          items: order.items?.map((item: any) => ({
-            id: item.id,
-            productName: item.product?.name || '',
-            productSKU: item.product?.sku || '',
-            quantityOrdered: item.qtyOrdered || 0,
-            quantityShipped: item.qtyShipped || 0,
-            quantityRemaining: (item.qtyOrdered || 0) - (item.qtyShipped || 0),
-            availableQuantity: 0,
-            hasShortage: false,
-          })) || [],
-          allocations: [],
-          stages: [
-            { stage: 'انتقاء', status: 'pending' },
-            { stage: 'تعبئة', status: 'pending' },
-            { stage: 'شحن', status: order.status === 'SHIPPED' ? 'completed' : 'pending' },
-            { stage: 'مكتمل', status: order.status === 'COMPLETED' || order.status === 'SHIPPED' ? 'completed' : 'pending' },
-          ],
-        }));
-        setOrders(mapped);
-      } catch (e: any) {
-        // Don't handle 401 errors here - let apiFetch redirect to login
-        if (e.status === 401) {
-          return; // apiFetch will handle redirect
-        }
-        console.error('Failed to load outbound orders', e);
-        if (active) {
-          setError('تعذر تحميل طلبات الصادر. يرجى المحاولة مرة أخرى.');
-          setOrders(initialOutboundOrders);
-        }
-      } finally {
-        if (active) setLoading(false);
-      }
-    }
-    void load();
-    return () => { active = false; };
+    setLoading(true);
+    setError(null);
+    const filter: Parameters<typeof fetchOutboundOrders>[0] = {};
+    if (clientFilter && clientFilter !== 'all') filter.clientId = clientFilter;
+    if (warehouseFilter && warehouseFilter !== 'all') filter.warehouseId = warehouseFilter;
+    if (statusFilter && statusFilter !== 'all') filter.status = OUTBOUND_STATUS_TO_API[statusFilter];
+    if (expectedShipDateFrom) filter.expectedShipDateFrom = expectedShipDateFrom;
+    if (expectedShipDateTo) filter.expectedShipDateTo = expectedShipDateTo;
+    fetchOutboundOrders(filter)
+      .then(setOrders)
+      .catch((e) => {
+        if (e?.status === 401) return;
+        setError(e instanceof Error ? e.message : 'تعذر تحميل طلبات الصادر. يرجى المحاولة مرة أخرى.');
+        setOrders([]);
+      })
+      .finally(() => setLoading(false));
+  }, [clientFilter, warehouseFilter, statusFilter, expectedShipDateFrom, expectedShipDateTo]);
+
+  useEffect(() => {
+    Promise.all([fetchClients(), fetchWarehousesMasterData(), fetchProducts()])
+      .then(([c, w, p]) => {
+        setClients(c);
+        setWarehouses(w);
+        setProducts(p);
+      })
+      .catch(() => {});
   }, []);
 
-  const filteredOrders = orders.filter((order) => {
-    if (warehouseFilter && warehouseFilter !== 'all' && order.warehouse !== warehouseFilter) return false;
-    if (clientFilter && clientFilter !== 'all' && order.client !== clientFilter) return false;
-    if (statusFilter && statusFilter !== 'all' && order.status !== statusFilter) return false;
-    if (expectedShipDateFrom && order.expectedShipDate < expectedShipDateFrom) return false;
-    if (expectedShipDateTo && order.expectedShipDate > expectedShipDateTo) return false;
-    return true;
-  });
+  const productsForSelectedClient = createFormData.clientId
+    ? products.filter((p) => p.clientId === createFormData.clientId)
+    : [];
+
+  const filteredOrders = orders;
 
   const addOrderItem = () => {
     setCreateFormData({
@@ -3188,41 +3206,39 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
     });
   };
 
-  const handleCreateOrder = () => {
-    const newOrder: OutboundOrder = {
-      id: Date.now().toString(),
-      orderId: `OUT-${String(orders.length + 1).padStart(5, '0')}`,
-      client: createFormData.clientName,
-      warehouse: createFormData.warehouse,
-      status: 'جديد',
-      shipmentStatus: 'لم يبدأ',
-      expectedShipDate: createFormData.expectedDate,
-      shortageFlag: false,
-      createdAt: new Date().toISOString().split('T')[0] + ' ' + new Date().toTimeString().split(' ')[0].slice(0, 5),
-      items: createFormData.orderItems.map(item => {
-        const product = products.find(p => p.id === item.productId);
-        return {
-          id: item.id,
-          productName: product?.name || '',
-          productSKU: product?.code || '',
-          quantityOrdered: item.quantity,
-          quantityShipped: 0,
-          quantityRemaining: item.quantity,
-          availableQuantity: 0, // Would be calculated from inventory
-          hasShortage: false,
-        };
-      }),
-      allocations: [],
-      stages: [
-        { stage: 'انتقاء', status: 'pending' },
-        { stage: 'تعبئة', status: 'pending' },
-        { stage: 'شحن', status: 'pending' },
-        { stage: 'مكتمل', status: 'pending' },
-      ],
-    };
-    setOrders([...orders, newOrder]);
-    setIsCreateDialogOpen(false);
-    setCreateFormData({ clientName: '', warehouse: '', expectedDate: '', notes: '', orderItems: [] });
+  const handleCreateOrder = async () => {
+    if (!createFormData.clientId || !createFormData.warehouseId) return;
+    setError(null);
+    try {
+      const created = await createOutboundOrder({
+        clientId: createFormData.clientId,
+        warehouseId: createFormData.warehouseId,
+        expectedShipDate: createFormData.expectedDate || undefined,
+      });
+      for (const item of createFormData.orderItems) {
+        const qty = Number(item.quantity);
+        if (!item.productId || qty <= 0) continue;
+        const product = productsForSelectedClient.find((p) => p.id === item.productId) ?? products.find((p) => p.id === item.productId);
+        if (!product?.defaultUomId) continue;
+        await addOutboundOrderItem(created.id, {
+          productId: item.productId,
+          uomId: product.defaultUomId,
+          qtyOrdered: qty,
+        });
+      }
+      const list = await fetchOutboundOrders({
+        clientId: clientFilter !== 'all' ? clientFilter : undefined,
+        warehouseId: warehouseFilter !== 'all' ? warehouseFilter : undefined,
+        status: statusFilter !== 'all' ? OUTBOUND_STATUS_TO_API[statusFilter] : undefined,
+        expectedShipDateFrom: expectedShipDateFrom || undefined,
+        expectedShipDateTo: expectedShipDateTo || undefined,
+      });
+      setOrders(list);
+      setIsCreateDialogOpen(false);
+      setCreateFormData({ clientId: '', warehouseId: '', expectedDate: '', notes: '', orderItems: [] });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'فشل إنشاء الطلب');
+    }
   };
 
   return (
@@ -3249,7 +3265,7 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
                   {warehouses.map((w) => (
-                    <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
+                    <SelectItem key={w.id} value={w.id}>{w.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -3263,7 +3279,7 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
                   {clients.map((c) => (
-                    <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
+                    <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -3395,21 +3411,37 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">العميل</label>
-                <Input
-                  value={createFormData.clientName}
-                  onChange={(e) => setCreateFormData({ ...createFormData, clientName: e.target.value })}
-                  placeholder="أدخل اسم العميل"
-                />
+                <Select
+                  value={createFormData.clientId}
+                  onValueChange={(v) => {
+                    setCreateFormData((prev) => {
+                      const next = { ...prev, clientId: v };
+                      const allowedIds = new Set(products.filter((p) => p.clientId === v).map((p) => p.id));
+                      if (prev.orderItems.some((it) => it.productId && !allowedIds.has(it.productId)))
+                        next.orderItems = prev.orderItems.map((it) => ({ ...it, productId: '', quantity: 0 }));
+                      return next;
+                    });
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="اختر العميل" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {clients.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">المستودع</label>
-                <Select value={createFormData.warehouse} onValueChange={(v) => setCreateFormData({ ...createFormData, warehouse: v })}>
+                <Select value={createFormData.warehouseId} onValueChange={(v) => setCreateFormData({ ...createFormData, warehouseId: v })}>
                   <SelectTrigger>
                     <SelectValue placeholder="اختر المستودع" />
                   </SelectTrigger>
                   <SelectContent>
                     {warehouses.map((w) => (
-                      <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
+                      <SelectItem key={w.id} value={w.id}>{w.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -3437,7 +3469,7 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-sm font-medium">بنود الطلب</label>
-                <Button type="button" variant="outline" size="sm" onClick={addOrderItem}>
+                <Button type="button" variant="outline" size="sm" onClick={addOrderItem} disabled={!createFormData.clientId}>
                   <Plus className="w-4 h-4 ml-2" />
                   إضافة بند
                 </Button>
@@ -3454,7 +3486,7 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
                   {createFormData.orderItems.length === 0 ? (
                     <TableRow>
                       <TableCell colSpan={3} className="text-center text-gray-500 py-4">
-                        لا توجد بنود. اضغط على "إضافة بند" لإضافة منتج.
+                        {createFormData.clientId ? 'لا توجد بنود. اضغط على "إضافة بند" لإضافة منتج.' : 'اختر العميل أولاً ثم أضف البنود.'}
                       </TableCell>
                     </TableRow>
                   ) : (
@@ -3469,8 +3501,8 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
                               <SelectValue placeholder="اختر المنتج" />
                             </SelectTrigger>
                             <SelectContent>
-                              {products.map((p) => (
-                                <SelectItem key={p.id} value={p.id}>{p.name} ({p.code})</SelectItem>
+                              {productsForSelectedClient.map((p) => (
+                                <SelectItem key={p.id} value={p.id}>{p.name} ({p.sku})</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -3500,7 +3532,7 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
             <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
               إلغاء
             </Button>
-            <Button onClick={handleCreateOrder}>
+            <Button onClick={handleCreateOrder} disabled={!createFormData.clientId || !createFormData.warehouseId}>
               إرسال الطلب
             </Button>
           </DialogFooter>
@@ -3511,16 +3543,30 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
 }
 
 function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBack: () => void }) {
-  const [orders] = useState<OutboundOrder[]>(initialOutboundOrders);
-  const order = orders.find(o => o.id === orderId);
+  const [order, setOrder] = useState<OutboundOrderUi | null>(null);
+  const [loading, setLoading] = useState(true);
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedStage, setSelectedStage] = useState<OutboundOrderStage | null>(null);
   const [selectedWorker, setSelectedWorker] = useState('');
   const [isApprovalsDialogOpen, setIsApprovalsDialogOpen] = useState(false);
   const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
   const [selectedLocationPath, setSelectedLocationPath] = useState('');
-  const [updatedOrders, setUpdatedOrders] = useState<OutboundOrder[]>(initialOutboundOrders);
 
+  useEffect(() => {
+    let active = true;
+    fetchOutboundOrder(orderId).then((o) => {
+      if (active) setOrder(o);
+    }).finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, [orderId]);
+
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-500">جارِ تحميل الطلب...</p>
+      </div>
+    );
+  }
   if (!order) {
     return (
       <div className="text-center py-8">
@@ -3530,7 +3576,7 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
     );
   }
 
-  const currentOrder = updatedOrders.find(o => o.id === orderId) || order;
+  const currentOrder = order;
 
   const handleAssign = (stage: OutboundOrderStage) => {
     setSelectedStage(stage);
@@ -3555,28 +3601,25 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
     const worker = workers.find(w => w.id === selectedWorker);
     if (!worker) return;
 
-    setUpdatedOrders(updatedOrders.map(o => {
-      if (o.id === orderId) {
-        return {
-          ...o,
-          stages: o.stages.map(s =>
-            s.stage === selectedStage ? { ...s, assignedWorker: worker.name, status: 'in-progress' as OutboundStageStatus } : s
-          ),
-        };
-      }
-      return o;
-    }));
+    setOrder({
+      ...order,
+      stages: order.stages.map(s =>
+        s.stage === selectedStage ? { ...s, assignedWorker: worker.name, status: 'in-progress' as OutboundStageStatus } : s
+      ),
+    });
 
     setIsAssignDialogOpen(false);
     setSelectedStage(null);
     setSelectedWorker('');
   };
 
-  const handleCancelOrder = () => {
-    if (confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) {
-      setUpdatedOrders(updatedOrders.map(o =>
-        o.id === orderId ? { ...o, status: 'ملغي' as OutboundOrderStatus } : o
-      ));
+  const handleCancelOrder = async () => {
+    if (!confirm('هل أنت متأكد من إلغاء هذا الطلب؟')) return;
+    try {
+      const updated = await updateOutboundOrder(orderId, { status: 'CANCELLED' });
+      setOrder(updated);
+    } catch {
+      // keep current state on error
     }
   };
 

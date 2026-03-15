@@ -9,18 +9,18 @@ export declare class WarehousesController {
         id: string;
         code: string;
         name: string;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }>;
     findMany(filter: WarehouseFilterDto): Promise<{
         id: string;
         code: string;
         name: string;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }[]>;
     findOne(id: string): Promise<{
@@ -28,30 +28,30 @@ export declare class WarehousesController {
             id: string;
             code: string;
             name: string;
+            dimension: import(".prisma/client").$Enums.UomDimension;
+            baseConversion: import("@prisma/client/runtime/library").Decimal;
             isActive: boolean;
             createdAt: Date;
             updatedAt: Date;
-            dimension: import(".prisma/client").$Enums.UomDimension;
-            baseConversion: import("@prisma/client/runtime/library").Decimal;
         } | null;
     } & {
         id: string;
         code: string;
         name: string;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }>;
     update(id: string, dto: UpdateWarehouseDto): Promise<{
         id: string;
         code: string;
         name: string;
-        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
     }>;
 }

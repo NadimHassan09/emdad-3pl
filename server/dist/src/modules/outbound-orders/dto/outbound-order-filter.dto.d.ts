@@ -4,4 +4,6 @@ export declare class OutboundOrderFilterDto {
     warehouseId?: string;
     status?: OrderStatus;
     orderNumber?: string;
+    expectedShipDateFrom?: string;
+    expectedShipDateTo?: string;
 }

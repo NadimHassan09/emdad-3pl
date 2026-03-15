@@ -35,4 +35,14 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], OutboundOrderFilterDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], OutboundOrderFilterDto.prototype, "expectedShipDateFrom", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], OutboundOrderFilterDto.prototype, "expectedShipDateTo", void 0);
 //# sourceMappingURL=outbound-order-filter.dto.js.map
