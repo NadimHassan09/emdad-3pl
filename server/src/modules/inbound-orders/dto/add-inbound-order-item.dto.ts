@@ -15,3 +15,4 @@ export class AddInboundOrderItemDto {
   @IsNotEmpty()
   uomId: string;
 }
+

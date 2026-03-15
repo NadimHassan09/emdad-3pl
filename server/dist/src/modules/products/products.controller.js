@@ -18,6 +18,8 @@ const products_service_1 = require("./products.service");
 const create_product_dto_1 = require("./dto/create-product.dto");
 const update_product_dto_1 = require("./dto/update-product.dto");
 const product_filter_dto_1 = require("./dto/product-filter.dto");
+const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
+const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
 let ProductsController = class ProductsController {
     constructor(products) {
         this.products = products;
@@ -25,8 +27,8 @@ let ProductsController = class ProductsController {
     create(dto) {
         return this.products.create(dto);
     }
-    findMany(filter) {
-        return this.products.findMany(filter);
+    findMany(filter, payload) {
+        return this.products.findMany(filter, payload);
     }
     findOne(id) {
         return this.products.findOne(id);
@@ -46,8 +48,9 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [product_filter_dto_1.ProductFilterDto]),
+    __metadata("design:paramtypes", [product_filter_dto_1.ProductFilterDto, Object]),
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "findMany", null);
 __decorate([
@@ -67,6 +70,7 @@ __decorate([
 ], ProductsController.prototype, "update", null);
 exports.ProductsController = ProductsController = __decorate([
     (0, common_1.Controller)('products'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [products_service_1.ProductsService])
 ], ProductsController);
 //# sourceMappingURL=products.controller.js.map

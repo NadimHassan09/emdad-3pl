@@ -43,7 +43,7 @@ export declare class InboundOrdersController {
         expectedDate: Date | null;
         createdByActorId: string;
     }>;
-    findMany(filter: InboundOrderFilterDto): Promise<({
+    findMany(filter: InboundOrderFilterDto, payload: JwtPayload): Promise<({
         client: {
             id: string;
             code: string;
@@ -87,7 +87,7 @@ export declare class InboundOrdersController {
         expectedDate: Date | null;
         createdByActorId: string;
     })[]>;
-    findOne(id: string): Promise<{
+    findOne(id: string, payload: JwtPayload): Promise<{
         client: {
             id: string;
             code: string;

@@ -365,8 +365,8 @@ export declare class StockReservationsService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;

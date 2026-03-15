@@ -27,13 +27,13 @@ let InboundOrdersController = class InboundOrdersController {
         this.inboundOrders = inboundOrders;
     }
     create(dto, payload) {
-        return this.inboundOrders.create(dto, payload.actorId);
+        return this.inboundOrders.create(dto, payload);
     }
-    findMany(filter) {
-        return this.inboundOrders.findMany(filter);
+    findMany(filter, payload) {
+        return this.inboundOrders.findMany(filter, payload);
     }
-    findOne(id) {
-        return this.inboundOrders.findOne(id);
+    findOne(id, payload) {
+        return this.inboundOrders.findOne(id, payload);
     }
     update(id, dto) {
         return this.inboundOrders.update(id, dto);
@@ -57,15 +57,17 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [inbound_order_filter_dto_1.InboundOrderFilterDto]),
+    __metadata("design:paramtypes", [inbound_order_filter_dto_1.InboundOrderFilterDto, Object]),
     __metadata("design:returntype", void 0)
 ], InboundOrdersController.prototype, "findMany", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], InboundOrdersController.prototype, "findOne", null);
 __decorate([

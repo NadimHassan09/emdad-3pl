@@ -12,25 +12,46 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OutboundOrdersService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
+const actor_type_enum_1 = require("../../common/enums/actor-type.enum");
 let OutboundOrdersService = class OutboundOrdersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(dto, createdByActorId) {
-        await this.prisma.client.findUniqueOrThrow({ where: { id: dto.clientId } });
+    async create(dto, payload) {
+        const resolvedClientId = payload.actorType === actor_type_enum_1.ActorType.CLIENT_ACCOUNT ? payload.clientId : dto.clientId;
+        if (!resolvedClientId) {
+            throw new common_1.BadRequestException('clientId is required');
+        }
+        await this.prisma.client.findUniqueOrThrow({ where: { id: resolvedClientId } });
+        let resolvedWarehouseId = dto.warehouseId;
+        if (!resolvedWarehouseId) {
+            const fallbackWarehouse = await this.prisma.warehouse.findFirst({
+                select: { id: true },
+                orderBy: { createdAt: 'asc' },
+            });
+            if (!fallbackWarehouse) {
+                throw new common_1.BadRequestException('No warehouse configured yet. Admin must create a warehouse first.');
+            }
+            resolvedWarehouseId = fallbackWarehouse.id;
+        }
         await this.prisma.warehouse.findUniqueOrThrow({
-            where: { id: dto.warehouseId },
+            where: { id: resolvedWarehouseId },
         });
         return this.prisma.outboundOrder.create({
             data: {
-                clientId: dto.clientId,
-                warehouseId: dto.warehouseId,
+                clientId: resolvedClientId,
+                warehouseId: resolvedWarehouseId,
                 orderNumber: dto.orderNumber?.trim(),
-                currentStage: dto.currentStage?.trim(),
+                currentStage: payload.actorType === actor_type_enum_1.ActorType.CLIENT_ACCOUNT
+                    ? 'PENDING_ADMIN_REVIEW'
+                    : dto.currentStage?.trim(),
+                status: payload.actorType === actor_type_enum_1.ActorType.CLIENT_ACCOUNT
+                    ? 'PENDING'
+                    : undefined,
                 expectedShipDate: dto.expectedShipDate
                     ? new Date(dto.expectedShipDate)
                     : null,
-                createdByActorId,
+                createdByActorId: payload.actorId,
             },
             include: {
                 client: { select: { id: true, code: true, name: true } },
@@ -46,10 +67,15 @@ let OutboundOrdersService = class OutboundOrdersService {
             },
         });
     }
-    async findMany(filter) {
+    async findMany(filter, payload) {
         const where = {};
-        if (filter?.clientId)
+        if (payload?.actorType === actor_type_enum_1.ActorType.CLIENT_ACCOUNT &&
+            payload.clientId) {
+            where.clientId = payload.clientId;
+        }
+        else if (filter?.clientId) {
             where.clientId = filter.clientId;
+        }
         if (filter?.warehouseId)
             where.warehouseId = filter.warehouseId;
         if (filter?.status)
@@ -75,9 +101,14 @@ let OutboundOrdersService = class OutboundOrdersService {
             orderBy: { createdAt: 'desc' },
         });
     }
-    async findOne(id) {
-        const order = await this.prisma.outboundOrder.findUnique({
-            where: { id },
+    async findOne(id, payload) {
+        const where = { id };
+        if (payload?.actorType === actor_type_enum_1.ActorType.CLIENT_ACCOUNT &&
+            payload.clientId) {
+            where.clientId = payload.clientId;
+        }
+        const order = await this.prisma.outboundOrder.findFirst({
+            where,
             include: {
                 client: { select: { id: true, code: true, name: true } },
                 warehouse: { select: { id: true, code: true, name: true } },
@@ -109,6 +140,11 @@ let OutboundOrdersService = class OutboundOrdersService {
     }
     async update(id, dto) {
         await this.findOne(id);
+        if (dto.warehouseId) {
+            await this.prisma.warehouse.findUniqueOrThrow({
+                where: { id: dto.warehouseId },
+            });
+        }
         return this.prisma.outboundOrder.update({
             where: { id },
             data: {
@@ -123,6 +159,9 @@ let OutboundOrdersService = class OutboundOrdersService {
                     expectedShipDate: dto.expectedShipDate
                         ? new Date(dto.expectedShipDate)
                         : null,
+                }),
+                ...(dto.warehouseId !== undefined && {
+                    warehouseId: dto.warehouseId,
                 }),
             },
             include: {
@@ -148,6 +187,42 @@ let OutboundOrdersService = class OutboundOrdersService {
         });
         if (product?.clientId !== order.clientId) {
             throw new common_1.BadRequestException('Product does not belong to the order client');
+        }
+        const [currentStockAgg, existingOrderQtyAgg] = await Promise.all([
+            this.prisma.currentStock.aggregate({
+                where: {
+                    clientId: order.clientId,
+                    productId: dto.productId,
+                },
+                _sum: {
+                    quantity: true,
+                },
+            }),
+            this.prisma.outboundOrderItem.aggregate({
+                where: {
+                    outboundOrderId: orderId,
+                    productId: dto.productId,
+                },
+                _sum: {
+                    qtyOrdered: true,
+                },
+            }),
+        ]);
+        const availableQtyRaw = currentStockAgg._sum.quantity;
+        const existingQtyRaw = existingOrderQtyAgg._sum.qtyOrdered;
+        const availableQty = typeof availableQtyRaw === 'number'
+            ? availableQtyRaw
+            : availableQtyRaw
+                ? availableQtyRaw.toNumber()
+                : 0;
+        const existingQty = typeof existingQtyRaw === 'number'
+            ? existingQtyRaw
+            : existingQtyRaw
+                ? existingQtyRaw.toNumber()
+                : 0;
+        const requestedTotal = existingQty + dto.qtyOrdered;
+        if (requestedTotal > availableQty) {
+            throw new common_1.BadRequestException(`Requested quantity exceeds current stock. Available: ${availableQty}, Requested: ${requestedTotal}`);
         }
         return this.prisma.outboundOrderItem.create({
             data: {

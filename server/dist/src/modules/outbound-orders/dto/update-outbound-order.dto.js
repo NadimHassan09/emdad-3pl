@@ -35,4 +35,9 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], UpdateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateOutboundOrderDto.prototype, "warehouseId", void 0);
 //# sourceMappingURL=update-outbound-order.dto.js.map

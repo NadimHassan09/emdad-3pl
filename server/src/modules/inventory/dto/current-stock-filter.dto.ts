@@ -25,3 +25,4 @@ export class CurrentStockFilterDto {
   @IsUUID()
   locationId?: string;
 }
+

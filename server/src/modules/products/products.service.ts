@@ -3,6 +3,8 @@ import { PrismaService } from '../../database/prisma/prisma.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductFilterDto } from './dto/product-filter.dto';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ActorType } from '../../common/enums/actor-type.enum';
 
 @Injectable()
 export class ProductsService {
@@ -26,9 +28,17 @@ export class ProductsService {
     });
   }
 
-  async findMany(filter?: ProductFilterDto) {
+  async findMany(filter?: ProductFilterDto, payload?: JwtPayload) {
     const where: { clientId?: string; isActive?: boolean } = {};
-    if (filter?.clientId) where.clientId = filter.clientId;
+    if (
+      payload?.actorType === ActorType.CLIENT_ACCOUNT &&
+      payload.clientId
+    ) {
+      // Client portal can only read products for its own client.
+      where.clientId = payload.clientId;
+    } else if (filter?.clientId) {
+      where.clientId = filter.clientId;
+    }
     if (filter?.isActive !== undefined) where.isActive = filter.isActive;
     return this.prisma.product.findMany({
       where,

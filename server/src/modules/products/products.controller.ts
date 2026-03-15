@@ -7,13 +7,18 @@ import {
   Param,
   Query,
   ParseUUIDPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductFilterDto } from './dto/product-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 
 @Controller('products')
+@UseGuards(JwtAuthGuard)
 export class ProductsController {
   constructor(private readonly products: ProductsService) {}
 
@@ -23,8 +28,11 @@ export class ProductsController {
   }
 
   @Get()
-  findMany(@Query() filter: ProductFilterDto) {
-    return this.products.findMany(filter);
+  findMany(
+    @Query() filter: ProductFilterDto,
+    @CurrentActor() payload: JwtPayload,
+  ) {
+    return this.products.findMany(filter, payload);
   }
 
   @Get(':id')

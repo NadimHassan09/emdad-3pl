@@ -37,3 +37,4 @@ export class CreateTaskWorkOrderDto {
   @IsEnum(TaskPriority)
   priority?: TaskPriority;
 }
+

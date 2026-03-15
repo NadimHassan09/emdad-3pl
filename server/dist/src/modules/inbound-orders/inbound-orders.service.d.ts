@@ -5,11 +5,12 @@ import { UpdateInboundOrderDto } from './dto/update-inbound-order.dto';
 import { InboundOrderFilterDto } from './dto/inbound-order-filter.dto';
 import { AddInboundOrderItemDto } from './dto/add-inbound-order-item.dto';
 import { ReceiveInboundOrderDto } from './dto/receive-inbound-order.dto';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 export declare class InboundOrdersService {
     private readonly prisma;
     private readonly inventoryService;
     constructor(prisma: PrismaService, inventoryService: InventoryService);
-    create(dto: CreateInboundOrderDto, createdByActorId: string): Promise<{
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
         client: {
             id: string;
             code: string;
@@ -44,7 +45,7 @@ export declare class InboundOrdersService {
         expectedDate: Date | null;
         createdByActorId: string;
     }>;
-    findMany(filter?: InboundOrderFilterDto): Promise<({
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
         client: {
             id: string;
             code: string;
@@ -88,7 +89,7 @@ export declare class InboundOrdersService {
         expectedDate: Date | null;
         createdByActorId: string;
     })[]>;
-    findOne(id: string): Promise<{
+    findOne(id: string, payload?: JwtPayload): Promise<{
         client: {
             id: string;
             code: string;

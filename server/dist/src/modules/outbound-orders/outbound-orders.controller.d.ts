@@ -46,7 +46,7 @@ export declare class OutboundOrdersController {
         createdByActorId: string;
         expectedShipDate: Date | null;
     }>;
-    findMany(filter: OutboundOrderFilterDto): Promise<({
+    findMany(filter: OutboundOrderFilterDto, payload: JwtPayload): Promise<({
         client: {
             id: string;
             code: string;
@@ -75,8 +75,8 @@ export declare class OutboundOrdersController {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -90,7 +90,7 @@ export declare class OutboundOrdersController {
         createdByActorId: string;
         expectedShipDate: Date | null;
     })[]>;
-    findOne(id: string): Promise<{
+    findOne(id: string, payload: JwtPayload): Promise<{
         client: {
             id: string;
             code: string;
@@ -149,8 +149,8 @@ export declare class OutboundOrdersController {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -193,8 +193,8 @@ export declare class OutboundOrdersController {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -226,8 +226,8 @@ export declare class OutboundOrdersController {
         productId: string;
         qtyOrdered: import("@prisma/client/runtime/library").Decimal;
         uomId: string;
-        qtyShipped: import("@prisma/client/runtime/library").Decimal;
         outboundOrderId: string;
+        qtyShipped: import("@prisma/client/runtime/library").Decimal;
     }>;
     createReservation(outboundOrderId: string, dto: CreateReservationDto): Promise<{
         client: {
@@ -340,8 +340,8 @@ export declare class OutboundOrdersController {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;

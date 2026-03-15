@@ -142,3 +142,4 @@ DATABASE_URL="postgresql://emdad_3pl_app:<password>@localhost:5432/emdad_3pl?sch
 - See `QUICK_START.md` for general project setup
 - See `DATABASE_SETUP.md` for manual setup alternatives
 
+

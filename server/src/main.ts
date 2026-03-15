@@ -11,8 +11,10 @@ async function bootstrap() {
     origin: [
       'http://localhost:5173', // Admin app
       'http://localhost:5174', // Client portal
+      'http://localhost:5175', // Client portal (alternate Vite port)
       'http://127.0.0.1:5173', // Admin app (IPv4)
       'http://127.0.0.1:5174', // Client portal (IPv4)
+      'http://127.0.0.1:5175', // Client portal (IPv4 alternate port)
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

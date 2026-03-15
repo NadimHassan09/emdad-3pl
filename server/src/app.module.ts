@@ -22,6 +22,7 @@ import { AuditModule } from './modules/audit/audit.module';
 import { BillingModule } from './modules/billing/billing.module';
 import { VasModule } from './modules/vas/vas.module';
 import { ClientSettingsModule } from './modules/client-settings/client-settings.module';
+import { ReportsModule } from './modules/reports/reports.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { ClientSettingsModule } from './modules/client-settings/client-settings.
     BillingModule,
     VasModule,
     ClientSettingsModule,
+    ReportsModule,
   ],
   controllers: [],
   providers: [],

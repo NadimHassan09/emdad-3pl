@@ -29,17 +29,23 @@ export class InboundOrdersController {
     @Body() dto: CreateInboundOrderDto,
     @CurrentActor() payload: JwtPayload,
   ) {
-    return this.inboundOrders.create(dto, payload.actorId);
+    return this.inboundOrders.create(dto, payload);
   }
 
   @Get()
-  findMany(@Query() filter: InboundOrderFilterDto) {
-    return this.inboundOrders.findMany(filter);
+  findMany(
+    @Query() filter: InboundOrderFilterDto,
+    @CurrentActor() payload: JwtPayload,
+  ) {
+    return this.inboundOrders.findMany(filter, payload);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseUUIDPipe) id: string) {
-    return this.inboundOrders.findOne(id);
+  findOne(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentActor() payload: JwtPayload,
+  ) {
+    return this.inboundOrders.findOne(id, payload);
   }
 
   @Patch(':id')

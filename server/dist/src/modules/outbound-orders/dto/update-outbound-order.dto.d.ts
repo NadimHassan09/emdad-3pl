@@ -4,4 +4,5 @@ export declare class UpdateOutboundOrderDto {
     status?: OrderStatus;
     currentStage?: string;
     expectedShipDate?: string;
+    warehouseId?: string;
 }

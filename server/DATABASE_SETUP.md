@@ -143,3 +143,4 @@ Once the database is set up and seeded:
 2. Test the API endpoints
 3. Explore the data using Prisma Studio: `npm run prisma:studio`
 
+

@@ -13,3 +13,4 @@ export enum MovementType {
   RETURN = 'RETURN',
   CYCLE_COUNT = 'CYCLE_COUNT',
 }
+

@@ -30,3 +30,4 @@ export class CreateAllocationDto {
   reservedQty: number;
 }
 
+

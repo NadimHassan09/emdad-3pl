@@ -143,3 +143,4 @@ After running the setup and seed:
 2. Test API: `GET http://localhost:3000/inventory/current-stock`
 3. View data: `npm run prisma:studio`
 
+

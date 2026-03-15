@@ -2,6 +2,7 @@ import { PrismaService } from '../../database/prisma/prisma.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductFilterDto } from './dto/product-filter.dto';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 export declare class ProductsService {
     private readonly prisma;
     constructor(prisma: PrismaService);
@@ -22,7 +23,7 @@ export declare class ProductsService {
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
-    findMany(filter?: ProductFilterDto): Promise<({
+    findMany(filter?: ProductFilterDto, payload?: JwtPayload): Promise<({
         defaultUom: {
             id: string;
             code: string;

@@ -3,10 +3,11 @@ import { CreateOutboundOrderDto } from './dto/create-outbound-order.dto';
 import { UpdateOutboundOrderDto } from './dto/update-outbound-order.dto';
 import { OutboundOrderFilterDto } from './dto/outbound-order-filter.dto';
 import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 export declare class OutboundOrdersService {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    create(dto: CreateOutboundOrderDto, createdByActorId: string): Promise<{
+    create(dto: CreateOutboundOrderDto, payload: JwtPayload): Promise<{
         client: {
             id: string;
             code: string;
@@ -41,7 +42,7 @@ export declare class OutboundOrdersService {
         createdByActorId: string;
         expectedShipDate: Date | null;
     }>;
-    findMany(filter?: OutboundOrderFilterDto): Promise<({
+    findMany(filter?: OutboundOrderFilterDto, payload?: JwtPayload): Promise<({
         client: {
             id: string;
             code: string;
@@ -70,8 +71,8 @@ export declare class OutboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -85,7 +86,7 @@ export declare class OutboundOrdersService {
         createdByActorId: string;
         expectedShipDate: Date | null;
     })[]>;
-    findOne(id: string): Promise<{
+    findOne(id: string, payload?: JwtPayload): Promise<{
         client: {
             id: string;
             code: string;
@@ -144,8 +145,8 @@ export declare class OutboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -188,8 +189,8 @@ export declare class OutboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyShipped: import("@prisma/client/runtime/library").Decimal;
             outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -221,7 +222,7 @@ export declare class OutboundOrdersService {
         productId: string;
         qtyOrdered: import("@prisma/client/runtime/library").Decimal;
         uomId: string;
-        qtyShipped: import("@prisma/client/runtime/library").Decimal;
         outboundOrderId: string;
+        qtyShipped: import("@prisma/client/runtime/library").Decimal;
     }>;
 }

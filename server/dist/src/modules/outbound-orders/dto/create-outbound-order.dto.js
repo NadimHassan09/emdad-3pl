@@ -15,13 +15,13 @@ class CreateOutboundOrderDto {
 }
 exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateOutboundOrderDto.prototype, "clientId", void 0);
 __decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
 __decorate([

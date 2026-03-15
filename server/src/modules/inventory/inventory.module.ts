@@ -10,3 +10,4 @@ import { DatabaseModule } from '../../database/database.module';
   exports: [InventoryService],
 })
 export class InventoryModule {}
+

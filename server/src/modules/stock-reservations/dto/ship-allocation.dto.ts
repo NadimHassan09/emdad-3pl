@@ -27,3 +27,4 @@ export class ShipAllocationDto {
   locationId?: string;
 }
 
+

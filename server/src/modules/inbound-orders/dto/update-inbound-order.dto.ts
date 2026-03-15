@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsDateString, IsEnum } from 'class-validator';
+import { IsOptional, IsString, IsDateString, IsEnum, IsUUID } from 'class-validator';
 import { OrderStatus } from '../../../common/enums/order-status.enum';
 
 export class UpdateInboundOrderDto {
@@ -17,4 +17,8 @@ export class UpdateInboundOrderDto {
   @IsOptional()
   @IsDateString()
   expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
 }

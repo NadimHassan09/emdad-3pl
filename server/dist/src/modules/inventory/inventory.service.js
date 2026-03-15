@@ -32,39 +32,39 @@ let InventoryService = class InventoryService {
         return `W${date.getDate()}/${date.getMonth() + 1}`;
     }
     async getDashboard(clientId) {
-        const stockWhere = clientId ? { clientId } : {};
-        const ordersWhere = clientId ? { clientId } : {};
-        const ledgerWhere = clientId ? { clientId } : {};
-        const now = new Date();
-        const sixMonthsAgo = new Date(now);
-        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
-        sixMonthsAgo.setDate(1);
-        sixMonthsAgo.setHours(0, 0, 0, 0);
-        const eightWeeksAgo = new Date(now);
-        eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
-        eightWeeksAgo.setHours(0, 0, 0, 0);
-        const [currentStock, inboundOrdersCount, outboundOrdersCount, recentLedger, chartLedger] = await Promise.all([
-            this.prisma.currentStock.findMany({
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
                 where: stockWhere,
                 include: {
                     product: { select: { id: true, name: true, sku: true } },
                 },
-            }),
-            this.prisma.inboundOrder.count({
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
                 where: ordersWhere,
-            }),
-            this.prisma.outboundOrder.count({
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
                 where: ordersWhere,
-            }),
-            this.prisma.inventoryLedger.findMany({
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
                 where: ledgerWhere,
                 include: {
                     product: { select: { sku: true } },
                 },
                 orderBy: { createdAt: 'desc' },
                 take: 5,
-            }),
-            this.prisma.inventoryLedger.findMany({
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
                 where: {
                     ...ledgerWhere,
                     createdAt: {
@@ -78,93 +78,102 @@ let InventoryService = class InventoryService {
                     productId: true,
                 },
                 orderBy: { createdAt: 'asc' },
-            }),
-        ]);
-        const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
-        const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
-        const movementByMonthMap = new Map();
-        for (let i = 5; i >= 0; i--) {
-            const d = new Date(now);
-            d.setMonth(d.getMonth() - i);
-            d.setDate(1);
-            d.setHours(0, 0, 0, 0);
-            const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
-            movementByMonthMap.set(key, {
-                name: this.formatMonthLabel(d),
-                inbound: 0,
-                outbound: 0,
             });
-        }
-        const weeklyTrendMap = new Map();
-        for (let i = 7; i >= 0; i--) {
-            const d = new Date(now);
-            d.setDate(d.getDate() - i * 7);
-            const weekStart = new Date(d);
-            weekStart.setDate(d.getDate() - d.getDay());
-            weekStart.setHours(0, 0, 0, 0);
-            const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
-            weeklyTrendMap.set(key, {
-                name: this.formatWeekLabel(weekStart),
-                value: 0,
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
             });
-        }
-        for (const entry of chartLedger) {
-            const qty = this.toNumber(entry.qtyChange);
-            const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
-            const monthBucket = movementByMonthMap.get(monthKey);
-            if (monthBucket) {
-                if (qty >= 0)
-                    monthBucket.inbound += qty;
-                else
-                    monthBucket.outbound += Math.abs(qty);
-            }
-            const weekStart = new Date(entry.createdAt);
-            weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
-            weekStart.setHours(0, 0, 0, 0);
-            const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
-            const weekBucket = weeklyTrendMap.get(weekKey);
-            if (weekBucket) {
-                weekBucket.value += Math.abs(qty);
-            }
-        }
-        const productStockMap = new Map();
-        for (const row of currentStock) {
-            const productName = row.product?.name || 'منتج غير معروف';
-            const current = productStockMap.get(row.productId);
-            const quantity = this.toNumber(row.quantity);
-            if (!current) {
-                productStockMap.set(row.productId, { name: productName, value: quantity });
-            }
-            else {
-                current.value += quantity;
-            }
-        }
-        const stockDistribution = Array.from(productStockMap.values())
-            .sort((a, b) => b.value - a.value)
-            .slice(0, 5);
-        const recentMovements = recentLedger.map((entry) => {
-            const qty = this.toNumber(entry.qtyChange);
             return {
-                date: entry.createdAt,
-                movementType: entry.movementType,
-                sku: entry.product?.sku || '',
-                qtyChange: qty,
-                referenceId: entry.referenceId,
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
             };
-        });
-        return {
-            stats: {
-                totalProducts,
-                totalStock,
-                incomingOrders: inboundOrdersCount,
-                outgoingOrders: outboundOrdersCount,
-                recentMovements: recentMovements.length,
-            },
-            movementByMonth: Array.from(movementByMonthMap.values()),
-            stockDistribution,
-            weeklyTrend: Array.from(weeklyTrendMap.values()),
-            recentMovements,
-        };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
     }
     async findCurrentStock(filter) {
         const where = {};

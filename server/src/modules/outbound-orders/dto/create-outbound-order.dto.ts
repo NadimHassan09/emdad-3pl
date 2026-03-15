@@ -7,13 +7,13 @@ import {
 } from 'class-validator';
 
 export class CreateOutboundOrderDto {
+  @IsOptional()
   @IsUUID()
-  @IsNotEmpty()
   clientId: string;
 
+  @IsOptional()
   @IsUUID()
-  @IsNotEmpty()
-  warehouseId: string;
+  warehouseId?: string;
 
   @IsOptional()
   @IsString()

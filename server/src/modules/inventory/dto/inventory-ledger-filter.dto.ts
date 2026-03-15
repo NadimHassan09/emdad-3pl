@@ -45,3 +45,4 @@ export class InventoryLedgerFilterDto {
   @IsDateString()
   dateTo?: string;
 }
+

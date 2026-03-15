@@ -11,6 +11,8 @@ import { InboundOrderFilterDto } from './dto/inbound-order-filter.dto';
 import { AddInboundOrderItemDto } from './dto/add-inbound-order-item.dto';
 import { ReceiveInboundOrderDto } from './dto/receive-inbound-order.dto';
 import { MovementType } from '../../common/enums/movement-type.enum';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ActorType } from '../../common/enums/actor-type.enum';
 
 /**
  * Inbound Orders Service
@@ -35,21 +37,49 @@ export class InboundOrdersService {
     private readonly inventoryService: InventoryService,
   ) {}
 
-  async create(dto: CreateInboundOrderDto, createdByActorId: string) {
-    // Validate client and warehouse exist
-    await this.prisma.client.findUniqueOrThrow({ where: { id: dto.clientId } });
+  async create(dto: CreateInboundOrderDto, payload: JwtPayload) {
+    const resolvedClientId =
+      payload.actorType === ActorType.CLIENT_ACCOUNT ? payload.clientId : dto.clientId;
+    if (!resolvedClientId) {
+      throw new BadRequestException('clientId is required');
+    }
+    await this.prisma.client.findUniqueOrThrow({ where: { id: resolvedClientId } });
+
+    // Warehouse is hidden from client portal and assigned by admin later.
+    // To satisfy current DB non-null constraint, use the provided value or
+    // fallback to the first available warehouse as a temporary placeholder.
+    let resolvedWarehouseId = dto.warehouseId;
+    if (!resolvedWarehouseId) {
+      const fallbackWarehouse = await this.prisma.warehouse.findFirst({
+        select: { id: true },
+        orderBy: { createdAt: 'asc' },
+      });
+      if (!fallbackWarehouse) {
+        throw new BadRequestException(
+          'No warehouse configured yet. Admin must create a warehouse first.',
+        );
+      }
+      resolvedWarehouseId = fallbackWarehouse.id;
+    }
     await this.prisma.warehouse.findUniqueOrThrow({
-      where: { id: dto.warehouseId },
+      where: { id: resolvedWarehouseId },
     });
 
     return this.prisma.inboundOrder.create({
       data: {
-        clientId: dto.clientId,
-        warehouseId: dto.warehouseId,
+        clientId: resolvedClientId,
+        warehouseId: resolvedWarehouseId,
         orderNumber: dto.orderNumber?.trim(),
-        currentStage: dto.currentStage?.trim(),
+        currentStage:
+          payload.actorType === ActorType.CLIENT_ACCOUNT
+            ? 'PENDING_ADMIN_REVIEW'
+            : dto.currentStage?.trim(),
+        status:
+          payload.actorType === ActorType.CLIENT_ACCOUNT
+            ? ('PENDING' as any)
+            : undefined,
         expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
-        createdByActorId,
+        createdByActorId: payload.actorId,
       },
       include: {
         client: { select: { id: true, code: true, name: true } },
@@ -66,7 +96,7 @@ export class InboundOrdersService {
     });
   }
 
-  async findMany(filter?: InboundOrderFilterDto) {
+  async findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload) {
     const where: {
       clientId?: string;
       warehouseId?: string;
@@ -82,7 +112,14 @@ export class InboundOrdersService {
       orderNumber?: { contains: string; mode?: 'insensitive' };
     } = {};
 
-    if (filter?.clientId) where.clientId = filter.clientId;
+    if (
+      payload?.actorType === ActorType.CLIENT_ACCOUNT &&
+      payload.clientId
+    ) {
+      where.clientId = payload.clientId;
+    } else if (filter?.clientId) {
+      where.clientId = filter.clientId;
+    }
     if (filter?.warehouseId) where.warehouseId = filter.warehouseId;
     if (filter?.status) where.status = filter.status;
     if (filter?.orderNumber) {
@@ -108,9 +145,16 @@ export class InboundOrdersService {
     });
   }
 
-  async findOne(id: string) {
-    const order = await this.prisma.inboundOrder.findUnique({
-      where: { id },
+  async findOne(id: string, payload?: JwtPayload) {
+    const where: { id: string; clientId?: string } = { id };
+    if (
+      payload?.actorType === ActorType.CLIENT_ACCOUNT &&
+      payload.clientId
+    ) {
+      where.clientId = payload.clientId;
+    }
+    const order = await this.prisma.inboundOrder.findFirst({
+      where,
       include: {
         client: { select: { id: true, code: true, name: true } },
         warehouse: { select: { id: true, code: true, name: true } },
@@ -144,6 +188,12 @@ export class InboundOrdersService {
   async update(id: string, dto: UpdateInboundOrderDto) {
     await this.findOne(id);
 
+    if (dto.warehouseId) {
+      await this.prisma.warehouse.findUniqueOrThrow({
+        where: { id: dto.warehouseId },
+      });
+    }
+
     return this.prisma.inboundOrder.update({
       where: { id },
       data: {
@@ -156,6 +206,9 @@ export class InboundOrdersService {
         }),
         ...(dto.expectedDate !== undefined && {
           expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
+        }),
+        ...(dto.warehouseId !== undefined && {
+          warehouseId: dto.warehouseId,
         }),
       },
       include: {

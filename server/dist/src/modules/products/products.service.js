@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
+const actor_type_enum_1 = require("../../common/enums/actor-type.enum");
 let ProductsService = class ProductsService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -33,10 +34,15 @@ let ProductsService = class ProductsService {
             include: { defaultUom: { select: { id: true, code: true, name: true } } },
         });
     }
-    async findMany(filter) {
+    async findMany(filter, payload) {
         const where = {};
-        if (filter?.clientId)
+        if (payload?.actorType === actor_type_enum_1.ActorType.CLIENT_ACCOUNT &&
+            payload.clientId) {
+            where.clientId = payload.clientId;
+        }
+        else if (filter?.clientId) {
             where.clientId = filter.clientId;
+        }
         if (filter?.isActive !== undefined)
             where.isActive = filter.isActive;
         return this.prisma.product.findMany({
