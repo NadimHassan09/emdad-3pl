@@ -8,7 +8,7 @@ export class DashboardService {
   constructor(private readonly prisma: PrismaService) {}
 
   private toNumber(value: unknown): number {
-    if (typeof value === 'number') return value;
+    if (typeof value === 'number' && !Number.isNaN(value)) return value;
     if (value && typeof value === 'object' && 'toNumber' in value) {
       return (value as { toNumber: () => number }).toNumber();
     }
@@ -33,12 +33,33 @@ export class DashboardService {
     let openApprovalsCount = 0;
     let pendingApprovalsCreatedLast24h = 0;
     let warehousesWithCapacity: Array<{ capacityValue: unknown }> = [];
-    let currentStockAgg: Array<{ _sum: { quantity: unknown }; productId: string }> = [];
+    let currentStockAgg: Array<{
+      _sum: { quantity: unknown };
+      productId: string;
+    }> = [];
     let ledgerLastWeek: Array<{ productId: string; qtyChange: unknown }> = [];
-    let outboundByMonth: Array<{ createdAt: Date }> = [];
     let ledgerByMonth: Array<{ qtyChange: unknown; createdAt: Date }> = [];
+    let outboundForSales: Array<{
+      createdAt: Date;
+      items: { qtyOrdered: unknown }[];
+    }> = [];
+    let activeProductsCount = 0;
+    let locationsTotal = 0;
+    let locationsWithStock = 0;
+    let openInboundOrders = 0;
+    let openOutboundOrders = 0;
 
     try {
+      const stockLocs = await this.prisma.currentStock.findMany({
+        where: {
+          quantity: { gt: 0 },
+          locationId: { not: null },
+        },
+        select: { locationId: true },
+        distinct: ['locationId'],
+      });
+      locationsWithStock = stockLocs.filter((r) => r.locationId).length;
+
       [
         clientsCount,
         clientsCountLastMonth,
@@ -49,8 +70,12 @@ export class DashboardService {
         warehousesWithCapacity,
         currentStockAgg,
         ledgerLastWeek,
-        outboundByMonth,
+        outboundForSales,
         ledgerByMonth,
+        activeProductsCount,
+        locationsTotal,
+        openInboundOrders,
+        openOutboundOrders,
       ] = await Promise.all([
         this.prisma.client.count({ where: { isActive: true } }),
         this.prisma.client.count({
@@ -72,7 +97,6 @@ export class DashboardService {
         this.prisma.currentStock.groupBy({
           by: ['productId'],
           _sum: { quantity: true },
-          _count: { productId: true },
         }),
         this.prisma.inventoryLedger.findMany({
           where: { createdAt: { gte: oneWeekAgo } },
@@ -80,16 +104,26 @@ export class DashboardService {
         }),
         this.prisma.outboundOrder.findMany({
           where: { createdAt: { gte: sixMonthsAgo } },
-          select: { createdAt: true },
+          select: {
+            createdAt: true,
+            items: { select: { qtyOrdered: true } },
+          },
         }),
         this.prisma.inventoryLedger.findMany({
           where: { createdAt: { gte: sixMonthsAgo } },
           select: { qtyChange: true, createdAt: true },
         }),
+        this.prisma.product.count({ where: { isActive: true } }),
+        this.prisma.location.count({ where: { isActive: true } }),
+        this.prisma.inboundOrder.count({
+          where: { status: { notIn: ['COMPLETED', 'CANCELLED'] } },
+        }),
+        this.prisma.outboundOrder.count({
+          where: { status: { notIn: ['COMPLETED', 'CANCELLED'] } },
+        }),
       ]);
     } catch (e) {
       console.error('[DashboardService] getOverview queries failed:', e);
-      // Return safe defaults so we never 500
     }
 
     let auditLogs: Array<{
@@ -101,7 +135,7 @@ export class DashboardService {
     }> = [];
     try {
       auditLogs = (await this.prisma.auditLog.findMany({
-        take: 20,
+        take: 25,
         orderBy: { createdAt: 'desc' },
         include: {
           actor: {
@@ -113,19 +147,25 @@ export class DashboardService {
         },
       })) as typeof auditLogs;
     } catch {
-      // audit_log may be missing or schema mismatch
+      /* audit_log optional */
     }
 
     const clientsCountChangeThisMonth = clientsCount - clientsCountLastMonth;
 
     let capacityTotal = 0;
-    let capacityUsed = 0;
     for (const w of warehousesWithCapacity) {
-      const cap = this.toNumber(w.capacityValue);
-      capacityTotal += cap;
+      capacityTotal += this.toNumber(w.capacityValue);
     }
     const capacityUsedPercent =
-      capacityTotal > 0 ? Math.round((capacityUsed / capacityTotal) * 100) : 0;
+      locationsTotal > 0
+        ? Math.min(100, Math.round((locationsWithStock / locationsTotal) * 100))
+        : 0;
+    const capacityUsedM3 =
+      capacityTotal > 0
+        ? Math.round((capacityTotal * capacityUsedPercent) / 100)
+        : locationsTotal > 0
+          ? locationsWithStock
+          : 0;
 
     const totalProductsStored = currentStockAgg.length;
     let totalQuantity = 0;
@@ -151,14 +191,21 @@ export class DashboardService {
     }
 
     const salesByMonth = monthKeys.map((key, idx) => {
-      const orders = outboundByMonth.filter((o) => {
+      const inMonth = outboundForSales.filter((o) => {
         const d = new Date(o.createdAt);
         const k = `${d.getFullYear()}-${d.getMonth() + 1}`;
         return k === key;
-      }).length;
+      });
+      const orders = inMonth.length;
+      let totalQty = 0;
+      for (const o of inMonth) {
+        for (const it of o.items) {
+          totalQty += this.toNumber(it.qtyOrdered);
+        }
+      }
       return {
         month: monthLabels[idx],
-        sales: orders * 1000,
+        sales: Math.round(totalQty),
         orders,
       };
     });
@@ -183,24 +230,125 @@ export class DashboardService {
       };
     });
 
-    const activityLog = auditLogs.map((log) => {
-      const actor = log.actor;
-      const email =
-        actor?.user?.email ?? actor?.clientAccount?.email ?? '—';
-      const createdAt = log.createdAt;
+    const formatActivity = (
+      createdAt: Date,
+      user: string,
+      action: string,
+      resourceType: string,
+      resourceId: string,
+    ) => {
       const ts =
         typeof createdAt === 'string'
           ? createdAt
           : new Date(createdAt).toISOString().replace('T', ' ').slice(0, 16);
-      const resourceId = log.resourceId != null ? String(log.resourceId) : '—';
-      return {
-        timestamp: ts,
-        user: email,
-        action: log.action,
-        resourceType: log.resourceType,
+      return { timestamp: ts, user, action, resourceType, resourceId };
+    };
+
+    const activityLog = auditLogs.map((log) => {
+      const actor = log.actor;
+      const email =
+        actor?.user?.email ?? actor?.clientAccount?.email ?? '—';
+      const resourceId =
+        log.resourceId != null ? String(log.resourceId) : '—';
+      return formatActivity(
+        log.createdAt,
+        email,
+        log.action,
+        log.resourceType,
         resourceId,
-      };
+      );
     });
+
+    if (activityLog.length < 8) {
+      try {
+        const [recentIn, recentOut] = await Promise.all([
+          this.prisma.inboundOrder.findMany({
+            take: 8,
+            orderBy: { createdAt: 'desc' },
+            select: {
+              id: true,
+              orderNumber: true,
+              createdAt: true,
+              createdByActor: {
+                select: {
+                  user: { select: { email: true } },
+                  clientAccount: { select: { email: true } },
+                },
+              },
+            },
+          }),
+          this.prisma.outboundOrder.findMany({
+            take: 8,
+            orderBy: { createdAt: 'desc' },
+            select: {
+              id: true,
+              orderNumber: true,
+              createdAt: true,
+              createdByActor: {
+                select: {
+                  user: { select: { email: true } },
+                  clientAccount: { select: { email: true } },
+                },
+              },
+            },
+          }),
+        ]);
+        const synthetic: typeof activityLog = [];
+        for (const o of recentIn) {
+          const u =
+            o.createdByActor?.user?.email ??
+            o.createdByActor?.clientAccount?.email ??
+            '—';
+          synthetic.push(
+            formatActivity(
+              o.createdAt,
+              u,
+              'إنشاء طلب وارد',
+              'InboundOrder',
+              o.orderNumber ?? o.id.slice(0, 8),
+            ),
+          );
+        }
+        for (const o of recentOut) {
+          const u =
+            o.createdByActor?.user?.email ??
+            o.createdByActor?.clientAccount?.email ??
+            '—';
+          synthetic.push(
+            formatActivity(
+              o.createdAt,
+              u,
+              'إنشاء طلب صادر',
+              'OutboundOrder',
+              o.orderNumber ?? o.id.slice(0, 8),
+            ),
+          );
+        }
+        synthetic.sort(
+          (a, b) =>
+            new Date(b.timestamp.replace(' ', 'T')).getTime() -
+            new Date(a.timestamp.replace(' ', 'T')).getTime(),
+        );
+        const seen = new Set(
+          activityLog.map((a) => `${a.action}-${a.resourceId}-${a.timestamp}`),
+        );
+        for (const row of synthetic) {
+          const k = `${row.action}-${row.resourceId}-${row.timestamp}`;
+          if (seen.has(k)) continue;
+          seen.add(k);
+          activityLog.push(row);
+          if (activityLog.length >= 25) break;
+        }
+        activityLog.sort(
+          (a, b) =>
+            new Date(b.timestamp.replace(' ', 'T')).getTime() -
+            new Date(a.timestamp.replace(' ', 'T')).getTime(),
+        );
+        activityLog.splice(25);
+      } catch {
+        /* ignore */
+      }
+    }
 
     return {
       summary: {
@@ -211,13 +359,18 @@ export class DashboardService {
         openApprovalsCount,
         urgentApprovalsCount: pendingApprovalsCreatedLast24h,
         capacityUsedPercent,
-        capacityUsedM3: Math.round(capacityUsed),
+        capacityUsedM3,
         capacityTotalM3: Math.round(capacityTotal),
         totalProductsStored,
         totalQuantity,
-        productsInUseCount: totalProductsStored,
-        productsStoredCount: totalQuantity,
+        productsInUseCount: activeProductsCount,
+        productsStoredCount: totalProductsStored,
         productsChangeThisWeek,
+        openInboundOrdersCount: openInboundOrders,
+        openOutboundOrdersCount: openOutboundOrders,
+        locationsOccupiedPercent: capacityUsedPercent,
+        locationsWithStock,
+        locationsTotal,
       },
       salesByMonth,
       inventoryByMonth,

@@ -8026,16 +8026,29 @@ function App() {
     if (pathname === '/approvals') { setActivePage('approvals-center'); return; }
   }, [location.pathname, authenticated]);
 
-  // Fetch overview data when on overview page (only when authenticated to avoid 401 → redirect loop)
+  // Overview: always loaded from GET /dashboard/overview when visiting /overview
   useEffect(() => {
     if (!authenticated || activePage !== 'overview') return;
+    let cancelled = false;
     setOverviewLoading(true);
     setOverviewError(null);
     fetchOverview()
-      .then(setOverviewData)
-      .catch((e) => setOverviewError(e instanceof Error ? e.message : 'Failed to load overview'))
-      .finally(() => setOverviewLoading(false));
-  }, [activePage, authenticated]);
+      .then((data) => {
+        if (!cancelled) setOverviewData(data);
+      })
+      .catch((e) => {
+        if (!cancelled)
+          setOverviewError(
+            e instanceof Error ? e.message : 'تعذر تحميل لوحة التحكم',
+          );
+      })
+      .finally(() => {
+        if (!cancelled) setOverviewLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [activePage, authenticated, location.pathname]);
 
   // Check authentication on mount
   useEffect(() => {
@@ -8297,14 +8310,22 @@ function App() {
                         <p className="text-2xl font-bold text-gray-900">
                           {(overviewData.summary?.capacityTotalM3 ?? 0) > 0
                             ? `${overviewData.summary?.capacityUsedPercent ?? 0}%`
-                            : '—'}
+                            : (overviewData.summary?.locationsTotal ?? 0) > 0
+                              ? `${overviewData.summary?.locationsOccupiedPercent ?? overviewData.summary?.capacityUsedPercent ?? 0}%`
+                              : '—'}
                         </p>
                         <p className="text-xs text-gray-500 mt-1">
                           {(overviewData.summary?.capacityTotalM3 ?? 0) > 0
                             ? `${(overviewData.summary?.capacityUsedM3 ?? 0).toLocaleString('ar-SA')} م³ / ${(overviewData.summary?.capacityTotalM3 ?? 0).toLocaleString('ar-SA')} م³`
-                            : 'لا توجد بيانات سعة'}
+                            : (overviewData.summary?.locationsTotal ?? 0) > 0
+                              ? `${(overviewData.summary?.locationsWithStock ?? 0).toLocaleString('ar-SA')} موقع بها مخزون / ${(overviewData.summary?.locationsTotal ?? 0).toLocaleString('ar-SA')} موقع`
+                              : 'لا توجد بيانات سعة أو مواقع'}
                         </p>
-                        <p className="text-xs text-gray-500">من إجمالي السعة</p>
+                        <p className="text-xs text-gray-500">
+                          {(overviewData.summary?.capacityTotalM3 ?? 0) > 0
+                            ? 'من إجمالي السعة المسجلة'
+                            : 'إشغال المواقع'}
+                        </p>
                       </div>
                       <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
                         <TrendingUp className="w-6 h-6 text-indigo-600" />
@@ -8315,14 +8336,15 @@ function App() {
 
                 <Card className="stat-card">
                   <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">المنتجات المخزنة</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-600">المخزون</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.totalProductsStored ?? 0).toLocaleString('ar-SA')}</p>
-                        <p className="text-xs text-gray-500 mt-1">المنتجات المستخدمة: {(overviewData.summary?.productsInUseCount ?? 0).toLocaleString('ar-SA')}</p>
-                        <p className="text-xs text-gray-500">المنتجات المخزنة: {(overviewData.summary?.productsStoredCount ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.totalQuantity ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-xs text-gray-500 mt-1">وحدات في المخزون (إجمالي الكميات)</p>
+                        <p className="text-xs text-gray-500">منتجات بنشاط مخزون: {(overviewData.summary?.productsStoredCount ?? overviewData.summary?.totalProductsStored ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-xs text-gray-500">منتجات في الكتالوج: {(overviewData.summary?.productsInUseCount ?? 0).toLocaleString('ar-SA')}</p>
                         {(overviewData.summary?.productsChangeThisWeek ?? 0) !== 0 && (
                           <p className={`text-xs mt-1 ${(overviewData.summary?.productsChangeThisWeek ?? 0) > 0 ? 'text-green-600' : 'text-red-600'}`}>
                             {(overviewData.summary?.productsChangeThisWeek ?? 0) > 0 ? '+' : ''}{overviewData.summary?.productsChangeThisWeek} هذا الأسبوع
@@ -8335,22 +8357,68 @@ function App() {
                     </div>
                   </CardContent>
                 </Card>
+
+                <Card className="stat-card">
+                  <CardHeader>
+                    <CardTitle className="text-sm font-medium text-gray-600">طلبات واردة مفتوحة</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.openInboundOrdersCount ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-xs text-gray-500 mt-1">غير مكتملة أو ملغاة</p>
+                      </div>
+                      <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
+                        <PackageSearch className="w-6 h-6 text-cyan-600" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="stat-card">
+                  <CardHeader>
+                    <CardTitle className="text-sm font-medium text-gray-600">طلبات صادرة مفتوحة</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.openOutboundOrdersCount ?? 0).toLocaleString('ar-SA')}</p>
+                        <p className="text-xs text-gray-500 mt-1">غير مكتملة أو ملغاة</p>
+                      </div>
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <Boxes className="w-6 h-6 text-orange-600" />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
-            {/* Reports Section - dynamic charts */}
+            {/* Reports Section - dynamic charts from API */}
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">التقارير</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Card className="stat-card">
                   <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">إحصائيات المبيعات</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-600">الصادر الشهري</CardTitle>
+                    <p className="text-xs text-gray-500 font-normal">كمية الطلبات الصادرة (وحدات) وعدد الطلبات</p>
                   </CardHeader>
                   <CardContent>
                     <div className="h-64 w-full">
+                      {(() => {
+                        const salesData = Array.isArray(overviewData.salesByMonth) ? overviewData.salesByMonth : [];
+                        const hasData = salesData.some((r) => (r.sales ?? 0) > 0 || (r.orders ?? 0) > 0);
+                        if (!hasData) {
+                          return (
+                            <div className="h-full flex items-center justify-center text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg">
+                              لا توجد طلبات صادرة في آخر 6 أشهر
+                            </div>
+                          );
+                        }
+                        return (
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
-                          data={Array.isArray(overviewData.salesByMonth) && overviewData.salesByMonth.length ? overviewData.salesByMonth : []}
+                          data={salesData}
                           margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
                         >
                           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -8364,7 +8432,6 @@ function App() {
                             tick={{ fill: '#6b7280', fontSize: 12 }}
                             tickLine={{ stroke: '#9ca3af' }}
                             axisLine={{ stroke: '#d1d5db' }}
-                            tickFormatter={(value) => `${(value / 1000).toFixed(0)}K`}
                           />
                           <Tooltip
                             contentStyle={{
@@ -8375,9 +8442,9 @@ function App() {
                               fontSize: '12px',
                               direction: 'rtl',
                             }}
-                            formatter={(value: number) => [
+                            formatter={(value: number, name: string) => [
                               value.toLocaleString('ar-SA'),
-                              'المبيعات'
+                              name === 'orders' ? 'عدد الطلبات' : 'الكمية (وحدات)',
                             ]}
                             labelStyle={{ fontWeight: 600, marginBottom: '4px' }}
                           />
@@ -8385,23 +8452,37 @@ function App() {
                             dataKey="sales"
                             fill="#176C33"
                             radius={[8, 8, 0, 0]}
-                            name="المبيعات"
+                            name="الكمية"
                           />
                         </BarChart>
                       </ResponsiveContainer>
+                        );
+                      })()}
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card className="stat-card">
                   <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">إحصائيات المخزون</CardTitle>
+                    <CardTitle className="text-sm font-medium text-gray-600">حركة دفتر المخزون</CardTitle>
+                    <p className="text-xs text-gray-500 font-normal">من سجل الحركات (آخر 6 أشهر)</p>
                   </CardHeader>
                   <CardContent>
                     <div className="h-64 w-full">
+                      {(() => {
+                        const invData = Array.isArray(overviewData.inventoryByMonth) ? overviewData.inventoryByMonth : [];
+                        const hasInv = invData.some((r) => (r.total ?? 0) > 0);
+                        if (!hasInv) {
+                          return (
+                            <div className="h-full flex items-center justify-center text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg">
+                              لا توجد حركات مخزون في آخر 6 أشهر
+                            </div>
+                          );
+                        }
+                        return (
                       <ResponsiveContainer width="100%" height="100%">
                         <AreaChart
-                          data={Array.isArray(overviewData.inventoryByMonth) && overviewData.inventoryByMonth.length ? overviewData.inventoryByMonth : []}
+                          data={invData}
                           margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
                         >
                           <defs>
@@ -8467,13 +8548,15 @@ function App() {
                           />
                         </AreaChart>
                       </ResponsiveContainer>
+                        );
+                      })()}
                     </div>
                   </CardContent>
                 </Card>
               </div>
             </div>
 
-            {/* Activity Log Section */}
+            {/* Activity from audit + recent orders */}
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">أنشطة أخرى</h2>
               <Card>
@@ -8489,15 +8572,25 @@ function App() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {(Array.isArray(overviewData.activityLog) ? overviewData.activityLog : []).map((activity, index) => (
-                        <TableRow key={index}>
-                          <TableCell className="text-right">{activity.timestamp}</TableCell>
-                          <TableCell className="text-right">{activity.user}</TableCell>
-                          <TableCell className="text-right">{activity.action}</TableCell>
-                          <TableCell className="text-right">{activity.resourceType}</TableCell>
-                          <TableCell className="text-right">{activity.resourceId}</TableCell>
+                      {!(Array.isArray(overviewData.activityLog) && overviewData.activityLog.length) ? (
+                        <TableRow>
+                          <TableCell colSpan={5} className="text-center text-gray-500 py-8">
+                            لا توجد أنشطة مسجلة بعد. تظهر هنا سجلات التدقيق والطلبات الأخيرة.
+                          </TableCell>
                         </TableRow>
-                      ))}
+                      ) : (
+                        <>
+                          {overviewData.activityLog.map((activity, index) => (
+                            <TableRow key={index}>
+                              <TableCell className="text-right">{activity.timestamp}</TableCell>
+                              <TableCell className="text-right">{activity.user}</TableCell>
+                              <TableCell className="text-right">{activity.action}</TableCell>
+                              <TableCell className="text-right">{activity.resourceType}</TableCell>
+                              <TableCell className="text-right">{activity.resourceId}</TableCell>
+                            </TableRow>
+                          ))}
+                        </>
+                      )}
                     </TableBody>
                   </Table>
                 </CardContent>

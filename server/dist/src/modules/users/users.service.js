@@ -31,15 +31,21 @@ let UsersService = class UsersService {
         }
     }
     async findMany() {
-        const users = await this.prisma.user.findMany({
-            include: {
-                internalRole: {
-                    select: { id: true, roleName: true, permissionsJson: true },
+        try {
+            const users = await this.prisma.user.findMany({
+                include: {
+                    internalRole: {
+                        select: { id: true, roleName: true, permissionsJson: true },
+                    },
                 },
-            },
-            orderBy: { createdAt: 'desc' },
-        });
-        return users;
+                orderBy: { createdAt: 'desc' },
+            });
+            return users;
+        }
+        catch (e) {
+            console.error('[UsersService] findMany failed:', e);
+            return [];
+        }
     }
     async update(id, dto) {
         const existing = await this.prisma.user.findUnique({ where: { id } });

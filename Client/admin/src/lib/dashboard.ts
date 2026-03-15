@@ -15,10 +15,18 @@ export interface OverviewSummary {
   productsInUseCount: number;
   productsStoredCount: number;
   productsChangeThisWeek: number;
+  /** طلبات واردة غير مكتملة/ملغاة */
+  openInboundOrdersCount?: number;
+  /** طلبات صادرة غير مكتملة/ملغاة */
+  openOutboundOrdersCount?: number;
+  locationsOccupiedPercent?: number;
+  locationsWithStock?: number;
+  locationsTotal?: number;
 }
 
 export interface SalesByMonth {
   month: string;
+  /** إجمالي كميات الطلبات الصادرة (وحدات) */
   sales: number;
   orders: number;
 }

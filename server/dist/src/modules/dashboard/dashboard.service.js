@@ -19,7 +19,7 @@ let DashboardService = class DashboardService {
         this.prisma = prisma;
     }
     toNumber(value) {
-        if (typeof value === 'number')
+        if (typeof value === 'number' && !Number.isNaN(value))
             return value;
         if (value && typeof value === 'object' && 'toNumber' in value) {
             return value.toNumber();
@@ -46,9 +46,23 @@ let DashboardService = class DashboardService {
         let warehousesWithCapacity = [];
         let currentStockAgg = [];
         let ledgerLastWeek = [];
-        let outboundByMonth = [];
         let ledgerByMonth = [];
+        let outboundForSales = [];
+        let activeProductsCount = 0;
+        let locationsTotal = 0;
+        let locationsWithStock = 0;
+        let openInboundOrders = 0;
+        let openOutboundOrders = 0;
         try {
+            const stockLocs = await this.prisma.currentStock.findMany({
+                where: {
+                    quantity: { gt: 0 },
+                    locationId: { not: null },
+                },
+                select: { locationId: true },
+                distinct: ['locationId'],
+            });
+            locationsWithStock = stockLocs.filter((r) => r.locationId).length;
             [
                 clientsCount,
                 clientsCountLastMonth,
@@ -59,8 +73,12 @@ let DashboardService = class DashboardService {
                 warehousesWithCapacity,
                 currentStockAgg,
                 ledgerLastWeek,
-                outboundByMonth,
+                outboundForSales,
                 ledgerByMonth,
+                activeProductsCount,
+                locationsTotal,
+                openInboundOrders,
+                openOutboundOrders,
             ] = await Promise.all([
                 this.prisma.client.count({ where: { isActive: true } }),
                 this.prisma.client.count({
@@ -82,7 +100,6 @@ let DashboardService = class DashboardService {
                 this.prisma.currentStock.groupBy({
                     by: ['productId'],
                     _sum: { quantity: true },
-                    _count: { productId: true },
                 }),
                 this.prisma.inventoryLedger.findMany({
                     where: { createdAt: { gte: oneWeekAgo } },
@@ -90,11 +107,22 @@ let DashboardService = class DashboardService {
                 }),
                 this.prisma.outboundOrder.findMany({
                     where: { createdAt: { gte: sixMonthsAgo } },
-                    select: { createdAt: true },
+                    select: {
+                        createdAt: true,
+                        items: { select: { qtyOrdered: true } },
+                    },
                 }),
                 this.prisma.inventoryLedger.findMany({
                     where: { createdAt: { gte: sixMonthsAgo } },
                     select: { qtyChange: true, createdAt: true },
+                }),
+                this.prisma.product.count({ where: { isActive: true } }),
+                this.prisma.location.count({ where: { isActive: true } }),
+                this.prisma.inboundOrder.count({
+                    where: { status: { notIn: ['COMPLETED', 'CANCELLED'] } },
+                }),
+                this.prisma.outboundOrder.count({
+                    where: { status: { notIn: ['COMPLETED', 'CANCELLED'] } },
                 }),
             ]);
         }
@@ -104,7 +132,7 @@ let DashboardService = class DashboardService {
         let auditLogs = [];
         try {
             auditLogs = (await this.prisma.auditLog.findMany({
-                take: 20,
+                take: 25,
                 orderBy: { createdAt: 'desc' },
                 include: {
                     actor: {
@@ -120,12 +148,17 @@ let DashboardService = class DashboardService {
         }
         const clientsCountChangeThisMonth = clientsCount - clientsCountLastMonth;
         let capacityTotal = 0;
-        let capacityUsed = 0;
         for (const w of warehousesWithCapacity) {
-            const cap = this.toNumber(w.capacityValue);
-            capacityTotal += cap;
+            capacityTotal += this.toNumber(w.capacityValue);
         }
-        const capacityUsedPercent = capacityTotal > 0 ? Math.round((capacityUsed / capacityTotal) * 100) : 0;
+        const capacityUsedPercent = locationsTotal > 0
+            ? Math.min(100, Math.round((locationsWithStock / locationsTotal) * 100))
+            : 0;
+        const capacityUsedM3 = capacityTotal > 0
+            ? Math.round((capacityTotal * capacityUsedPercent) / 100)
+            : locationsTotal > 0
+                ? locationsWithStock
+                : 0;
         const totalProductsStored = currentStockAgg.length;
         let totalQuantity = 0;
         for (const g of currentStockAgg) {
@@ -146,14 +179,21 @@ let DashboardService = class DashboardService {
             monthLabels.push(d.toLocaleDateString('ar-SA', { month: 'short', year: 'numeric' }));
         }
         const salesByMonth = monthKeys.map((key, idx) => {
-            const orders = outboundByMonth.filter((o) => {
+            const inMonth = outboundForSales.filter((o) => {
                 const d = new Date(o.createdAt);
                 const k = `${d.getFullYear()}-${d.getMonth() + 1}`;
                 return k === key;
-            }).length;
+            });
+            const orders = inMonth.length;
+            let totalQty = 0;
+            for (const o of inMonth) {
+                for (const it of o.items) {
+                    totalQty += this.toNumber(it.qtyOrdered);
+                }
+            }
             return {
                 month: monthLabels[idx],
-                sales: orders * 1000,
+                sales: Math.round(totalQty),
                 orders,
             };
         });
@@ -179,22 +219,84 @@ let DashboardService = class DashboardService {
                 available,
             };
         });
-        const activityLog = auditLogs.map((log) => {
-            const actor = log.actor;
-            const email = actor?.user?.email ?? actor?.clientAccount?.email ?? '—';
-            const createdAt = log.createdAt;
+        const formatActivity = (createdAt, user, action, resourceType, resourceId) => {
             const ts = typeof createdAt === 'string'
                 ? createdAt
                 : new Date(createdAt).toISOString().replace('T', ' ').slice(0, 16);
+            return { timestamp: ts, user, action, resourceType, resourceId };
+        };
+        const activityLog = auditLogs.map((log) => {
+            const actor = log.actor;
+            const email = actor?.user?.email ?? actor?.clientAccount?.email ?? '—';
             const resourceId = log.resourceId != null ? String(log.resourceId) : '—';
-            return {
-                timestamp: ts,
-                user: email,
-                action: log.action,
-                resourceType: log.resourceType,
-                resourceId,
-            };
+            return formatActivity(log.createdAt, email, log.action, log.resourceType, resourceId);
         });
+        if (activityLog.length < 8) {
+            try {
+                const [recentIn, recentOut] = await Promise.all([
+                    this.prisma.inboundOrder.findMany({
+                        take: 8,
+                        orderBy: { createdAt: 'desc' },
+                        select: {
+                            id: true,
+                            orderNumber: true,
+                            createdAt: true,
+                            createdByActor: {
+                                select: {
+                                    user: { select: { email: true } },
+                                    clientAccount: { select: { email: true } },
+                                },
+                            },
+                        },
+                    }),
+                    this.prisma.outboundOrder.findMany({
+                        take: 8,
+                        orderBy: { createdAt: 'desc' },
+                        select: {
+                            id: true,
+                            orderNumber: true,
+                            createdAt: true,
+                            createdByActor: {
+                                select: {
+                                    user: { select: { email: true } },
+                                    clientAccount: { select: { email: true } },
+                                },
+                            },
+                        },
+                    }),
+                ]);
+                const synthetic = [];
+                for (const o of recentIn) {
+                    const u = o.createdByActor?.user?.email ??
+                        o.createdByActor?.clientAccount?.email ??
+                        '—';
+                    synthetic.push(formatActivity(o.createdAt, u, 'إنشاء طلب وارد', 'InboundOrder', o.orderNumber ?? o.id.slice(0, 8)));
+                }
+                for (const o of recentOut) {
+                    const u = o.createdByActor?.user?.email ??
+                        o.createdByActor?.clientAccount?.email ??
+                        '—';
+                    synthetic.push(formatActivity(o.createdAt, u, 'إنشاء طلب صادر', 'OutboundOrder', o.orderNumber ?? o.id.slice(0, 8)));
+                }
+                synthetic.sort((a, b) => new Date(b.timestamp.replace(' ', 'T')).getTime() -
+                    new Date(a.timestamp.replace(' ', 'T')).getTime());
+                const seen = new Set(activityLog.map((a) => `${a.action}-${a.resourceId}-${a.timestamp}`));
+                for (const row of synthetic) {
+                    const k = `${row.action}-${row.resourceId}-${row.timestamp}`;
+                    if (seen.has(k))
+                        continue;
+                    seen.add(k);
+                    activityLog.push(row);
+                    if (activityLog.length >= 25)
+                        break;
+                }
+                activityLog.sort((a, b) => new Date(b.timestamp.replace(' ', 'T')).getTime() -
+                    new Date(a.timestamp.replace(' ', 'T')).getTime());
+                activityLog.splice(25);
+            }
+            catch {
+            }
+        }
         return {
             summary: {
                 clientsCount,
@@ -204,13 +306,18 @@ let DashboardService = class DashboardService {
                 openApprovalsCount,
                 urgentApprovalsCount: pendingApprovalsCreatedLast24h,
                 capacityUsedPercent,
-                capacityUsedM3: Math.round(capacityUsed),
+                capacityUsedM3,
                 capacityTotalM3: Math.round(capacityTotal),
                 totalProductsStored,
                 totalQuantity,
-                productsInUseCount: totalProductsStored,
-                productsStoredCount: totalQuantity,
+                productsInUseCount: activeProductsCount,
+                productsStoredCount: totalProductsStored,
                 productsChangeThisWeek,
+                openInboundOrdersCount: openInboundOrders,
+                openOutboundOrdersCount: openOutboundOrders,
+                locationsOccupiedPercent: capacityUsedPercent,
+                locationsWithStock,
+                locationsTotal,
             },
             salesByMonth,
             inventoryByMonth,

@@ -128,10 +128,11 @@ export class OutboundOrdersService {
     }
   }
 
-  private serializeOrder(order: {
-    items?: Array<{ qtyOrdered?: unknown; qtyShipped?: unknown; [k: string]: unknown }>;
-    [k: string]: unknown;
-  }) {
+  private serializeOrder<
+    O extends {
+      items?: Array<{ qtyOrdered?: unknown; qtyShipped?: unknown; [k: string]: unknown }>;
+    },
+  >(order: O): O {
     return {
       ...order,
       items: (order.items || []).map((item) => ({
@@ -139,7 +140,7 @@ export class OutboundOrdersService {
         qtyOrdered: toNumber(item.qtyOrdered),
         qtyShipped: toNumber(item.qtyShipped),
       })),
-    };
+    } as O;
   }
 
   async findOne(id: string) {

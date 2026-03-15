@@ -52,15 +52,20 @@ export class UsersService {
    * Used by admin UI for identity & access management.
    */
   async findMany(): Promise<UserWithRole[]> {
-    const users = await this.prisma.user.findMany({
-      include: {
-        internalRole: {
-          select: { id: true, roleName: true, permissionsJson: true },
+    try {
+      const users = await this.prisma.user.findMany({
+        include: {
+          internalRole: {
+            select: { id: true, roleName: true, permissionsJson: true },
+          },
         },
-      },
-      orderBy: { createdAt: 'desc' },
-    });
-    return users as UserWithRole[];
+        orderBy: { createdAt: 'desc' },
+      });
+      return users as UserWithRole[];
+    } catch (e) {
+      console.error('[UsersService] findMany failed:', e);
+      return [];
+    }
   }
 
   /**

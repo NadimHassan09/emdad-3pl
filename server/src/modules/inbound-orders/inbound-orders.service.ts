@@ -172,22 +172,28 @@ export class InboundOrdersService {
     return this.serializeOrder(order);
   }
 
-  private serializeOrder(order: {
-    items?: Array<{ qtyOrdered?: unknown; qtyReceived?: unknown; batches?: Array<{ qtyReceived?: unknown; [k: string]: unknown }>; [k: string]: unknown }>;
-    [k: string]: unknown;
-  }) {
+  private serializeOrder<
+    O extends {
+      items?: Array<{
+        qtyOrdered?: unknown;
+        qtyReceived?: unknown;
+        batches?: Array<{ qtyReceived?: unknown } & Record<string, unknown>>;
+        [k: string]: unknown;
+      }>;
+    },
+  >(order: O): O {
     return {
       ...order,
       items: (order.items || []).map((item) => ({
         ...item,
         qtyOrdered: toNumber(item.qtyOrdered),
         qtyReceived: toNumber(item.qtyReceived),
-        batches: (item.batches || []).map((b: { qtyReceived?: unknown; [k: string]: unknown }) => ({
+        batches: (item.batches || []).map((b) => ({
           ...b,
           qtyReceived: toNumber(b.qtyReceived),
         })),
       })),
-    };
+    } as O;
   }
 
   async update(id: string, dto: UpdateInboundOrderDto) {

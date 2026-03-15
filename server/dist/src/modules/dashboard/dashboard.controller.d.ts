@@ -18,6 +18,11 @@ export declare class DashboardController {
             productsInUseCount: number;
             productsStoredCount: number;
             productsChangeThisWeek: number;
+            openInboundOrdersCount: number;
+            openOutboundOrdersCount: number;
+            locationsOccupiedPercent: number;
+            locationsWithStock: number;
+            locationsTotal: number;
         };
         salesByMonth: {
             month: string;

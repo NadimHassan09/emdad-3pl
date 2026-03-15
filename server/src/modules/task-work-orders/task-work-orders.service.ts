@@ -90,25 +90,35 @@ export class TaskWorkOrdersService {
     if (filter?.referenceId) where.referenceId = filter.referenceId;
     if (filter?.dueFrom || filter?.dueTo) {
       where.createdAt = {};
-      if (filter.dueFrom) (where.createdAt as any).gte = new Date(filter.dueFrom);
+      if (filter.dueFrom) {
+        const gte = new Date(filter.dueFrom);
+        if (!Number.isNaN(gte.getTime())) (where.createdAt as any).gte = gte;
+      }
       if (filter.dueTo) {
         const d = new Date(filter.dueTo);
-        d.setHours(23, 59, 59, 999);
-        (where.createdAt as any).lte = d;
+        if (!Number.isNaN(d.getTime())) {
+          d.setHours(23, 59, 59, 999);
+          (where.createdAt as any).lte = d;
+        }
       }
     }
 
-    return this.prisma.taskWorkOrder.findMany({
-      where,
-      include: {
-        client: { select: { id: true, code: true, name: true } },
-        warehouse: { select: { id: true, code: true, name: true } },
-        assignedUser: {
-          select: { id: true, email: true, firstName: true, lastName: true },
+    try {
+      return await this.prisma.taskWorkOrder.findMany({
+        where,
+        include: {
+          client: { select: { id: true, code: true, name: true } },
+          warehouse: { select: { id: true, code: true, name: true } },
+          assignedUser: {
+            select: { id: true, email: true, firstName: true, lastName: true },
+          },
         },
-      },
-      orderBy: [{ priority: 'desc' }, { createdAt: 'asc' }],
-    });
+        orderBy: [{ priority: 'desc' }, { createdAt: 'asc' }],
+      });
+    } catch (e) {
+      console.error('[TaskWorkOrdersService] findMany failed:', e);
+      return [];
+    }
   }
 
   async findOne(id: string) {
