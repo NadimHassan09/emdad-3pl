@@ -673,7 +673,7 @@ function IdentityAndAccessPage() {
   const [roles, setRoles] = useState<UserRoleInfo[]>([]);
   const [warehouses, setWarehouses] = useState<WarehouseResponse[]>([]);
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [isEditUserDialogOpen, setIsEditUserDialogOpen] = useState(false);
   const [editFormData, setEditFormData] = useState<{
     firstName?: string;
     lastName?: string;
@@ -741,18 +741,20 @@ function IdentityAndAccessPage() {
     return true;
   });
 
-  const handleEdit = (account: Account) => {
+  const handleEditUserFromRow = (account: Account, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setSelectedAccount(account);
     setEditFormData({
       firstName: account.firstName,
       lastName: account.lastName,
       email: account.email,
-      roleId: account.roleId,
-      warehouseId: account.warehouseId,
+      roleId: account.roleId ?? '',
+      warehouseId: account.warehouseId ?? '',
       isActive: account.status === 'نشط',
       password: '',
     });
-    setIsEditDialogOpen(true);
+    setIsEditUserDialogOpen(true);
   };
 
   const handleSaveEdit = async () => {
@@ -763,8 +765,8 @@ function IdentityAndAccessPage() {
         firstName: editFormData.firstName?.trim(),
         lastName: editFormData.lastName?.trim(),
         email: editFormData.email?.trim(),
-        internalRoleId: editFormData.roleId || null,
-        warehouseId: editFormData.warehouseId || null,
+        internalRoleId: (editFormData.roleId && editFormData.roleId.trim()) ? editFormData.roleId : null,
+        warehouseId: (editFormData.warehouseId && editFormData.warehouseId.trim()) ? editFormData.warehouseId : null,
         isActive: editFormData.isActive,
       };
       if (editFormData.password && editFormData.password.length > 0) {
@@ -780,15 +782,15 @@ function IdentityAndAccessPage() {
               name: `${editFormData.firstName || ''} ${editFormData.lastName || ''}`.trim() || account.name,
               email: editFormData.email || account.email,
               role: roles.find((r) => r.id === editFormData.roleId)?.roleName || account.role,
-              roleId: editFormData.roleId ?? account.roleId,
+              roleId: (editFormData.roleId && editFormData.roleId.trim()) ? editFormData.roleId : null,
               warehouse: warehouses.find((w) => w.id === editFormData.warehouseId)?.name ?? account.warehouse,
-              warehouseId: editFormData.warehouseId ?? account.warehouseId,
+              warehouseId: (editFormData.warehouseId && editFormData.warehouseId.trim()) ? editFormData.warehouseId : null,
               status: (editFormData.isActive ? 'نشط' : 'غير نشط') as 'نشط' | 'غير نشط',
             } as Account
           : account
       );
       setAccounts(updatedAccounts);
-      setIsEditDialogOpen(false);
+      setIsEditUserDialogOpen(false);
       setSelectedAccount(null);
       setEditFormData({});
     } catch (e) {
@@ -956,15 +958,12 @@ function IdentityAndAccessPage() {
                 <TableHead className="text-right font-semibold">الدور</TableHead>
                 <TableHead className="text-right font-semibold">المستودع</TableHead>
                 <TableHead className="text-right font-semibold">الحالة</TableHead>
+                <TableHead className="text-right font-semibold w-[100px]">الإجراءات</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredAccounts.map((account) => (
-                <TableRow
-                  key={account.id}
-                  className="cursor-pointer hover:bg-muted/50"
-                  onClick={() => handleEdit(account)}
-                >
+                <TableRow key={account.id}>
                   <TableCell className="text-right">{account.name}</TableCell>
                   <TableCell className="text-right">{account.email}</TableCell>
                   <TableCell className="text-right">{account.role}</TableCell>
@@ -976,6 +975,18 @@ function IdentityAndAccessPage() {
                       {account.status}
                     </Badge>
                   </TableCell>
+                  <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-8"
+                      onClick={(e) => handleEditUserFromRow(account, e)}
+                    >
+                      <Edit className="w-4 h-4 ml-1" />
+                      تعديل
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -984,161 +995,111 @@ function IdentityAndAccessPage() {
         </CardContent>
       </Card>
 
-      {/* Edit Account Dialog */}
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+      {/* Edit User Dialog - only when Edit button is clicked */}
+      <Dialog
+        open={isEditUserDialogOpen}
+        onOpenChange={(open) => {
+          setIsEditUserDialogOpen(open);
+          if (!open) {
+            setSelectedAccount(null);
+            setEditFormData({});
+          }
+        }}
+      >
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl">تعديل الحساب</DialogTitle>
-            <DialogDescription>
-              تعديل معلومات الحساب والأدوار
-            </DialogDescription>
-          </DialogHeader>
-
           {selectedAccount && (
-            <div className="space-y-4 py-4">
-              {/* First name */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  الاسم الأول
-                </label>
-                <Input
-                  value={editFormData.firstName || ''}
-                  onChange={(e) =>
-                    setEditFormData({ ...editFormData, firstName: e.target.value })
-                  }
-                  placeholder="الاسم الأول"
-                />
-              </div>
-
-              {/* Last name */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  اسم العائلة
-                </label>
-                <Input
-                  value={editFormData.lastName || ''}
-                  onChange={(e) =>
-                    setEditFormData({ ...editFormData, lastName: e.target.value })
-                  }
-                  placeholder="اسم العائلة"
-                />
-              </div>
-
-              {/* Email */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  البريد الإلكتروني
-                </label>
-                <Input
-                  type="email"
-                  value={editFormData.email || ''}
-                  onChange={(e) =>
-                    setEditFormData({ ...editFormData, email: e.target.value })
-                  }
-                  placeholder="أدخل البريد الإلكتروني"
-                />
-              </div>
-
-              {/* Role */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  الدور
-                </label>
-                <Select
-                  value={editFormData.roleId || ''}
-                  onValueChange={(value) =>
-                    setEditFormData({ ...editFormData, roleId: value || null })
-                  }
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر الدور" />
-                  </SelectTrigger>
-                  <SelectContent>
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-xl">تعديل الحساب</DialogTitle>
+                <DialogDescription>
+                  تعديل معلومات الحساب والأدوار
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">الاسم الأول</label>
+                  <Input
+                    value={editFormData.firstName ?? ''}
+                    onChange={(e) => setEditFormData({ ...editFormData, firstName: e.target.value })}
+                    placeholder="الاسم الأول"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">اسم العائلة</label>
+                  <Input
+                    value={editFormData.lastName ?? ''}
+                    onChange={(e) => setEditFormData({ ...editFormData, lastName: e.target.value })}
+                    placeholder="اسم العائلة"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">البريد الإلكتروني</label>
+                  <Input
+                    type="email"
+                    value={editFormData.email ?? ''}
+                    onChange={(e) => setEditFormData({ ...editFormData, email: e.target.value })}
+                    placeholder="أدخل البريد الإلكتروني"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">الدور</label>
+                  <select
+                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    value={editFormData.roleId ?? ''}
+                    onChange={(e) => setEditFormData({ ...editFormData, roleId: e.target.value || null })}
+                  >
+                    <option value="">بدون دور</option>
                     {roles.map((r) => (
-                      <SelectItem key={r.id} value={r.id}>
-                        {r.roleName}
-                      </SelectItem>
+                      <option key={r.id} value={r.id}>{r.roleName}</option>
                     ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Warehouse */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  المستودع
-                </label>
-                <Select
-                  value={editFormData.warehouseId || ''}
-                  onValueChange={(value) =>
-                    setEditFormData({ ...editFormData, warehouseId: value || null })
-                  }
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر المستودع" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="">بدون مستودع</SelectItem>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">المستودع</label>
+                  <select
+                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    value={editFormData.warehouseId ?? ''}
+                    onChange={(e) => setEditFormData({ ...editFormData, warehouseId: e.target.value || null })}
+                  >
+                    <option value="">بدون مستودع</option>
                     {warehouses.map((wh) => (
-                      <SelectItem key={wh.id} value={wh.id}>
-                        {wh.name}
-                      </SelectItem>
+                      <option key={wh.id} value={wh.id}>{wh.name}</option>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </select>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="edit-account-active"
+                    checked={editFormData.isActive !== false}
+                    onChange={(e) => setEditFormData({ ...editFormData, isActive: e.target.checked })}
+                    className="rounded border-gray-300"
+                  />
+                  <label htmlFor="edit-account-active" className="text-sm font-medium text-gray-700">
+                    الحساب نشط
+                  </label>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">كلمة المرور</label>
+                  <Input
+                    type="password"
+                    value={editFormData.password ?? ''}
+                    onChange={(e) => setEditFormData({ ...editFormData, password: e.target.value })}
+                    placeholder="اتركه فارغاً إذا لم تريد تغييره"
+                  />
+                  <p className="text-xs text-gray-500">اتركه فارغاً إذا لم تريد تغيير كلمة المرور</p>
+                </div>
               </div>
-
-              {/* Status */}
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="edit-account-active"
-                  checked={editFormData.isActive ?? true}
-                  onChange={(e) =>
-                    setEditFormData({ ...editFormData, isActive: e.target.checked })
-                  }
-                  className="rounded border-gray-300"
-                />
-                <label htmlFor="edit-account-active" className="text-sm font-medium text-gray-700">
-                  الحساب نشط
-                </label>
-              </div>
-
-              {/* Password */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">
-                  كلمة المرور
-                </label>
-                <Input
-                  type="password"
-                  value={editFormData.password || ''}
-                  onChange={(e) =>
-                    setEditFormData({ ...editFormData, password: e.target.value })
-                  }
-                  placeholder="اتركه فارغاً إذا لم تريد تغييره"
-                />
-                <p className="text-xs text-gray-500">
-                  اتركه فارغاً إذا لم تريد تغيير كلمة المرور
-                </p>
-              </div>
-            </div>
+              <DialogFooter>
+                <Button type="button" variant="outline" onClick={() => setIsEditUserDialogOpen(false)}>
+                  إلغاء
+                </Button>
+                <Button type="button" onClick={handleSaveEdit} disabled={saving}>
+                  {saving ? 'جاري الحفظ...' : 'حفظ التغييرات'}
+                </Button>
+              </DialogFooter>
+            </>
           )}
-
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setIsEditDialogOpen(false);
-                setSelectedAccount(null);
-                setEditFormData({});
-              }}
-            >
-              إلغاء
-            </Button>
-            <Button onClick={handleSaveEdit} disabled={saving}>
-              {saving ? 'جاري الحفظ...' : 'حفظ التغييرات'}
-            </Button>
-          </DialogFooter>
         </DialogContent>
       </Dialog>
 
