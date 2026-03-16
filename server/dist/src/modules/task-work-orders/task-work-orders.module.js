@@ -21,4 +21,144 @@ exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
         exports: [task_work_orders_service_1.TaskWorkOrdersService],
     })
 ], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
+let TaskWorkOrdersModule = class TaskWorkOrdersModule {
+};
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule;
+exports.TaskWorkOrdersModule = TaskWorkOrdersModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [task_work_orders_controller_1.TaskWorkOrdersController],
+        providers: [task_work_orders_service_1.TaskWorkOrdersService, prisma_service_1.PrismaService],
+        exports: [task_work_orders_service_1.TaskWorkOrdersService],
+    })
+], TaskWorkOrdersModule);
 //# sourceMappingURL=task-work-orders.module.js.map

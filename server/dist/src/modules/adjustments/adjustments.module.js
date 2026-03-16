@@ -24,4 +24,158 @@ exports.AdjustmentsModule = AdjustmentsModule = __decorate([
         exports: [adjustments_service_1.AdjustmentsService],
     })
 ], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
+let AdjustmentsModule = class AdjustmentsModule {
+};
+exports.AdjustmentsModule = AdjustmentsModule;
+exports.AdjustmentsModule = AdjustmentsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule, approvals_module_1.ApprovalsModule],
+        controllers: [adjustments_controller_1.AdjustmentsController],
+        providers: [adjustments_service_1.AdjustmentsService, prisma_service_1.PrismaService],
+        exports: [adjustments_service_1.AdjustmentsService],
+    })
+], AdjustmentsModule);
 //# sourceMappingURL=adjustments.module.js.map

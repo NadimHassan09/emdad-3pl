@@ -19,4 +19,116 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
+class AssignTaskWorkOrderDto {
+}
+exports.AssignTaskWorkOrderDto = AssignTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AssignTaskWorkOrderDto.prototype, "assignedUserId", void 0);
 //# sourceMappingURL=assign-task-work-order.dto.js.map

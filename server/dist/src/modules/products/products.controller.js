@@ -73,4 +73,60 @@ exports.ProductsController = ProductsController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [products_service_1.ProductsService])
 ], ProductsController);
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
 //# sourceMappingURL=products.controller.js.map

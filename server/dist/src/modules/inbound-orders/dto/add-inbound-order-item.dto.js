@@ -31,4 +31,270 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
+class AddInboundOrderItemDto {
+}
+exports.AddInboundOrderItemDto = AddInboundOrderItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], AddInboundOrderItemDto.prototype, "qtyOrdered", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], AddInboundOrderItemDto.prototype, "uomId", void 0);
 //# sourceMappingURL=add-inbound-order-item.dto.js.map

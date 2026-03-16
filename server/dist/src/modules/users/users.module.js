@@ -21,4 +21,46 @@ exports.UsersModule = UsersModule = __decorate([
         exports: [users_service_1.UsersService],
     })
 ], UsersModule);
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
+class UsersModule {
+}
+exports.UsersModule = UsersModule;
 //# sourceMappingURL=users.module.js.map

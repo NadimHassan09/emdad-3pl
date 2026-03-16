@@ -19,4 +19,130 @@ exports.ClientSettingsModule = ClientSettingsModule = __decorate([
         providers: [client_settings_service_1.ClientSettingsService],
     })
 ], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
+let ClientSettingsModule = class ClientSettingsModule {
+};
+exports.ClientSettingsModule = ClientSettingsModule;
+exports.ClientSettingsModule = ClientSettingsModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [client_settings_controller_1.ClientSettingsController],
+        providers: [client_settings_service_1.ClientSettingsService],
+    })
+], ClientSettingsModule);
 //# sourceMappingURL=client-settings.module.js.map

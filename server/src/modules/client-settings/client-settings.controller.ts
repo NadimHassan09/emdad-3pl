@@ -44,3 +44,668 @@ export class ClientSettingsController {
 
 
 
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { ClientSettingsService } from './client-settings.service';
+import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
+import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
+
+@Controller('client-settings')
+@UseGuards(JwtAuthGuard)
+export class ClientSettingsController {
+  constructor(private readonly settings: ClientSettingsService) {}
+
+  @Get('me')
+  getMe(@CurrentActor() actor: JwtPayload) {
+    return this.settings.getMe(actor);
+  }
+
+  @Patch('me/profile')
+  updateProfile(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientProfileDto,
+  ) {
+    return this.settings.updateProfile(actor, dto);
+  }
+
+  @Patch('me/password')
+  changePassword(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: ChangeClientPasswordDto,
+  ) {
+    return this.settings.changePassword(actor, dto);
+  }
+
+  @Patch('me/preferences')
+  updatePreferences(
+    @CurrentActor() actor: JwtPayload,
+    @Body() dto: UpdateClientPreferencesDto,
+  ) {
+    return this.settings.updatePreferences(actor, dto);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

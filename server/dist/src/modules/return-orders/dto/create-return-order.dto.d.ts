@@ -7,3 +7,115 @@ export declare class CreateReturnOrderDto {
     qty: number;
     disposition?: ReturnDisposition;
 }
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}
+export declare class CreateReturnOrderDto {
+    outboundOrderId: string;
+    returnNumber: string;
+    productId: string;
+    batchId?: string;
+    qty: number;
+    disposition?: ReturnDisposition;
+}

@@ -24,10 +24,6 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
         warehouseId: string;
         referenceType: string | null;
@@ -35,7 +31,11 @@ export declare class TaskWorkOrdersController {
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
         assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     findMany(filter: TaskWorkOrderFilterDto): Promise<({
         client: {
@@ -55,10 +55,6 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
         warehouseId: string;
         referenceType: string | null;
@@ -66,7 +62,11 @@ export declare class TaskWorkOrdersController {
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
         assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     })[]>;
     findOne(id: string): Promise<{
         client: {
@@ -86,10 +86,6 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
         warehouseId: string;
         referenceType: string | null;
@@ -97,7 +93,11 @@ export declare class TaskWorkOrdersController {
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
         assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
         client: {
@@ -117,10 +117,6 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
         warehouseId: string;
         referenceType: string | null;
@@ -128,7 +124,11 @@ export declare class TaskWorkOrdersController {
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
         assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
         client: {
@@ -148,10 +148,6 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
         warehouseId: string;
         referenceType: string | null;
@@ -159,7 +155,11 @@ export declare class TaskWorkOrdersController {
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
         assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     complete(id: string): Promise<{
         client: {
@@ -179,10 +179,6 @@ export declare class TaskWorkOrdersController {
             lastName: string;
         } | null;
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
-        status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
         warehouseId: string;
         referenceType: string | null;
@@ -190,6 +186,2670 @@ export declare class TaskWorkOrdersController {
         taskType: import(".prisma/client").$Enums.TaskType;
         referenceItemId: string | null;
         priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
         assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+}
+export declare class TaskWorkOrdersController {
+    private readonly taskWorkOrders;
+    constructor(taskWorkOrders: TaskWorkOrdersService);
+    create(dto: CreateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findMany(filter: TaskWorkOrderFilterDto): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    })[]>;
+    findOne(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    complete(id: string): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        assignedUser: {
+            id: string;
+            email: string;
+            firstName: string;
+            lastName: string;
+        } | null;
+    } & {
+        clientId: string;
+        warehouseId: string;
+        referenceType: string | null;
+        referenceId: string | null;
+        taskType: import(".prisma/client").$Enums.TaskType;
+        referenceItemId: string | null;
+        priority: import(".prisma/client").$Enums.TaskPriority;
+        status: import(".prisma/client").$Enums.TaskStatus;
+        assignedUserId: string | null;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
 }

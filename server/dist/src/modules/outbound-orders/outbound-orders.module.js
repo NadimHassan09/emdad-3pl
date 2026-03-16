@@ -23,4 +23,158 @@ exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
         exports: [outbound_orders_service_1.OutboundOrdersService],
     })
 ], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
+let OutboundOrdersModule = class OutboundOrdersModule {
+};
+exports.OutboundOrdersModule = OutboundOrdersModule;
+exports.OutboundOrdersModule = OutboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [stock_reservations_module_1.StockReservationsModule],
+        controllers: [outbound_orders_controller_1.OutboundOrdersController],
+        providers: [outbound_orders_service_1.OutboundOrdersService, prisma_service_1.PrismaService],
+        exports: [outbound_orders_service_1.OutboundOrdersService],
+    })
+], OutboundOrdersModule);
 //# sourceMappingURL=outbound-orders.module.js.map

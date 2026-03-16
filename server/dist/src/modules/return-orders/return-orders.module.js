@@ -23,4 +23,158 @@ exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
         exports: [return_orders_service_1.ReturnOrdersService],
     })
 ], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
+let ReturnOrdersModule = class ReturnOrdersModule {
+};
+exports.ReturnOrdersModule = ReturnOrdersModule;
+exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [return_orders_controller_1.ReturnOrdersController],
+        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        exports: [return_orders_service_1.ReturnOrdersService],
+    })
+], ReturnOrdersModule);
 //# sourceMappingURL=return-orders.module.js.map

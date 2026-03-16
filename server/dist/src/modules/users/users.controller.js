@@ -33,4 +33,284 @@ exports.UsersController = UsersController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
+let UsersController = class UsersController {
+    constructor(users) {
+        this.users = users;
+    }
+    findMany() {
+        return this.users.findMany();
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findMany", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], UsersController);
 //# sourceMappingURL=users.controller.js.map

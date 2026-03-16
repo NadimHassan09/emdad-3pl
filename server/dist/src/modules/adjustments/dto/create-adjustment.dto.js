@@ -51,4 +51,662 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+;
+from;
+'class-validator';
+class CreateAdjustmentDto {
+}
+exports.CreateAdjustmentDto = CreateAdjustmentDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateAdjustmentDto.prototype, "qtyChange", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateAdjustmentDto.prototype, "reason", void 0);
 //# sourceMappingURL=create-adjustment.dto.js.map

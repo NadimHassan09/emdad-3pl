@@ -6,3 +6,101 @@ export declare class UpdateInboundOrderDto {
     expectedDate?: string;
     warehouseId?: string;
 }
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}
+export declare class UpdateInboundOrderDto {
+    orderNumber?: string;
+    status?: OrderStatus;
+    currentStage?: string;
+    expectedDate?: string;
+    warehouseId?: string;
+}

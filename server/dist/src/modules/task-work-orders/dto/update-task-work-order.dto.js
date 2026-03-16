@@ -47,4 +47,466 @@ __decorate([
     (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
     __metadata("design:type", String)
 ], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
+class UpdateTaskWorkOrderDto {
+}
+exports.UpdateTaskWorkOrderDto = UpdateTaskWorkOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "referenceItemId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], UpdateTaskWorkOrderDto.prototype, "status", void 0);
 //# sourceMappingURL=update-task-work-order.dto.js.map

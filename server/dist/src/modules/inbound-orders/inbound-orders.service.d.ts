@@ -42,8 +42,8 @@ export declare class InboundOrdersService {
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
-        expectedDate: Date | null;
         createdByActorId: string;
+        expectedDate: Date | null;
     }>;
     findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
         client: {
@@ -74,8 +74,8 @@ export declare class InboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -86,8 +86,8 @@ export declare class InboundOrdersService {
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
-        expectedDate: Date | null;
         createdByActorId: string;
+        expectedDate: Date | null;
     })[]>;
     findOne(id: string, payload?: JwtPayload): Promise<{
         client: {
@@ -148,8 +148,8 @@ export declare class InboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -160,8 +160,8 @@ export declare class InboundOrdersService {
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
-        expectedDate: Date | null;
         createdByActorId: string;
+        expectedDate: Date | null;
     }>;
     update(id: string, dto: UpdateInboundOrderDto): Promise<{
         client: {
@@ -192,8 +192,8 @@ export declare class InboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -204,8 +204,8 @@ export declare class InboundOrdersService {
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
-        expectedDate: Date | null;
         createdByActorId: string;
+        expectedDate: Date | null;
     }>;
     addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
         uom: {
@@ -225,8 +225,8 @@ export declare class InboundOrdersService {
         productId: string;
         qtyOrdered: import("@prisma/client/runtime/library").Decimal;
         uomId: string;
-        qtyReceived: import("@prisma/client/runtime/library").Decimal;
         inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
     }>;
     receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
         client: {
@@ -287,8 +287,8 @@ export declare class InboundOrdersService {
             productId: string;
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             uomId: string;
-            qtyReceived: import("@prisma/client/runtime/library").Decimal;
             inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
         })[];
     } & {
         id: string;
@@ -299,7 +299,4165 @@ export declare class InboundOrdersService {
         warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
-        expectedDate: Date | null;
         createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+}
+export declare class InboundOrdersService {
+    private readonly prisma;
+    private readonly inventoryService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    findMany(filter?: InboundOrderFilterDto, payload?: JwtPayload): Promise<({
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    })[]>;
+    findOne(id: string, payload?: JwtPayload): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    update(id: string, dto: UpdateInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
+    }>;
+    addItem(orderId: string, dto: AddInboundOrderItemDto): Promise<{
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+        uomId: string;
+        inboundOrderId: string;
+        qtyReceived: import("@prisma/client/runtime/library").Decimal;
+    }>;
+    receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyReceived: import("@prisma/client/runtime/library").Decimal;
+                inboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            inboundOrderId: string;
+            qtyReceived: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        warehouseId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedDate: Date | null;
     }>;
 }

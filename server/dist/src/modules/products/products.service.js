@@ -87,4 +87,102 @@ exports.ProductsService = ProductsService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], ProductsService);
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
+(dto.minThreshold !== undefined && {
+    minThreshold: dto.minThreshold,
+}),
+;
+(dto.isActive !== undefined && { isActive: dto.isActive }),
+;
+;
 //# sourceMappingURL=products.service.js.map

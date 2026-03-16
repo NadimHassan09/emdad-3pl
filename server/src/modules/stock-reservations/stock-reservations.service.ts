@@ -683,3 +683,9579 @@ export class StockReservationsService {
   }
 }
 
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+
+
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { PickAllocationDto } from './dto/pick-allocation.dto';
+import { ShipOrderDto } from './dto/ship-order.dto';
+import { ReservationStatus } from '../../common/enums/reservation-status.enum';
+import { AllocationStatus } from '../../common/enums/allocation-status.enum';
+import { InventoryService } from '../inventory/inventory.service';
+import { MovementType } from '../../common/enums/movement-type.enum';
+import { OrderStatus } from '../../common/enums/order-status.enum';
+
+/**
+ * Stock Reservations Service
+ *
+ * Handles stock reservation and allocation for outbound orders.
+ *
+ * Reservation flow:
+ * - DRAFT: Reservation created, allocations added
+ * - CONFIRMED: Reservation confirmed, stock is reserved
+ * - RELEASED: Reservation released, stock available again
+ * - CANCELLED: Reservation cancelled
+ *
+ * Allocation lifecycle:
+ * - RESERVED: Stock reserved for order item
+ * - PARTIALLY_PICKED: Some quantity picked
+ * - PICKED: All reserved quantity picked
+ * - PARTIALLY_SHIPPED: Some quantity shipped
+ * - SHIPPED: All quantity shipped
+ * - CANCELLED: Allocation cancelled
+ *
+ * Quantity rules (enforced by DB constraints):
+ * - reservedQty >= 0
+ * - pickedQty >= 0
+ * - shippedQty >= 0
+ * - pickedQty <= reservedQty
+ * - shippedQty <= pickedQty
+ *
+ * CRITICAL: This service reads from current_stock for availability checks.
+ * It NEVER writes directly to current_stock. Stock changes happen via
+ * inventory_ledger entries (handled by other modules during picking/shipping).
+ */
+@Injectable()
+export class StockReservationsService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly inventoryService: InventoryService,
+  ) {}
+
+  /**
+   * Create a reservation for an outbound order.
+   * Validates stock availability and creates allocations.
+   */
+  async createReservation(
+    outboundOrderId: string,
+    dto: CreateReservationDto,
+  ) {
+    // Validate outbound order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        client: true,
+        warehouse: true,
+      },
+    });
+
+    // Validate all order items exist
+    const orderItemIds = new Set(order.items.map((item) => item.id));
+    for (const allocation of dto.allocations) {
+      if (!orderItemIds.has(allocation.outboundOrderItemId)) {
+        throw new BadRequestException(
+          `Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Validate stock availability for each allocation
+    await this.validateStockAvailability(
+      order.clientId,
+      order.warehouseId,
+      dto.allocations,
+    );
+
+    // Create reservation with allocations
+    return this.prisma.stockReservation.create({
+      data: {
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        outboundOrderId: order.id,
+        status: 'DRAFT' as any,
+        allocations: {
+          create: dto.allocations.map((alloc) => ({
+            outboundOrderItemId: alloc.outboundOrderItemId,
+            clientId: order.clientId,
+            warehouseId: order.warehouseId,
+            productId: alloc.productId,
+            batchId: alloc.batchId,
+            locationId: alloc.locationId,
+            reservedQty: alloc.reservedQty,
+            pickedQty: 0,
+            shippedQty: 0,
+            status: 'RESERVED' as any,
+          })),
+        },
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Get reservation by ID with full details.
+   */
+  async findOne(id: string) {
+    const reservation = await this.prisma.stockReservation.findUnique({
+      where: { id },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+
+    if (!reservation) {
+      throw new NotFoundException('Stock reservation not found');
+    }
+
+    return reservation;
+  }
+
+  /**
+   * Confirm a reservation (DRAFT -> CONFIRMED).
+   * Stock is now reserved and cannot be used by other orders.
+   */
+  async confirm(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'CONFIRMED') {
+      throw new BadRequestException('Reservation is already confirmed');
+    }
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Cannot confirm a released reservation');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot confirm a cancelled reservation');
+    }
+
+    // Re-validate stock availability (stock may have changed since creation)
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    await this.validateStockAvailability(
+      reservation.clientId,
+      reservation.warehouseId,
+      allocations.map((alloc) => ({
+        outboundOrderItemId: alloc.outboundOrderItemId,
+        productId: alloc.productId,
+        batchId: alloc.batchId || undefined,
+        locationId: alloc.locationId || undefined,
+        reservedQty: alloc.reservedQty.toNumber(),
+      })),
+    );
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'CONFIRMED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Release a reservation (CONFIRMED -> RELEASED).
+   * Stock becomes available again for other orders.
+   */
+  async release(id: string) {
+    const reservation = await this.findOne(id);
+
+    if (reservation.status === 'RELEASED') {
+      throw new BadRequestException('Reservation is already released');
+    }
+
+    if (reservation.status === 'CANCELLED') {
+      throw new BadRequestException('Cannot release a cancelled reservation');
+    }
+
+    // Check if any allocations have been picked or shipped
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: { stockReservationId: id },
+    });
+
+    const hasPickedOrShipped = allocations.some(
+      (alloc) =>
+        alloc.pickedQty.toNumber() > 0 || alloc.shippedQty.toNumber() > 0,
+    );
+
+    if (hasPickedOrShipped) {
+      throw new BadRequestException(
+        'Cannot release reservation with picked or shipped allocations',
+      );
+    }
+
+    return this.prisma.stockReservation.update({
+      where: { id },
+      data: {
+        status: 'RELEASED' as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        outboundOrder: {
+          select: {
+            id: true,
+            orderNumber: true,
+            status: true,
+          },
+        },
+        allocations: {
+          include: {
+            outboundOrderItem: {
+              select: {
+                id: true,
+                qtyOrdered: true,
+                product: { select: { id: true, sku: true, name: true } },
+              },
+            },
+            product: { select: { id: true, sku: true, name: true } },
+            batch: { select: { id: true, batchCode: true } },
+            location: { select: { id: true, code: true } },
+          },
+        },
+      },
+    });
+  }
+
+  /**
+   * Validate stock availability for allocations.
+   * Reads from current_stock (never writes to it).
+   */
+  private async validateStockAvailability(
+    clientId: string,
+    warehouseId: string,
+    allocations: Array<{
+      productId: string;
+      batchId?: string;
+      locationId?: string;
+      reservedQty: number;
+    }>,
+  ) {
+    // Group allocations by product/batch/location combination
+    const stockMap = new Map<string, number>();
+
+    for (const alloc of allocations) {
+      const key = `${alloc.productId}:${alloc.batchId || 'null'}:${alloc.locationId || 'null'}`;
+      const current = stockMap.get(key) || 0;
+      stockMap.set(key, current + alloc.reservedQty);
+    }
+
+    // Check availability for each unique combination
+    for (const [key, totalReserved] of stockMap.entries()) {
+      const [productId, batchIdStr, locationIdStr] = key.split(':');
+      const batchId = batchIdStr === 'null' ? null : batchIdStr;
+      const locationId = locationIdStr === 'null' ? null : locationIdStr;
+
+      const where: any = {
+        clientId,
+        warehouseId,
+        productId,
+      };
+
+      if (batchId !== null) {
+        where.batchId = batchId;
+      } else {
+        where.batchId = null;
+      }
+
+      if (locationId !== null) {
+        where.locationId = locationId;
+      } else {
+        where.locationId = null;
+      }
+
+      const stock = await this.prisma.currentStock.findFirst({
+        where,
+      });
+
+      const availableQty = stock ? stock.quantity.toNumber() : 0;
+
+      if (availableQty < totalReserved) {
+        throw new BadRequestException(
+          `Insufficient stock for product ${productId}. Available: ${availableQty}, Required: ${totalReserved}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * Pick stock for an allocation.
+   * Updates pickedQty and allocation status.
+   * Enforces pickedQty <= reservedQty.
+   */
+  async pickAllocation(id: string, dto: PickAllocationDto) {
+    const allocation = await this.prisma.outboundAllocation.findUnique({
+      where: { id },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: true,
+          },
+        },
+        outboundOrderItem: true,
+      },
+    });
+
+    if (!allocation) {
+      throw new NotFoundException('Outbound allocation not found');
+    }
+
+    const reservedQty = allocation.reservedQty.toNumber();
+    const currentPickedQty = allocation.pickedQty.toNumber();
+    const newPickedQty = dto.pickedQty;
+
+    // Validate pickedQty <= reservedQty
+    if (newPickedQty > reservedQty) {
+      throw new BadRequestException(
+        `Picked quantity (${newPickedQty}) cannot exceed reserved quantity (${reservedQty})`,
+      );
+    }
+
+    // Validate new pickedQty >= current pickedQty (can't decrease)
+    if (newPickedQty < currentPickedQty) {
+      throw new BadRequestException(
+        `Picked quantity cannot be decreased. Current: ${currentPickedQty}, Requested: ${newPickedQty}`,
+      );
+    }
+
+    // Determine new allocation status based on pickedQty vs reservedQty
+    let newStatus: AllocationStatus;
+    if (newPickedQty === 0) {
+      newStatus = AllocationStatus.RESERVED;
+    } else if (newPickedQty < reservedQty) {
+      newStatus = AllocationStatus.PARTIALLY_PICKED;
+    } else {
+      newStatus = AllocationStatus.PICKED;
+    }
+
+    // Update allocation
+    const updatedAllocation = await this.prisma.outboundAllocation.update({
+      where: { id },
+      data: {
+        pickedQty: newPickedQty,
+        status: newStatus as any,
+      },
+      include: {
+        stockReservation: {
+          include: {
+            outboundOrder: {
+              select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+              },
+            },
+          },
+        },
+        outboundOrderItem: {
+          select: {
+            id: true,
+            qtyOrdered: true,
+            product: { select: { id: true, sku: true, name: true } },
+          },
+        },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+    });
+
+    return updatedAllocation;
+  }
+
+  /**
+   * Ship an outbound order.
+   * Updates shippedQty in allocations, creates outboundOrderItemBatch records,
+   * and inserts SHIPMENT ledger entries.
+   * Updates order/item statuses based on shipped quantities.
+   */
+  async shipOrder(outboundOrderId: string, dto: ShipOrderDto) {
+    // Validate order exists
+    const order = await this.prisma.outboundOrder.findUniqueOrThrow({
+      where: { id: outboundOrderId },
+      include: {
+        items: true,
+        stockReservations: {
+          include: {
+            allocations: true,
+          },
+        },
+      },
+    });
+
+    // Validate all allocations belong to this order's reservations
+    const orderAllocationIds = new Set<string>();
+    for (const reservation of order.stockReservations) {
+      for (const allocation of reservation.allocations) {
+        orderAllocationIds.add(allocation.id);
+      }
+    }
+
+    for (const shipAlloc of dto.allocations) {
+      if (!orderAllocationIds.has(shipAlloc.allocationId)) {
+        throw new BadRequestException(
+          `Allocation ${shipAlloc.allocationId} does not belong to order ${outboundOrderId}`,
+        );
+      }
+    }
+
+    // Process each allocation
+    const updatedAllocations = [];
+    for (const shipAlloc of dto.allocations) {
+      const allocation = await this.prisma.outboundAllocation.findUniqueOrThrow(
+        {
+          where: { id: shipAlloc.allocationId },
+          include: {
+            outboundOrderItem: true,
+            product: true,
+            batch: true,
+            location: true,
+          },
+        },
+      );
+
+      const pickedQty = allocation.pickedQty.toNumber();
+      const currentShippedQty = allocation.shippedQty.toNumber();
+      const newShippedQty = shipAlloc.shippedQty;
+
+      // Validate shippedQty <= pickedQty
+      if (newShippedQty > pickedQty) {
+        throw new BadRequestException(
+          `Shipped quantity (${newShippedQty}) cannot exceed picked quantity (${pickedQty}) for allocation ${shipAlloc.allocationId}`,
+        );
+      }
+
+      // Validate new shippedQty >= current shippedQty (can't decrease)
+      if (newShippedQty < currentShippedQty) {
+        throw new BadRequestException(
+          `Shipped quantity cannot be decreased. Current: ${currentShippedQty}, Requested: ${newShippedQty}`,
+        );
+      }
+
+      // Determine new allocation status
+      let newStatus: AllocationStatus;
+      if (newShippedQty === 0) {
+        // If nothing shipped yet, keep current status (PICKED or PARTIALLY_PICKED)
+        newStatus =
+          allocation.status === 'PICKED'
+            ? AllocationStatus.PICKED
+            : AllocationStatus.PARTIALLY_PICKED;
+      } else if (newShippedQty < pickedQty) {
+        newStatus = AllocationStatus.PARTIALLY_SHIPPED;
+      } else {
+        newStatus = AllocationStatus.SHIPPED;
+      }
+
+      // Update allocation
+      const updatedAllocation = await this.prisma.outboundAllocation.update({
+        where: { id: shipAlloc.allocationId },
+        data: {
+          shippedQty: newShippedQty,
+          status: newStatus as any,
+        },
+      });
+
+      // Create or update outboundOrderItemBatch record
+      const batchId = shipAlloc.batchId || allocation.batchId;
+      const locationId = shipAlloc.locationId || allocation.locationId;
+
+      if (batchId || locationId) {
+        // Find existing batch record or create new one
+        const existingBatch = await this.prisma.outboundOrderItemBatch.findFirst(
+          {
+            where: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+            },
+          },
+        );
+
+        if (existingBatch) {
+          await this.prisma.outboundOrderItemBatch.update({
+            where: { id: existingBatch.id },
+            data: {
+              qtyShipped: newShippedQty,
+            },
+          });
+        } else {
+          await this.prisma.outboundOrderItemBatch.create({
+            data: {
+              outboundOrderItemId: allocation.outboundOrderItemId,
+              batchId: batchId || null,
+              locationId: locationId || null,
+              qtyShipped: newShippedQty,
+            },
+          });
+        }
+      }
+
+      // Create SHIPMENT ledger entry (negative qtyChange for outbound)
+      const qtyToShip = newShippedQty - currentShippedQty;
+      if (qtyToShip > 0) {
+        await this.inventoryService.createLedgerEntry({
+          clientId: allocation.clientId,
+          warehouseId: allocation.warehouseId,
+          productId: allocation.productId,
+          batchId: batchId || undefined,
+          locationId: locationId || undefined,
+          movementType: MovementType.SHIPMENT,
+          qtyChange: -qtyToShip, // Negative for outbound
+          referenceType: 'OUTBOUND_ORDER',
+          referenceId: outboundOrderId,
+        });
+      }
+
+      updatedAllocations.push(updatedAllocation);
+    }
+
+    // Get all allocations for this order to calculate total shipped per item
+    const allOrderAllocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    // Recalculate item shipped quantities by summing all allocations for each item
+    const itemTotalShippedMap = new Map<string, number>();
+    for (const alloc of allOrderAllocations) {
+      const itemId = alloc.outboundOrderItemId;
+      const current = itemTotalShippedMap.get(itemId) || 0;
+      const shipped = alloc.shippedQty.toNumber();
+      itemTotalShippedMap.set(itemId, current + shipped);
+    }
+
+    // Update each order item's qtyShipped to the sum of all allocations
+    for (const [itemId, totalShippedQty] of itemTotalShippedMap.entries()) {
+      await this.prisma.outboundOrderItem.update({
+        where: { id: itemId },
+        data: { qtyShipped: totalShippedQty },
+      });
+    }
+
+    // Update order status based on item statuses
+    const orderItems = await this.prisma.outboundOrderItem.findMany({
+      where: { outboundOrderId },
+    });
+
+    let allItemsShipped = true;
+    let someItemsShipped = false;
+
+    for (const item of orderItems) {
+      const qtyOrdered = item.qtyOrdered.toNumber();
+      const qtyShipped = item.qtyShipped.toNumber();
+
+      if (qtyShipped > 0) {
+        someItemsShipped = true;
+      }
+      if (qtyShipped < qtyOrdered) {
+        allItemsShipped = false;
+      }
+    }
+
+    let newOrderStatus: OrderStatus;
+    if (allItemsShipped) {
+      newOrderStatus = OrderStatus.SHIPPED;
+    } else if (someItemsShipped) {
+      newOrderStatus = OrderStatus.IN_PROGRESS;
+    } else {
+      // Keep current status if nothing shipped
+      newOrderStatus = order.status as any;
+    }
+
+    const updatedOrder = await this.prisma.outboundOrder.update({
+      where: { id: outboundOrderId },
+      data: {
+        status: newOrderStatus as any,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        items: {
+          include: {
+            product: { select: { id: true, sku: true, name: true } },
+            uom: { select: { id: true, code: true, name: true } },
+            batches: {
+              include: {
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return updatedOrder;
+  }
+}
+

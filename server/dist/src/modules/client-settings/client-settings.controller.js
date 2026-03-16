@@ -74,4 +74,760 @@ exports.ClientSettingsController = ClientSettingsController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
 ], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
+let ClientSettingsController = class ClientSettingsController {
+    constructor(settings) {
+        this.settings = settings;
+    }
+    getMe(actor) {
+        return this.settings.getMe(actor);
+    }
+    updateProfile(actor, dto) {
+        return this.settings.updateProfile(actor, dto);
+    }
+    changePassword(actor, dto) {
+        return this.settings.changePassword(actor, dto);
+    }
+    updatePreferences(actor, dto) {
+        return this.settings.updatePreferences(actor, dto);
+    }
+};
+exports.ClientSettingsController = ClientSettingsController;
+__decorate([
+    (0, common_1.Get)('me'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me/profile'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_profile_dto_1.UpdateClientProfileDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updateProfile", null);
+__decorate([
+    (0, common_1.Patch)('me/password'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, change_client_password_dto_1.ChangeClientPasswordDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "changePassword", null);
+__decorate([
+    (0, common_1.Patch)('me/preferences'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_client_preferences_dto_1.UpdateClientPreferencesDto]),
+    __metadata("design:returntype", void 0)
+], ClientSettingsController.prototype, "updatePreferences", null);
+exports.ClientSettingsController = ClientSettingsController = __decorate([
+    (0, common_1.Controller)('client-settings'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
+], ClientSettingsController);
 //# sourceMappingURL=client-settings.controller.js.map

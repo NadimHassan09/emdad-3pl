@@ -37,3 +37,227 @@ async function bootstrap() {
 }
 
 void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();
+
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
+  app.enableShutdownHooks();
+  const prisma = app.get(PrismaService);
+  prisma.enableShutdownHooks(app);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+}
+
+void bootstrap();

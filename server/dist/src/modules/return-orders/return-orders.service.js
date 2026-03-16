@@ -141,4 +141,1852 @@ exports.ReturnOrdersService = ReturnOrdersService = __decorate([
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
         inventory_service_1.InventoryService])
 ], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
+common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.BadRequestException,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersService = class ReturnOrdersService {
+    constructor(prisma, inventoryService) {
+        this.prisma = prisma;
+        this.inventoryService = inventoryService;
+    }
+    async create(dto) {
+        const outboundOrder = await this.prisma.outboundOrder.findUniqueOrThrow({
+            where: { id: dto.outboundOrderId },
+            include: {
+                client: true,
+                warehouse: true,
+            },
+        });
+        await this.prisma.product.findUniqueOrThrow({
+            where: { id: dto.productId },
+        });
+        if (dto.batchId) {
+            await this.prisma.batch.findUniqueOrThrow({
+                where: { id: dto.batchId },
+            });
+        }
+        return this.prisma.returnOrder.create({
+            data: {
+                clientId: outboundOrder.clientId,
+                warehouseId: outboundOrder.warehouseId,
+                outboundOrderId: dto.outboundOrderId,
+                returnNumber: dto.returnNumber.trim(),
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                qty: dto.qty,
+                disposition: (dto.disposition || return_disposition_enum_1.ReturnDisposition.RESTOCK),
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+    }
+    async findMany(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.outboundOrderId)
+            where.outboundOrderId = filter.outboundOrderId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.disposition)
+            where.disposition = filter.disposition;
+        return this.prisma.returnOrder.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async findOne(id) {
+        const returnOrder = await this.prisma.returnOrder.findUnique({
+            where: { id },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                outboundOrder: {
+                    select: {
+                        id: true,
+                        orderNumber: true,
+                        status: true,
+                    },
+                },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+            },
+        });
+        if (!returnOrder) {
+            throw new common_1.NotFoundException('Return order not found');
+        }
+        return returnOrder;
+    }
+    async process(id) {
+        const returnOrder = await this.findOne(id);
+        if (returnOrder.disposition === return_disposition_enum_1.ReturnDisposition.RESTOCK) {
+            await this.inventoryService.createLedgerEntry({
+                clientId: returnOrder.clientId,
+                warehouseId: returnOrder.warehouseId,
+                productId: returnOrder.productId,
+                batchId: returnOrder.batchId || undefined,
+                locationId: undefined,
+                movementType: movement_type_enum_1.MovementType.RETURN,
+                qtyChange: returnOrder.qty.toNumber(),
+                referenceType: 'RETURN_ORDER',
+                referenceId: id,
+            });
+        }
+        return returnOrder;
+    }
+};
+exports.ReturnOrdersService = ReturnOrdersService;
+exports.ReturnOrdersService = ReturnOrdersService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        inventory_service_1.InventoryService])
+], ReturnOrdersService);
 //# sourceMappingURL=return-orders.service.js.map

@@ -22,4 +22,158 @@ exports.ReportsModule = ReportsModule = __decorate([
         exports: [reports_service_1.ReportsService],
     })
 ], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
+let ReportsModule = class ReportsModule {
+};
+exports.ReportsModule = ReportsModule;
+exports.ReportsModule = ReportsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [reports_controller_1.ReportsController],
+        providers: [reports_service_1.ReportsService],
+        exports: [reports_service_1.ReportsService],
+    })
+], ReportsModule);
 //# sourceMappingURL=reports.module.js.map

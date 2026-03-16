@@ -10,3 +10,192 @@ export class ClientSettingsModule {}
 
 
 
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+
+
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+
+
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+import { ClientSettingsController } from './client-settings.controller';
+import { ClientSettingsService } from './client-settings.service';
+
+@Module({
+  controllers: [ClientSettingsController],
+  providers: [ClientSettingsService],
+})
+export class ClientSettingsModule {}
+
+
+
+
+
+
+
+
+
+
+
+

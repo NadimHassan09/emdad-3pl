@@ -57,3 +57,815 @@ export class InventoryController {
     return this.inventoryService.findLedger(filter);
   }
 }
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}
+
+  Get,
+  Query,
+  Param,
+  ParseUUIDPipe,
+  UseGuards,
+} from '@nestjs/common';
+import { InventoryService } from './inventory.service';
+import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { CurrentActor } from '../../common/decorators/current-actor.decorator';
+import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+
+@Controller('inventory')
+export class InventoryController {
+  constructor(private readonly inventoryService: InventoryService) {}
+
+  /**
+   * GET /inventory/dashboard
+   * Aggregated dynamic dashboard metrics/charts for portal dashboard.
+   */
+  @Get('dashboard')
+  @UseGuards(JwtAuthGuard)
+  getDashboard(@CurrentActor() actor: JwtPayload) {
+    return this.inventoryService.getDashboard(actor.clientId);
+  }
+
+  /**
+   * GET /inventory/current-stock
+   * Query current stock with optional filters.
+   */
+  @Get('current-stock')
+  findCurrentStock(@Query() filter: CurrentStockFilterDto) {
+    return this.inventoryService.findCurrentStock(filter);
+  }
+
+  /**
+   * GET /inventory/current-stock/by-product/:productId
+   * Query current stock for a specific product.
+   */
+  @Get('current-stock/by-product/:productId')
+  findCurrentStockByProduct(
+    @Param('productId', ParseUUIDPipe) productId: string,
+    @Query() filter: CurrentStockFilterDto,
+  ) {
+    return this.inventoryService.findCurrentStockByProduct(productId, filter);
+  }
+
+  /**
+   * GET /inventory/ledger
+   * Query inventory ledger entries with optional filters.
+   */
+  @Get('ledger')
+  findLedger(@Query() filter: InventoryLedgerFilterDto) {
+    return this.inventoryService.findLedger(filter);
+  }
+}

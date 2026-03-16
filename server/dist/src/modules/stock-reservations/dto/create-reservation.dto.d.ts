@@ -3,3 +3,59 @@ export declare class CreateReservationDto {
     outboundOrderId: string;
     allocations: CreateAllocationDto[];
 }
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}
+export declare class CreateReservationDto {
+    outboundOrderId: string;
+    allocations: CreateAllocationDto[];
+}

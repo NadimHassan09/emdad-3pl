@@ -303,4 +303,4148 @@ exports.InventoryService = InventoryService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
+common_1.BadRequestException,
+    common_1.ServiceUnavailableException,
+;
+from;
+'@nestjs/common';
+let InventoryService = class InventoryService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    toNumber(value) {
+        if (typeof value === 'number')
+            return value;
+        if (value && typeof value === 'object' && 'toNumber' in value) {
+            return value.toNumber();
+        }
+        return Number(value) || 0;
+    }
+    formatMonthLabel(date) {
+        const month = date.toLocaleString('ar-SA', { month: 'short' });
+        return `${month} ${date.getFullYear()}`;
+    }
+    formatWeekLabel(date) {
+        return `W${date.getDate()}/${date.getMonth() + 1}`;
+    }
+    async getDashboard(clientId) {
+        try {
+            const stockWhere = clientId ? { clientId } : {};
+            const ordersWhere = clientId ? { clientId } : {};
+            const ledgerWhere = clientId ? { clientId } : {};
+            const now = new Date();
+            const sixMonthsAgo = new Date(now);
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+            sixMonthsAgo.setDate(1);
+            sixMonthsAgo.setHours(0, 0, 0, 0);
+            const eightWeeksAgo = new Date(now);
+            eightWeeksAgo.setDate(eightWeeksAgo.getDate() - 7 * 7);
+            eightWeeksAgo.setHours(0, 0, 0, 0);
+            const currentStock = await this.prisma.currentStock.findMany({
+                where: stockWhere,
+                include: {
+                    product: { select: { id: true, name: true, sku: true } },
+                },
+            });
+            const inboundOrdersCount = await this.prisma.inboundOrder.count({
+                where: ordersWhere,
+            });
+            const outboundOrdersCount = await this.prisma.outboundOrder.count({
+                where: ordersWhere,
+            });
+            const recentLedger = await this.prisma.inventoryLedger.findMany({
+                where: ledgerWhere,
+                include: {
+                    product: { select: { sku: true } },
+                },
+                orderBy: { createdAt: 'desc' },
+                take: 5,
+            });
+            const chartLedger = await this.prisma.inventoryLedger.findMany({
+                where: {
+                    ...ledgerWhere,
+                    createdAt: {
+                        gte: eightWeeksAgo < sixMonthsAgo ? eightWeeksAgo : sixMonthsAgo,
+                    },
+                },
+                select: {
+                    movementType: true,
+                    qtyChange: true,
+                    createdAt: true,
+                    productId: true,
+                },
+                orderBy: { createdAt: 'asc' },
+            });
+            const totalStock = currentStock.reduce((sum, row) => sum + this.toNumber(row.quantity), 0);
+            const totalProducts = new Set(currentStock.map((row) => row.productId)).size;
+            const movementByMonthMap = new Map();
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now);
+                d.setMonth(d.getMonth() - i);
+                d.setDate(1);
+                d.setHours(0, 0, 0, 0);
+                const key = `${d.getFullYear()}-${d.getMonth() + 1}`;
+                movementByMonthMap.set(key, {
+                    name: this.formatMonthLabel(d),
+                    inbound: 0,
+                    outbound: 0,
+                });
+            }
+            const weeklyTrendMap = new Map();
+            for (let i = 7; i >= 0; i--) {
+                const d = new Date(now);
+                d.setDate(d.getDate() - i * 7);
+                const weekStart = new Date(d);
+                weekStart.setDate(d.getDate() - d.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const key = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                weeklyTrendMap.set(key, {
+                    name: this.formatWeekLabel(weekStart),
+                    value: 0,
+                });
+            }
+            for (const entry of chartLedger) {
+                const qty = this.toNumber(entry.qtyChange);
+                const monthKey = `${entry.createdAt.getFullYear()}-${entry.createdAt.getMonth() + 1}`;
+                const monthBucket = movementByMonthMap.get(monthKey);
+                if (monthBucket) {
+                    if (qty >= 0)
+                        monthBucket.inbound += qty;
+                    else
+                        monthBucket.outbound += Math.abs(qty);
+                }
+                const weekStart = new Date(entry.createdAt);
+                weekStart.setDate(entry.createdAt.getDate() - entry.createdAt.getDay());
+                weekStart.setHours(0, 0, 0, 0);
+                const weekKey = `${weekStart.getFullYear()}-${weekStart.getMonth() + 1}-${weekStart.getDate()}`;
+                const weekBucket = weeklyTrendMap.get(weekKey);
+                if (weekBucket) {
+                    weekBucket.value += Math.abs(qty);
+                }
+            }
+            const productStockMap = new Map();
+            for (const row of currentStock) {
+                const productName = row.product?.name || 'منتج غير معروف';
+                const current = productStockMap.get(row.productId);
+                const quantity = this.toNumber(row.quantity);
+                if (!current) {
+                    productStockMap.set(row.productId, { name: productName, value: quantity });
+                }
+                else {
+                    current.value += quantity;
+                }
+            }
+            const stockDistribution = Array.from(productStockMap.values())
+                .sort((a, b) => b.value - a.value)
+                .slice(0, 5);
+            const recentMovements = recentLedger.map((entry) => {
+                const qty = this.toNumber(entry.qtyChange);
+                return {
+                    date: entry.createdAt,
+                    movementType: entry.movementType,
+                    sku: entry.product?.sku || '',
+                    qtyChange: qty,
+                    referenceId: entry.referenceId,
+                };
+            });
+            return {
+                stats: {
+                    totalProducts,
+                    totalStock,
+                    incomingOrders: inboundOrdersCount,
+                    outgoingOrders: outboundOrdersCount,
+                    recentMovements: recentMovements.length,
+                },
+                movementByMonth: Array.from(movementByMonthMap.values()),
+                stockDistribution,
+                weeklyTrend: Array.from(weeklyTrendMap.values()),
+                recentMovements,
+            };
+        }
+        catch (error) {
+            if (error &&
+                typeof error === 'object' &&
+                'code' in error &&
+                error.code === 'P2037') {
+                throw new common_1.ServiceUnavailableException('Database connection pool is saturated. Please retry in a moment.');
+            }
+            throw error;
+        }
+    }
+    async findCurrentStock(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [
+                { clientId: 'asc' },
+                { warehouseId: 'asc' },
+                { productId: 'asc' },
+            ],
+        });
+    }
+    async findCurrentStockByProduct(productId, filter) {
+        return this.findCurrentStock({
+            ...filter,
+            productId,
+        });
+    }
+    async findLedger(filter) {
+        const where = {};
+        if (filter?.clientId)
+            where.clientId = filter.clientId;
+        if (filter?.warehouseId)
+            where.warehouseId = filter.warehouseId;
+        if (filter?.productId)
+            where.productId = filter.productId;
+        if (filter?.batchId !== undefined) {
+            where.batchId = filter.batchId || null;
+        }
+        if (filter?.locationId !== undefined) {
+            where.locationId = filter.locationId || null;
+        }
+        if (filter?.movementType) {
+            where.movementType = filter.movementType;
+        }
+        if (filter?.referenceType) {
+            where.referenceType = filter.referenceType;
+        }
+        if (filter?.referenceId) {
+            where.referenceId = filter.referenceId;
+        }
+        if (filter?.dateFrom || filter?.dateTo) {
+            where.createdAt = {};
+            if (filter.dateFrom) {
+                where.createdAt.gte = new Date(filter.dateFrom);
+            }
+            if (filter.dateTo) {
+                where.createdAt.lte = new Date(filter.dateTo);
+            }
+        }
+        return this.prisma.inventoryLedger.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+    async createLedgerEntry(dto) {
+        const currentStock = await this.prisma.currentStock.findFirst({
+            where: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+            },
+        });
+        const qtyBefore = currentStock?.quantity
+            ? typeof currentStock.quantity === 'number'
+                ? currentStock.quantity
+                : currentStock.quantity.toNumber()
+            : 0;
+        const qtyAfter = qtyBefore + dto.qtyChange;
+        if (qtyAfter < 0) {
+            throw new common_1.BadRequestException(`Insufficient stock. Current: ${qtyBefore}, Requested change: ${dto.qtyChange}, Result: ${qtyAfter}`);
+        }
+        return this.prisma.inventoryLedger.create({
+            data: {
+                clientId: dto.clientId,
+                warehouseId: dto.warehouseId,
+                productId: dto.productId,
+                batchId: dto.batchId || null,
+                locationId: dto.locationId || null,
+                movementType: dto.movementType,
+                qtyChange: dto.qtyChange,
+                qtyBefore: qtyBefore,
+                qtyAfter: qtyAfter,
+                referenceType: dto.referenceType || null,
+                referenceId: dto.referenceId || null,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+        });
+    }
+};
+exports.InventoryService = InventoryService;
+exports.InventoryService = InventoryService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], InventoryService);
 //# sourceMappingURL=inventory.service.js.map

@@ -75,4 +75,1040 @@ __decorate([
     (0, class_transformer_1.Type)(() => ReceiveBatchDto),
     __metadata("design:type", Array)
 ], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+    class_validator_1.ValidateNested,
+    class_validator_1.IsArray,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class ReceiveBatchDto {
+}
+exports.ReceiveBatchDto = ReceiveBatchDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "locationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReceiveBatchDto.prototype, "qtyReceived", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "batchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "lotNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "supplierBatchCode", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "expiryDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "manufacturingDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], ReceiveBatchDto.prototype, "receivedDate", void 0);
+class ReceiveInboundOrderDto {
+}
+exports.ReceiveInboundOrderDto = ReceiveInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ReceiveInboundOrderDto.prototype, "itemId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReceiveBatchDto),
+    __metadata("design:type", Array)
+], ReceiveInboundOrderDto.prototype, "batches", void 0);
 //# sourceMappingURL=receive-inbound-order.dto.js.map

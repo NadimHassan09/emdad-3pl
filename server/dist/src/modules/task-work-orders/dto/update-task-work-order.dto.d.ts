@@ -9,3 +9,115 @@ export declare class UpdateTaskWorkOrderDto {
     priority?: TaskPriority;
     status?: TaskStatus;
 }
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}
+export declare class UpdateTaskWorkOrderDto {
+    taskType?: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+    status?: TaskStatus;
+}

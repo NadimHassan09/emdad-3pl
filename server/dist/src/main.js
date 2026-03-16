@@ -32,4 +32,200 @@ async function bootstrap() {
     await app.listen(port);
 }
 void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
+new common_1.ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+    transformOptions: { enableImplicitConversion: true },
+}),
+;
+;
+app.enableShutdownHooks();
+const prisma = app.get(prisma_service_1.PrismaService);
+prisma.enableShutdownHooks(app);
+const port = process.env.PORT ?? 3000;
+await app.listen(port);
+void bootstrap();
 //# sourceMappingURL=main.js.map

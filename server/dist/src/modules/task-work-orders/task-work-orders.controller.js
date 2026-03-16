@@ -93,4 +93,1194 @@ exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
 ], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Patch,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let TaskWorkOrdersController = class TaskWorkOrdersController {
+    constructor(taskWorkOrders) {
+        this.taskWorkOrders = taskWorkOrders;
+    }
+    create(dto) {
+        return this.taskWorkOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.taskWorkOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.taskWorkOrders.findOne(id);
+    }
+    update(id, dto) {
+        return this.taskWorkOrders.update(id, dto);
+    }
+    assign(id, dto) {
+        return this.taskWorkOrders.assign(id, dto);
+    }
+    complete(id) {
+        return this.taskWorkOrders.complete(id);
+    }
+};
+exports.TaskWorkOrdersController = TaskWorkOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_task_work_order_dto_1.CreateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_work_order_filter_dto_1.TaskWorkOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_task_work_order_dto_1.UpdateTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Post)(':id/assign'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, assign_task_work_order_dto_1.AssignTaskWorkOrderDto]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "assign", null);
+__decorate([
+    (0, common_1.Post)(':id/complete'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], TaskWorkOrdersController.prototype, "complete", null);
+exports.TaskWorkOrdersController = TaskWorkOrdersController = __decorate([
+    (0, common_1.Controller)('task-work-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [task_work_orders_service_1.TaskWorkOrdersService])
+], TaskWorkOrdersController);
 //# sourceMappingURL=task-work-orders.controller.js.map

@@ -23,4 +23,158 @@ exports.InboundOrdersModule = InboundOrdersModule = __decorate([
         exports: [inbound_orders_service_1.InboundOrdersService],
     })
 ], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
+let InboundOrdersModule = class InboundOrdersModule {
+};
+exports.InboundOrdersModule = InboundOrdersModule;
+exports.InboundOrdersModule = InboundOrdersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [inventory_module_1.InventoryModule],
+        controllers: [inbound_orders_controller_1.InboundOrdersController],
+        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        exports: [inbound_orders_service_1.InboundOrdersService],
+    })
+], InboundOrdersModule);
 //# sourceMappingURL=inbound-orders.module.js.map

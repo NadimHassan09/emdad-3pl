@@ -103,3 +103,1494 @@ export function LoginPage({ onLoginSuccess }: LoginPageProps) {
 }
 
 
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { loginClient } from '@/lib/auth';
+import { Building2, Mail, Lock, AlertCircle } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginPage({ onLoginSuccess }: LoginPageProps) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await loginClient({ email, password });
+      onLoginSuccess();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-2">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold">تسجيل الدخول</CardTitle>
+          <CardDescription>بوابة العملاء - نظام إدارة المستودعات</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="flex items-center gap-2 p-3 rounded-md bg-destructive/10 text-destructive text-sm border border-destructive/20">
+                <AlertCircle className="h-4 w-4" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                البريد الإلكتروني
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                كلمة المرور
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+                dir="ltr"
+                className="text-left"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+            </Button>
+
+            <div className="text-center text-sm text-muted-foreground pt-4">
+              <p>بيانات تجريبية:</p>
+              <p className="font-mono text-xs mt-1">client1@acme.com / password123</p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+

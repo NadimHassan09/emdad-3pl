@@ -40,4 +40,396 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     __metadata("design:type", String)
 ], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
+class UpdateInboundOrderDto {
+}
+exports.UpdateInboundOrderDto = UpdateInboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(order_status_enum_1.OrderStatus),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "expectedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], UpdateInboundOrderDto.prototype, "warehouseId", void 0);
 //# sourceMappingURL=update-inbound-order.dto.js.map

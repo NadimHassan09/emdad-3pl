@@ -39,4 +39,494 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
+class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsString,
+    class_validator_1.IsDateString,
+;
+from;
+'class-validator';
+class CreateOutboundOrderDto {
+}
+exports.CreateOutboundOrderDto = CreateOutboundOrderDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "orderNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "currentStage", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", String)
+], CreateOutboundOrderDto.prototype, "expectedShipDate", void 0);
 //# sourceMappingURL=create-outbound-order.dto.js.map

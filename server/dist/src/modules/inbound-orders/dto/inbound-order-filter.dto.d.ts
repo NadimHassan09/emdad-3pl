@@ -5,3 +5,87 @@ export declare class InboundOrderFilterDto {
     status?: OrderStatus;
     orderNumber?: string;
 }
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class InboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}

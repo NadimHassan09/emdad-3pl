@@ -37,4 +37,466 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     __metadata("design:type", String)
 ], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsNumber,
+    class_validator_1.IsOptional,
+    class_validator_1.Min,
+;
+from;
+'class-validator';
+class ShipAllocationDto {
+}
+exports.ShipAllocationDto = ShipAllocationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "allocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], ShipAllocationDto.prototype, "shippedQty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ShipAllocationDto.prototype, "locationId", void 0);
 //# sourceMappingURL=ship-allocation.dto.js.map
