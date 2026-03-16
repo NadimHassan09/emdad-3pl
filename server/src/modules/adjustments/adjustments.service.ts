@@ -268,5 +268,40 @@ export class AdjustmentsService {
       },
     });
   }
+
+  /**
+   * Reject an adjustment (set status to REJECTED).
+   * Does not apply any stock change.
+   */
+  async reject(id: string, reason?: string) {
+    const adjustment = await this.findOne(id);
+
+    if (adjustment.status === 'APPLIED') {
+      throw new BadRequestException('Cannot reject an applied adjustment');
+    }
+
+    return this.prisma.adjustment.update({
+      where: { id },
+      data: {
+        status: 'REJECTED' as any,
+        reason: reason?.trim() || adjustment.reason,
+      },
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        product: { select: { id: true, sku: true, name: true } },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+        createdByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+      },
+    });
+  }
 }
 

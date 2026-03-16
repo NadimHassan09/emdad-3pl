@@ -35,6 +35,9 @@ let AdjustmentsController = class AdjustmentsController {
     apply(id) {
         return this.adjustments.apply(id);
     }
+    reject(id, reason) {
+        return this.adjustments.reject(id, reason);
+    }
 };
 exports.AdjustmentsController = AdjustmentsController;
 __decorate([
@@ -66,6 +69,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AdjustmentsController.prototype, "apply", null);
+__decorate([
+    (0, common_1.Post)(':id/reject'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)('reason')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "reject", null);
 exports.AdjustmentsController = AdjustmentsController = __decorate([
     (0, common_1.Controller)('adjustments'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

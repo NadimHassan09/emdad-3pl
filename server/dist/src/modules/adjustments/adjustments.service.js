@@ -194,6 +194,34 @@ let AdjustmentsService = class AdjustmentsService {
             },
         });
     }
+    async reject(id, reason) {
+        const adjustment = await this.findOne(id);
+        if (adjustment.status === 'APPLIED') {
+            throw new common_1.BadRequestException('Cannot reject an applied adjustment');
+        }
+        return this.prisma.adjustment.update({
+            where: { id },
+            data: {
+                status: 'REJECTED',
+                reason: reason?.trim() || adjustment.reason,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: { select: { id: true, sku: true, name: true } },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+                createdByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+            },
+        });
+    }
 };
 exports.AdjustmentsService = AdjustmentsService;
 exports.AdjustmentsService = AdjustmentsService = __decorate([

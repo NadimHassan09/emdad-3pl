@@ -42,5 +42,17 @@ export class AdjustmentsController {
   apply(@Param('id', ParseUUIDPipe) id: string) {
     return this.adjustments.apply(id);
   }
+
+  /**
+   * POST /adjustments/:id/reject
+   * Mark an adjustment as REJECTED without applying it.
+   */
+  @Post(':id/reject')
+  reject(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body('reason') reason?: string,
+  ) {
+    return this.adjustments.reject(id, reason);
+  }
 }
 

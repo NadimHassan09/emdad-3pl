@@ -14,12 +14,14 @@ interface PrismaWithApprovals {
     findMany: (args: {
       where?: Record<string, unknown>;
       orderBy?: Record<string, 'asc' | 'desc'>;
+      include?: Record<string, unknown>;
     }) => Promise<unknown[]>;
-    findUnique: (args: { where: { id: string } }) => Promise<unknown>;
+    findUnique: (args: { where: { id: string }; include?: Record<string, unknown> }) => Promise<unknown>;
     create: (args: { data: Record<string, unknown> }) => Promise<unknown>;
     update: (args: {
       where: { id: string };
       data: Record<string, unknown>;
+      include?: Record<string, unknown>;
     }) => Promise<unknown>;
   };
 }
@@ -62,13 +64,51 @@ export class ApprovalsService {
 
     return db.approval.findMany({
       where,
+      include: {
+        requestedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+        approvedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+      },
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOne(id: string) {
     const db = this.prisma as unknown as PrismaWithApprovals;
-    const approval = await db.approval.findUnique({ where: { id } });
+    const approval = await db.approval.findUnique({
+      where: { id },
+      include: {
+        requestedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+        approvedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+      },
+    });
     if (!approval) throw new NotFoundException('Approval not found');
     return approval;
   }
@@ -89,6 +129,24 @@ export class ApprovalsService {
         decisionNotes: dto.decisionNotes,
         decisionAt: new Date(),
       },
+      include: {
+        requestedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+        approvedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+      },
     });
   }
 
@@ -107,6 +165,24 @@ export class ApprovalsService {
         approvedByActorId: approverActorId,
         decisionNotes: dto.decisionNotes,
         decisionAt: new Date(),
+      },
+      include: {
+        requestedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+        approvedByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
       },
     });
   }

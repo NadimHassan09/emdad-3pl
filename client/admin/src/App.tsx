@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import {
@@ -4982,8 +4982,8 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
-                  {warehouses.map((w) => (
-                    <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
+                  {filterWarehouseOptions.map((w) => (
+                    <SelectItem key={w.id} value={w.id}>{w.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -4996,8 +4996,8 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
-                  {clients.map((c) => (
-                    <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
+                  {filterClientOptions.map((c) => (
+                    <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -5255,7 +5255,10 @@ type AdjustmentReason = 'تلف' | 'فقدان' | 'عد' | 'تعديل' | 'أخ�
 
 type Adjustment = {
   id: string;
-  requestedAt: string;
+  requestedAt: string; // formatted for display
+  requestedAtRaw?: string; // ISO/raw datetime for filtering
+  clientId?: string;
+  warehouseId?: string;
   client: string;
   warehouse: string;
   sku: string;
@@ -5266,6 +5269,13 @@ type Adjustment = {
   status: AdjustmentStatus;
   requestedBy: string;
   declineNote?: string;
+};
+
+// UI status -> backend enum
+const ADJUSTMENT_STATUS_TO_API: Record<AdjustmentStatus, string> = {
+  'قيد الانتظار': 'PENDING',
+  'موافق عليه': 'APPROVED',
+  'مرفوض': 'REJECTED',
 };
 
 // Sample Adjustment Data
@@ -5347,21 +5357,48 @@ function AdjustmentsPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await apiFetch<any[]>('/adjustments');
+        const params = new URLSearchParams();
+        if (clientFilter && clientFilter !== 'all') params.set('clientId', clientFilter);
+        if (warehouseFilter && warehouseFilter !== 'all') params.set('warehouseId', warehouseFilter);
+        if (statusFilter && statusFilter !== 'all') {
+          const apiStatus = ADJUSTMENT_STATUS_TO_API[statusFilter as AdjustmentStatus];
+          if (apiStatus) params.set('status', apiStatus);
+        }
+        const qs = params.toString();
+        const data = await apiFetch<any[]>(`/adjustments${qs ? `?${qs}` : ''}`);
         if (!active) return;
-        const mapped: Adjustment[] = data.map((adj) => ({
-          id: adj.id,
-          requestedAt: adj.createdAt ? new Date(adj.createdAt).toLocaleString('ar-SA') : '',
-          client: adj.client?.name || '',
-          warehouse: adj.warehouse?.name || '',
-          sku: adj.product?.sku || '',
-          batch: adj.batch?.batchCode || '',
-          location: adj.location?.code || '',
-          quantityChange: typeof adj.qtyChange === 'number' ? adj.qtyChange : Number(adj.qtyChange || 0),
-          reason: adj.reason || 'أخرى' as AdjustmentReason,
-          status: (adj.status === 'APPROVED' ? 'موافق عليه' : adj.status === 'REJECTED' ? 'مرفوض' : 'قيد الانتظار') as AdjustmentStatus,
-          requestedBy: adj.createdByActor?.userId ? '-' : '-',
-        }));
+        const mapped: Adjustment[] = data.map((adj) => {
+          const iso = adj.createdAt ? new Date(adj.createdAt).toISOString() : '';
+          return {
+            id: adj.id,
+            requestedAt: adj.createdAt
+              ? new Date(adj.createdAt).toLocaleString('ar-SA')
+              : '',
+            requestedAtRaw: iso,
+            clientId: adj.clientId ?? adj.client?.id,
+            warehouseId: adj.warehouseId ?? adj.warehouse?.id,
+            client: adj.client?.name || '',
+            warehouse: adj.warehouse?.name || '',
+            sku: adj.product?.sku || '',
+            batch: adj.batch?.batchCode || '',
+            location: adj.location?.code || '',
+            quantityChange:
+              typeof adj.qtyChange === 'number'
+                ? adj.qtyChange
+                : Number(adj.qtyChange || 0),
+            reason: (adj.reason || 'أخرى') as AdjustmentReason,
+            status:
+              (adj.status === 'APPROVED'
+                ? 'موافق عليه'
+                : adj.status === 'REJECTED'
+                ? 'مرفوض'
+                : 'قيد الانتظار') as AdjustmentStatus,
+            requestedBy:
+              adj.createdByActor?.user?.email ||
+              adj.createdByActor?.clientAccount?.email ||
+              '-',
+          };
+        });
         setAdjustments(mapped);
       } catch (e: any) {
         console.error('Failed to load adjustments', e);
@@ -5375,7 +5412,32 @@ function AdjustmentsPage() {
     }
     void load();
     return () => { active = false; };
-  }, []);
+  }, [clientFilter, warehouseFilter, statusFilter]);
+
+  // اشتقاق خيارات العملاء/المستودعات من التعديلات نفسها (حتى لو فشل تحميل master data)
+  const filterClientOptions = useMemo(
+    () =>
+      Array.from(
+        new Map(
+          adjustments
+            .filter((a) => a.clientId && a.client)
+            .map((a) => [a.clientId as string, { id: a.clientId as string, name: a.client }]),
+        ).values(),
+      ),
+    [adjustments],
+  );
+
+  const filterWarehouseOptions = useMemo(
+    () =>
+      Array.from(
+        new Map(
+          adjustments
+            .filter((a) => a.warehouseId && a.warehouse)
+            .map((a) => [a.warehouseId as string, { id: a.warehouseId as string, name: a.warehouse }]),
+        ).values(),
+      ),
+    [adjustments],
+  );
 
   // تحميل قوائم العملاء / المستودعات / المنتجات لإنشاء تعديل ديناميكيًا
   useEffect(() => {
@@ -5397,15 +5459,51 @@ function AdjustmentsPage() {
     if (clientFilter && clientFilter !== 'all' && adjustment.client !== clientFilter) return false;
     if (skuFilter && !adjustment.sku.toLowerCase().includes(skuFilter.toLowerCase())) return false;
     if (statusFilter && statusFilter !== 'all' && adjustment.status !== statusFilter) return false;
-    if (dateFrom && adjustment.requestedAt < dateFrom) return false;
-    if (dateTo && adjustment.requestedAt > dateTo) return false;
+    if (dateFrom) {
+      const d = adjustment.requestedAtRaw ? adjustment.requestedAtRaw.slice(0, 10) : '';
+      if (!d || d < dateFrom) return false;
+    }
+    if (dateTo) {
+      const d = adjustment.requestedAtRaw ? adjustment.requestedAtRaw.slice(0, 10) : '';
+      if (!d || d > dateTo) return false;
+    }
     return true;
   });
 
-  const handleAccept = (adjustmentId: string) => {
-    setAdjustments(adjustments.map(adj =>
-      adj.id === adjustmentId ? { ...adj, status: 'موافق عليه' as AdjustmentStatus } : adj
-    ));
+  const handleAccept = async (adjustmentId: string) => {
+    try {
+      setError(null);
+      const updated = await apiFetch<any>(`/adjustments/${adjustmentId}/apply`, {
+        method: 'POST',
+      });
+      const mapped: Adjustment = {
+        id: updated.id,
+        requestedAt: updated.createdAt ? new Date(updated.createdAt).toLocaleString('ar-SA') : '',
+        requestedAtRaw: updated.createdAt ? new Date(updated.createdAt).toISOString() : '',
+        client: updated.client?.name || '',
+        warehouse: updated.warehouse?.name || '',
+        sku: updated.product?.sku || '',
+        batch: updated.batch?.batchCode || '',
+        location: updated.location?.code || '',
+        quantityChange:
+          typeof updated.qtyChange === 'number'
+            ? updated.qtyChange
+            : Number(updated.qtyChange || 0),
+        reason: (updated.reason || 'أخرى') as AdjustmentReason,
+        status: 'موافق عليه',
+        requestedBy:
+          updated.createdByActor?.user?.email ||
+          updated.createdByActor?.clientAccount?.email ||
+          '-',
+      };
+      setAdjustments(adjustments.map((adj) => (adj.id === adjustmentId ? mapped : adj)));
+    } catch (e: any) {
+      setError(
+        e instanceof Error
+          ? e.message
+          : 'فشل تطبيق التعديل. يرجى التأكد من الموافقات أولاً.',
+      );
+    }
   };
 
   const handleDecline = (adjustment: Adjustment) => {
@@ -5414,16 +5512,47 @@ function AdjustmentsPage() {
     setIsDeclineDialogOpen(true);
   };
 
-  const handleConfirmDecline = () => {
-    if (selectedAdjustment) {
-      setAdjustments(adjustments.map(adj =>
-        adj.id === selectedAdjustment.id
-          ? { ...adj, status: 'مرفوض' as AdjustmentStatus, declineNote }
-          : adj
-      ));
+  const handleConfirmDecline = async () => {
+    if (!selectedAdjustment) return;
+    try {
+      setError(null);
+      const updated = await apiFetch<any>(
+        `/adjustments/${selectedAdjustment.id}/reject`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ reason: declineNote || undefined }),
+        },
+      );
+      const mapped: Adjustment = {
+        id: updated.id,
+        requestedAt: updated.createdAt ? new Date(updated.createdAt).toLocaleString('ar-SA') : '',
+        requestedAtRaw: updated.createdAt ? new Date(updated.createdAt).toISOString() : '',
+        client: updated.client?.name || '',
+        warehouse: updated.warehouse?.name || '',
+        sku: updated.product?.sku || '',
+        batch: updated.batch?.batchCode || '',
+        location: updated.location?.code || '',
+        quantityChange:
+          typeof updated.qtyChange === 'number'
+            ? updated.qtyChange
+            : Number(updated.qtyChange || 0),
+        reason: (updated.reason || 'أخرى') as AdjustmentReason,
+        status: 'مرفوض',
+        requestedBy:
+          updated.createdByActor?.user?.email ||
+          updated.createdByActor?.clientAccount?.email ||
+          '-',
+      };
+      setAdjustments(adjustments.map((adj) => (adj.id === mapped.id ? mapped : adj)));
       setIsDeclineDialogOpen(false);
       setSelectedAdjustment(null);
       setDeclineNote('');
+    } catch (e: any) {
+      setError(
+        e instanceof Error
+          ? e.message
+          : 'فشل رفض التعديل. يرجى المحاولة مرة أخرى.',
+      );
     }
   };
 
@@ -7200,46 +7329,8 @@ type BillingPlan = {
   movementRates: MovementRate[];
 };
 
-// Sample Billing Plans Data
-const initialBillingPlans: BillingPlan[] = [
-  {
-    id: '1',
-    planName: 'الخطة الأساسية',
-    active: true,
-    description: 'خطة مناسبة للشركات الصغيرة',
-    storageIncluded: [
-      { id: '1', storageUnit: 'متر مكعب', includedQuantity: 100 },
-    ],
-    prices: [
-      { id: '1', cycle: 'شهري', price: 500, currency: 'USD' },
-      { id: '2', cycle: 'سنوي', price: 5000, currency: 'USD' },
-    ],
-    movementRates: [
-      { id: '1', movementType: 'وارد', feePerTransaction: 5, currency: 'USD' },
-      { id: '2', movementType: 'صادر', feePerTransaction: 5, currency: 'USD' },
-    ],
-  },
-  {
-    id: '2',
-    planName: 'الخطة المتقدمة',
-    active: true,
-    description: 'خطة مناسبة للشركات المتوسطة',
-    storageIncluded: [
-      { id: '3', storageUnit: 'متر مكعب', includedQuantity: 500 },
-    ],
-    prices: [
-      { id: '3', cycle: 'شهري', price: 1500, currency: 'USD' },
-      { id: '4', cycle: 'سنوي', price: 15000, currency: 'USD' },
-    ],
-    movementRates: [
-      { id: '3', movementType: 'وارد', feePerTransaction: 4, currency: 'USD' },
-      { id: '4', movementType: 'صادر', feePerTransaction: 4, currency: 'USD' },
-    ],
-  },
-];
-
 function BillingPage() {
-  const [plans, setPlans] = useState<BillingPlan[]>(initialBillingPlans);
+  const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<BillingPlan | null>(null);
@@ -7252,6 +7343,43 @@ function BillingPage() {
     prices: [] as Price[],
     movementRates: [] as MovementRate[],
   });
+
+  // Load billing plans from backend
+  useEffect(() => {
+    let active = true;
+    async function loadPlans() {
+      try {
+        const list = await apiFetch<any[]>('/billing/plans');
+        if (!active) return;
+        const mapped: BillingPlan[] = (Array.isArray(list) ? list : []).map((p) => ({
+          id: p.id,
+          planName: p.planName,
+          active: p.isActive ?? true,
+          description: '',
+          // backend has a single numeric storageIncluded; represent it as one row in UI
+          storageIncluded: [
+            {
+              id: `${p.id}-storage-0`,
+              storageUnit: 'متر مكعب',
+              includedQuantity:
+                typeof p.storageIncluded === 'number'
+                  ? p.storageIncluded
+                  : Number(p.storageIncluded || 0),
+            },
+          ],
+          prices: [],
+          movementRates: [],
+        }));
+        setPlans(mapped);
+      } catch (e) {
+        console.error('Failed to load billing plans', e);
+      }
+    }
+    void loadPlans();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleEdit = (plan: BillingPlan) => {
     setSelectedPlan(plan);
@@ -7284,36 +7412,81 @@ function BillingPage() {
     setIsCreateDialogOpen(true);
   };
 
-  const handleSavePlan = () => {
-    if (isCreateDialogOpen) {
-      const newPlan: BillingPlan = {
-        id: Date.now().toString(),
-        planName: planFormData.planName,
-        description: planFormData.description,
-        active: planFormData.active,
-        storageIncluded: planFormData.storageIncluded,
-        prices: planFormData.prices,
-        movementRates: planFormData.movementRates,
-      };
-      setPlans([...plans, newPlan]);
-    } else if (selectedPlan) {
-      setPlans(plans.map(p =>
-        p.id === selectedPlan.id
-          ? {
-              ...p,
-              planName: planFormData.planName,
-              description: planFormData.description,
-              active: planFormData.active,
-              storageIncluded: planFormData.storageIncluded,
-              prices: planFormData.prices,
-              movementRates: planFormData.movementRates,
-            }
-          : p
-      ));
+  const handleSavePlan = async () => {
+    try {
+      if (!planFormData.planName.trim()) {
+        alert('Please enter a plan name.');
+        return;
+      }
+
+      if (isCreateDialogOpen) {
+        const totalIncluded = planFormData.storageIncluded.reduce(
+          (sum, s) => sum + (Number(s.includedQuantity) || 0),
+          0,
+        );
+        const created = await apiFetch<any>('/billing/plans', {
+          method: 'POST',
+          body: JSON.stringify({
+            planName: planFormData.planName,
+            storageIncluded: totalIncluded,
+            billingCycle: 'MONTHLY',
+            isActive: planFormData.active,
+          }),
+        });
+        setPlans([
+          ...plans,
+          {
+            id: created.id,
+            planName: created.planName,
+            active: created.isActive ?? true,
+            description: '',
+            storageIncluded: planFormData.storageIncluded,
+            prices: [],
+            movementRates: [],
+          },
+        ]);
+      } else if (selectedPlan) {
+        const totalIncluded = planFormData.storageIncluded.reduce(
+          (sum, s) => sum + (Number(s.includedQuantity) || 0),
+          0,
+        );
+        const updated = await apiFetch<any>(`/billing/plans/${selectedPlan.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            planName: planFormData.planName,
+            storageIncluded: totalIncluded,
+            isActive: planFormData.active,
+          }),
+        });
+        setPlans(
+          plans.map((p) =>
+            p.id === selectedPlan.id
+              ? {
+                  id: updated.id,
+                  planName: updated.planName,
+                  active: updated.isActive ?? true,
+                  description: '',
+                  storageIncluded: planFormData.storageIncluded,
+                  prices: [],
+                  movementRates: [],
+                }
+              : p,
+          ),
+        );
+      }
+    } catch (e) {
+      console.error('Failed to save billing plan', e);
+      alert(
+        e instanceof Error
+          ? `Failed to save billing plan: ${e.message}`
+          : 'Failed to save billing plan. Please check the server error.',
+      );
+      return;
+    } finally {
+      setIsCreateDialogOpen(false);
+      setIsEditDialogOpen(false);
+      setSelectedPlan(null);
     }
-    setIsCreateDialogOpen(false);
-    setIsEditDialogOpen(false);
-    setSelectedPlan(null);
   };
 
   const addStorageIncluded = () => {
@@ -7802,6 +7975,7 @@ type CostCalculationMethod = 'ثابت' | 'حسب الكمية' | 'حسب الو
 
 type ValueAddedService = {
   id: string;
+  serviceCode: string;
   serviceName: string;
   description: string;
   unitOfMeasure: string;
@@ -7809,40 +7983,13 @@ type ValueAddedService = {
   costCalculationMethod: CostCalculationMethod;
 };
 
-// Sample Value-Added Services Data
-const initialValueAddedServices: ValueAddedService[] = [
-  {
-    id: '1',
-    serviceName: 'التعبئة والتغليف',
-    description: 'خدمة التعبئة والتغليف للمنتجات',
-    unitOfMeasure: 'قطعة',
-    active: true,
-    costCalculationMethod: 'حسب الكمية',
-  },
-  {
-    id: '2',
-    serviceName: 'وضع الملصقات',
-    description: 'وضع ملصقات على المنتجات',
-    unitOfMeasure: 'ملصق',
-    active: true,
-    costCalculationMethod: 'حسب الكمية',
-  },
-  {
-    id: '3',
-    serviceName: 'التفتيش والفحص',
-    description: 'خدمة فحص المنتجات قبل الشحن',
-    unitOfMeasure: 'ساعة',
-    active: false,
-    costCalculationMethod: 'حسب الوقت',
-  },
-];
-
 function ValueAddedServicesPage() {
-  const [services, setServices] = useState<ValueAddedService[]>(initialValueAddedServices);
+  const [services, setServices] = useState<ValueAddedService[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<ValueAddedService | null>(null);
   const [serviceFormData, setServiceFormData] = useState({
+    serviceCode: '',
     serviceName: '',
     description: '',
     unitOfMeasure: '',
@@ -7850,9 +7997,62 @@ function ValueAddedServicesPage() {
     costCalculationMethod: 'ثابت' as CostCalculationMethod,
   });
 
+  const parseVasDescription = (raw: string | null | undefined): { description: string; unitOfMeasure: string; costCalculationMethod: CostCalculationMethod } => {
+    const text = raw ?? '';
+    const prefix = 'VAS_META:';
+    if (text.startsWith(prefix)) {
+      try {
+        const obj = JSON.parse(text.slice(prefix.length));
+        return {
+          description: String(obj.description ?? ''),
+          unitOfMeasure: String(obj.unitOfMeasure ?? ''),
+          costCalculationMethod: (obj.costCalculationMethod ?? 'ثابت') as CostCalculationMethod,
+        };
+      } catch {
+        // fall through
+      }
+    }
+    return { description: text, unitOfMeasure: '', costCalculationMethod: 'ثابت' };
+  };
+
+  const serializeVasDescription = (description: string, unitOfMeasure: string, costCalculationMethod: CostCalculationMethod) => {
+    const prefix = 'VAS_META:';
+    return prefix + JSON.stringify({ description, unitOfMeasure, costCalculationMethod });
+  };
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        const list = await apiFetch<any[]>('/vas');
+        if (!active) return;
+        const mapped: ValueAddedService[] = (Array.isArray(list) ? list : []).map((v) => {
+          const meta = parseVasDescription(v.description);
+          return {
+            id: v.id,
+            serviceCode: v.code ?? '',
+            serviceName: v.name ?? '',
+            description: meta.description,
+            unitOfMeasure: meta.unitOfMeasure,
+            active: v.isActive ?? true,
+            costCalculationMethod: meta.costCalculationMethod,
+          };
+        });
+        setServices(mapped);
+      } catch (e) {
+        console.error('Failed to load VAS list', e);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const handleEdit = (service: ValueAddedService) => {
     setSelectedService(service);
     setServiceFormData({
+      serviceCode: service.serviceCode,
       serviceName: service.serviceName,
       description: service.description,
       unitOfMeasure: service.unitOfMeasure,
@@ -7862,12 +8062,23 @@ function ValueAddedServicesPage() {
     setIsEditDialogOpen(true);
   };
 
-  const handleDisable = (serviceId: string) => {
-    setServices(services.map(s => s.id === serviceId ? { ...s, active: !s.active } : s));
+  const handleDisable = async (serviceId: string) => {
+    const svc = services.find((s) => s.id === serviceId);
+    if (!svc) return;
+    try {
+      const updated = await apiFetch<any>(`/vas/${serviceId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ isActive: !svc.active }),
+      });
+      setServices(services.map((s) => (s.id === serviceId ? { ...s, active: updated.isActive ?? !svc.active } : s)));
+    } catch (e) {
+      console.error('Failed to toggle VAS active', e);
+    }
   };
 
   const handleCreateService = () => {
     setServiceFormData({
+      serviceCode: '',
       serviceName: '',
       description: '',
       unitOfMeasure: '',
@@ -7877,34 +8088,71 @@ function ValueAddedServicesPage() {
     setIsCreateDialogOpen(true);
   };
 
-  const handleSaveService = () => {
-    if (isCreateDialogOpen) {
-      const newService: ValueAddedService = {
-        id: Date.now().toString(),
-        serviceName: serviceFormData.serviceName,
-        description: serviceFormData.description,
-        unitOfMeasure: serviceFormData.unitOfMeasure,
-        active: serviceFormData.active,
-        costCalculationMethod: serviceFormData.costCalculationMethod,
-      };
-      setServices([...services, newService]);
-    } else if (selectedService) {
-      setServices(services.map(s =>
-        s.id === selectedService.id
-          ? {
-              ...s,
-              serviceName: serviceFormData.serviceName,
-              description: serviceFormData.description,
-              unitOfMeasure: serviceFormData.unitOfMeasure,
-              active: serviceFormData.active,
-              costCalculationMethod: serviceFormData.costCalculationMethod,
-            }
-          : s
-      ));
+  const handleSaveService = async () => {
+    if (!serviceFormData.serviceCode.trim() || !serviceFormData.serviceName.trim()) return;
+    const packedDescription = serializeVasDescription(
+      serviceFormData.description,
+      serviceFormData.unitOfMeasure,
+      serviceFormData.costCalculationMethod,
+    );
+    try {
+      if (isCreateDialogOpen) {
+        const created = await apiFetch<any>('/vas', {
+          method: 'POST',
+          body: JSON.stringify({
+            code: serviceFormData.serviceCode.trim(),
+            name: serviceFormData.serviceName.trim(),
+            description: packedDescription,
+            isActive: serviceFormData.active,
+          }),
+        });
+        const meta = parseVasDescription(created.description);
+        setServices([
+          ...services,
+          {
+            id: created.id,
+            serviceCode: created.code ?? serviceFormData.serviceCode.trim(),
+            serviceName: created.name ?? serviceFormData.serviceName.trim(),
+            description: meta.description,
+            unitOfMeasure: meta.unitOfMeasure,
+            active: created.isActive ?? serviceFormData.active,
+            costCalculationMethod: meta.costCalculationMethod,
+          },
+        ]);
+      } else if (selectedService) {
+        const updated = await apiFetch<any>(`/vas/${selectedService.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            code: serviceFormData.serviceCode.trim(),
+            name: serviceFormData.serviceName.trim(),
+            description: packedDescription,
+            isActive: serviceFormData.active,
+          }),
+        });
+        const meta = parseVasDescription(updated.description);
+        setServices(
+          services.map((s) =>
+            s.id === selectedService.id
+              ? {
+                  ...s,
+                  serviceCode: updated.code ?? serviceFormData.serviceCode.trim(),
+                  serviceName: updated.name ?? serviceFormData.serviceName.trim(),
+                  description: meta.description,
+                  unitOfMeasure: meta.unitOfMeasure,
+                  active: updated.isActive ?? serviceFormData.active,
+                  costCalculationMethod: meta.costCalculationMethod,
+                }
+              : s,
+          ),
+        );
+      }
+      setIsCreateDialogOpen(false);
+      setIsEditDialogOpen(false);
+      setSelectedService(null);
+    } catch (e) {
+      console.error('Failed to save VAS', e);
+      alert('Failed to save VAS. Please check backend validation and logs.');
     }
-    setIsCreateDialogOpen(false);
-    setIsEditDialogOpen(false);
-    setSelectedService(null);
   };
 
   return (
@@ -7924,6 +8172,7 @@ function ValueAddedServicesPage() {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="text-right">كود الخدمة</TableHead>
                 <TableHead className="text-right">اسم الخدمة</TableHead>
                 <TableHead className="text-right">الوصف</TableHead>
                 <TableHead className="text-right">وحدة القياس</TableHead>
@@ -7934,6 +8183,7 @@ function ValueAddedServicesPage() {
             <TableBody>
               {services.map((service) => (
                 <TableRow key={service.id}>
+                  <TableCell className="font-mono">{service.serviceCode}</TableCell>
                   <TableCell className="font-semibold">{service.serviceName}</TableCell>
                   <TableCell>{service.description}</TableCell>
                   <TableCell>{service.unitOfMeasure}</TableCell>
@@ -7988,6 +8238,14 @@ function ValueAddedServicesPage() {
             <DialogTitle>{isCreateDialogOpen ? 'إنشاء خدمة جديدة' : 'تعديل الخدمة'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">كود الخدمة</label>
+              <Input
+                value={serviceFormData.serviceCode}
+                onChange={(e) => setServiceFormData({ ...serviceFormData, serviceCode: e.target.value })}
+                placeholder="أدخل كود الخدمة (مثال: PACKING)"
+              />
+            </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">اسم الخدمة</label>
               <Input
@@ -8049,7 +8307,7 @@ function ValueAddedServicesPage() {
             </Button>
             <Button
               onClick={handleSaveService}
-              disabled={!serviceFormData.serviceName || !serviceFormData.description || !serviceFormData.unitOfMeasure}
+              disabled={!serviceFormData.serviceCode || !serviceFormData.serviceName}
             >
               حفظ
             </Button>
@@ -8060,8 +8318,8 @@ function ValueAddedServicesPage() {
   );
 }
 
-// Approvals Center Types
-type ApprovalType = 'inbound' | 'outbound' | 'adjustment';
+// Approvals Center Types (mapped from backend ApprovalReferenceType)
+type ApprovalType = 'order' | 'adjustment' | 'return' | 'invoice';
 type ApprovalStatus = 'قيد الانتظار' | 'موافق عليه' | 'مرفوض';
 
 type Approval = {
@@ -8078,70 +8336,11 @@ type Approval = {
   notes?: string;
 };
 
-// Sample Approvals Data
-const initialInboundApprovals: Approval[] = [
-  {
-    id: '1',
-    type: 'inbound',
-    reference: 'INB-00041',
-    client: 'شركة التقنية المتقدمة',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    requestedBy: 'أحمد محمد',
-    requestedAt: '2026-02-02 10:15',
-    reason: 'طلب موافقة على استلام طلب وارد كبير',
-    status: 'قيد الانتظار',
-    details: 'الطلب يحتوي على 500 قطعة من المنتج A',
-    notes: 'يحتاج إلى فحص قبل الموافقة',
-  },
-  {
-    id: '2',
-    type: 'inbound',
-    reference: 'INB-00042',
-    client: 'مؤسسة التجارة الإلكترونية',
-    warehouse: 'مستودع جدة',
-    requestedBy: 'فاطمة علي',
-    requestedAt: '2026-02-02 09:30',
-    reason: 'طلب موافقة على استلام منتجات قابلة للتلف',
-    status: 'قيد الانتظار',
-    details: 'منتجات تحتاج إلى تخزين مبرد',
-  },
-];
-
-const initialOutboundApprovals: Approval[] = [
-  {
-    id: '3',
-    type: 'outbound',
-    reference: 'OUT-00018',
-    client: 'شركة التقنية المتقدمة',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    requestedBy: 'خالد سعيد',
-    requestedAt: '2026-02-02 11:00',
-    reason: 'طلب موافقة على شحن طلب صادر عاجل',
-    status: 'قيد الانتظار',
-    details: 'الطلب يحتاج إلى شحن فوري',
-  },
-];
-
-const initialAdjustmentApprovals: Approval[] = [
-  {
-    id: '4',
-    type: 'adjustment',
-    reference: 'ADJ-00009',
-    client: 'شركة التوزيع الحديثة',
-    warehouse: 'المستودع الرئيسي - الرياض',
-    requestedBy: 'سارة حسن',
-    requestedAt: '2026-02-02 08:30',
-    reason: 'طلب موافقة على تعديل مخزون كبير',
-    status: 'قيد الانتظار',
-    details: 'تعديل كمية -50 قطعة بسبب التلف',
-  },
-];
+// Approvals are loaded dynamically from backend /approvals
 
 function ApprovalsCenterPage() {
-  const [activeApprovalType, setActiveApprovalType] = useState<ApprovalType>('inbound');
-  const [inboundApprovals, setInboundApprovals] = useState<Approval[]>([]);
-  const [outboundApprovals, setOutboundApprovals] = useState<Approval[]>([]);
-  const [adjustmentApprovals, setAdjustmentApprovals] = useState<Approval[]>([]);
+  const [activeApprovalType, setActiveApprovalType] = useState<ApprovalType>('order');
+  const [approvals, setApprovals] = useState<Approval[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
@@ -8155,39 +8354,53 @@ function ApprovalsCenterPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await apiFetch<any[]>('/approvals');
+        const params = new URLSearchParams();
+        const refType =
+          activeApprovalType === 'adjustment'
+            ? 'ADJUSTMENT'
+            : activeApprovalType === 'return'
+              ? 'RETURN'
+              : activeApprovalType === 'invoice'
+                ? 'INVOICE'
+                : 'ORDER';
+        params.set('referenceType', refType);
+        const data = await apiFetch<any[]>(`/approvals?${params.toString()}`);
         if (!active) return;
-        const inbound: Approval[] = [];
-        const outbound: Approval[] = [];
-        const adjustment: Approval[] = [];
-        data.forEach((approval) => {
-          const mapped: Approval = {
-            id: approval.id,
-            type: approval.referenceType === 'INBOUND_ORDER' ? 'inbound' : approval.referenceType === 'OUTBOUND_ORDER' ? 'outbound' : 'adjustment' as ApprovalType,
-            reference: approval.referenceId || '',
-            client: approval.client?.name || '',
-            warehouse: approval.warehouse?.name || '',
-            requestedBy: approval.requestedByActorId || '',
-            requestedAt: approval.createdAt ? new Date(approval.createdAt).toLocaleString('ar-SA') : '',
-            reason: approval.reason || '',
-            status: approval.status === 'APPROVED' ? 'موافق عليه' : approval.status === 'REJECTED' ? 'مرفوض' : 'قيد الانتظار' as ApprovalStatus,
-            details: approval.details || '',
-            notes: approval.notes || undefined,
-          };
-          if (mapped.type === 'inbound') inbound.push(mapped);
-          else if (mapped.type === 'outbound') outbound.push(mapped);
-          else adjustment.push(mapped);
-        });
-        setInboundApprovals(inbound.length > 0 ? inbound : initialInboundApprovals);
-        setOutboundApprovals(outbound.length > 0 ? outbound : initialOutboundApprovals);
-        setAdjustmentApprovals(adjustment.length > 0 ? adjustment : initialAdjustmentApprovals);
+        const mapped: Approval[] = (Array.isArray(data) ? data : []).map((a) => ({
+          id: a.id,
+          type:
+            a.referenceType === 'ADJUSTMENT'
+              ? 'adjustment'
+              : a.referenceType === 'RETURN'
+                ? 'return'
+                : a.referenceType === 'INVOICE'
+                  ? 'invoice'
+                  : 'order',
+          reference: a.referenceId || '',
+          client: '', // approval does not store client/warehouse directly
+          warehouse: '',
+          requestedBy:
+            a.requestedByActor?.user?.email ||
+            a.requestedByActor?.clientAccount?.email ||
+            a.requestedByActorId ||
+            '-',
+          requestedAt: a.createdAt ? new Date(a.createdAt).toISOString().slice(0, 16).replace('T', ' ') : '',
+          reason: a.requestNotes || '',
+          status:
+            a.status === 'APPROVED'
+              ? ('موافق عليه' as ApprovalStatus)
+              : a.status === 'REJECTED'
+                ? ('مرفوض' as ApprovalStatus)
+                : ('قيد الانتظار' as ApprovalStatus),
+          details: a.approvalStep ? `Step: ${a.approvalStep}` : '',
+          notes: a.decisionNotes || undefined,
+        }));
+        setApprovals(mapped);
       } catch (e: any) {
         console.error('Failed to load approvals', e);
         if (active) {
           setError('تعذر تحميل الموافقات. يرجى المحاولة مرة أخرى.');
-          setInboundApprovals(initialInboundApprovals);
-          setOutboundApprovals(initialOutboundApprovals);
-          setAdjustmentApprovals(initialAdjustmentApprovals);
+          setApprovals([]);
         }
       } finally {
         if (active) setLoading(false);
@@ -8195,46 +8408,35 @@ function ApprovalsCenterPage() {
     }
     void load();
     return () => { active = false; };
-  }, []);
-
-  const getCurrentApprovals = () => {
-    switch (activeApprovalType) {
-      case 'inbound':
-        return inboundApprovals;
-      case 'outbound':
-        return outboundApprovals;
-      case 'adjustment':
-        return adjustmentApprovals;
-      default:
-        return [];
-    }
-  };
-
-  const getCurrentApprovalsSetter = () => {
-    switch (activeApprovalType) {
-      case 'inbound':
-        return setInboundApprovals;
-      case 'outbound':
-        return setOutboundApprovals;
-      case 'adjustment':
-        return setAdjustmentApprovals;
-      default:
-        return () => {};
-    }
-  };
+  }, [activeApprovalType]);
 
   const handleReview = (approval: Approval) => {
     setSelectedApproval(approval);
     setIsReviewDialogOpen(true);
   };
 
-  const handleApprove = () => {
+  const handleApprove = async () => {
     if (!selectedApproval) return;
-    const setter = getCurrentApprovalsSetter();
-    const currentApprovals = getCurrentApprovals();
-    setter(currentApprovals.map(a =>
-      a.id === selectedApproval.id ? { ...a, status: 'موافق عليه' as ApprovalStatus } : a
-    ));
+    try {
+      setError(null);
+      const updated = await apiFetch<any>(`/approvals/${selectedApproval.id}/approve`, {
+        method: 'POST',
+        body: JSON.stringify({ decisionNotes: selectedApproval.notes || undefined }),
+      });
+      setApprovals((prev) =>
+        prev.map((a) =>
+          a.id === selectedApproval.id
+            ? {
+                ...a,
+                status: updated.status === 'APPROVED' ? 'موافق عليه' : a.status,
+                notes: updated.decisionNotes || a.notes,
+              }
+            : a,
+        ),
+      );
+    } catch (e: any) {
+      setError(e instanceof Error ? e.message : 'فشل اعتماد الموافقة');
+    }
     setIsReviewDialogOpen(false);
     setSelectedApproval(null);
   };
@@ -8246,21 +8448,34 @@ function ApprovalsCenterPage() {
     setIsRejectDialogOpen(true);
   };
 
-  const handleConfirmReject = () => {
+  const handleConfirmReject = async () => {
     if (!selectedApproval || !rejectReason.trim()) return;
-    const setter = getCurrentApprovalsSetter();
-    const currentApprovals = getCurrentApprovals();
-    setter(currentApprovals.map(a =>
-      a.id === selectedApproval.id
-        ? { ...a, status: 'مرفوض' as ApprovalStatus, notes: rejectReason }
-        : a
-    ));
+    try {
+      setError(null);
+      const updated = await apiFetch<any>(`/approvals/${selectedApproval.id}/reject`, {
+        method: 'POST',
+        body: JSON.stringify({ decisionNotes: rejectReason }),
+      });
+      setApprovals((prev) =>
+        prev.map((a) =>
+          a.id === selectedApproval.id
+            ? {
+                ...a,
+                status: updated.status === 'REJECTED' ? 'مرفوض' : a.status,
+                notes: updated.decisionNotes || rejectReason,
+              }
+            : a,
+        ),
+      );
+    } catch (e: any) {
+      setError(e instanceof Error ? e.message : 'فشل رفض الموافقة');
+    }
     setIsRejectDialogOpen(false);
     setSelectedApproval(null);
     setRejectReason('');
   };
 
-  const currentApprovals = getCurrentApprovals();
+  const currentApprovals = approvals;
 
   return (
     <div className="space-y-6">
@@ -8269,18 +8484,11 @@ function ApprovalsCenterPage() {
         <CardContent className="p-4">
           <div className="flex flex-wrap gap-2">
             <Button
-              variant={activeApprovalType === 'inbound' ? 'default' : 'outline'}
-              onClick={() => setActiveApprovalType('inbound')}
+              variant={activeApprovalType === 'order' ? 'default' : 'outline'}
+              onClick={() => setActiveApprovalType('order')}
               size="sm"
             >
-              موافقات الوارد
-            </Button>
-            <Button
-              variant={activeApprovalType === 'outbound' ? 'default' : 'outline'}
-              onClick={() => setActiveApprovalType('outbound')}
-              size="sm"
-            >
-              موافقات الصادر
+              موافقات الطلبات
             </Button>
             <Button
               variant={activeApprovalType === 'adjustment' ? 'default' : 'outline'}
@@ -8288,6 +8496,20 @@ function ApprovalsCenterPage() {
               size="sm"
             >
               موافقات التعديل
+            </Button>
+            <Button
+              variant={activeApprovalType === 'return' ? 'default' : 'outline'}
+              onClick={() => setActiveApprovalType('return')}
+              size="sm"
+            >
+              موافقات المرتجعات
+            </Button>
+            <Button
+              variant={activeApprovalType === 'invoice' ? 'default' : 'outline'}
+              onClick={() => setActiveApprovalType('invoice')}
+              size="sm"
+            >
+              موافقات الفواتير
             </Button>
           </div>
         </CardContent>

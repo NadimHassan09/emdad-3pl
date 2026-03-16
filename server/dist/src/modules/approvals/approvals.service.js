@@ -42,12 +42,50 @@ let ApprovalsService = class ApprovalsService {
             where.requestedByActorId = filter.requestedByActorId;
         return db.approval.findMany({
             where,
+            include: {
+                requestedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+                approvedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+            },
             orderBy: { createdAt: 'desc' },
         });
     }
     async findOne(id) {
         const db = this.prisma;
-        const approval = await db.approval.findUnique({ where: { id } });
+        const approval = await db.approval.findUnique({
+            where: { id },
+            include: {
+                requestedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+                approvedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+            },
+        });
         if (!approval)
             throw new common_1.NotFoundException('Approval not found');
         return approval;
@@ -67,6 +105,24 @@ let ApprovalsService = class ApprovalsService {
                 decisionNotes: dto.decisionNotes,
                 decisionAt: new Date(),
             },
+            include: {
+                requestedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+                approvedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+            },
         });
     }
     async reject(id, approverActorId, dto) {
@@ -83,6 +139,24 @@ let ApprovalsService = class ApprovalsService {
                 approvedByActorId: approverActorId,
                 decisionNotes: dto.decisionNotes,
                 decisionAt: new Date(),
+            },
+            include: {
+                requestedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+                approvedByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
             },
         });
     }
