@@ -7,12 +7,12 @@ export declare class OutboundOrdersService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(dto: CreateOutboundOrderDto, createdByActorId: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -33,21 +33,21 @@ export declare class OutboundOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
         expectedShipDate: Date | null;
     }>;
     findMany(filter?: OutboundOrderFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -77,9 +77,9 @@ export declare class OutboundOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
@@ -87,12 +87,12 @@ export declare class OutboundOrdersService {
     })[]>;
     private serializeOrder;
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -152,21 +152,21 @@ export declare class OutboundOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
         expectedShipDate: Date | null;
     }>;
     update(id: string, dto: UpdateOutboundOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -196,9 +196,9 @@ export declare class OutboundOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;

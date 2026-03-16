@@ -14,10 +14,10 @@ export declare class WarehouseLocationsController {
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
         locationType: import(".prisma/client").$Enums.LocationType;
-        warehouseId: string;
         parentLocationId: string | null;
     }>;
     findMany(warehouseId: string): Promise<({
@@ -36,10 +36,10 @@ export declare class WarehouseLocationsController {
         isActive: boolean;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         capacityValue: import("@prisma/client/runtime/library").Decimal | null;
         capacityUomId: string | null;
         locationType: import(".prisma/client").$Enums.LocationType;
-        warehouseId: string;
         parentLocationId: string | null;
     })[]>;
 }

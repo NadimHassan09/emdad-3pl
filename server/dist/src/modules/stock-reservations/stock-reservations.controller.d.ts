@@ -4,12 +4,12 @@ export declare class StockReservationsController {
     private readonly stockReservations;
     constructor(stockReservations: StockReservationsService);
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -46,9 +46,9 @@ export declare class StockReservationsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            warehouseId: string;
             status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            warehouseId: string;
             productId: string;
             batchId: string | null;
             locationId: string | null;
@@ -62,18 +62,18 @@ export declare class StockReservationsController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
-        warehouseId: string;
         outboundOrderId: string;
     }>;
     confirm(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -110,9 +110,9 @@ export declare class StockReservationsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            warehouseId: string;
             status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            warehouseId: string;
             productId: string;
             batchId: string | null;
             locationId: string | null;
@@ -126,18 +126,18 @@ export declare class StockReservationsController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
-        warehouseId: string;
         outboundOrderId: string;
     }>;
     release(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -174,9 +174,9 @@ export declare class StockReservationsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            warehouseId: string;
             status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            warehouseId: string;
             productId: string;
             batchId: string | null;
             locationId: string | null;
@@ -190,9 +190,9 @@ export declare class StockReservationsController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
-        warehouseId: string;
         outboundOrderId: string;
     }>;
     pickAllocation(id: string, dto: PickAllocationDto): Promise<{
@@ -228,18 +228,18 @@ export declare class StockReservationsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            warehouseId: string;
             status: import(".prisma/client").$Enums.ReservationStatus;
             clientId: string;
-            warehouseId: string;
             outboundOrderId: string;
         };
     } & {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.AllocationStatus;
         clientId: string;
-        warehouseId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;

@@ -30,12 +30,71 @@ let UsersService = class UsersService {
             return [];
         }
     }
+    async findAllRolesWithPermissions() {
+        try {
+            const rows = await this.prisma.userRole.findMany({
+                where: { isActive: true },
+                select: { id: true, roleName: true, permissionsJson: true },
+                orderBy: { roleName: 'asc' },
+            });
+            return rows;
+        }
+        catch (e) {
+            console.error('[UsersService] findAllRolesWithPermissions failed:', e);
+            return [];
+        }
+    }
+    async findRoleById(id) {
+        const role = await this.prisma.userRole.findUnique({
+            where: { id, isActive: true },
+            select: { id: true, roleName: true, permissionsJson: true },
+        });
+        if (!role)
+            throw new common_1.NotFoundException('Role not found');
+        return role;
+    }
+    async createRole(dto) {
+        const trimmedName = dto.roleName.trim();
+        const existing = await this.prisma.userRole.findFirst({
+            where: { roleName: { equals: trimmedName, mode: 'insensitive' } },
+        });
+        if (existing)
+            throw new common_1.ConflictException('Role name already exists');
+        const permissionsJson = { permissions: Array.isArray(dto.permissions) ? dto.permissions : [] };
+        const role = await this.prisma.userRole.create({
+            data: {
+                roleName: trimmedName,
+                permissionsJson,
+            },
+            select: { id: true, roleName: true, permissionsJson: true },
+        });
+        return role;
+    }
+    async updateRole(id, dto) {
+        const existing = await this.prisma.userRole.findUnique({ where: { id } });
+        if (!existing)
+            throw new common_1.NotFoundException('Role not found');
+        const data = {};
+        if (dto.roleName !== undefined)
+            data.roleName = dto.roleName.trim();
+        if (dto.permissions !== undefined)
+            data.permissionsJson = { permissions: dto.permissions };
+        const role = await this.prisma.userRole.update({
+            where: { id },
+            data,
+            select: { id: true, roleName: true, permissionsJson: true },
+        });
+        return role;
+    }
     async findMany() {
         try {
             const users = await this.prisma.user.findMany({
                 include: {
                     internalRole: {
                         select: { id: true, roleName: true, permissionsJson: true },
+                    },
+                    warehouse: {
+                        select: { id: true, code: true, name: true },
                     },
                 },
                 orderBy: { createdAt: 'desc' },
@@ -67,6 +126,8 @@ let UsersService = class UsersService {
             data.email = dto.email.trim().toLowerCase();
         if (dto.internalRoleId !== undefined)
             data.internalRoleId = dto.internalRoleId;
+        if (dto.warehouseId !== undefined)
+            data.warehouseId = dto.warehouseId;
         if (dto.isActive !== undefined)
             data.isActive = dto.isActive;
         if (dto.password !== undefined && dto.password.length > 0) {
@@ -79,6 +140,9 @@ let UsersService = class UsersService {
                 internalRole: {
                     select: { id: true, roleName: true, permissionsJson: true },
                 },
+                warehouse: {
+                    select: { id: true, code: true, name: true },
+                },
             },
         });
         return user;
@@ -89,6 +153,9 @@ let UsersService = class UsersService {
             include: {
                 internalRole: {
                     select: { id: true, roleName: true, permissionsJson: true },
+                },
+                warehouse: {
+                    select: { id: true, code: true, name: true },
                 },
             },
         });

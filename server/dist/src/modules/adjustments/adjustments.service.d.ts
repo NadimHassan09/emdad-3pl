@@ -9,12 +9,12 @@ export declare class AdjustmentsService {
     private readonly approvalsService;
     constructor(prisma: PrismaService, inventoryService: InventoryService, approvalsService: ApprovalsService);
     create(dto: CreateAdjustmentDto, createdByActorId: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -48,9 +48,9 @@ export declare class AdjustmentsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.AdjustmentStatus;
         clientId: string;
-        warehouseId: string;
         productId: string | null;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
@@ -59,12 +59,12 @@ export declare class AdjustmentsService {
         reason: string | null;
     }>;
     findMany(filter?: AdjustmentFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -98,9 +98,9 @@ export declare class AdjustmentsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.AdjustmentStatus;
         clientId: string;
-        warehouseId: string;
         productId: string | null;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
@@ -109,12 +109,12 @@ export declare class AdjustmentsService {
         reason: string | null;
     })[]>;
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -148,9 +148,9 @@ export declare class AdjustmentsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.AdjustmentStatus;
         clientId: string;
-        warehouseId: string;
         productId: string | null;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
@@ -159,12 +159,12 @@ export declare class AdjustmentsService {
         reason: string | null;
     }>;
     apply(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -198,9 +198,9 @@ export declare class AdjustmentsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.AdjustmentStatus;
         clientId: string;
-        warehouseId: string;
         productId: string | null;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;

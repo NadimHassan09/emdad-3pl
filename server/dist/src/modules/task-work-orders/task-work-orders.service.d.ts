@@ -7,12 +7,12 @@ export declare class TaskWorkOrdersService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(dto: CreateTaskWorkOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -27,9 +27,9 @@ export declare class TaskWorkOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -38,12 +38,12 @@ export declare class TaskWorkOrdersService {
         assignedUserId: string | null;
     }>;
     findMany(filter?: TaskWorkOrderFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -58,9 +58,9 @@ export declare class TaskWorkOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -69,12 +69,12 @@ export declare class TaskWorkOrdersService {
         assignedUserId: string | null;
     })[]>;
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -89,9 +89,9 @@ export declare class TaskWorkOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -100,12 +100,12 @@ export declare class TaskWorkOrdersService {
         assignedUserId: string | null;
     }>;
     update(id: string, dto: UpdateTaskWorkOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -120,9 +120,9 @@ export declare class TaskWorkOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -131,12 +131,12 @@ export declare class TaskWorkOrdersService {
         assignedUserId: string | null;
     }>;
     assign(id: string, dto: AssignTaskWorkOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -151,9 +151,9 @@ export declare class TaskWorkOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;
@@ -162,12 +162,12 @@ export declare class TaskWorkOrdersService {
         assignedUserId: string | null;
     }>;
     complete(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -182,9 +182,9 @@ export declare class TaskWorkOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.TaskStatus;
         clientId: string;
-        warehouseId: string;
         referenceType: string | null;
         referenceId: string | null;
         taskType: import(".prisma/client").$Enums.TaskType;

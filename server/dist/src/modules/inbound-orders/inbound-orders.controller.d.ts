@@ -9,12 +9,12 @@ export declare class InboundOrdersController {
     private readonly inboundOrders;
     constructor(inboundOrders: InboundOrdersService);
     create(dto: CreateInboundOrderDto, payload: JwtPayload): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -35,9 +35,9 @@ export declare class InboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         expectedDate: Date | null;
@@ -48,12 +48,12 @@ export declare class InboundOrdersController {
             qtyOrdered: number;
             qtyReceived: number;
         }[];
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -61,21 +61,21 @@ export declare class InboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         expectedDate: Date | null;
         createdByActorId: string;
     }[]>;
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -135,21 +135,21 @@ export declare class InboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         expectedDate: Date | null;
         createdByActorId: string;
     }>;
     update(id: string, dto: UpdateInboundOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -179,9 +179,9 @@ export declare class InboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         expectedDate: Date | null;
@@ -208,12 +208,12 @@ export declare class InboundOrdersController {
         inboundOrderId: string;
     }>;
     receive(orderId: string, dto: ReceiveInboundOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -273,9 +273,9 @@ export declare class InboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         expectedDate: Date | null;

@@ -13,6 +13,7 @@ export declare class ActorsService {
             firstName: string;
             lastName: string;
             internalRoleId: string | null;
+            warehouseId: string | null;
         } | null;
     } & {
         id: string;

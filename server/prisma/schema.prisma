@@ -122,14 +122,17 @@ model User {
   firstName        String    @map("first_name") @db.VarChar(100)
   lastName         String    @map("last_name") @db.VarChar(100)
   internalRoleId   String?   @map("internal_role_id") @db.Uuid
+  warehouseId      String?   @map("warehouse_id") @db.Uuid
   isActive         Boolean   @default(true) @map("is_active") @db.Boolean
   createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt        DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
 
-  internalRole UserRole? @relation(fields: [internalRoleId], references: [id], onDelete: SetNull)
+  internalRole UserRole?  @relation(fields: [internalRoleId], references: [id], onDelete: SetNull)
+  warehouse    Warehouse? @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
   actor        Actor?
   assignedTasks TaskWorkOrder[]
   @@index([internalRoleId])
+  @@index([warehouseId])
   @@map("users")
 }
 
@@ -301,8 +304,9 @@ model Warehouse {
   createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt      DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
 
-  capacityUom Uom?       @relation(fields: [capacityUomId], references: [id], onDelete: SetNull)
-  locations   Location[]
+  users         User[]
+  capacityUom   Uom?       @relation(fields: [capacityUomId], references: [id], onDelete: SetNull)
+  locations     Location[]
   inventoryLedgers InventoryLedger[]
   currentStocks   CurrentStock[]
   inboundOrders InboundOrder[]

@@ -20,6 +20,10 @@ export class UpdateUserDto {
   internalRoleId?: string | null;
 
   @IsOptional()
+  @IsUUID()
+  warehouseId?: string | null;
+
+  @IsOptional()
   @IsBoolean()
   isActive?: boolean;
 

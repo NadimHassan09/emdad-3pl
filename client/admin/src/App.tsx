@@ -120,6 +120,9 @@ import {
   fetchUserRoles,
   fetchWarehouses,
   updateUser,
+  createRole,
+  fetchRolesWithPermissions,
+  PERMISSION_OPTIONS,
   type UserRoleInfo,
   type WarehouseResponse,
 } from '@/lib/identity-access';
@@ -269,9 +272,9 @@ type Account = {
   role: string;
   roleId: string | null;
   warehouse: string;
+  warehouseId: string | null;
   client: string;
   status: 'نشط' | 'غير نشط';
-  lastLogin: string;
   password?: string;
 };
 
@@ -676,12 +679,17 @@ function IdentityAndAccessPage() {
     lastName?: string;
     email?: string;
     roleId?: string | null;
-    warehouse?: string;
+    warehouseId?: string | null;
+    isActive?: boolean;
     password?: string;
   }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [isAddRoleDialogOpen, setIsAddRoleDialogOpen] = useState(false);
+  const [addRoleName, setAddRoleName] = useState('');
+  const [addRolePermissions, setAddRolePermissions] = useState<string[]>([]);
+  const [addRoleSaving, setAddRoleSaving] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -705,10 +713,10 @@ function IdentityAndAccessPage() {
           email: u.email,
           role: u.internalRole?.roleName || 'موظف',
           roleId: u.internalRole?.id ?? null,
-          warehouse: '-',
+          warehouse: u.warehouse?.name ?? '-',
+          warehouseId: u.warehouse?.id ?? null,
           client: '-',
           status: u.isActive ? 'نشط' : 'غير نشط',
-          lastLogin: '-',
         }));
         setAccounts(mapped);
       } catch (e) {
@@ -740,7 +748,8 @@ function IdentityAndAccessPage() {
       lastName: account.lastName,
       email: account.email,
       roleId: account.roleId,
-      warehouse: account.warehouse,
+      warehouseId: account.warehouseId,
+      isActive: account.status === 'نشط',
       password: '',
     });
     setIsEditDialogOpen(true);
@@ -755,6 +764,8 @@ function IdentityAndAccessPage() {
         lastName: editFormData.lastName?.trim(),
         email: editFormData.email?.trim(),
         internalRoleId: editFormData.roleId || null,
+        warehouseId: editFormData.warehouseId || null,
+        isActive: editFormData.isActive,
       };
       if (editFormData.password && editFormData.password.length > 0) {
         payload.password = editFormData.password;
@@ -770,6 +781,9 @@ function IdentityAndAccessPage() {
               email: editFormData.email || account.email,
               role: roles.find((r) => r.id === editFormData.roleId)?.roleName || account.role,
               roleId: editFormData.roleId ?? account.roleId,
+              warehouse: warehouses.find((w) => w.id === editFormData.warehouseId)?.name ?? account.warehouse,
+              warehouseId: editFormData.warehouseId ?? account.warehouseId,
+              status: (editFormData.isActive ? 'نشط' : 'غير نشط') as 'نشط' | 'غير نشط',
             } as Account
           : account
       );
@@ -802,6 +816,42 @@ function IdentityAndAccessPage() {
     }
   };
 
+  const openAddRoleDialog = () => {
+    setAddRoleName('');
+    setAddRolePermissions([]);
+    setError(null);
+    setIsAddRoleDialogOpen(true);
+  };
+
+  const toggleAddRolePermission = (value: string) => {
+    setAddRolePermissions((prev) =>
+      prev.includes(value) ? prev.filter((p) => p !== value) : [...prev, value]
+    );
+  };
+
+  const handleAddRoleSubmit = async () => {
+    const name = addRoleName.trim();
+    if (!name) {
+      setError('اسم الدور مطلوب');
+      return;
+    }
+    try {
+      setAddRoleSaving(true);
+      setError(null);
+      await createRole({ roleName: name, permissions: addRolePermissions });
+      const rolesData = await fetchUserRoles();
+      setRoles(rolesData);
+      setIsAddRoleDialogOpen(false);
+      setAddRoleName('');
+      setAddRolePermissions([]);
+    } catch (e) {
+      console.error('Failed to create role', e);
+      setError(e instanceof Error ? e.message : 'تعذر إنشاء الدور.');
+    } finally {
+      setAddRoleSaving(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {error && (
@@ -809,6 +859,16 @@ function IdentityAndAccessPage() {
           {error}
         </div>
       )}
+      {/* Roles: Add button */}
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
+          <CardTitle className="text-lg font-semibold">الأدوار والصلاحيات</CardTitle>
+          <Button type="button" onClick={openAddRoleDialog}>
+            <Plus className="w-4 h-4 ml-2" />
+            إضافة دور وصلاحياته
+          </Button>
+        </CardHeader>
+      </Card>
       {/* Filters Section */}
       <Card>
         <CardHeader>
@@ -896,13 +956,15 @@ function IdentityAndAccessPage() {
                 <TableHead className="text-right font-semibold">الدور</TableHead>
                 <TableHead className="text-right font-semibold">المستودع</TableHead>
                 <TableHead className="text-right font-semibold">الحالة</TableHead>
-                <TableHead className="text-right font-semibold">آخر تسجيل دخول</TableHead>
-                <TableHead className="text-right font-semibold">الإجراءات</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredAccounts.map((account) => (
-                <TableRow key={account.id}>
+                <TableRow
+                  key={account.id}
+                  className="cursor-pointer hover:bg-muted/50"
+                  onClick={() => handleEdit(account)}
+                >
                   <TableCell className="text-right">{account.name}</TableCell>
                   <TableCell className="text-right">{account.email}</TableCell>
                   <TableCell className="text-right">{account.role}</TableCell>
@@ -913,41 +975,6 @@ function IdentityAndAccessPage() {
                     >
                       {account.status}
                     </Badge>
-                  </TableCell>
-                  <TableCell className="text-right font-mono text-sm">
-                    {account.lastLogin}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex items-center justify-end">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 w-8 p-0"
-                          >
-                            <MoreHorizontal className="w-4 h-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem
-                            onClick={() => handleEdit(account)}
-                            className="cursor-pointer"
-                          >
-                            <Edit className="w-4 h-4 ml-2" />
-                            تعديل
-                          </DropdownMenuItem>
-                          <DropdownMenuItem
-                            onClick={() => handleToggleStatus(account)}
-                            variant={account.status === 'نشط' ? 'destructive' : 'default'}
-                            className="cursor-pointer"
-                          >
-                            <Power className="w-4 h-4 ml-2" />
-                            {account.status === 'نشط' ? 'إلغاء التفعيل' : 'تفعيل'}
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
                   </TableCell>
                 </TableRow>
               ))}
@@ -1036,28 +1063,45 @@ function IdentityAndAccessPage() {
                 </Select>
               </div>
 
-              {/* Warehouse (display only; no backend field for user-warehouse yet) */}
+              {/* Warehouse */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
                   المستودع
                 </label>
                 <Select
-                  value={editFormData.warehouse || ''}
+                  value={editFormData.warehouseId || ''}
                   onValueChange={(value) =>
-                    setEditFormData({ ...editFormData, warehouse: value })
+                    setEditFormData({ ...editFormData, warehouseId: value || null })
                   }
                 >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="اختر المستودع" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="">بدون مستودع</SelectItem>
                     {warehouses.map((wh) => (
-                      <SelectItem key={wh.id} value={wh.name}>
+                      <SelectItem key={wh.id} value={wh.id}>
                         {wh.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+
+              {/* Status */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="edit-account-active"
+                  checked={editFormData.isActive ?? true}
+                  onChange={(e) =>
+                    setEditFormData({ ...editFormData, isActive: e.target.checked })
+                  }
+                  className="rounded border-gray-300"
+                />
+                <label htmlFor="edit-account-active" className="text-sm font-medium text-gray-700">
+                  الحساب نشط
+                </label>
               </div>
 
               {/* Password */}
@@ -1093,6 +1137,58 @@ function IdentityAndAccessPage() {
             </Button>
             <Button onClick={handleSaveEdit} disabled={saving}>
               {saving ? 'جاري الحفظ...' : 'حفظ التغييرات'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Role & Permissions Dialog */}
+      <Dialog open={isAddRoleDialogOpen} onOpenChange={setIsAddRoleDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl">إضافة دور وصلاحياته</DialogTitle>
+            <DialogDescription>
+              أدخل اسم الدور واختر الصلاحيات المناسبة له
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">اسم الدور</label>
+              <Input
+                value={addRoleName}
+                onChange={(e) => setAddRoleName(e.target.value)}
+                placeholder="مثال: مدير المستودع"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">الصلاحيات</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-64 overflow-y-auto rounded border p-3 bg-gray-50">
+                {PERMISSION_OPTIONS.map((opt) => (
+                  <label
+                    key={opt.value}
+                    className="flex items-center gap-2 cursor-pointer text-sm"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={addRolePermissions.includes(opt.value)}
+                      onChange={() => toggleAddRolePermission(opt.value)}
+                      className="rounded border-gray-300"
+                    />
+                    <span>{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsAddRoleDialogOpen(false)}
+            >
+              إلغاء
+            </Button>
+            <Button onClick={handleAddRoleSubmit} disabled={addRoleSaving}>
+              {addRoleSaving ? 'جاري الحفظ...' : 'إضافة الدور'}
             </Button>
           </DialogFooter>
         </DialogContent>

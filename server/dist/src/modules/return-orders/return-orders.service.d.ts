@@ -7,12 +7,12 @@ export declare class ReturnOrdersService {
     private readonly inventoryService;
     constructor(prisma: PrismaService, inventoryService: InventoryService);
     create(dto: CreateReturnOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -35,8 +35,8 @@ export declare class ReturnOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         batchId: string | null;
         outboundOrderId: string;
@@ -45,12 +45,12 @@ export declare class ReturnOrdersService {
         disposition: import(".prisma/client").$Enums.ReturnDisposition;
     }>;
     findMany(filter?: ReturnOrderFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -73,8 +73,8 @@ export declare class ReturnOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         batchId: string | null;
         outboundOrderId: string;
@@ -83,12 +83,12 @@ export declare class ReturnOrdersService {
         disposition: import(".prisma/client").$Enums.ReturnDisposition;
     })[]>;
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -111,8 +111,8 @@ export declare class ReturnOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         batchId: string | null;
         outboundOrderId: string;
@@ -121,12 +121,12 @@ export declare class ReturnOrdersService {
         disposition: import(".prisma/client").$Enums.ReturnDisposition;
     }>;
     process(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -149,8 +149,8 @@ export declare class ReturnOrdersService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         batchId: string | null;
         outboundOrderId: string;

@@ -12,12 +12,12 @@ export declare class OutboundOrdersController {
     private readonly stockReservations;
     constructor(outboundOrders: OutboundOrdersService, stockReservations: StockReservationsService);
     create(dto: CreateOutboundOrderDto, payload: JwtPayload): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -38,21 +38,21 @@ export declare class OutboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
         expectedShipDate: Date | null;
     }>;
     findMany(filter: OutboundOrderFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -82,21 +82,21 @@ export declare class OutboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
         expectedShipDate: Date | null;
     })[]>;
     findOne(id: string): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -156,21 +156,21 @@ export declare class OutboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
         expectedShipDate: Date | null;
     }>;
     update(id: string, dto: UpdateOutboundOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -200,9 +200,9 @@ export declare class OutboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;
@@ -229,12 +229,12 @@ export declare class OutboundOrdersController {
         outboundOrderId: string;
     }>;
     createReservation(outboundOrderId: string, dto: CreateReservationDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -271,9 +271,9 @@ export declare class OutboundOrdersController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            warehouseId: string;
             status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            warehouseId: string;
             productId: string;
             batchId: string | null;
             locationId: string | null;
@@ -287,18 +287,18 @@ export declare class OutboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
-        warehouseId: string;
         outboundOrderId: string;
     }>;
     shipOrder(outboundOrderId: string, dto: ShipOrderDto): Promise<{
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -346,9 +346,9 @@ export declare class OutboundOrdersController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        warehouseId: string;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
-        warehouseId: string;
         orderNumber: string | null;
         currentStage: string | null;
         createdByActorId: string;

@@ -35,12 +35,12 @@ export declare class InventoryController {
         }[];
     }>;
     findCurrentStock(filter: CurrentStockFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -62,20 +62,20 @@ export declare class InventoryController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;
         quantity: import("@prisma/client/runtime/library").Decimal;
     })[]>;
     findCurrentStockByProduct(productId: string, filter: CurrentStockFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -97,20 +97,20 @@ export declare class InventoryController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         batchId: string | null;
         locationId: string | null;
         quantity: import("@prisma/client/runtime/library").Decimal;
     })[]>;
     findLedger(filter: InventoryLedgerFilterDto): Promise<({
-        client: {
+        warehouse: {
             id: string;
             code: string;
             name: string;
         };
-        warehouse: {
+        client: {
             id: string;
             code: string;
             name: string;
@@ -131,8 +131,8 @@ export declare class InventoryController {
     } & {
         id: string;
         createdAt: Date;
-        clientId: string;
         warehouseId: string;
+        clientId: string;
         productId: string;
         movementType: import(".prisma/client").$Enums.MovementType;
         qtyChange: import("@prisma/client/runtime/library").Decimal;
