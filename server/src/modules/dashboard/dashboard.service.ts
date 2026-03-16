@@ -60,23 +60,8 @@ export class DashboardService {
       });
       locationsWithStock = stockLocs.filter((r) => r.locationId).length;
 
-      [
-        clientsCount,
-        clientsCountLastMonth,
-        warehousesCount,
-        activeUsersCount,
-        openApprovalsCount,
-        pendingApprovalsCreatedLast24h,
-        warehousesWithCapacity,
-        currentStockAgg,
-        ledgerLastWeek,
-        outboundForSales,
-        ledgerByMonth,
-        activeProductsCount,
-        locationsTotal,
-        openInboundOrders,
-        openOutboundOrders,
-      ] = await Promise.all([
+      // Run in sequential batches to avoid "too many clients" (DB connection limit)
+      const batch1 = await Promise.all([
         this.prisma.client.count({ where: { isActive: true } }),
         this.prisma.client.count({
           where: { isActive: true, createdAt: { lt: startOfMonth } },
@@ -90,6 +75,15 @@ export class DashboardService {
             createdAt: { gte: new Date(now.getTime() - 24 * 60 * 60 * 1000) },
           },
         }),
+      ]);
+      clientsCount = batch1[0];
+      clientsCountLastMonth = batch1[1];
+      warehousesCount = batch1[2];
+      activeUsersCount = batch1[3];
+      openApprovalsCount = batch1[4];
+      pendingApprovalsCreatedLast24h = batch1[5];
+
+      const batch2 = await Promise.all([
         this.prisma.warehouse.findMany({
           where: { isActive: true, capacityValue: { not: null } },
           select: { capacityValue: true },
@@ -102,6 +96,12 @@ export class DashboardService {
           where: { createdAt: { gte: oneWeekAgo } },
           select: { productId: true, qtyChange: true },
         }),
+      ]);
+      warehousesWithCapacity = batch2[0];
+      currentStockAgg = batch2[1];
+      ledgerLastWeek = batch2[2];
+
+      const batch3 = await Promise.all([
         this.prisma.outboundOrder.findMany({
           where: { createdAt: { gte: sixMonthsAgo } },
           select: {
@@ -122,8 +122,15 @@ export class DashboardService {
           where: { status: { notIn: ['COMPLETED', 'CANCELLED'] } },
         }),
       ]);
+      outboundForSales = batch3[0];
+      ledgerByMonth = batch3[1];
+      activeProductsCount = batch3[2];
+      locationsTotal = batch3[3];
+      openInboundOrders = batch3[4];
+      openOutboundOrders = batch3[5];
     } catch (e) {
       console.error('[DashboardService] getOverview queries failed:', e);
+      throw e; // Surface error so API returns 500 and frontend shows message instead of silent zeros
     }
 
     let auditLogs: Array<{

@@ -48,7 +48,13 @@ export async function apiFetch<T = any>(
       }
     }
     
-    const err: ApiError = new Error('API request failed');
+    const message =
+      res.status === 500 && body && typeof body === 'object' && 'message' in body
+        ? String((body as { message: unknown }).message)
+        : res.status === 500
+          ? 'خطأ في الخادم — تحقق من اتصال قاعدة البيانات وسجلات الخادم'
+          : 'API request failed';
+    const err: ApiError = new Error(message);
     err.status = res.status;
     err.body = body;
     throw err;
