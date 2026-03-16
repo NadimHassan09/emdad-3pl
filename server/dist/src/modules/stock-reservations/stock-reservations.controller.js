@@ -923,4 +923,4579 @@ exports.StockReservationsController = StockReservationsController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
 ], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
+common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let StockReservationsController = class StockReservationsController {
+    constructor(stockReservations) {
+        this.stockReservations = stockReservations;
+    }
+    findOne(id) {
+        return this.stockReservations.findOne(id);
+    }
+    confirm(id) {
+        return this.stockReservations.confirm(id);
+    }
+    release(id) {
+        return this.stockReservations.release(id);
+    }
+    pickAllocation(id, dto) {
+        return this.stockReservations.pickAllocation(id, dto);
+    }
+};
+exports.StockReservationsController = StockReservationsController;
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/confirm'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "confirm", null);
+__decorate([
+    (0, common_1.Post)(':id/release'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "release", null);
+__decorate([
+    (0, common_1.Post)('outbound-allocations/:id/pick'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, pick_allocation_dto_1.PickAllocationDto]),
+    __metadata("design:returntype", void 0)
+], StockReservationsController.prototype, "pickAllocation", null);
+exports.StockReservationsController = StockReservationsController = __decorate([
+    (0, common_1.Controller)('stock-reservations'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [stock_reservations_service_1.StockReservationsService])
+], StockReservationsController);
 //# sourceMappingURL=stock-reservations.controller.js.map

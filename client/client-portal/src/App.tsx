@@ -27578,3 +27578,20530 @@ function App() {
 }
 
 export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<typeof supportTicketsData[0] | null>(null);
+  
+  // Ticket creation form
+  const [ticketTitle, setTicketTitle] = useState('');
+  const [ticketDescription, setTicketDescription] = useState('');
+  const [ticketPriority, setTicketPriority] = useState('');
+
+  const handleSendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    const newMessage = {
+      id: Date.now().toString(),
+      text: chatMessage,
+      sender: 'user' as const,
+      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setChatMessage('');
+    
+    // Simulate support response
+    setTimeout(() => {
+      const supportResponse = {
+        id: (Date.now() + 1).toString(),
+        text: 'شكراً لتواصلك. سأقوم بمراجعة طلبك والرد عليك قريباً.',
+        sender: 'support' as const,
+        time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setChatMessages(prev => [...prev, supportResponse]);
+    }, 1000);
+  };
+
+  const handleCreateTicket = () => {
+    // Handle ticket creation
+    console.log('Creating ticket:', { ticketTitle, ticketDescription, ticketPriority });
+    setTicketDialogOpen(false);
+    setTicketTitle('');
+    setTicketDescription('');
+    setTicketPriority('');
+  };
+
+  const handleViewTicket = (ticket: typeof supportTicketsData[0]) => {
+    setSelectedTicket(ticket);
+    setViewTicketDialogOpen(true);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'مفتوح':
+        return 'bg-blue-100 text-blue-700';
+      case 'قيد المعالجة':
+        return 'bg-amber-100 text-amber-700';
+      case 'مغلق':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'مرتفع':
+        return 'bg-red-100 text-red-700';
+      case 'متوسط':
+        return 'bg-orange-100 text-orange-700';
+      case 'منخفض':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  // Filters for tickets
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [filteredTickets, setFilteredTickets] = useState(supportTicketsData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...supportTicketsData];
+
+    if (statusFilter) {
+      filtered = filtered.filter((ticket) => ticket.status === statusFilter);
+    }
+
+    if (priorityFilter) {
+      filtered = filtered.filter((ticket) => ticket.priority === priorityFilter);
+    }
+
+    setFilteredTickets(filtered);
+    setCurrentPage(1);
+  }, [statusFilter, priorityFilter]);
+
+  const paginated = paginate(filteredTickets, currentPage, pageSize);
+  const displayTickets = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredTickets.map((ticket) => ({
+      'رقم التذكرة': ticket.id,
+      'العنوان': ticket.title,
+      'الحالة': ticket.status,
+      'الأولوية': ticket.priority,
+      'تاريخ الإنشاء': ticket.creationDate,
+      'آخر تحديث': ticket.lastUpdate,
+    }));
+    exportToCSV(csvData, 'تذاكر_الدعم.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('support-page-content', 'تذاكر_الدعم.pdf');
+  };
+
+  return (
+    <div id="support-page-content">
+      {/* Section 1: Live Chat and Ticket Creation */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Live Chat Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">محادثة مباشرة مع الدعم</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="h-64 overflow-y-auto space-y-3 p-4 bg-gray-50 rounded-lg">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-gradient-to-r from-[#176C33] to-[#104920] text-white'
+                        : 'bg-white border border-gray-200 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'}`}>
+                      {message.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="text"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChatMessage()}
+                placeholder="اكتب رسالتك..."
+                className="flex-1"
+              />
+              <Button
+                onClick={handleSendChatMessage}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                إرسال
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Ticket Creation Section */}
+        <Card className="border-0 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">إنشاء تذكرة دعم</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                إذا كنت بحاجة إلى مساعدة، يمكنك إنشاء تذكرة دعم وسيقوم فريقنا بالرد عليك في أقرب وقت ممكن.
+              </p>
+              <Button
+                onClick={() => setTicketDialogOpen(true)}
+                className="w-full bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                إنشاء تذكرة جديدة
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Recent Tickets Table */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-gray-900">التذاكر الصادرة مؤخراً</h2>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="data-table w-full">
+                <thead>
+                  <tr className="border-b border-gray-100">
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      رقم التذكرة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      العنوان
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الحالة
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الأولوية
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      تاريخ الإنشاء
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      آخر تحديث
+                    </th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                      الإجراء
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayTickets.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                        لا توجد تذاكر مطابقة للفلاتر الحالية.
+                      </td>
+                    </tr>
+                  ) : (
+                    displayTickets.map((ticket, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
+                    >
+                      <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
+                        {ticket.id}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                        {ticket.title}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}
+                        >
+                          {ticket.status}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}
+                        >
+                          {ticket.priority}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.creationDate}
+                      </td>
+                      <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                        {ticket.lastUpdate}
+                      </td>
+                      <td className="py-4 px-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleViewTicket(ticket)}
+                          className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                        >
+                          عرض
+                        </Button>
+                      </td>
+                    </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+            {filteredTickets.length > pageSize && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={paginated.totalPages}
+                total={paginated.total}
+                pageSize={pageSize}
+                onPageChange={setCurrentPage}
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Create Ticket Dialog */}
+      <Dialog open={ticketDialogOpen} onOpenChange={setTicketDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>إنشاء تذكرة دعم جديدة</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                العنوان
+              </label>
+              <Input
+                type="text"
+                value={ticketTitle}
+                onChange={(e) => setTicketTitle(e.target.value)}
+                placeholder="أدخل عنوان التذكرة"
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الوصف
+              </label>
+              <Textarea
+                value={ticketDescription}
+                onChange={(e) => setTicketDescription(e.target.value)}
+                placeholder="أدخل وصف المشكلة أو الاستفسار"
+                className="w-full min-h-32"
+                rows={6}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الأولوية
+              </label>
+              <Select value={ticketPriority} onValueChange={setTicketPriority}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="اختر الأولوية" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="منخفض">منخفض</SelectItem>
+                  <SelectItem value="متوسط">متوسط</SelectItem>
+                  <SelectItem value="مرتفع">مرتفع</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTicketDialogOpen(false);
+                setTicketTitle('');
+                setTicketDescription('');
+                setTicketPriority('');
+              }}
+              className="text-gray-700 border-gray-300 hover:bg-gray-50"
+            >
+              إلغاء
+            </Button>
+            <Button
+              onClick={handleCreateTicket}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              إنشاء التذكرة
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* View Ticket Dialog */}
+      <Dialog open={viewTicketDialogOpen} onOpenChange={setViewTicketDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          {selectedTicket && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedTicket.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  رقم التذكرة: {selectedTicket.id}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الحالة</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedTicket.status)}`}
+                    >
+                      {selectedTicket.status}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">الأولوية</p>
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getPriorityColor(selectedTicket.priority)}`}
+                    >
+                      {selectedTicket.priority}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">تاريخ الإنشاء</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.creationDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-1">آخر تحديث</p>
+                    <p className="text-sm font-mono text-gray-900">{selectedTicket.lastUpdate}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الوصف</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                    {selectedTicket.description}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setViewTicketDialogOpen(false)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  إغلاق
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Settings Page Component
+function SettingsPage() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [language, setLanguage] = useState('');
+  const [timezone, setTimezone] = useState('');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [activeSessions, setActiveSessions] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [savingAccount, setSavingAccount] = useState(false);
+  const [savingPassword, setSavingPassword] = useState(false);
+  const [savingPreferences, setSavingPreferences] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFetch<{
+          profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+          };
+          preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+          };
+          security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+          };
+        }>('/client-settings/me');
+        if (!active) return;
+        setFirstName(response.profile.firstName);
+        setLastName(response.profile.lastName);
+        setEmail(response.profile.email);
+        setLanguage(response.preferences.language);
+        setTimezone(response.preferences.timezone);
+        setNotificationsEnabled(response.preferences.notificationsEnabled);
+        setTwoFactorEnabled(response.security.twoFactorEnabled);
+        setActiveSessions(response.security.activeSessions);
+      } catch (e) {
+        if (!active) return;
+        setError('تعذر تحميل إعدادات الحساب.');
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const getErrorMessage = (e: unknown, fallback: string): string => {
+    const apiError = e as ApiError;
+    if (
+      apiError?.body &&
+      typeof apiError.body === 'object' &&
+      'message' in apiError.body &&
+      typeof (apiError.body as { message?: unknown }).message === 'string'
+    ) {
+      return (apiError.body as { message: string }).message;
+    }
+    return fallback;
+  };
+
+  const handleSaveAccount = async () => {
+    try {
+      setSavingAccount(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        profile: { firstName: string; lastName: string; email: string };
+      }>('/client-settings/me/profile', {
+        method: 'PATCH',
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+      setFirstName(response.profile.firstName);
+      setLastName(response.profile.lastName);
+      setEmail(response.profile.email);
+      setMessage('تم حفظ بيانات الحساب بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ بيانات الحساب.'));
+    } finally {
+      setSavingAccount(false);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setError('كلمة المرور الجديدة وتأكيد كلمة المرور غير متطابقين');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      setError('يجب أن تحتوي كلمة المرور الجديدة على 8 أحرف على الأقل.');
+      return;
+    }
+    try {
+      setSavingPassword(true);
+      setError(null);
+      setMessage(null);
+      await apiFetch('/client-settings/me/password', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+      setMessage('تم تغيير كلمة المرور بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر تغيير كلمة المرور.'));
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
+  const handleSavePreferences = async () => {
+    try {
+      setSavingPreferences(true);
+      setError(null);
+      setMessage(null);
+      const response = await apiFetch<{
+        preferences: {
+          language: string;
+          timezone: string;
+          notificationsEnabled: boolean;
+        };
+        security: {
+          twoFactorEnabled: boolean;
+          activeSessions: number;
+        };
+      }>('/client-settings/me/preferences', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          language,
+          timezone,
+          notificationsEnabled,
+        }),
+      });
+      setLanguage(response.preferences.language);
+      setTimezone(response.preferences.timezone);
+      setNotificationsEnabled(response.preferences.notificationsEnabled);
+      setTwoFactorEnabled(response.security.twoFactorEnabled);
+      setActiveSessions(response.security.activeSessions);
+      setMessage('تم حفظ التفضيلات بنجاح.');
+    } catch (e) {
+      setError(getErrorMessage(e, 'تعذر حفظ التفضيلات.'));
+    } finally {
+      setSavingPreferences(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-500">جارِ تحميل الإعدادات...</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h1 className="text-2xl font-bold text-gray-900">الإعدادات</h1>
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+      {message && (
+        <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          {message}
+        </div>
+      )}
+
+      {/* Section 1: My Profile */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">ملفي الشخصي</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20 border-2 border-[#176C33]/20">
+              <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-2xl font-medium">
+                {firstName[0]} {lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-lg font-bold text-gray-900">{firstName} {lastName}</p>
+              <p className="text-sm text-gray-500">{email}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 2: Account */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الحساب</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                الاسم الأول
+              </label>
+              <Input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اسم العائلة
+              </label>
+              <Input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                عنوان البريد الإلكتروني
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSaveAccount}
+                disabled={savingAccount}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingAccount ? 'جارِ الحفظ...' : 'حفظ'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 3: Password */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">كلمة المرور</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الحالية
+              </label>
+              <Input
+                type="password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الحالية"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="w-full"
+                placeholder="أدخل كلمة المرور الجديدة"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                تأكيد كلمة المرور الجديدة
+              </label>
+              <Input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full"
+                placeholder="أعد إدخال كلمة المرور الجديدة"
+              />
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleChangePassword}
+                disabled={savingPassword}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPassword ? 'جارِ التغيير...' : 'تغيير كلمة المرور'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 4: Preferences */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">التفضيلات</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                اللغة
+              </label>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="العربية">العربية</SelectItem>
+                  <SelectItem value="English">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                المنطقة الزمنية
+              </label>
+              <Select value={timezone} onValueChange={setTimezone}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Asia/Riyadh">Asia/Riyadh (GMT+3)</SelectItem>
+                  <SelectItem value="Asia/Dubai">Asia/Dubai (GMT+4)</SelectItem>
+                  <SelectItem value="UTC">UTC (GMT+0)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  تفعيل الإشعارات
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  استقبل إشعارات حول التحديثات والأنشطة المهمة
+                </p>
+              </div>
+              <button
+                onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  notificationsEnabled ? 'bg-[#176C33]' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    notificationsEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            <div className="flex items-center justify-end pt-4">
+              <Button
+                onClick={handleSavePreferences}
+                disabled={savingPreferences}
+                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+              >
+                {savingPreferences ? 'جارِ الحفظ...' : 'حفظ التفضيلات'}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Section 5: Security */}
+      <Card className="border-0 shadow-sm">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold">الأمان</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">المصادقة الثنائية</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {twoFactorEnabled
+                    ? 'المصادقة الثنائية مفعلة لهذا الحساب'
+                    : 'أضف طبقة إضافية من الأمان لحسابك'}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {twoFactorEnabled ? 'مفعلة' : 'غير مفعلة'}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <p className="text-sm font-medium text-gray-900">جلسات نشطة</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  عدد الجلسات النشطة حالياً: {activeSessions}
+                </p>
+              </div>
+              <Button variant="outline" size="sm" disabled>
+                {activeSessions} جلسة
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
+function CreateOrderRoute({ onCancel }: { onCancel: () => void }) {
+  const { type } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return <CreateOrderPage orderType={orderType} onCancel={onCancel} />;
+}
+
+function OrderDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { type, orderId } = useParams();
+  const orderType: 'وارد' | 'صادر' = type === 'outbound' ? 'صادر' : 'وارد';
+  return (
+    <OrderDetailsPage
+      orderId={decodeURIComponent(orderId ?? '')}
+      orderType={orderType}
+      onBack={onBack}
+    />
+  );
+}
+
+function InvoiceDetailsRoute({ onBack }: { onBack: () => void }) {
+  const { invoiceId } = useParams();
+  return <InvoiceDetailsPage invoiceId={decodeURIComponent(invoiceId ?? '')} onBack={onBack} />;
+}
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [notifications, setNotifications] = useState(notificationsData);
+  const activeItem = getActiveSidebarLabel(location.pathname);
+
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (isAuthenticated()) {
+        try {
+          const userInfo = await getCurrentUser();
+          if (userInfo) {
+            setUser(userInfo);
+            setAuthenticated(true);
+          } else {
+            setAuthenticated(false);
+          }
+        } catch {
+          setAuthenticated(false);
+        }
+      } else {
+        setAuthenticated(false);
+      }
+      setCheckingAuth(false);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLoginSuccess = async () => {
+    const userInfo = await getCurrentUser();
+    if (userInfo) {
+      setUser(userInfo);
+      setAuthenticated(true);
+      navigate('/dashboard', { replace: true });
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setUser(null);
+  };
+
+  // Show loading state while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من الهوية...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!authenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50/50 flex">
+      {/* Sidebar */}
+      <aside
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
+          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#176C33] to-[#104920] rounded-xl flex items-center justify-center shadow-lg shadow-[#176C33]/25">
+              <Package className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">مخزني</span>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => {
+                const targetRoute = labelToRoute[item.label] || '/dashboard';
+                navigate(targetRoute);
+              }}
+              className={`sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                activeItem === item.label
+                  ? 'active bg-gradient-to-l from-[#176C33]/10 to-[#104920]/10 text-[#176C33]'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <item.icon className="w-5 h-5" />
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'mr-64' : 'mr-0'
+        }`}
+      >
+        {/* Navbar */}
+        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Notifications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <Bell className="w-5 h-5 text-gray-600" />
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                  )}
+            </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 max-h-96 overflow-y-auto">
+                <div className="p-3 border-b border-gray-200">
+                  <h3 className="text-sm font-semibold text-gray-900">الإشعارات</h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {notifications.filter(n => n.readStatus === 'غير مقروء').length} غير مقروء
+                  </p>
+                </div>
+                <div className="max-h-64 overflow-y-auto">
+                  {notifications
+                    .filter(n => n.readStatus === 'غير مقروء')
+                    .slice(0, 5)
+                    .map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className="cursor-pointer p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          if (notification.referenceType === 'طلب وارد') {
+                            navigate(`/orders/inbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'طلب صادر') {
+                            navigate(`/orders/outbound/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'فاتورة') {
+                            navigate(`/invoices/${encodeURIComponent(notification.referenceId)}`);
+                          } else if (notification.referenceType === 'تقارير') {
+                            navigate('/reports');
+                          } else {
+                            navigate('/dashboard');
+                          }
+                        }}
+                      >
+                        <div className="flex items-start gap-3 w-full">
+                          <div className={`w-2 h-2 rounded-full mt-2 ${
+                            notification.importance === 'حرج' ? 'bg-red-500' :
+                            notification.importance === 'مرتفع' ? 'bg-orange-500' :
+                            notification.importance === 'متوسط' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`}></div>
+                          <div className="flex-1 text-right">
+                            <p className="text-sm font-medium text-gray-900">{notification.title}</p>
+                            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{notification.messagePreview}</p>
+                            <p className="text-xs text-gray-400 mt-1">{notification.creationTime}</p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))}
+                  {notifications.filter(n => n.readStatus === 'غير مقروء').length === 0 && (
+                    <div className="p-4 text-center text-sm text-gray-500">
+                      لا توجد إشعارات غير مقروءة
+                    </div>
+                  )}
+                </div>
+                {notifications.filter(n => n.readStatus === 'غير مقروء').length > 0 && (
+                  <div className="p-2 border-t border-gray-200">
+                    <button
+                      onClick={() => navigate('/notifications')}
+                      className="w-full text-center text-sm text-[#176C33] hover:text-[#104920] font-medium"
+                    >
+                      عرض جميع الإشعارات
+                    </button>
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Client Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+              <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
+                <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
+                      {user?.role ? user.role.charAt(0) : 'ع'}
+                </AvatarFallback>
+              </Avatar>
+                  <div className="hidden md:block text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user?.role || 'عميل'}
+                    </p>
+                    <p className="text-xs text-gray-500">حساب عميل</p>
+              </div>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem 
+                  onClick={() => navigate('/notifications')} 
+                  className="cursor-pointer"
+                >
+                  <Bell className="w-4 h-4 ml-2" />
+                  الإشعارات
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/support')} 
+                  className="cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4 ml-2" />
+                  الدعم
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => navigate('/settings')} 
+                  className="cursor-pointer"
+                >
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
+                <div className="border-t border-gray-200 my-1"></div>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
+                  <Power className="w-4 h-4 ml-2" />
+                  تسجيل الخروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <div className="p-6 space-y-6">
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route
+              path="/orders"
+              element={
+                <OrdersPage
+                  onCreateOrder={(type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/create/${typePath}`);
+                  }}
+                  onCreateOrderDetails={(orderId: string, type: 'وارد' | 'صادر') => {
+                    const typePath = type === 'وارد' ? 'inbound' : 'outbound';
+                    navigate(`/orders/${typePath}/${encodeURIComponent(orderId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/orders/create/:type"
+              element={<CreateOrderRoute onCancel={() => navigate('/orders')} />}
+            />
+            <Route
+              path="/orders/:type/:orderId"
+              element={<OrderDetailsRoute onBack={() => navigate('/orders')} />}
+            />
+            <Route path="/movements" element={<MovementsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/billing" element={<BillingPage />} />
+            <Route
+              path="/invoices"
+              element={
+                <InvoicesPage
+                  onViewInvoice={(invoiceId: string) => {
+                    navigate(`/invoices/${encodeURIComponent(invoiceId)}`);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/invoices/:invoiceId"
+              element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
+            />
+            <Route path="/users" element={<UsersPage />} />
+            <Route
+              path="/notifications"
+              element={
+                <NotificationsPage
+                  onNavigateToReference={(referenceType: string, referenceId: string) => {
+                    if (referenceType === 'طلب وارد') {
+                      navigate(`/orders/inbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'طلب صادر') {
+                      navigate(`/orders/outbound/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'فاتورة') {
+                      navigate(`/invoices/${encodeURIComponent(referenceId)}`);
+                    } else if (referenceType === 'تقارير') {
+                      navigate('/reports');
+                    } else {
+                      navigate('/dashboard');
+                    }
+                  }}
+                />
+              }
+            />
+            <Route path="/support" element={<SupportPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
+      </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {!sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+  const [filteredNotifications, setFilteredNotifications] = useState(notifications);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 20;
+
+  useEffect(() => {
+    let filtered = [...notifications];
+
+    if (importance) {
+      filtered = filtered.filter((notif) => notif.importance === importance);
+    }
+
+    if (readStatus) {
+      filtered = filtered.filter((notif) => notif.readStatus === readStatus);
+    }
+
+    if (dateFrom) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateFrom);
+        filterDate.setHours(0, 0, 0, 0);
+        return notifDate >= filterDate;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter((notif) => {
+        // Parse the formatted date string back to Date
+        const notifDate = new Date(notif.dateTime);
+        if (isNaN(notifDate.getTime())) return false;
+        notifDate.setHours(0, 0, 0, 0);
+        const filterDate = new Date(dateTo);
+        filterDate.setHours(23, 59, 59, 999);
+        return notifDate <= filterDate;
+      });
+    }
+
+    if (referenceType) {
+      filtered = filtered.filter((notif) => notif.referenceType === referenceType);
+    }
+
+    setFilteredNotifications(filtered);
+    setCurrentPage(1);
+  }, [importance, readStatus, dateFrom, dateTo, referenceType, notifications]);
+
+  const paginated = paginate(filteredNotifications, currentPage, pageSize);
+  const displayNotifications = paginated.data;
+
+  const handleExportCSV = () => {
+    const csvData = filteredNotifications.map((notif) => ({
+      'الوقت': notif.dateTime,
+      'الأهمية': notif.importance,
+      'الحالة': notif.readStatus,
+      'النوع': notif.type,
+      'الرسالة': notif.message,
+      'نوع المرجع': notif.referenceType,
+      'معرف المرجع': notif.referenceId,
+    }));
+    exportToCSV(csvData, 'الإشعارات.csv');
+  };
+
+  const handleExportPDF = async () => {
+    await exportToPDF('notifications-page-content', 'الإشعارات.pdf');
+  };
+
+  return (
+    <div id="notifications-page-content">
+      {/* Section 1: Title and Filters */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">الإشعارات</h1>
+          <div className="flex items-center gap-3">
+            <Button 
+              onClick={handleExportCSV}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير CSV
+            </Button>
+            <Button 
+              onClick={handleExportPDF}
+              variant="outline" 
+              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
+            >
+              <Download className="w-4 h-4" />
+              تصدير PDF
+            </Button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {/* Importance */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  الأهمية
+                </label>
+                <Select value={importance} onValueChange={setImportance}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الأهمية" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="منخفض">منخفض</SelectItem>
+                    <SelectItem value="متوسط">متوسط</SelectItem>
+                    <SelectItem value="مرتفع">مرتفع</SelectItem>
+                    <SelectItem value="حرج">حرج</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Read Status */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  حالة القراءة
+                </label>
+                <Select value={readStatus} onValueChange={setReadStatus}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر الحالة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="غير مقروء">غير مقروء</SelectItem>
+                    <SelectItem value="مقروء">مقروء</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Date Range */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  من
+                </label>
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  إلى
+                </label>
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Reference Type */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  نوع المرجع
+                </label>
+                <Select value={referenceType} onValueChange={setReferenceType}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="اختر النوع" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">الكل</SelectItem>
+                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
+                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
+                    <SelectItem value="فاتورة">فاتورة</SelectItem>
+                    <SelectItem value="تقارير">تقارير</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Section 2: Notifications Table */}
+      <Card className="border-0 shadow-sm">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="data-table w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    وقت الإنشاء
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    الأهمية
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    العنوان
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    نوع المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    معرف المرجع
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    القراءة
+                  </th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
+                    ملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {displayNotifications.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-8 text-center text-sm text-gray-500">
+                      لا توجد إشعارات مطابقة للفلاتر الحالية.
+                    </td>
+                  </tr>
+                ) : (
+                  displayNotifications.map((notification, index) => (
+                  <tr
+                    key={index}
+                    className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${
+                      notification.readStatus === 'غير مقروء' ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
+                      {notification.creationTime}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(notification.importance)}`}
+                      >
+                        {notification.importance}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
+                      {notification.title}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900">
+                      {notification.referenceType}
+                    </td>
+                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
+                      {notification.referenceId}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                          notification.readStatus === 'مقروء'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}
+                      >
+                        {notification.readStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedNotification(notification)}
+                        className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                      >
+                        عرض
+                      </Button>
+                    </td>
+                  </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+          {filteredNotifications.length > pageSize && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={paginated.totalPages}
+              total={paginated.total}
+              pageSize={pageSize}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Notification Details Dialog */}
+      <Dialog open={selectedNotification !== null} onOpenChange={(open) => !open && setSelectedNotification(null)}>
+        <DialogContent className="sm:max-w-lg">
+          {selectedNotification && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedNotification.title}</DialogTitle>
+                <DialogDescription className="text-right">
+                  {selectedNotification.creationTime}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="mt-4 space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الأهمية</p>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getImportanceColor(selectedNotification.importance)}`}
+                  >
+                    {selectedNotification.importance}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">نوع المرجع</p>
+                  <p className="text-sm text-gray-900">{selectedNotification.referenceType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">معرف المرجع</p>
+                  <p className="text-sm font-mono text-gray-900">{selectedNotification.referenceId}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">الرسالة</p>
+                  <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-3 rounded-lg">
+                    {selectedNotification.fullMessage}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => handleMarkAsRead(selectedNotification.id)}
+                  className="text-gray-700 border-gray-300 hover:bg-gray-50"
+                >
+                  وضع كمقروء
+                </Button>
+                <Button
+                  onClick={() => handleGoToReference(selectedNotification)}
+                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+                >
+                  الذهاب
+                </Button>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+// Support Page Component
+function SupportPage() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState<Array<{ id: string; text: string; sender: 'user' | 'support'; time: string }>>([
+    { id: '1', text: 'مرحباً! كيف يمكنني مساعدتك اليوم؟', sender: 'support', time: '10:00' },
+  ]);
+  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [viewTicketDialogOpen, setViewTicketDialogOp

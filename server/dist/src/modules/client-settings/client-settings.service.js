@@ -1883,6 +1883,9981 @@ const DEFAULT_PREFERENCES = {
     notificationsEnabled: true,
     twoFactorEnabled: false,
 };
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
+let ClientSettingsService = class ClientSettingsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
+    ensureClientActor(actor) {
+        if (actor.actorType !== actor_type_enum_1.ActorType.CLIENT_ACCOUNT) {
+            throw new common_1.ForbiddenException('Client settings are only available for client accounts');
+        }
+        return actor.sub;
+    }
+    async findAccountOrThrow(accountId) {
+        const account = await this.prisma.clientAccount.findUnique({
+            where: { id: accountId },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                clientRole: { select: { roleName: true } },
+            },
+        });
+        if (!account)
+            throw new common_1.NotFoundException('Client account not found');
+        return account;
+    }
+    getPreferences(accountId) {
+        return (ClientSettingsService.preferenceStore.get(accountId) ?? {
+            ...DEFAULT_PREFERENCES,
+        });
+    }
+    setPreferences(accountId, updates) {
+        const next = {
+            ...this.getPreferences(accountId),
+            ...updates,
+        };
+        ClientSettingsService.preferenceStore.set(accountId, next);
+        return next;
+    }
+    async getMe(actor) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const preferences = this.getPreferences(accountId);
+        return {
+            profile: {
+                firstName: account.firstName,
+                lastName: account.lastName,
+                email: account.email,
+            },
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+    async updateProfile(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        const updated = await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName.trim() }),
+                ...(dto.lastName !== undefined && { lastName: dto.lastName.trim() }),
+                ...(dto.email !== undefined && { email: dto.email.trim().toLowerCase() }),
+            },
+            select: {
+                firstName: true,
+                lastName: true,
+                email: true,
+            },
+        });
+        return { profile: updated };
+    }
+    async changePassword(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        const account = await this.findAccountOrThrow(accountId);
+        if (!account.passwordHash) {
+            throw new common_1.UnauthorizedException('Password is not configured for this account');
+        }
+        const valid = await bcrypt.compare(dto.currentPassword, account.passwordHash);
+        if (!valid) {
+            throw new common_1.UnauthorizedException('Current password is incorrect');
+        }
+        const passwordHash = await bcrypt.hash(dto.newPassword, 10);
+        await this.prisma.clientAccount.update({
+            where: { id: account.id },
+            data: { passwordHash },
+        });
+        return { success: true };
+    }
+    async updatePreferences(actor, dto) {
+        const accountId = this.ensureClientActor(actor);
+        await this.findAccountOrThrow(accountId);
+        const preferences = this.setPreferences(accountId, {
+            ...(dto.language !== undefined && { language: dto.language }),
+            ...(dto.timezone !== undefined && { timezone: dto.timezone }),
+            ...(dto.notificationsEnabled !== undefined && {
+                notificationsEnabled: dto.notificationsEnabled,
+            }),
+        });
+        return {
+            preferences: {
+                language: preferences.language,
+                timezone: preferences.timezone,
+                notificationsEnabled: preferences.notificationsEnabled,
+            },
+            security: {
+                twoFactorEnabled: preferences.twoFactorEnabled,
+                activeSessions: 1,
+            },
+        };
+    }
+};
+exports.ClientSettingsService = ClientSettingsService;
+ClientSettingsService.preferenceStore = new Map();
+exports.ClientSettingsService = ClientSettingsService = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+], ClientSettingsService);
+common_1.ForbiddenException,
+    common_1.Injectable,
+    common_1.NotFoundException,
+    common_1.UnauthorizedException,
+;
+from;
+'@nestjs/common';
+const DEFAULT_PREFERENCES = {
+    language: 'العربية',
+    timezone: 'Asia/Riyadh',
+    notificationsEnabled: true,
+    twoFactorEnabled: false,
+};
 let ClientSettingsService = ClientSettingsService_1 = class ClientSettingsService {
     constructor(prisma) {
         this.prisma = prisma;

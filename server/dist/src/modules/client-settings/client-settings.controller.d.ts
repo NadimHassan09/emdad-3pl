@@ -618,3 +618,3078 @@ export declare class ClientSettingsController {
         };
     }>;
 }
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}
+export declare class ClientSettingsController {
+    private readonly settings;
+    constructor(settings: ClientSettingsService);
+    getMe(actor: JwtPayload): Promise<{
+        profile: {
+            firstName: string;
+            lastName: string;
+            email: string;
+        };
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+    updateProfile(actor: JwtPayload, dto: UpdateClientProfileDto): Promise<{
+        profile: {
+            email: string;
+            firstName: string;
+            lastName: string;
+        };
+    }>;
+    changePassword(actor: JwtPayload, dto: ChangeClientPasswordDto): Promise<{
+        success: boolean;
+    }>;
+    updatePreferences(actor: JwtPayload, dto: UpdateClientPreferencesDto): Promise<{
+        preferences: {
+            language: string;
+            timezone: string;
+            notificationsEnabled: boolean;
+        };
+        security: {
+            twoFactorEnabled: boolean;
+            activeSessions: number;
+        };
+    }>;
+}

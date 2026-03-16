@@ -191,4 +191,904 @@ __decorate([
     (0, class_validator_1.MinLength)(8),
     __metadata("design:type", String)
 ], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
+class ChangeClientPasswordDto {
+}
+exports.ChangeClientPasswordDto = ChangeClientPasswordDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "currentPassword", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(8),
+    __metadata("design:type", String)
+], ChangeClientPasswordDto.prototype, "newPassword", void 0);
 //# sourceMappingURL=change-client-password.dto.js.map

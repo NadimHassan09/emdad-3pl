@@ -119,3 +119,603 @@ export declare class AdjustmentFilterDto {
     locationId?: string;
     status?: AdjustmentStatus;
 }
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}
+export declare class AdjustmentFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    productId?: string;
+    batchId?: string;
+    locationId?: string;
+    status?: AdjustmentStatus;
+}

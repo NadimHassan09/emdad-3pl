@@ -176,4 +176,829 @@ exports.InventoryModule = InventoryModule = __decorate([
         exports: [inventory_service_1.InventoryService],
     })
 ], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
+let InventoryModule = class InventoryModule {
+};
+exports.InventoryModule = InventoryModule;
+exports.InventoryModule = InventoryModule = __decorate([
+    (0, common_1.Module)({
+        imports: [database_module_1.DatabaseModule],
+        controllers: [inventory_controller_1.InventoryController],
+        providers: [inventory_service_1.InventoryService],
+        exports: [inventory_service_1.InventoryService],
+    })
+], InventoryModule);
 //# sourceMappingURL=inventory.module.js.map

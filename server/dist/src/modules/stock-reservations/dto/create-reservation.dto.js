@@ -223,4 +223,1054 @@ __decorate([
     (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
     __metadata("design:type", Array)
 ], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
+class CreateReservationDto {
+}
+exports.CreateReservationDto = CreateReservationDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReservationDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_allocation_dto_1.CreateAllocationDto),
+    __metadata("design:type", Array)
+], CreateReservationDto.prototype, "allocations", void 0);
 //# sourceMappingURL=create-reservation.dto.js.map

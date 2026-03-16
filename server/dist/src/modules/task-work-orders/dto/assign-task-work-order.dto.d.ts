@@ -43,3 +43,228 @@ export declare class AssignTaskWorkOrderDto {
 export declare class AssignTaskWorkOrderDto {
     assignedUserId: string;
 }
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}
+export declare class AssignTaskWorkOrderDto {
+    assignedUserId: string;
+}

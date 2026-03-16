@@ -344,3 +344,15183 @@ export class UpdateInboundOrderDto {
   @IsUUID()
   warehouseId?: string;
 }
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}
+
+
+export class UpdateInboundOrderDto {
+  @IsOptional()
+  @IsString()
+  orderNumber?: string;
+
+  @IsOptional()
+  @IsEnum(OrderStatus)
+  status?: OrderStatus;
+
+  @IsOptional()
+  @IsString()
+  currentStage?: string;
+
+  @IsOptional()
+  @IsDateString()
+  expectedDate?: string;
+
+  @IsOptional()
+  @IsUUID()
+  warehouseId?: string;
+}

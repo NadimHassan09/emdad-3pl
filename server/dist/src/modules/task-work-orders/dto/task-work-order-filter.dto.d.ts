@@ -151,3 +151,753 @@ export declare class TaskWorkOrderFilterDto {
     referenceType?: string;
     referenceId?: string;
 }
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class TaskWorkOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    taskType?: TaskType;
+    status?: TaskStatus;
+    priority?: TaskPriority;
+    assignedUserId?: string;
+    referenceType?: string;
+    referenceId?: string;
+}

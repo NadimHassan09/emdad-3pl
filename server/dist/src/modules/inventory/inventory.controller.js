@@ -911,4 +911,4504 @@ exports.InventoryController = InventoryController = __decorate([
     (0, common_1.Controller)('inventory'),
     __metadata("design:paramtypes", [inventory_service_1.InventoryService])
 ], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
+common_1.Get,
+    common_1.Query,
+    common_1.Param,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let InventoryController = class InventoryController {
+    constructor(inventoryService) {
+        this.inventoryService = inventoryService;
+    }
+    getDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    findCurrentStock(filter) {
+        return this.inventoryService.findCurrentStock(filter);
+    }
+    findCurrentStockByProduct(productId, filter) {
+        return this.inventoryService.findCurrentStockByProduct(productId, filter);
+    }
+    findLedger(filter) {
+        return this.inventoryService.findLedger(filter);
+    }
+};
+exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getDashboard", null);
+__decorate([
+    (0, common_1.Get)('current-stock'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStock", null);
+__decorate([
+    (0, common_1.Get)('current-stock/by-product/:productId'),
+    __param(0, (0, common_1.Param)('productId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('ledger'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "findLedger", null);
+exports.InventoryController = InventoryController = __decorate([
+    (0, common_1.Controller)('inventory'),
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService])
+], InventoryController);
 //# sourceMappingURL=inventory.controller.js.map

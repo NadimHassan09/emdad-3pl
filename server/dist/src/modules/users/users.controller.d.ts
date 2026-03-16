@@ -74,3 +74,603 @@ export declare class UsersController {
     constructor(users: UsersService);
     findMany(): Promise<import("./users.service").UserWithRole[]>;
 }
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}
+export declare class UsersController {
+    private readonly users;
+    constructor(users: UsersService);
+    findMany(): Promise<import("./users.service").UserWithRole[]>;
+}

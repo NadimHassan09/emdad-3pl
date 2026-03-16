@@ -135,3 +135,678 @@ export declare class CreateTaskWorkOrderDto {
     referenceItemId?: string;
     priority?: TaskPriority;
 }
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}
+export declare class CreateTaskWorkOrderDto {
+    clientId: string;
+    warehouseId: string;
+    taskType: TaskType;
+    referenceType?: string;
+    referenceId?: string;
+    referenceItemId?: string;
+    priority?: TaskPriority;
+}

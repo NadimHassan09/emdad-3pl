@@ -129,4 +129,484 @@ update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
 {
     return this.products.update(id, dto);
 }
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
+update(, id, string, , dto, update_product_dto_1.UpdateProductDto);
+{
+    return this.products.update(id, dto);
+}
 //# sourceMappingURL=products.controller.js.map

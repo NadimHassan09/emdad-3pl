@@ -179,3 +179,7923 @@ import { StockReservationsModule } from '../stock-reservations/stock-reservation
   exports: [OutboundOrdersService],
 })
 export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}
+
+import { OutboundOrdersController } from './outbound-orders.controller';
+import { PrismaService } from '../../database/prisma/prisma.service';
+import { StockReservationsModule } from '../stock-reservations/stock-reservations.module';
+
+@Module({
+  imports: [StockReservationsModule],
+  controllers: [OutboundOrdersController],
+  providers: [OutboundOrdersService, PrismaService],
+  exports: [OutboundOrdersService],
+})
+export class OutboundOrdersModule {}

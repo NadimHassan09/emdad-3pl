@@ -953,4 +953,4729 @@ exports.AdjustmentsController = AdjustmentsController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
 ], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let AdjustmentsController = class AdjustmentsController {
+    constructor(adjustments) {
+        this.adjustments = adjustments;
+    }
+    create(dto, payload) {
+        return this.adjustments.create(dto, payload.actorId);
+    }
+    findMany(filter) {
+        return this.adjustments.findMany(filter);
+    }
+    findOne(id) {
+        return this.adjustments.findOne(id);
+    }
+    apply(id) {
+        return this.adjustments.apply(id);
+    }
+};
+exports.AdjustmentsController = AdjustmentsController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_adjustment_dto_1.CreateAdjustmentDto, Object]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [adjustment_filter_dto_1.AdjustmentFilterDto]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/apply'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AdjustmentsController.prototype, "apply", null);
+exports.AdjustmentsController = AdjustmentsController = __decorate([
+    (0, common_1.Controller)('adjustments'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [adjustments_service_1.AdjustmentsService])
+], AdjustmentsController);
 //# sourceMappingURL=adjustments.controller.js.map

@@ -162,4 +162,754 @@ __decorate([
     (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)
 ], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
+class PickAllocationDto {
+}
+exports.PickAllocationDto = PickAllocationDto;
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], PickAllocationDto.prototype, "pickedQty", void 0);
 //# sourceMappingURL=pick-allocation.dto.js.map

@@ -659,4 +659,3229 @@ __decorate([
     (0, class_validator_1.IsUUID)(),
     __metadata("design:type", String)
 ], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
+class TaskWorkOrderFilterDto {
+}
+exports.TaskWorkOrderFilterDto = TaskWorkOrderFilterDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "clientId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "warehouseId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_type_enum_1.TaskType),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "taskType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_status_enum_1.TaskStatus),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(task_priority_enum_1.TaskPriority),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "priority", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "assignedUserId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceType", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], TaskWorkOrderFilterDto.prototype, "referenceId", void 0);
 //# sourceMappingURL=task-work-order-filter.dto.js.map

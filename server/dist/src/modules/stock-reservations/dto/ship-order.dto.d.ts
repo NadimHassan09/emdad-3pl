@@ -44,3 +44,228 @@ export declare class ShipOrderDto {
 export declare class ShipOrderDto {
     allocations: ShipAllocationDto[];
 }
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}
+export declare class ShipOrderDto {
+    allocations: ShipAllocationDto[];
+}

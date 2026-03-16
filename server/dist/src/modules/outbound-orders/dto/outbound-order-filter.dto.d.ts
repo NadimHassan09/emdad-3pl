@@ -89,3 +89,453 @@ export declare class OutboundOrderFilterDto {
     status?: OrderStatus;
     orderNumber?: string;
 }
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}
+export declare class OutboundOrderFilterDto {
+    clientId?: string;
+    warehouseId?: string;
+    status?: OrderStatus;
+    orderNumber?: string;
+}

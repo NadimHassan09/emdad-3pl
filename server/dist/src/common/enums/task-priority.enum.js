@@ -289,4 +289,1504 @@ work.
     TaskPriority["HIGH"] = "HIGH";
     TaskPriority["URGENT"] = "URGENT";
 })(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
+    * Task;
+priority;
+(function () {
+})( || ( = {}));
+;
+matches;
+schema;
+task_priority.
+    * Used in task_work_order;
+to;
+prioritize;
+warehouse;
+work.
+    * /;
+(function (TaskPriority) {
+    TaskPriority["LOW"] = "LOW";
+    TaskPriority["NORMAL"] = "NORMAL";
+    TaskPriority["HIGH"] = "HIGH";
+    TaskPriority["URGENT"] = "URGENT";
+})(TaskPriority || (exports.TaskPriority = TaskPriority = {}));
 //# sourceMappingURL=task-priority.enum.js.map

@@ -649,4 +649,3229 @@ __decorate([
     (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
     __metadata("design:type", String)
 ], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
+class_validator_1.IsUUID,
+    class_validator_1.IsNotEmpty,
+    class_validator_1.IsOptional,
+    class_validator_1.IsNumber,
+    class_validator_1.IsString,
+    class_validator_1.IsEnum,
+;
+from;
+'class-validator';
+class CreateReturnOrderDto {
+}
+exports.CreateReturnOrderDto = CreateReturnOrderDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "outboundOrderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "returnNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "batchId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateReturnOrderDto.prototype, "qty", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(return_disposition_enum_1.ReturnDisposition),
+    __metadata("design:type", String)
+], CreateReturnOrderDto.prototype, "disposition", void 0);
 //# sourceMappingURL=create-return-order.dto.js.map

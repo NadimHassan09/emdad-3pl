@@ -937,4 +937,4654 @@ exports.ReturnOrdersController = ReturnOrdersController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
 ], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
+common_1.Controller,
+    common_1.Get,
+    common_1.Post,
+    common_1.Body,
+    common_1.Param,
+    common_1.Query,
+    common_1.ParseUUIDPipe,
+    common_1.UseGuards,
+;
+from;
+'@nestjs/common';
+let ReturnOrdersController = class ReturnOrdersController {
+    constructor(returnOrders) {
+        this.returnOrders = returnOrders;
+    }
+    create(dto) {
+        return this.returnOrders.create(dto);
+    }
+    findMany(filter) {
+        return this.returnOrders.findMany(filter);
+    }
+    findOne(id) {
+        return this.returnOrders.findOne(id);
+    }
+    process(id) {
+        return this.returnOrders.process(id);
+    }
+};
+exports.ReturnOrdersController = ReturnOrdersController;
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_return_order_dto_1.CreateReturnOrderDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [return_order_filter_dto_1.ReturnOrderFilterDto]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(':id/process'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ReturnOrdersController.prototype, "process", null);
+exports.ReturnOrdersController = ReturnOrdersController = __decorate([
+    (0, common_1.Controller)('return-orders'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __metadata("design:paramtypes", [return_orders_service_1.ReturnOrdersService])
+], ReturnOrdersController);
 //# sourceMappingURL=return-orders.controller.js.map
