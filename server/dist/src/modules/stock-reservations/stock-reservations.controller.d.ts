@@ -4,15 +4,15 @@ export declare class StockReservationsController {
     private readonly stockReservations;
     constructor(stockReservations: StockReservationsService);
     findOne(id: string): Promise<{
-        warehouse: {
-            id: string;
-            code: string;
-            name: string;
-        };
         client: {
             id: string;
-            code: string;
             name: string;
+            code: string;
+        };
+        warehouse: {
+            id: string;
+            name: string;
+            code: string;
         };
         outboundOrder: {
             id: string;
@@ -20,19 +20,6 @@ export declare class StockReservationsController {
             orderNumber: string | null;
         };
         allocations: ({
-            location: {
-                id: string;
-                code: string;
-            } | null;
-            product: {
-                id: string;
-                name: string;
-                sku: string;
-            };
-            batch: {
-                id: string;
-                batchCode: string;
-            } | null;
             outboundOrderItem: {
                 id: string;
                 product: {
@@ -42,41 +29,54 @@ export declare class StockReservationsController {
                 };
                 qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+            batch: {
+                id: string;
+                batchCode: string;
+            } | null;
+            location: {
+                id: string;
+                code: string;
+            } | null;
         } & {
             id: string;
+            status: import(".prisma/client").$Enums.AllocationStatus;
             createdAt: Date;
             updatedAt: Date;
-            warehouseId: string;
-            status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            productId: string;
-            batchId: string | null;
-            locationId: string | null;
-            outboundOrderItemId: string;
+            warehouseId: string;
             reservedQty: import("@prisma/client/runtime/library").Decimal;
             pickedQty: import("@prisma/client/runtime/library").Decimal;
             shippedQty: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderItemId: string;
+            productId: string;
+            batchId: string | null;
+            locationId: string | null;
             stockReservationId: string;
         })[];
     } & {
         id: string;
+        status: import(".prisma/client").$Enums.ReservationStatus;
         createdAt: Date;
         updatedAt: Date;
-        warehouseId: string;
-        status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
+        warehouseId: string;
         outboundOrderId: string;
     }>;
     confirm(id: string): Promise<{
-        warehouse: {
-            id: string;
-            code: string;
-            name: string;
-        };
         client: {
             id: string;
-            code: string;
             name: string;
+            code: string;
+        };
+        warehouse: {
+            id: string;
+            name: string;
+            code: string;
         };
         outboundOrder: {
             id: string;
@@ -84,19 +84,6 @@ export declare class StockReservationsController {
             orderNumber: string | null;
         };
         allocations: ({
-            location: {
-                id: string;
-                code: string;
-            } | null;
-            product: {
-                id: string;
-                name: string;
-                sku: string;
-            };
-            batch: {
-                id: string;
-                batchCode: string;
-            } | null;
             outboundOrderItem: {
                 id: string;
                 product: {
@@ -106,41 +93,54 @@ export declare class StockReservationsController {
                 };
                 qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+            batch: {
+                id: string;
+                batchCode: string;
+            } | null;
+            location: {
+                id: string;
+                code: string;
+            } | null;
         } & {
             id: string;
+            status: import(".prisma/client").$Enums.AllocationStatus;
             createdAt: Date;
             updatedAt: Date;
-            warehouseId: string;
-            status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            productId: string;
-            batchId: string | null;
-            locationId: string | null;
-            outboundOrderItemId: string;
+            warehouseId: string;
             reservedQty: import("@prisma/client/runtime/library").Decimal;
             pickedQty: import("@prisma/client/runtime/library").Decimal;
             shippedQty: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderItemId: string;
+            productId: string;
+            batchId: string | null;
+            locationId: string | null;
             stockReservationId: string;
         })[];
     } & {
         id: string;
+        status: import(".prisma/client").$Enums.ReservationStatus;
         createdAt: Date;
         updatedAt: Date;
-        warehouseId: string;
-        status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
+        warehouseId: string;
         outboundOrderId: string;
     }>;
     release(id: string): Promise<{
-        warehouse: {
-            id: string;
-            code: string;
-            name: string;
-        };
         client: {
             id: string;
-            code: string;
             name: string;
+            code: string;
+        };
+        warehouse: {
+            id: string;
+            name: string;
+            code: string;
         };
         outboundOrder: {
             id: string;
@@ -148,19 +148,6 @@ export declare class StockReservationsController {
             orderNumber: string | null;
         };
         allocations: ({
-            location: {
-                id: string;
-                code: string;
-            } | null;
-            product: {
-                id: string;
-                name: string;
-                sku: string;
-            };
-            batch: {
-                id: string;
-                batchCode: string;
-            } | null;
             outboundOrderItem: {
                 id: string;
                 product: {
@@ -170,45 +157,45 @@ export declare class StockReservationsController {
                 };
                 qtyOrdered: import("@prisma/client/runtime/library").Decimal;
             };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+            batch: {
+                id: string;
+                batchCode: string;
+            } | null;
+            location: {
+                id: string;
+                code: string;
+            } | null;
         } & {
             id: string;
+            status: import(".prisma/client").$Enums.AllocationStatus;
             createdAt: Date;
             updatedAt: Date;
-            warehouseId: string;
-            status: import(".prisma/client").$Enums.AllocationStatus;
             clientId: string;
-            productId: string;
-            batchId: string | null;
-            locationId: string | null;
-            outboundOrderItemId: string;
+            warehouseId: string;
             reservedQty: import("@prisma/client/runtime/library").Decimal;
             pickedQty: import("@prisma/client/runtime/library").Decimal;
             shippedQty: import("@prisma/client/runtime/library").Decimal;
+            outboundOrderItemId: string;
+            productId: string;
+            batchId: string | null;
+            locationId: string | null;
             stockReservationId: string;
         })[];
     } & {
         id: string;
+        status: import(".prisma/client").$Enums.ReservationStatus;
         createdAt: Date;
         updatedAt: Date;
-        warehouseId: string;
-        status: import(".prisma/client").$Enums.ReservationStatus;
         clientId: string;
+        warehouseId: string;
         outboundOrderId: string;
     }>;
     pickAllocation(id: string, dto: PickAllocationDto): Promise<{
-        location: {
-            id: string;
-            code: string;
-        } | null;
-        product: {
-            id: string;
-            name: string;
-            sku: string;
-        };
-        batch: {
-            id: string;
-            batchCode: string;
-        } | null;
         outboundOrderItem: {
             id: string;
             product: {
@@ -218,6 +205,19 @@ export declare class StockReservationsController {
             };
             qtyOrdered: import("@prisma/client/runtime/library").Decimal;
         };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+        batch: {
+            id: string;
+            batchCode: string;
+        } | null;
+        location: {
+            id: string;
+            code: string;
+        } | null;
         stockReservation: {
             outboundOrder: {
                 id: string;
@@ -226,27 +226,27 @@ export declare class StockReservationsController {
             };
         } & {
             id: string;
+            status: import(".prisma/client").$Enums.ReservationStatus;
             createdAt: Date;
             updatedAt: Date;
-            warehouseId: string;
-            status: import(".prisma/client").$Enums.ReservationStatus;
             clientId: string;
+            warehouseId: string;
             outboundOrderId: string;
         };
     } & {
         id: string;
+        status: import(".prisma/client").$Enums.AllocationStatus;
         createdAt: Date;
         updatedAt: Date;
-        warehouseId: string;
-        status: import(".prisma/client").$Enums.AllocationStatus;
         clientId: string;
-        productId: string;
-        batchId: string | null;
-        locationId: string | null;
-        outboundOrderItemId: string;
+        warehouseId: string;
         reservedQty: import("@prisma/client/runtime/library").Decimal;
         pickedQty: import("@prisma/client/runtime/library").Decimal;
         shippedQty: import("@prisma/client/runtime/library").Decimal;
+        outboundOrderItemId: string;
+        productId: string;
+        batchId: string | null;
+        locationId: string | null;
         stockReservationId: string;
     }>;
 }

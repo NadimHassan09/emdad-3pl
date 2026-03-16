@@ -50,6 +50,9 @@ let OutboundOrdersController = class OutboundOrdersController {
     shipOrder(outboundOrderId, dto) {
         return this.stockReservations.shipOrder(outboundOrderId, dto);
     }
+    shipAll(outboundOrderId) {
+        return this.stockReservations.autoShipFullOrder(outboundOrderId);
+    }
 };
 exports.OutboundOrdersController = OutboundOrdersController;
 __decorate([
@@ -106,6 +109,13 @@ __decorate([
     __metadata("design:paramtypes", [String, ship_order_dto_1.ShipOrderDto]),
     __metadata("design:returntype", void 0)
 ], OutboundOrdersController.prototype, "shipOrder", null);
+__decorate([
+    (0, common_1.Post)(':id/ship-all'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OutboundOrdersController.prototype, "shipAll", null);
 exports.OutboundOrdersController = OutboundOrdersController = __decorate([
     (0, common_1.Controller)('outbound-orders'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),

@@ -681,5 +681,38 @@ export class StockReservationsService {
 
     return updatedOrder;
   }
+
+  /**
+   * Convenience helper: ship ALL picked quantities for an outbound order.
+   *
+   * This is useful when packing is completed and we want to ship everything
+   * that has already been picked, without the client having to construct
+   * ShipOrderDto manually.
+   */
+  async autoShipFullOrder(outboundOrderId: string) {
+    // Load all allocations for this order
+    const allocations = await this.prisma.outboundAllocation.findMany({
+      where: {
+        stockReservation: {
+          outboundOrderId,
+        },
+      },
+    });
+
+    if (allocations.length === 0) {
+      throw new BadRequestException(
+        'No allocations found for this outbound order to ship',
+      );
+    }
+
+    const payload: ShipOrderDto = {
+      allocations: allocations.map((alloc) => ({
+        allocationId: alloc.id,
+        shippedQty: alloc.pickedQty.toNumber(),
+      })),
+    };
+
+    return this.shipOrder(outboundOrderId, payload);
+  }
 }
 

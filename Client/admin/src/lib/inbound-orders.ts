@@ -49,6 +49,8 @@ export interface InboundOrderItemUi {
 export interface InboundOrderUi {
   id: string;
   orderId: string;
+  clientId?: string;
+  warehouseId?: string;
   client: string;
   warehouse: string;
   status: InboundOrderStatusUi;
@@ -130,9 +132,21 @@ export function mapInboundOrderApiToUi(o: InboundOrderApi): InboundOrderUi {
     o.createdByActor?.user?.email ??
     o.createdByActor?.clientAccount?.email ??
     '-';
+  const stagesOrder: Array<'استلام' | 'فحص' | 'وضع بعيد' | 'مكتمل'> = ['استلام', 'فحص', 'وضع بعيد', 'مكتمل'];
+  const currentStage = (o.currentStage ?? '').trim();
+  const currentIdx = currentStage ? stagesOrder.indexOf(currentStage as (typeof stagesOrder)[number]) : -1;
+  const stages = stagesOrder.map((stage, i) => {
+    if (currentIdx === -1) return { stage, status: 'pending' as const };
+    if (i < currentIdx) return { stage, status: 'completed' as const };
+    if (i === currentIdx) return { stage, status: currentStage === 'مكتمل' ? ('completed' as const) : ('in-progress' as const) };
+    return { stage, status: 'pending' as const };
+  });
+
   return {
     id: o.id,
     orderId: o.orderNumber ?? o.id.slice(0, 8),
+    clientId: o.clientId ?? o.client?.id,
+    warehouseId: o.warehouseId ?? o.warehouse?.id,
     client: o.client?.name ?? '',
     warehouse: o.warehouse?.name ?? '',
     status: statusToUi(o.status),
@@ -141,12 +155,7 @@ export function mapInboundOrderApiToUi(o: InboundOrderApi): InboundOrderUi {
     assignedTo,
     createdAt: formatDateTime(o.createdAt),
     items,
-    stages: [
-      { stage: 'استلام', status: 'pending' },
-      { stage: 'فحص', status: 'pending' },
-      { stage: 'وضع بعيد', status: 'pending' },
-      { stage: 'مكتمل', status: 'pending' },
-    ],
+    stages,
   };
 }
 
@@ -236,11 +245,27 @@ export const INBOUND_STATUS_TO_API: Record<string, string> = {
 
 export async function updateInboundOrder(
   id: string,
-  payload: { status?: string; orderNumber?: string; expectedDate?: string },
+  payload: { status?: string; currentStage?: string; orderNumber?: string; expectedDate?: string },
 ): Promise<InboundOrderUi> {
   const updated = await apiFetch<InboundOrderApi>(`/inbound-orders/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(payload),
   });
   return mapInboundOrderApiToUi(updated);
+}
+
+/** استلام كمية لبند من الطلب الوارد (تحديث الكمية المستلمة + إضافة للمخزون) */
+export interface ReceiveInboundItemPayload {
+  itemId: string;
+  batches: Array<{ batchCode?: string; batchId?: string; locationId?: string; qtyReceived: number }>;
+}
+
+export async function receiveInboundOrderItem(
+  orderId: string,
+  payload: ReceiveInboundItemPayload,
+): Promise<InboundOrderApi> {
+  return apiFetch<InboundOrderApi>(`/inbound-orders/${orderId}/receive`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
 }

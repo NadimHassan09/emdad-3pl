@@ -33,6 +33,7 @@ export type OutboundShipmentStatusUi = 'لم يبدأ' | 'قيد الشحن' | '
 
 export interface OutboundOrderItemUi {
   id: string;
+  productId?: string;
   productName: string;
   productSKU: string;
   quantityOrdered: number;
@@ -45,6 +46,8 @@ export interface OutboundOrderItemUi {
 export interface OutboundOrderUi {
   id: string;
   orderId: string;
+  clientId?: string;
+  warehouseId?: string;
   client: string;
   warehouse: string;
   status: OutboundOrderStatusUi;
@@ -124,6 +127,7 @@ export function mapOutboundOrderApiToUi(o: OutboundOrderApi): OutboundOrderUi {
     const shipped = toNum(it.qtyShipped);
     return {
       id: it.id,
+      productId: it.productId,
       productName: it.product?.name ?? '',
       productSKU: it.product?.sku ?? '',
       quantityOrdered: ordered,
@@ -135,9 +139,28 @@ export function mapOutboundOrderApiToUi(o: OutboundOrderApi): OutboundOrderUi {
   });
   const orderStatus = statusToUi(o.status);
   const shipStatus = shipmentStatusToUi(o.status);
+  const stagesOrder: Array<'انتقاء' | 'تعبئة' | 'شحن' | 'مكتمل'> = ['انتقاء', 'تعبئة', 'شحن', 'مكتمل'];
+  const currentStage = (o.currentStage ?? '').trim();
+  const currentIdx = currentStage ? stagesOrder.indexOf(currentStage as (typeof stagesOrder)[number]) : -1;
+  const stages = stagesOrder.map((stage, i) => {
+    if (currentIdx === -1) {
+      // If backend doesn't track stages yet, fall back to status for shipping/completed
+      if (stage === 'شحن' || stage === 'مكتمل') {
+        const completed = o.status === 'SHIPPED' || o.status === 'COMPLETED';
+        return { stage, status: completed ? ('completed' as const) : ('pending' as const) };
+      }
+      return { stage, status: 'pending' as const };
+    }
+    if (i < currentIdx) return { stage, status: 'completed' as const };
+    if (i === currentIdx) return { stage, status: currentStage === 'مكتمل' ? ('completed' as const) : ('in-progress' as const) };
+    return { stage, status: 'pending' as const };
+  });
+
   return {
     id: o.id,
     orderId: o.orderNumber ?? o.id.slice(0, 8),
+    clientId: o.clientId ?? o.client?.id,
+    warehouseId: o.warehouseId ?? o.warehouse?.id,
     client: o.client?.name ?? '',
     warehouse: o.warehouse?.name ?? '',
     status: orderStatus,
@@ -147,12 +170,7 @@ export function mapOutboundOrderApiToUi(o: OutboundOrderApi): OutboundOrderUi {
     createdAt: formatDateTime(o.createdAt),
     items,
     allocations: [],
-    stages: [
-      { stage: 'انتقاء', status: 'pending' },
-      { stage: 'تعبئة', status: 'pending' },
-      { stage: 'شحن', status: o.status === 'SHIPPED' || o.status === 'COMPLETED' ? 'completed' : 'pending' },
-      { stage: 'مكتمل', status: o.status === 'SHIPPED' || o.status === 'COMPLETED' ? 'completed' : 'pending' },
-    ],
+    stages,
   };
 }
 
@@ -242,7 +260,7 @@ export const OUTBOUND_STATUS_TO_API: Record<string, string> = {
 
 export async function updateOutboundOrder(
   id: string,
-  payload: { status?: string; orderNumber?: string; expectedShipDate?: string },
+  payload: { status?: string; currentStage?: string; orderNumber?: string; expectedShipDate?: string },
 ): Promise<OutboundOrderUi> {
   const updated = await apiFetch<OutboundOrderApi>(`/outbound-orders/${id}`, {
     method: 'PATCH',

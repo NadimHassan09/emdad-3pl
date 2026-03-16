@@ -78,4 +78,18 @@ export class OutboundOrdersController {
   ) {
     return this.stockReservations.shipOrder(outboundOrderId, dto);
   }
+
+  /**
+   * POST /outbound-orders/:id/ship-all
+   *
+   * Ship ALL picked quantities for the outbound order.
+   * This is used when packing is completed and we want to deduct stock
+   * for everything that has already been picked.
+   */
+  @Post(':id/ship-all')
+  shipAll(
+    @Param('id', ParseUUIDPipe) outboundOrderId: string,
+  ) {
+    return this.stockReservations.autoShipFullOrder(outboundOrderId);
+  }
 }

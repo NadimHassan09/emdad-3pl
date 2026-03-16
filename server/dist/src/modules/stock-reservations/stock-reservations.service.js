@@ -499,6 +499,25 @@ let StockReservationsService = class StockReservationsService {
         });
         return updatedOrder;
     }
+    async autoShipFullOrder(outboundOrderId) {
+        const allocations = await this.prisma.outboundAllocation.findMany({
+            where: {
+                stockReservation: {
+                    outboundOrderId,
+                },
+            },
+        });
+        if (allocations.length === 0) {
+            throw new common_1.BadRequestException('No allocations found for this outbound order to ship');
+        }
+        const payload = {
+            allocations: allocations.map((alloc) => ({
+                allocationId: alloc.id,
+                shippedQty: alloc.pickedQty.toNumber(),
+            })),
+        };
+        return this.shipOrder(outboundOrderId, payload);
+    }
 };
 exports.StockReservationsService = StockReservationsService;
 exports.StockReservationsService = StockReservationsService = __decorate([

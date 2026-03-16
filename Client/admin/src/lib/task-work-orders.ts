@@ -50,6 +50,43 @@ export async function fetchTaskWorkOrders(filter: TaskWorkOrderFilter = {}): Pro
   if (filter.status) params.set('status', filter.status);
   if (filter.dueFrom) params.set('dueFrom', filter.dueFrom);
   if (filter.dueTo) params.set('dueTo', filter.dueTo);
+  if (filter.referenceId) params.set('referenceId', filter.referenceId);
   const qs = params.toString();
   return apiFetch<TaskWorkOrderResponse[]>(`/task-work-orders${qs ? `?${qs}` : ''}`);
+}
+
+export interface CreateTaskWorkOrderPayload {
+  clientId: string;
+  warehouseId: string;
+  taskType: string;
+  referenceType?: string;
+  referenceId?: string;
+  priority?: string;
+}
+
+export async function createTaskWorkOrder(payload: CreateTaskWorkOrderPayload): Promise<TaskWorkOrderResponse> {
+  return apiFetch<TaskWorkOrderResponse>('/task-work-orders', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function assignTaskWorkOrder(taskId: string, assignedUserId: string): Promise<TaskWorkOrderResponse> {
+  return apiFetch<TaskWorkOrderResponse>(`/task-work-orders/${taskId}/assign`, {
+    method: 'POST',
+    body: JSON.stringify({ assignedUserId }),
+  });
+}
+
+export async function startTaskWorkOrder(taskId: string): Promise<TaskWorkOrderResponse> {
+  return apiFetch<TaskWorkOrderResponse>(`/task-work-orders/${taskId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status: 'IN_PROGRESS' }),
+  });
+}
+
+export async function completeTaskWorkOrder(taskId: string): Promise<TaskWorkOrderResponse> {
+  return apiFetch<TaskWorkOrderResponse>(`/task-work-orders/${taskId}/complete`, {
+    method: 'POST',
+  });
 }

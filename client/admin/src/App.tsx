@@ -94,6 +94,10 @@ import { apiFetch } from '@/lib/api';
 import { fetchOverview, type OverviewResponse } from '@/lib/dashboard';
 import {
   fetchTaskWorkOrders,
+  createTaskWorkOrder,
+  assignTaskWorkOrder,
+  startTaskWorkOrder,
+  completeTaskWorkOrder,
   TASK_TYPE_LABELS,
   TASK_STATUS_LABELS,
   TASK_PRIORITY_LABELS,
@@ -132,6 +136,7 @@ import {
   createInboundOrder,
   addInboundOrderItem,
   updateInboundOrder,
+  receiveInboundOrderItem,
   INBOUND_STATUS_TO_API,
   type InboundOrderUi,
 } from '@/lib/inbound-orders';
@@ -236,13 +241,8 @@ type Task = {
   notes?: string;
 };
 
-// Warehouses data
-const warehouses = [
-  { id: '1', name: 'المستودع الرئيسي - الرياض' },
-  { id: '2', name: 'مستودع جدة' },
-  { id: '3', name: 'مستودع الدمام' },
-  { id: '4', name: 'مستودع الخبر' },
-];
+// Warehouses data (now loaded dynamically from backend where needed)
+const warehouses: { id: string; name: string }[] = [];
 
 // Roles data
 const roles = [
@@ -254,13 +254,8 @@ const roles = [
   'مشرف',
 ];
 
-// Clients data
-const clients = [
-  { id: '1', name: 'شركة التقنية المتقدمة' },
-  { id: '2', name: 'مؤسسة التجارة الإلكترونية' },
-  { id: '3', name: 'شركة التوزيع الحديثة' },
-  { id: '4', name: 'مجموعة الخليج التجارية' },
-];
+// Clients data (now loaded dynamically from backend where needed)
+const clients: { id: string; name: string }[] = [];
 
 // Account data type (identity-access; roleId for API updates)
 type Account = {
@@ -1501,21 +1496,6 @@ function MasterDataPage() {
                               <Edit className="w-4 h-4 ml-2" />
                               تعديل
                             </DropdownMenuItem>
-                            <DropdownMenuItem
-                              onClick={async () => {
-                                try {
-                                  await updateClient(client.id, { isActive: false });
-                                  const list = await fetchClients();
-                                  setClients(list);
-                                } catch {
-                                  // keep state on error
-                                }
-                              }}
-                              variant="destructive"
-                            >
-                              <Power className="w-4 h-4 ml-2" />
-                              إلغاء التفعيل
-                            </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
@@ -2064,21 +2044,6 @@ function MasterDataPage() {
                             }}>
                               <Edit className="w-4 h-4 ml-2" />
                               تعديل
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                              onClick={async () => {
-                                try {
-                                  await updateWarehouse(warehouse.id, { isActive: false });
-                                  const list = await fetchWarehousesMasterData();
-                                  setWarehouses(list);
-                                } catch {
-                                  // keep state on error
-                                }
-                              }}
-                              variant="destructive"
-                            >
-                              <Power className="w-4 h-4 ml-2" />
-                              إلغاء التفعيل
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -2723,20 +2688,84 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
   );
 }
 
+const STAGE_TO_TASK_TYPE: Record<OrderStage, string> = {
+  'استلام': 'RECEIVING',
+  'فحص': 'RECEIVING',
+  'وضع بعيد': 'PUTAWAY',
+  'مكتمل': 'RECEIVING',
+};
+
+const OUTBOUND_STAGE_TO_TASK_TYPE: Record<OutboundOrderStage, string> = {
+  'انتقاء': 'PICKING',
+  'تعبئة': 'PACKING',
+  'شحن': 'SHIPPING',
+  'مكتمل': 'SHIPPING',
+};
+
 function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBack: () => void }) {
   const [order, setOrder] = useState<InboundOrderUi | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedStage, setSelectedStage] = useState<OrderStage | null>(null);
   const [selectedWorker, setSelectedWorker] = useState('');
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState('');
+  const [employees, setEmployees] = useState<{ id: string; firstName: string; lastName: string; email: string }[]>([]);
+  const [stageTaskIds, setStageTaskIds] = useState<Record<string, string>>({});
+  const [taskActionLoading, setTaskActionLoading] = useState(false);
   const [isApprovalsDialogOpen, setIsApprovalsDialogOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     fetchInboundOrder(orderId)
-      .then(setOrder)
+      .then((o) => {
+        setOrder(o);
+        if (o?.id) {
+          fetchTaskWorkOrders({ referenceId: o.id })
+            .then((tasks) => {
+              const byStage: Record<string, string> = {};
+              const stagesOrder: OrderStage[] = ['استلام', 'فحص', 'وضع بعيد', 'مكتمل'];
+              let recvIdx = 0;
+              tasks.forEach((t) => {
+                if (t.taskType === 'RECEIVING' && recvIdx < 2) {
+                  byStage[stagesOrder[recvIdx]] = t.id;
+                  recvIdx++;
+                } else if (t.taskType === 'PUTAWAY') {
+                  byStage['وضع بعيد'] = t.id;
+                }
+              });
+              setStageTaskIds(byStage);
+              if (o.stages && tasks.length > 0) {
+                const taskById = Object.fromEntries(tasks.map((t) => [t.id, t]));
+                const workerName = (t: (typeof tasks)[0]) =>
+                  t.assignedUser
+                    ? [t.assignedUser.firstName, t.assignedUser.lastName].filter(Boolean).join(' ') || t.assignedUser.email
+                    : undefined;
+                const newStages = o.stages.map((s) => {
+                  const taskId = byStage[s.stage];
+                  const task = taskId ? taskById[taskId] : undefined;
+                  if (!task) return { ...s, status: 'pending' as const }; // لا مهمة بعد → تظهر "تعيين موظف"
+                  const status =
+                    task.status === 'COMPLETED'
+                      ? ('completed' as const)
+                      : task.status === 'IN_PROGRESS' || task.status === 'ASSIGNED'
+                        ? ('in-progress' as const)
+                        : ('pending' as const);
+                  return { ...s, status, assignedWorker: workerName(task) ?? s.assignedWorker };
+                });
+                setOrder((prev) => (prev ? { ...prev, stages: newStages } : prev));
+              }
+            })
+            .catch(() => {});
+        }
+      })
       .finally(() => setLoading(false));
   }, [orderId]);
+
+  useEffect(() => {
+    fetchUsers().then((users) => {
+      setEmployees(users.map((u) => ({ id: u.id, firstName: u.firstName || '', lastName: u.lastName || '', email: u.email })));
+    }).catch(() => setEmployees([]));
+  }, []);
 
   if (loading) {
     return (
@@ -2759,38 +2788,105 @@ function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBac
 
   const handleAssign = (stage: OrderStage) => {
     setSelectedStage(stage);
+    setSelectedEmployeeId('');
     setSelectedWorker('');
     setIsAssignDialogOpen(true);
   };
 
   const handleAutoAssign = () => {
-    if (!selectedStage) return;
-    const availableWorkers = workers.filter(w => w.duties.includes(selectedStage));
-    if (availableWorkers.length === 0) return;
-
-    // Find worker with least tasks
-    const worker = availableWorkers.reduce((prev, curr) =>
-      curr.currentTasks < prev.currentTasks ? curr : prev
-    );
-
-    setSelectedWorker(worker.id);
+    if (!selectedStage || employees.length === 0) return;
+    setSelectedEmployeeId(employees[0].id);
+    setSelectedWorker(employees[0].id);
   };
 
-  const handleConfirmAssign = () => {
-    if (!selectedStage || !selectedWorker) return;
-    const worker = workers.find(w => w.id === selectedWorker);
-    if (!worker) return;
-    if (!order.stages) return;
-    setOrder({
-      ...order,
-      stages: order.stages.map(s =>
-        s.stage === selectedStage ? { ...s, assignedWorker: worker.name, status: 'in-progress' } : s
-      ),
-      assignedTo: order.assignedTo === '-' ? worker.name : order.assignedTo,
-    });
-    setIsAssignDialogOpen(false);
-    setSelectedStage(null);
-    setSelectedWorker('');
+  const handleStartTask = async () => {
+    if (!selectedStage || !order || !order.clientId || !order.warehouseId) return;
+    const userId = selectedEmployeeId || selectedWorker;
+    if (!userId) return;
+    setTaskActionLoading(true);
+    try {
+      const taskType = STAGE_TO_TASK_TYPE[selectedStage];
+      const created = await createTaskWorkOrder({
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        taskType,
+        referenceType: 'InboundOrder',
+        referenceId: orderId,
+      });
+      await assignTaskWorkOrder(created.id, userId);
+      await startTaskWorkOrder(created.id);
+      const emp = employees.find((e) => e.id === userId);
+      const name = emp ? `${emp.firstName} ${emp.lastName}`.trim() || emp.email : '-';
+      setStageTaskIds((prev) => ({ ...prev, [selectedStage]: created.id }));
+      if (order.stages) {
+        setOrder({
+          ...order,
+          stages: order.stages.map((s) =>
+            s.stage === selectedStage ? { ...s, assignedWorker: name, status: 'in-progress' } : s
+          ),
+          assignedTo: order.assignedTo === '-' ? name : order.assignedTo,
+        });
+      }
+      setIsAssignDialogOpen(false);
+      setSelectedStage(null);
+      setSelectedEmployeeId('');
+      setSelectedWorker('');
+    } catch (e) {
+      console.error('Start task failed', e);
+    } finally {
+      setTaskActionLoading(false);
+    }
+  };
+
+  const handleEndTask = async (stage: OrderStage) => {
+    const taskId = stageTaskIds[stage];
+    if (!taskId || !order?.stages) return;
+    setTaskActionLoading(true);
+    try {
+      await completeTaskWorkOrder(taskId);
+      // عند إنهاء مرحلة الاستلام: تسجيل الكميات المستلمة وإضافتها للمخزون
+      if (stage === 'استلام' && order.items?.length) {
+        for (const item of order.items) {
+          if (item.quantityRemaining > 0) {
+            try {
+              await receiveInboundOrderItem(orderId, {
+                itemId: item.id,
+                batches: [{ batchCode: `RECV-${item.id.slice(0, 8)}`, qtyReceived: item.quantityRemaining }],
+              });
+            } catch (err) {
+              console.error('Receive item failed', item.id, err);
+            }
+          }
+        }
+      }
+      const stageIndex = order.stages.findIndex((s) => s.stage === stage);
+      const nextStage = order.stages[stageIndex + 1];
+      const newStages = order.stages.map((s) =>
+        s.stage === stage ? { ...s, status: 'completed' as StageStatus } : s
+      );
+      const isLastStage = stage === 'وضع بعيد' || nextStage?.stage === 'مكتمل' || !nextStage;
+      if (nextStage && isLastStage) {
+        const nextIdx = stageIndex + 1;
+        if (newStages[nextIdx]) newStages[nextIdx] = { ...newStages[nextIdx], status: 'completed' as StageStatus };
+      }
+      // لا نضع المرحلة التالية in-progress هنا حتى يظهر زر "تعيين موظف" للمرحلة التالية (مثل الفحص)
+      setOrder({ ...order, stages: newStages });
+      setStageTaskIds((prev) => {
+        const next = { ...prev };
+        delete next[stage];
+        return next;
+      });
+      await updateInboundOrder(orderId, {
+        status: isLastStage ? 'COMPLETED' : 'IN_PROGRESS',
+        currentStage: isLastStage ? 'مكتمل' : nextStage?.stage ?? stage,
+      });
+      const refreshed = await fetchInboundOrder(orderId);
+      if (refreshed) setOrder(refreshed);
+    } catch (e) {
+      console.error('End task failed', e);
+    } finally {
+      setTaskActionLoading(false);
+    }
   };
 
   const handleCancelOrder = async () => {
@@ -2814,10 +2910,6 @@ function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBac
     if (status === 'in-progress') return 'bg-blue-500';
     return 'bg-gray-300';
   };
-
-  const availableWorkersForStage = selectedStage
-    ? workers.filter(w => w.duties.includes(selectedStage))
-    : [];
 
   return (
     <div className="space-y-6">
@@ -2910,7 +3002,18 @@ function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBac
                       className="mt-2"
                       onClick={() => handleAssign(stage.stage)}
                     >
-                      تعيين
+                      تعيين موظف
+                    </Button>
+                  )}
+                  {stage.status === 'in-progress' && stageTaskIds[stage.stage] && (
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="mt-2"
+                      disabled={taskActionLoading}
+                      onClick={() => handleEndTask(stage.stage)}
+                    >
+                      {taskActionLoading ? 'جاري...' : 'إنهاء المهمة'}
                     </Button>
                   )}
                 </div>
@@ -2958,39 +3061,52 @@ function InboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBac
         </CardContent>
       </Card>
 
-      {/* Assign Task Dialog */}
+      {/* Pick employee & Start task Dialog */}
       <Dialog open={isAssignDialogOpen} onOpenChange={setIsAssignDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>تعيين مهمة: {selectedStage}</DialogTitle>
+            <DialogTitle>تعيين موظف وبدء المهمة: {selectedStage}</DialogTitle>
+            <DialogDescription>
+              اختر الموظف ثم اضغط بدء المهمة. ستظهر المهمة في إدارة العمل.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">العامل</label>
-              <Select value={selectedWorker} onValueChange={setSelectedWorker}>
-                <SelectTrigger>
-                  <SelectValue placeholder="اختر العامل" />
-                </SelectTrigger>
-                <SelectContent>
-                  {availableWorkersForStage.map((worker) => (
-                    <SelectItem key={worker.id} value={worker.id}>
-                      {worker.name} ({worker.currentTasks} مهام حالية)
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <label className="text-sm font-medium">الموظف</label>
+              <select
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                value={selectedEmployeeId || selectedWorker}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setSelectedEmployeeId(v);
+                  setSelectedWorker(v);
+                }}
+              >
+                <option value="">اختر الموظف</option>
+                {employees.map((emp) => (
+                  <option key={emp.id} value={emp.id}>
+                    {emp.firstName} {emp.lastName} ({emp.email})
+                  </option>
+                ))}
+              </select>
             </div>
-            <Button variant="outline" onClick={handleAutoAssign} className="w-full">
-              <PackageSearch className="w-4 h-4 ml-2" />
-              تعيين تلقائي
-            </Button>
+            {employees.length > 0 && (
+              <Button type="button" variant="outline" onClick={handleAutoAssign} className="w-full">
+                <PackageSearch className="w-4 h-4 ml-2" />
+                تعيين تلقائي
+              </Button>
+            )}
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsAssignDialogOpen(false)}>
+            <Button type="button" variant="outline" onClick={() => setIsAssignDialogOpen(false)}>
               إلغاء
             </Button>
-            <Button onClick={handleConfirmAssign} disabled={!selectedWorker}>
-              تأكيد
+            <Button
+              type="button"
+              onClick={handleStartTask}
+              disabled={taskActionLoading || !(selectedEmployeeId || selectedWorker)}
+            >
+              {taskActionLoading ? 'جاري بدء المهمة...' : 'بدء المهمة'}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -3043,6 +3159,7 @@ type OutboundStageStatus = 'pending' | 'in-progress' | 'completed';
 
 type OutboundOrderItem = {
   id: string;
+  productId?: string;
   productName: string;
   productSKU: string;
   quantityOrdered: number;
@@ -3267,6 +3384,32 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
     if (!createFormData.clientId || !createFormData.warehouseId) return;
     setError(null);
     try {
+      // تحقق من توافر الكمية لكل بند قبل إنشاء الطلب
+      for (const item of createFormData.orderItems) {
+        const qty = Number(item.quantity);
+        if (!item.productId || qty <= 0) continue;
+        const params = new URLSearchParams();
+        params.set('clientId', createFormData.clientId);
+        params.set('warehouseId', createFormData.warehouseId);
+        params.set('productId', item.productId);
+        const stockRows = await apiFetch<any[]>(
+          `/inventory/current-stock?${params.toString()}`,
+        );
+        const available = (Array.isArray(stockRows) ? stockRows : []).reduce(
+          (sum, row) =>
+            sum +
+            (typeof row.quantity === 'number'
+              ? row.quantity
+              : Number(row.quantity ?? 0)),
+          0,
+        );
+        if (available <= 0 || available < qty) {
+          throw new Error(
+            'لا يمكن إنشاء طلب صادر لبند كميته المتاحة في المخزون غير كافية.',
+          );
+        }
+      }
+
       const created = await createOutboundOrder({
         clientId: createFormData.clientId,
         warehouseId: createFormData.warehouseId,
@@ -3605,17 +3748,128 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedStage, setSelectedStage] = useState<OutboundOrderStage | null>(null);
   const [selectedWorker, setSelectedWorker] = useState('');
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState('');
+  const [employees, setEmployees] = useState<{ id: string; firstName: string; lastName: string; email: string }[]>([]);
+  const [stageTaskIds, setStageTaskIds] = useState<Record<string, string>>({});
+  const [taskActionLoading, setTaskActionLoading] = useState(false);
   const [isApprovalsDialogOpen, setIsApprovalsDialogOpen] = useState(false);
   const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
   const [selectedLocationPath, setSelectedLocationPath] = useState('');
 
   useEffect(() => {
     let active = true;
-    fetchOutboundOrder(orderId).then((o) => {
-      if (active) setOrder(o);
-    }).finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
+    fetchOutboundOrder(orderId)
+      .then((o) => {
+        if (!active) return;
+        setOrder(o);
+        // بعد تحميل الطلب: جلب الكمية المتاحة لكل منتج من /inventory/current-stock
+        if (o && o.clientId && o.warehouseId && o.items?.length) {
+          const distinctProductIds = Array.from(
+            new Set(o.items.map((it) => it.productId).filter(Boolean) as string[]),
+          );
+          Promise.all(
+            distinctProductIds.map(async (pid) => {
+              const params = new URLSearchParams();
+              params.set('clientId', o.clientId!);
+              params.set('warehouseId', o.warehouseId!);
+              params.set('productId', pid);
+              try {
+                const rows = await apiFetch<any[]>(
+                  `/inventory/current-stock?${params.toString()}`,
+                );
+                const total = (Array.isArray(rows) ? rows : []).reduce(
+                  (sum, row) =>
+                    sum +
+                    (typeof row.quantity === 'number'
+                      ? row.quantity
+                      : Number(row.quantity ?? 0)),
+                  0,
+                );
+                return { productId: pid, available: total };
+              } catch {
+                return { productId: pid, available: 0 };
+              }
+            }),
+          ).then((availabilities) => {
+            if (!active) return;
+            const map = new Map<string, number>();
+            availabilities.forEach((a) => map.set(a.productId, a.available));
+            setOrder((prev) =>
+              prev
+                ? {
+                    ...prev,
+                    items: prev.items.map((it) => {
+                      const available = it.productId
+                        ? map.get(it.productId) ?? 0
+                        : 0;
+                      return {
+                        ...it,
+                        availableQuantity: available,
+                        hasShortage: it.quantityOrdered > available,
+                      };
+                    }),
+                  }
+                : prev,
+            );
+          });
+        }
+        if (o?.id) {
+          fetchTaskWorkOrders({ referenceId: o.id })
+            .then((tasks) => {
+              if (!active) return;
+              const byStage: Record<string, string> = {};
+              tasks.forEach((t) => {
+                if (t.taskType === 'PICKING') byStage['انتقاء'] = t.id;
+                else if (t.taskType === 'PACKING') byStage['تعبئة'] = t.id;
+                else if (t.taskType === 'SHIPPING') byStage['شحن'] = t.id;
+              });
+              setStageTaskIds(byStage);
+              if (o.stages && tasks.length > 0) {
+                const taskById = Object.fromEntries(tasks.map((t) => [t.id, t]));
+                const workerName = (t: (typeof tasks)[0]) =>
+                  t.assignedUser
+                    ? [t.assignedUser.firstName, t.assignedUser.lastName].filter(Boolean).join(' ') || t.assignedUser.email
+                    : undefined;
+                const newStages = o.stages.map((s) => {
+                  const taskId = byStage[s.stage];
+                  const task = taskId ? taskById[taskId] : undefined;
+                  if (!task) return { ...s, status: 'pending' as const };
+                  const status =
+                    task.status === 'COMPLETED'
+                      ? ('completed' as const)
+                      : task.status === 'IN_PROGRESS' || task.status === 'ASSIGNED'
+                        ? ('in-progress' as const)
+                        : ('pending' as const);
+                  return { ...s, status, assignedWorker: workerName(task) ?? s.assignedWorker };
+                });
+                setOrder((prev) => (prev ? { ...prev, stages: newStages } : prev));
+              }
+            })
+            .catch(() => {});
+        }
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [orderId]);
+
+  useEffect(() => {
+    fetchUsers()
+      .then((users) => {
+        setEmployees(
+          users.map((u) => ({
+            id: u.id,
+            firstName: u.firstName || '',
+            lastName: u.lastName || '',
+            email: u.email,
+          })),
+        );
+      })
+      .catch(() => setEmployees([]));
+  }, []);
 
   if (loading) {
     return (
@@ -3637,37 +3891,124 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
 
   const handleAssign = (stage: OutboundOrderStage) => {
     setSelectedStage(stage);
+    setSelectedEmployeeId('');
     setSelectedWorker('');
     setIsAssignDialogOpen(true);
   };
 
   const handleAutoAssign = () => {
-    if (!selectedStage) return;
-    const availableWorkers = workers.filter(w => w.duties.includes(selectedStage as OrderStage));
-    if (availableWorkers.length === 0) return;
-
-    const worker = availableWorkers.reduce((prev, curr) =>
-      curr.currentTasks < prev.currentTasks ? curr : prev
-    );
-
-    setSelectedWorker(worker.id);
+    if (!selectedStage || employees.length === 0) return;
+    setSelectedEmployeeId(employees[0].id);
+    setSelectedWorker(employees[0].id);
   };
 
-  const handleConfirmAssign = () => {
-    if (!selectedStage || !selectedWorker) return;
-    const worker = workers.find(w => w.id === selectedWorker);
-    if (!worker) return;
+  const handleStartTask = async () => {
+    if (!selectedStage || !order || !order.clientId || !order.warehouseId) return;
+    const userId = selectedEmployeeId || selectedWorker;
+    if (!userId) return;
+    setTaskActionLoading(true);
+    try {
+      // عند بدء مرحلة الانتقاء: إنشاء حجز وتخصيص الكميات المطلوبة لهذا الطلب (إن لم يكن هناك حجز سابق)
+      if (selectedStage === 'انتقاء') {
+        try {
+          const itemsWithProduct = order.items.filter(
+            (it) => it.productId && it.quantityRemaining > 0,
+          );
+          if (itemsWithProduct.length > 0) {
+            await apiFetch(`/outbound-orders/${orderId}/reservations`, {
+              method: 'POST',
+              body: JSON.stringify({
+                outboundOrderId: orderId,
+                allocations: itemsWithProduct.map((it) => ({
+                  outboundOrderItemId: it.id,
+                  productId: it.productId,
+                  reservedQty: it.quantityRemaining,
+                })),
+              }),
+            });
+          }
+        } catch (e) {
+          console.error('Create reservation for outbound order failed', e);
+        }
+      }
 
-    setOrder({
-      ...order,
-      stages: order.stages.map(s =>
-        s.stage === selectedStage ? { ...s, assignedWorker: worker.name, status: 'in-progress' as OutboundStageStatus } : s
-      ),
-    });
+      const taskType = OUTBOUND_STAGE_TO_TASK_TYPE[selectedStage];
+      const created = await createTaskWorkOrder({
+        clientId: order.clientId,
+        warehouseId: order.warehouseId,
+        taskType,
+        referenceType: 'OutboundOrder',
+        referenceId: orderId,
+      });
+      await assignTaskWorkOrder(created.id, userId);
+      await startTaskWorkOrder(created.id);
+      const emp = employees.find((e) => e.id === userId);
+      const name = emp ? `${emp.firstName} ${emp.lastName}`.trim() || emp.email : '-';
+      setStageTaskIds((prev) => ({ ...prev, [selectedStage]: created.id }));
+      if (order.stages) {
+        setOrder({
+          ...order,
+          stages: order.stages.map((s) =>
+            s.stage === selectedStage ? { ...s, assignedWorker: name, status: 'in-progress' as OutboundStageStatus } : s,
+          ),
+        });
+      }
+      setIsAssignDialogOpen(false);
+      setSelectedStage(null);
+      setSelectedEmployeeId('');
+      setSelectedWorker('');
+    } catch (e) {
+      console.error('Start outbound task failed', e);
+    } finally {
+      setTaskActionLoading(false);
+    }
+  };
 
-    setIsAssignDialogOpen(false);
-    setSelectedStage(null);
-    setSelectedWorker('');
+  const handleEndTask = async (stage: OutboundOrderStage) => {
+    const taskId = stageTaskIds[stage];
+    if (!taskId || !order?.stages) return;
+    setTaskActionLoading(true);
+    try {
+      await completeTaskWorkOrder(taskId);
+      // عند إنهاء مرحلة التعبئة: شحن كل الكميات الـ picked وخصمها من المخزون
+      if (stage === 'تعبئة') {
+        try {
+          await apiFetch(`/outbound-orders/${orderId}/ship-all`, {
+            method: 'POST',
+          });
+        } catch (err) {
+          console.error('Auto ship (ship-all) failed', err);
+        }
+      }
+      const stageIndex = order.stages.findIndex((s) => s.stage === stage);
+      const nextStage = order.stages[stageIndex + 1];
+      const newStages = order.stages.map((s) =>
+        s.stage === stage ? { ...s, status: 'completed' as OutboundStageStatus } : s,
+      );
+      const isLastStage = stage === 'شحن' || nextStage?.stage === 'مكتمل' || !nextStage;
+      if (nextStage && isLastStage) {
+        const nextIdx = stageIndex + 1;
+        if (newStages[nextIdx]) {
+          newStages[nextIdx] = { ...newStages[nextIdx], status: 'completed' as OutboundStageStatus };
+        }
+      }
+      setOrder({ ...order, stages: newStages });
+      setStageTaskIds((prev) => {
+        const next = { ...prev };
+        delete next[stage];
+        return next;
+      });
+      await updateOutboundOrder(orderId, {
+        status: isLastStage ? 'COMPLETED' : 'IN_PROGRESS',
+        currentStage: isLastStage ? 'مكتمل' : nextStage?.stage ?? stage,
+      });
+      const refreshed = await fetchOutboundOrder(orderId);
+      if (refreshed) setOrder(refreshed);
+    } catch (e) {
+      console.error('End outbound task failed', e);
+    } finally {
+      setTaskActionLoading(false);
+    }
   };
 
   const handleCancelOrder = async () => {
@@ -3696,10 +4037,6 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
     if (status === 'in-progress') return 'bg-blue-500';
     return 'bg-gray-300';
   };
-
-  const availableWorkersForStage = selectedStage
-    ? workers.filter(w => w.duties.includes(selectedStage as OrderStage))
-    : [];
 
   const renderLocationTree = (path: string) => {
     const parts = path.split(' > ');
@@ -3904,7 +4241,18 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
                       className="mt-2"
                       onClick={() => handleAssign(stage.stage)}
                     >
-                      تعيين
+                      تعيين موظف
+                    </Button>
+                  )}
+                  {stage.status === 'in-progress' && stageTaskIds[stage.stage] && (
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="mt-2"
+                      disabled={taskActionLoading}
+                      onClick={() => handleEndTask(stage.stage)}
+                    >
+                      {taskActionLoading ? 'جاري...' : 'إنهاء المهمة'}
                     </Button>
                   )}
                 </div>
@@ -3917,39 +4265,52 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
         </CardContent>
       </Card>
 
-      {/* Assign Task Dialog */}
+      {/* Assign & Start Task Dialog */}
       <Dialog open={isAssignDialogOpen} onOpenChange={setIsAssignDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>تعيين مهمة: {selectedStage}</DialogTitle>
+            <DialogTitle>تعيين موظف وبدء المهمة: {selectedStage}</DialogTitle>
+            <DialogDescription>
+              اختر الموظف ثم اضغط بدء المهمة. ستظهر المهمة في إدارة العمل.
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">العامل</label>
-              <Select value={selectedWorker} onValueChange={setSelectedWorker}>
-                <SelectTrigger>
-                  <SelectValue placeholder="اختر العامل" />
-                </SelectTrigger>
-                <SelectContent>
-                  {availableWorkersForStage.map((worker) => (
-                    <SelectItem key={worker.id} value={worker.id}>
-                      {worker.name} ({worker.currentTasks} مهام حالية)
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <label className="text-sm font-medium">الموظف</label>
+              <select
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm"
+                value={selectedEmployeeId || selectedWorker}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setSelectedEmployeeId(v);
+                  setSelectedWorker(v);
+                }}
+              >
+                <option value="">اختر الموظف</option>
+                {employees.map((emp) => (
+                  <option key={emp.id} value={emp.id}>
+                    {emp.firstName} {emp.lastName} ({emp.email})
+                  </option>
+                ))}
+              </select>
             </div>
-            <Button variant="outline" onClick={handleAutoAssign} className="w-full">
-              <PackageSearch className="w-4 h-4 ml-2" />
-              تعيين تلقائي
-            </Button>
+            {employees.length > 0 && (
+              <Button type="button" variant="outline" onClick={handleAutoAssign} className="w-full">
+                <PackageSearch className="w-4 h-4 ml-2" />
+                تعيين تلقائي
+              </Button>
+            )}
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsAssignDialogOpen(false)}>
+            <Button type="button" variant="outline" onClick={() => setIsAssignDialogOpen(false)}>
               إلغاء
             </Button>
-            <Button onClick={handleConfirmAssign} disabled={!selectedWorker}>
-              تأكيد
+            <Button
+              type="button"
+              onClick={handleStartTask}
+              disabled={taskActionLoading || !(selectedEmployeeId || selectedWorker)}
+            >
+              {taskActionLoading ? 'جاري بدء المهمة...' : 'بدء المهمة'}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -4022,7 +4383,8 @@ function OutboundOrderWorkspacePage({ orderId, onBack }: { orderId: string; onBa
 
 // Inventory Types
 type InventoryItem = {
-  id: string;
+  id: string; // internal current_stock row id
+  productId: string;
   warehouse: string;
   client: string;
   sku: string;
@@ -4105,7 +4467,7 @@ const initialLedgerData: InventoryLedgerEntry[] = [
   },
 ];
 
-function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => void }) {
+function InventoryPage({ onViewLedger }: { onViewLedger: (productId: string) => void }) {
   const [warehouseFilter, setWarehouseFilter] = useState('');
   const [clientFilter, setClientFilter] = useState('');
   const [skuFilter, setSkuFilter] = useState('');
@@ -4118,6 +4480,8 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
   const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [filterWarehouses, setFilterWarehouses] = useState<{ id: string; name: string }[]>([]);
+  const [filterClients, setFilterClients] = useState<{ id: string; name: string }[]>([]);
 
   useEffect(() => {
     let active = true;
@@ -4125,10 +4489,17 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
       try {
         setLoading(true);
         setError(null);
-        const data = await apiFetch<any[]>('/inventory/current-stock');
+        const [stock, clientsList, warehousesList] = await Promise.all([
+          apiFetch<any[]>('/inventory/current-stock'),
+          fetchClients(),
+          fetchWarehousesMasterData(),
+        ]);
         if (!active) return;
-        const mapped: InventoryItem[] = data.map((row) => ({
+        setFilterClients(clientsList.map((c) => ({ id: c.id, name: c.name })));
+        setFilterWarehouses(warehousesList.map((w) => ({ id: w.id, name: w.name })));
+        const mapped: InventoryItem[] = stock.map((row) => ({
           id: row.id,
+          productId: row.product?.id || '',
           warehouse: row.warehouse?.name || row.warehouse?.code || '',
           client: row.client?.name || row.client?.code || '',
           sku: row.product?.sku || '',
@@ -4142,7 +4513,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
           minThreshold: 0,
           lowStockFlag: false,
           lastMovementAt: row.updatedAt
-            ? new Date(row.updatedAt).toLocaleString('ar-SA')
+            ? new Date(row.updatedAt).toISOString().slice(0, 16).replace('T', ' ')
             : '',
         }));
         setInventory(mapped);
@@ -4199,7 +4570,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
-                  {warehouses.map((w) => (
+                  {filterWarehouses.map((w) => (
                     <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -4213,7 +4584,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">الكل</SelectItem>
-                  {clients.map((c) => (
+                  {filterClients.map((c) => (
                     <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -4393,7 +4764,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
             {selectedItem && (
               <Button onClick={() => {
                 setIsDetailsDialogOpen(false);
-                onViewLedger(selectedItem.id);
+              onViewLedger(selectedItem.productId || '');
               }}>
                 <FileText className="w-4 h-4 ml-2" />
                 عرض السجل
@@ -4406,7 +4777,7 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (itemId: string) => voi
   );
 }
 
-function InventoryLedgerPage({ onBack }: { itemId: string; onBack: () => void }) {
+function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () => void }) {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [movementTypeFilter, setMovementTypeFilter] = useState('');
@@ -4417,17 +4788,96 @@ function InventoryLedgerPage({ onBack }: { itemId: string; onBack: () => void })
   const [batchFilter, setBatchFilter] = useState('');
   const [referenceTypeFilter, setReferenceTypeFilter] = useState('');
   const [referenceIdFilter, setReferenceIdFilter] = useState('');
-  // @ts-ignore - setLedgerEntries used in useEffect
   const [ledgerEntries, setLedgerEntries] = useState<InventoryLedgerEntry[]>([]);
-  // @ts-ignore - setLoading used in useEffect
   const [loading, setLoading] = useState(true);
-  // @ts-ignore - setError used in useEffect
   const [error, setError] = useState<string | null>(null);
-  // setLedgerEntries, setLoading, and setError are used in useEffect
   const [selectedEntry, setSelectedEntry] = useState<InventoryLedgerEntry | null>(null);
   const [isEntryDialogOpen, setIsEntryDialogOpen] = useState(false);
   const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
   const [selectedLocationPath, setSelectedLocationPath] = useState('');
+  const [filterWarehouses, setFilterWarehouses] = useState<{ id: string; name: string }[]>([]);
+  const [filterClients, setFilterClients] = useState<{ id: string; name: string }[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    const movementTypeMap: Record<string, string> = {
+      استلام: 'RECEIPT',
+      شحن: 'SHIPMENT',
+      تعديل: 'ADJUSTMENT',
+      نقل: 'TRANSFER',
+      إرجاع: 'RETURN',
+      تلف: 'DAMAGE',
+    };
+    const movementTypeLabel: Record<string, InventoryMovementType> = {
+      RECEIPT: 'استلام',
+      SHIPMENT: 'شحن',
+      ADJUSTMENT: 'تعديل',
+      TRANSFER: 'نقل',
+      RETURN: 'إرجاع',
+      DAMAGE: 'تلف',
+    };
+    const toNumber = (v: unknown): number => {
+      if (typeof v === 'number') return v;
+      if (v && typeof v === 'object' && 'toNumber' in v) {
+        return (v as { toNumber: () => number }).toNumber();
+      }
+      return Number(v) || 0;
+    };
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const params = new URLSearchParams();
+        if (dateFrom) params.set('dateFrom', dateFrom);
+        if (dateTo) params.set('dateTo', dateTo);
+        if (movementTypeFilter && movementTypeFilter !== 'all') {
+          const mt = movementTypeMap[movementTypeFilter];
+          if (mt) params.set('movementType', mt);
+        }
+        if (itemId) {
+          params.set('productId', itemId);
+        }
+        const qs = params.toString();
+        const [rows, clientsList, warehousesList] = await Promise.all([
+          apiFetch<any[]>(`/inventory/ledger${qs ? `?${qs}` : ''}`),
+          fetchClients(),
+          fetchWarehousesMasterData(),
+        ]);
+        if (!active) return;
+        setFilterClients(clientsList.map((c) => ({ id: c.id, name: c.name })));
+        setFilterWarehouses(warehousesList.map((w) => ({ id: w.id, name: w.name })));
+        const mapped: InventoryLedgerEntry[] = rows.map((row) => ({
+          id: row.id,
+          timestamp: row.createdAt
+            ? new Date(row.createdAt).toISOString().slice(0, 16).replace('T', ' ')
+            : '',
+          movementType: movementTypeLabel[row.movementType] || (row.movementType as InventoryMovementType),
+          sku: row.product?.sku || '',
+          batch: row.batch?.batchCode || '-',
+          location: row.location?.code || '',
+          quantityChange: toNumber(row.qtyChange),
+          quantityBefore: toNumber(row.qtyBefore),
+          quantityAfter: toNumber(row.qtyAfter),
+          user: '-',
+          referenceType: row.referenceType || '',
+          referenceId: row.referenceId || '',
+          notes: '',
+        }));
+        setLedgerEntries(mapped);
+      } catch (e) {
+        console.error('Failed to load inventory ledger', e);
+        if (active) {
+          setError('تعذر تحميل سجل المخزون. يرجى المحاولة مرة أخرى.');
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, [itemId, dateFrom, dateTo, movementTypeFilter]);
 
   const filteredEntries = ledgerEntries.filter((entry) => {
     if (dateFrom && entry.timestamp < dateFrom) return false;
@@ -4874,15 +5324,22 @@ function AdjustmentsPage() {
   const [isDeclineDialogOpen, setIsDeclineDialogOpen] = useState(false);
   const [selectedAdjustment, setSelectedAdjustment] = useState<Adjustment | null>(null);
   const [declineNote, setDeclineNote] = useState('');
-  const [createFormData, setCreateFormData] = useState({
-    client: '',
-    warehouse: '',
-    sku: '',
-    batch: '',
-    location: '',
+  const [createFormData, setCreateFormData] = useState<{
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    quantityChange: number;
+    reason: AdjustmentReason | '';
+  }>({
+    clientId: '',
+    warehouseId: '',
+    productId: '',
     quantityChange: 0,
     reason: '' as AdjustmentReason | '',
   });
+  const [clientsOptions, setClientsOptions] = useState<ClientUi[]>([]);
+  const [warehousesOptions, setWarehousesOptions] = useState<WarehouseUi[]>([]);
+  const [productsOptions, setProductsOptions] = useState<ProductUi[]>([]);
 
   useEffect(() => {
     let active = true;
@@ -4910,7 +5367,7 @@ function AdjustmentsPage() {
         console.error('Failed to load adjustments', e);
         if (active) {
           setError('تعذر تحميل التعديلات. يرجى المحاولة مرة أخرى.');
-          setAdjustments(initialAdjustmentsData);
+          setAdjustments([]);
         }
       } finally {
         if (active) setLoading(false);
@@ -4918,6 +5375,21 @@ function AdjustmentsPage() {
     }
     void load();
     return () => { active = false; };
+  }, []);
+
+  // تحميل قوائم العملاء / المستودعات / المنتجات لإنشاء تعديل ديناميكيًا
+  useEffect(() => {
+    Promise.all([fetchClients(), fetchWarehousesMasterData(), fetchProducts()])
+      .then(([c, w, p]) => {
+        setClientsOptions(c);
+        setWarehousesOptions(w);
+        setProductsOptions(p);
+      })
+      .catch(() => {
+        setClientsOptions([]);
+        setWarehousesOptions([]);
+        setProductsOptions([]);
+      });
   }, []);
 
   const filteredAdjustments = adjustments.filter((adjustment) => {
@@ -4955,31 +5427,63 @@ function AdjustmentsPage() {
     }
   };
 
-  const handleCreateAdjustment = () => {
-    const newAdjustment: Adjustment = {
-      id: Date.now().toString(),
-      requestedAt: new Date().toISOString().split('T')[0] + ' ' + new Date().toTimeString().split(' ')[0].slice(0, 5),
-      client: createFormData.client,
-      warehouse: createFormData.warehouse,
-      sku: createFormData.sku,
-      batch: createFormData.batch || undefined,
-      location: createFormData.location,
-      quantityChange: createFormData.quantityChange,
-      reason: createFormData.reason as AdjustmentReason,
-      status: 'قيد الانتظار',
-      requestedBy: 'أحمد محمد', // Current user
-    };
-    setAdjustments([...adjustments, newAdjustment]);
-    setIsCreateDialogOpen(false);
-    setCreateFormData({
-      client: '',
-      warehouse: '',
-      sku: '',
-      batch: '',
-      location: '',
-      quantityChange: 0,
-      reason: '' as AdjustmentReason | '',
-    });
+  const handleCreateAdjustment = async () => {
+    if (!createFormData.clientId || !createFormData.warehouseId || !createFormData.productId || !createFormData.reason) {
+      setError('يرجى اختيار العميل، المستودع، المنتج، والسبب قبل إنشاء التعديل.');
+      return;
+    }
+    try {
+      setError(null);
+      const created = await apiFetch<any>('/adjustments', {
+        method: 'POST',
+        body: JSON.stringify({
+          clientId: createFormData.clientId,
+          warehouseId: createFormData.warehouseId,
+          productId: createFormData.productId,
+          qtyChange: createFormData.quantityChange,
+          reason: createFormData.reason,
+        }),
+      });
+      const newAdjustment: Adjustment = {
+        id: created.id,
+        requestedAt: created.createdAt ? new Date(created.createdAt).toLocaleString('ar-SA') : '',
+        client: created.client?.name || '',
+        warehouse: created.warehouse?.name || '',
+        sku: created.product?.sku || '',
+        batch: created.batch?.batchCode || undefined,
+        location: created.location?.code || '',
+        quantityChange:
+          typeof created.qtyChange === 'number'
+            ? created.qtyChange
+            : Number(created.qtyChange || 0),
+        reason: (created.reason || 'أخرى') as AdjustmentReason,
+        status:
+          created.status === 'APPROVED'
+            ? ('موافق عليه' as AdjustmentStatus)
+            : created.status === 'REJECTED'
+            ? ('مرفوض' as AdjustmentStatus)
+            : ('قيد الانتظار' as AdjustmentStatus),
+        requestedBy:
+          created.createdByActor?.user?.email ||
+          created.createdByActor?.clientAccount?.email ||
+          '-',
+      };
+      setAdjustments([...adjustments, newAdjustment]);
+      setIsCreateDialogOpen(false);
+      setCreateFormData({
+        clientId: '',
+        warehouseId: '',
+        productId: '',
+        quantityChange: 0,
+        reason: '' as AdjustmentReason | '',
+      });
+    } catch (e: any) {
+      setError(
+        e instanceof Error
+          ? e.message
+          : 'فشل إنشاء التعديل. يرجى المحاولة مرة أخرى.',
+      );
+    }
   };
 
   return (
@@ -5177,60 +5681,77 @@ function AdjustmentsPage() {
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">العميل</label>
-                <Input
-                  value={createFormData.client}
-                  onChange={(e) => setCreateFormData({ ...createFormData, client: e.target.value })}
-                  placeholder="أدخل اسم العميل"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">المستودع</label>
-                <Select
-                  value={createFormData.warehouse}
-                  onValueChange={(v) => setCreateFormData({ ...createFormData, warehouse: v })}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="اختر المستودع" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {warehouses.map((w) => (
-                      <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">SKU</label>
-                <Input
-                  value={createFormData.sku}
-                  onChange={(e) => setCreateFormData({ ...createFormData, sku: e.target.value })}
-                  placeholder="أدخل SKU"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">الدفعة <span className="text-gray-400 text-xs">(اختياري)</span></label>
-                <Input
-                  value={createFormData.batch}
-                  onChange={(e) => setCreateFormData({ ...createFormData, batch: e.target.value })}
-                  placeholder="أدخل رمز الدفعة"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">الموقع</label>
-                <Input
-                  value={createFormData.location}
-                  onChange={(e) => setCreateFormData({ ...createFormData, location: e.target.value })}
-                  placeholder="أدخل الموقع"
-                />
-              </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">العميل</label>
+              <Select
+                value={createFormData.clientId}
+                onValueChange={(v) =>
+                  setCreateFormData({ ...createFormData, clientId: v })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="اختر العميل" />
+                </SelectTrigger>
+                <SelectContent>
+                  {clientsOptions.map((c) => (
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">المستودع</label>
+              <Select
+                value={createFormData.warehouseId}
+                onValueChange={(v) =>
+                  setCreateFormData({ ...createFormData, warehouseId: v })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="اختر المستودع" />
+                </SelectTrigger>
+                <SelectContent>
+                  {warehousesOptions.map((w) => (
+                    <SelectItem key={w.id} value={w.id}>
+                      {w.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">المنتج (SKU)</label>
+              <Select
+                value={createFormData.productId}
+                onValueChange={(v) =>
+                  setCreateFormData({ ...createFormData, productId: v })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="اختر المنتج" />
+                </SelectTrigger>
+                <SelectContent>
+                  {productsOptions.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.sku} - {p.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">تغيير الكمية</label>
                 <Input
                   type="number"
                   value={createFormData.quantityChange || ''}
-                  onChange={(e) => setCreateFormData({ ...createFormData, quantityChange: parseInt(e.target.value) || 0 })}
+                  onChange={(e) =>
+                    setCreateFormData({
+                      ...createFormData,
+                      quantityChange: parseInt(e.target.value) || 0,
+                    })
+                  }
                   placeholder="أدخل تغيير الكمية"
                 />
               </div>
