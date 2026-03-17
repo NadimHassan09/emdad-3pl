@@ -14500,4 +14500,2908 @@ export class UpdateClientPreferencesDto {
 
 
 
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+export class UpdateClientPreferencesDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  language?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  timezone?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  notificationsEnabled?: boolean;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

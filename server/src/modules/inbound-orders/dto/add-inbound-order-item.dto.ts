@@ -13149,5 +13149,2639 @@ export class AddInboundOrderItemDto {
 
 
 
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+import { Type } from 'class-transformer';
+
+export class AddInboundOrderItemDto {
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0.0001)
+  qtyOrdered: number;
+
+  @IsUUID()
+  @IsNotEmpty()
+  uomId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

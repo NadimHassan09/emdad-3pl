@@ -9099,5 +9099,1829 @@ export class PickAllocationDto {
 
 
 
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+import { Type } from 'class-transformer';
+
+export class PickAllocationDto {
+  @IsNumber()
+  @Type(() => Number)
+  @IsNotEmpty()
+  @Min(0)
+  pickedQty: number;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

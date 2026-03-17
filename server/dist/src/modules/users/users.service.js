@@ -1530,4 +1530,7429 @@ Promise < UserWithRole > {
     if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
     return: user
 };
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
+async;
+validateUserCredentials(email, string, password, string);
+Promise < UserWithRole > {
+    const: user = await this.findUserByEmail(email),
+    if(, user) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    if(, user) { }, : .passwordHash,
+    throw: new common_1.UnauthorizedException('Invalid email or password'),
+    const: valid = await bcrypt.compare(password, user.passwordHash),
+    if(, valid) { }, throw: new common_1.UnauthorizedException('Invalid email or password'),
+    return: user
+};
 //# sourceMappingURL=users.service.js.map

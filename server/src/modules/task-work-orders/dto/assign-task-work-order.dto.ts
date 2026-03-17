@@ -6400,4 +6400,1288 @@ export class AssignTaskWorkOrderDto {
 
 
 
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+export class AssignTaskWorkOrderDto {
+  @IsUUID()
+  @IsNotEmpty()
+  assignedUserId: string;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

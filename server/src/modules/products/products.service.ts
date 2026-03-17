@@ -6818,3 +6818,1353 @@ export class ProductsService {
     });
   }
 }
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}
+
+        }),
+        ...(dto.minThreshold !== undefined && {
+          minThreshold: dto.minThreshold,
+        }),
+        ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+      },
+    });
+  }
+}

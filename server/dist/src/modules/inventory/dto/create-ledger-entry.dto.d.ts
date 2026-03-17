@@ -989,3 +989,7923 @@ export declare class CreateLedgerEntryDto {
     referenceType?: string;
     referenceId?: string;
 }
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}
+export declare class CreateLedgerEntryDto {
+    clientId: string;
+    warehouseId: string;
+    productId: string;
+    batchId?: string;
+    locationId?: string;
+    movementType: MovementType;
+    qtyChange: number;
+    referenceType?: string;
+    referenceId?: string;
+}

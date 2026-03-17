@@ -11799,5 +11799,2369 @@ export class CreateReservationDto {
 
 
 
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+import { Type } from 'class-transformer';
+import { CreateAllocationDto } from './create-allocation.dto';
+
+export class CreateReservationDto {
+  @IsUUID()
+  @IsNotEmpty()
+  outboundOrderId: string;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAllocationDto)
+  allocations: CreateAllocationDto[];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
