@@ -9,16 +9,20 @@ export declare class AdjustmentsService {
     private readonly approvalsService;
     constructor(prisma: PrismaService, inventoryService: InventoryService, approvalsService: ApprovalsService);
     create(dto: CreateAdjustmentDto, createdByActorId: string): Promise<{
-        client: {
-            id: string;
-            code: string;
-            name: string;
-        };
         warehouse: {
             id: string;
             code: string;
             name: string;
         };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -28,47 +32,47 @@ export declare class AdjustmentsService {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
         createdByActor: {
             id: string;
-            actorType: import(".prisma/client").$Enums.ActorType;
             user: {
                 id: string;
                 email: string;
             } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
             clientAccount: {
                 id: string;
                 email: string;
             } | null;
         };
     } & {
-        status: import(".prisma/client").$Enums.AdjustmentStatus;
-        createdAt: Date;
         id: string;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        reason: string | null;
+        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        status: import(".prisma/client").$Enums.AdjustmentStatus;
+        clientId: string;
         productId: string | null;
+        qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
         locationId: string | null;
         createdByActorId: string;
+        reason: string | null;
     }>;
     findMany(filter?: AdjustmentFilterDto): Promise<({
-        client: {
-            id: string;
-            code: string;
-            name: string;
-        };
         warehouse: {
             id: string;
             code: string;
             name: string;
         };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -78,47 +82,47 @@ export declare class AdjustmentsService {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
         createdByActor: {
             id: string;
-            actorType: import(".prisma/client").$Enums.ActorType;
             user: {
                 id: string;
                 email: string;
             } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
             clientAccount: {
                 id: string;
                 email: string;
             } | null;
         };
     } & {
-        status: import(".prisma/client").$Enums.AdjustmentStatus;
-        createdAt: Date;
         id: string;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        reason: string | null;
+        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        status: import(".prisma/client").$Enums.AdjustmentStatus;
+        clientId: string;
         productId: string | null;
+        qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
         locationId: string | null;
         createdByActorId: string;
+        reason: string | null;
     })[]>;
     findOne(id: string): Promise<{
-        client: {
-            id: string;
-            code: string;
-            name: string;
-        };
         warehouse: {
             id: string;
             code: string;
             name: string;
         };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -128,47 +132,47 @@ export declare class AdjustmentsService {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
         createdByActor: {
             id: string;
-            actorType: import(".prisma/client").$Enums.ActorType;
             user: {
                 id: string;
                 email: string;
             } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
             clientAccount: {
                 id: string;
                 email: string;
             } | null;
         };
     } & {
-        status: import(".prisma/client").$Enums.AdjustmentStatus;
-        createdAt: Date;
         id: string;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        reason: string | null;
+        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        status: import(".prisma/client").$Enums.AdjustmentStatus;
+        clientId: string;
         productId: string | null;
+        qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
         locationId: string | null;
         createdByActorId: string;
+        reason: string | null;
     }>;
     apply(id: string): Promise<{
-        client: {
-            id: string;
-            code: string;
-            name: string;
-        };
         warehouse: {
             id: string;
             code: string;
             name: string;
         };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -178,47 +182,47 @@ export declare class AdjustmentsService {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
         createdByActor: {
             id: string;
-            actorType: import(".prisma/client").$Enums.ActorType;
             user: {
                 id: string;
                 email: string;
             } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
             clientAccount: {
                 id: string;
                 email: string;
             } | null;
         };
     } & {
-        status: import(".prisma/client").$Enums.AdjustmentStatus;
-        createdAt: Date;
         id: string;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        reason: string | null;
+        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        status: import(".prisma/client").$Enums.AdjustmentStatus;
+        clientId: string;
         productId: string | null;
+        qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
         locationId: string | null;
         createdByActorId: string;
+        reason: string | null;
     }>;
     reject(id: string, reason?: string): Promise<{
-        client: {
-            id: string;
-            code: string;
-            name: string;
-        };
         warehouse: {
             id: string;
             code: string;
             name: string;
         };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
         product: {
             id: string;
             name: string;
@@ -228,34 +232,30 @@ export declare class AdjustmentsService {
             id: string;
             batchCode: string;
         } | null;
-        location: {
-            id: string;
-            code: string;
-        } | null;
         createdByActor: {
             id: string;
-            actorType: import(".prisma/client").$Enums.ActorType;
             user: {
                 id: string;
                 email: string;
             } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
             clientAccount: {
                 id: string;
                 email: string;
             } | null;
         };
     } & {
-        status: import(".prisma/client").$Enums.AdjustmentStatus;
-        createdAt: Date;
         id: string;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        reason: string | null;
+        createdAt: Date;
         updatedAt: Date;
-        clientId: string;
         warehouseId: string;
+        status: import(".prisma/client").$Enums.AdjustmentStatus;
+        clientId: string;
         productId: string | null;
+        qtyChange: import("@prisma/client/runtime/library").Decimal;
         batchId: string | null;
         locationId: string | null;
         createdByActorId: string;
+        reason: string | null;
     }>;
 }
