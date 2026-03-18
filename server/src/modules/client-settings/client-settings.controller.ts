@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { ClientAccountGuard } from '../../common/guards/client-account.guard';
 import { CurrentActor } from '../../common/decorators/current-actor.decorator';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { ClientSettingsService } from './client-settings.service';
@@ -8,7 +9,7 @@ import { ChangeClientPasswordDto } from './dto/change-client-password.dto';
 import { UpdateClientPreferencesDto } from './dto/update-client-preferences.dto';
 
 @Controller('client-settings')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, ClientAccountGuard)
 export class ClientSettingsController {
   constructor(private readonly settings: ClientSettingsService) {}
 

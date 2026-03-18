@@ -13,6 +13,7 @@ const billing_plans_controller_1 = require("./billing-plans.controller");
 const client_billing_plans_controller_1 = require("./client-billing-plans.controller");
 const invoices_controller_1 = require("./invoices.controller");
 const billing_transactions_controller_1 = require("./billing-transactions.controller");
+const billing_client_portal_controller_1 = require("./billing-client-portal.controller");
 let BillingModule = class BillingModule {
 };
 exports.BillingModule = BillingModule;
@@ -23,6 +24,7 @@ exports.BillingModule = BillingModule = __decorate([
             client_billing_plans_controller_1.ClientBillingPlansController,
             invoices_controller_1.InvoicesController,
             billing_transactions_controller_1.BillingTransactionsController,
+            billing_client_portal_controller_1.BillingClientPortalController,
         ],
         providers: [billing_service_1.BillingService],
         exports: [billing_service_1.BillingService],

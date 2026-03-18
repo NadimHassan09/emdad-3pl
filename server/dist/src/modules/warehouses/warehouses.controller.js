@@ -18,9 +18,14 @@ const warehouses_service_1 = require("./warehouses.service");
 const create_warehouse_dto_1 = require("./dto/create-warehouse.dto");
 const update_warehouse_dto_1 = require("./dto/update-warehouse.dto");
 const warehouse_filter_dto_1 = require("./dto/warehouse-filter.dto");
+const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
+const client_account_guard_1 = require("../../common/guards/client-account.guard");
 let WarehousesController = class WarehousesController {
     constructor(warehouses) {
         this.warehouses = warehouses;
+    }
+    listClientPortal() {
+        return this.warehouses.findMany({ isActive: true });
     }
     create(dto) {
         return this.warehouses.create(dto);
@@ -36,6 +41,13 @@ let WarehousesController = class WarehousesController {
     }
 };
 exports.WarehousesController = WarehousesController;
+__decorate([
+    (0, common_1.Get)('client-portal/list'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, client_account_guard_1.ClientAccountGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], WarehousesController.prototype, "listClientPortal", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),

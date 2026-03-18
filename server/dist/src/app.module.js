@@ -32,6 +32,8 @@ const billing_module_1 = require("./modules/billing/billing.module");
 const vas_module_1 = require("./modules/vas/vas.module");
 const client_settings_module_1 = require("./modules/client-settings/client-settings.module");
 const dashboard_module_1 = require("./modules/dashboard/dashboard.module");
+const client_portal_team_module_1 = require("./modules/client-portal-team/client-portal-team.module");
+const client_portal_notifications_module_1 = require("./modules/client-portal-notifications/client-portal-notifications.module");
 const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
@@ -66,6 +68,8 @@ exports.AppModule = AppModule = __decorate([
             vas_module_1.VasModule,
             client_settings_module_1.ClientSettingsModule,
             dashboard_module_1.DashboardModule,
+            client_portal_team_module_1.ClientPortalTeamModule,
+            client_portal_notifications_module_1.ClientPortalNotificationsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [],

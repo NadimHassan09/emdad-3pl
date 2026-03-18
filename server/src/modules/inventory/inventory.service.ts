@@ -1,6 +1,8 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { ClientPortalStockQueryDto } from './dto/client-portal-stock-query.dto';
 import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
 import { CreateLedgerEntryDto } from './dto/create-ledger-entry.dto';
 import { MovementType } from '../../common/enums/movement-type.enum';
@@ -227,6 +229,55 @@ export class InventoryService {
   }
 
   /**
+   * Current stock for one client only (client portal). clientId is never taken from user input.
+   */
+  async findCurrentStockForClientPortal(
+    clientId: string,
+    query?: ClientPortalStockQueryDto,
+  ) {
+    const where: Prisma.CurrentStockWhereInput = { clientId };
+
+    if (query?.warehouseId) where.warehouseId = query.warehouseId;
+    if (query?.productId) where.productId = query.productId;
+    if (query?.batchId !== undefined) {
+      where.batchId = query.batchId || null;
+    }
+    if (query?.locationId !== undefined) {
+      where.locationId = query.locationId || null;
+    }
+    if (query?.dateFrom || query?.dateTo) {
+      where.updatedAt = {};
+      if (query.dateFrom) {
+        where.updatedAt.gte = new Date(query.dateFrom);
+      }
+      if (query.dateTo) {
+        const end = new Date(query.dateTo);
+        end.setHours(23, 59, 59, 999);
+        where.updatedAt.lte = end;
+      }
+    }
+
+    return this.prisma.currentStock.findMany({
+      where,
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        product: {
+          select: {
+            id: true,
+            sku: true,
+            name: true,
+            defaultUom: { select: { code: true } },
+          },
+        },
+        batch: { select: { id: true, batchCode: true } },
+        location: { select: { id: true, code: true } },
+      },
+      orderBy: [{ warehouseId: 'asc' }, { productId: 'asc' }],
+    });
+  }
+
+  /**
    * Query current stock for a specific product.
    */
   async findCurrentStockByProduct(
@@ -285,6 +336,18 @@ export class InventoryService {
       },
       orderBy: { createdAt: 'desc' },
     });
+  }
+
+  /**
+   * Client-portal ledger wrapper: enforces clientId from JWT and ignores any clientId filter.
+   */
+  async findLedgerForClientPortal(
+    clientId: string,
+    filter?: InventoryLedgerFilterDto,
+  ) {
+    const f = filter ? { ...filter } : {};
+    delete (f as any).clientId;
+    return this.findLedger({ ...f, clientId });
   }
 
   /**

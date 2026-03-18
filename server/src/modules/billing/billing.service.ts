@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { MovementType, Prisma } from '@prisma/client';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { ChargeCategory } from '../../common/enums/charge-category.enum';
 import { CreateBillingPlanDto } from './dto/create-billing-plan.dto';
@@ -10,6 +11,7 @@ import { ClientBillingPlanFilterDto } from './dto/client-billing-plan-filter.dto
 import { GenerateInvoiceDto } from './dto/generate-invoice.dto';
 import { InvoiceFilterDto } from './dto/invoice-filter.dto';
 import { BillingTransactionFilterDto } from './dto/billing-transaction-filter.dto';
+import { ClientPortalInvoiceQueryDto } from './dto/client-portal-invoice-query.dto';
 
 /** Prisma delegates for billing when PrismaClient types are not resolved. */
 interface PrismaBilling {
@@ -237,5 +239,188 @@ export class BillingService {
       where,
       orderBy: { createdAt: 'desc' },
     });
+  }
+
+  /**
+   * Client portal: plan + usage summary for one tenant (current calendar month).
+   */
+  async getClientPortalBillingOverview(clientId: string) {
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
+    const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+      where: { clientId, isCurrent: true },
+      include: {
+        billingPlan: {
+          select: {
+            planName: true,
+            storageIncluded: true,
+            billingCycle: true,
+            isActive: true,
+          },
+        },
+      },
+      orderBy: { startsAt: 'desc' },
+    });
+
+    const planName = clientPlan?.billingPlan?.planName ?? '—';
+    const renewalDateStr = clientPlan?.endsAt
+      ? new Date(clientPlan.endsAt).toISOString().slice(0, 10)
+      : '—';
+    const statusAr = clientPlan ? 'نشط' : 'لا توجد خطة';
+
+    const storageCap = clientPlan?.billingPlan?.storageIncluded
+      ? Number(clientPlan.billingPlan.storageIncluded)
+      : null;
+
+    const stockAgg = await this.prisma.currentStock.aggregate({
+      where: { clientId },
+      _sum: { quantity: true },
+    });
+    const usedUnits = Number(stockAgg._sum.quantity ?? 0);
+    const totalUnits =
+      storageCap != null && storageCap > 0
+        ? storageCap
+        : Math.max(usedUnits, 1);
+    const usedPercent =
+      totalUnits > 0
+        ? Math.min(100, Math.round((usedUnits / totalUnits) * 100))
+        : 0;
+
+    const [receiptCount, shipmentCount] = await Promise.all([
+      this.prisma.inventoryLedger.count({
+        where: {
+          clientId,
+          movementType: MovementType.RECEIPT,
+          createdAt: { gte: startOfMonth, lte: now },
+        },
+      }),
+      this.prisma.inventoryLedger.count({
+        where: {
+          clientId,
+          movementType: MovementType.SHIPMENT,
+          createdAt: { gte: startOfMonth, lte: now },
+        },
+      }),
+    ]);
+
+    const txAgg = await this.prisma.billingTransaction.groupBy({
+      by: ['chargeCategory'],
+      where: {
+        clientId,
+        createdAt: { gte: startOfMonth, lte: now },
+      },
+      _sum: { amountCents: true },
+    });
+
+    const sumCents = (cat: ChargeCategory) => {
+      const row = txAgg.find((t) => t.chargeCategory === cat);
+      const v = row?._sum?.amountCents;
+      if (v == null) return 0;
+      return typeof v === 'bigint' ? Number(v) : Number(v);
+    };
+
+    const storageCents = sumCents(ChargeCategory.STORAGE);
+    const movementCents = sumCents(ChargeCategory.MOVEMENT);
+    const vasCents = sumCents(ChargeCategory.VAS);
+    const manualChargeCents = sumCents(ChargeCategory.MANUAL_CHARGE);
+    const manualCreditCents = sumCents(ChargeCategory.MANUAL_CREDIT);
+
+    const movementsTotal = receiptCount + shipmentCount;
+    const inboundShare =
+      movementsTotal > 0 ? receiptCount / movementsTotal : 0.5;
+    const incomingCostCents = Math.round(movementCents * inboundShare);
+    const outgoingCostCents = movementCents - incomingCostCents;
+
+    const totalCents =
+      storageCents +
+      movementCents +
+      vasCents +
+      manualChargeCents -
+      manualCreditCents;
+
+    return {
+      currentPlan: {
+        planName,
+        renewalDate: renewalDateStr,
+        status: statusAr,
+        billingCycle: clientPlan?.billingPlan?.billingCycle ?? null,
+      },
+      usage: {
+        space: {
+          usedPercent,
+          usedUnits,
+          totalUnits,
+          estimatedCostUsd: storageCents / 100,
+        },
+        incomingMovements: {
+          count: receiptCount,
+          estimatedCostUsd: incomingCostCents / 100,
+        },
+        outgoingOrders: {
+          count: shipmentCount,
+          estimatedCostUsd: outgoingCostCents / 100,
+        },
+      },
+      totalEstimatedUsd: totalCents / 100,
+      currency: 'USD',
+      periodStart: startOfMonth.toISOString().slice(0, 10),
+      periodEnd: now.toISOString().slice(0, 10),
+    };
+  }
+
+  async findManyInvoicesForClientPortal(
+    clientId: string,
+    query?: ClientPortalInvoiceQueryDto,
+  ) {
+    const where: Prisma.InvoiceWhereInput = { clientId };
+    if (query?.status) where.status = query.status;
+    const and: Prisma.InvoiceWhereInput[] = [];
+    if (query?.periodFrom) {
+      and.push({ periodStart: { gte: new Date(query.periodFrom) } });
+    }
+    if (query?.periodTo) {
+      const end = new Date(query.periodTo);
+      end.setHours(23, 59, 59, 999);
+      and.push({ periodEnd: { lte: end } });
+    }
+    if (and.length) where.AND = and;
+    return this.prisma.invoice.findMany({
+      where,
+      orderBy: { createdAt: 'desc' },
+      select: {
+        id: true,
+        invoiceNumber: true,
+        periodStart: true,
+        periodEnd: true,
+        status: true,
+        subtotalCents: true,
+        taxAmountCents: true,
+        discountAmountCents: true,
+        totalAmountCents: true,
+        currency: true,
+        issuedAt: true,
+        paidAt: true,
+        dueDate: true,
+        notes: true,
+        createdAt: true,
+      },
+    });
+  }
+
+  async findOneInvoiceForClientPortal(clientId: string, invoiceId: string) {
+    const invoice = await this.prisma.invoice.findFirst({
+      where: { id: invoiceId, clientId },
+      include: {
+        lines: {
+          orderBy: { createdAt: 'asc' },
+        },
+      },
+    });
+    if (!invoice) {
+      throw new NotFoundException('Invoice not found');
+    }
+    return invoice;
   }
 }

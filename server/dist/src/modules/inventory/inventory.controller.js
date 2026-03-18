@@ -16,12 +16,20 @@ exports.InventoryController = void 0;
 const common_1 = require("@nestjs/common");
 const inventory_service_1 = require("./inventory.service");
 const current_stock_filter_dto_1 = require("./dto/current-stock-filter.dto");
+const client_portal_stock_query_dto_1 = require("./dto/client-portal-stock-query.dto");
 const inventory_ledger_filter_dto_1 = require("./dto/inventory-ledger-filter.dto");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
+const client_account_guard_1 = require("../../common/guards/client-account.guard");
 const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
 let InventoryController = class InventoryController {
     constructor(inventoryService) {
         this.inventoryService = inventoryService;
+    }
+    getClientPortalDashboard(actor) {
+        return this.inventoryService.getDashboard(actor.clientId);
+    }
+    getClientPortalCurrentStock(actor, query) {
+        return this.inventoryService.findCurrentStockForClientPortal(actor.clientId, query);
     }
     getDashboard(actor) {
         return this.inventoryService.getDashboard(actor.clientId);
@@ -32,11 +40,31 @@ let InventoryController = class InventoryController {
     findCurrentStockByProduct(productId, filter) {
         return this.inventoryService.findCurrentStockByProduct(productId, filter);
     }
+    getClientPortalLedger(actor, filter) {
+        return this.inventoryService.findLedgerForClientPortal(actor.clientId, filter);
+    }
     findLedger(filter) {
         return this.inventoryService.findLedger(filter);
     }
 };
 exports.InventoryController = InventoryController;
+__decorate([
+    (0, common_1.Get)('client-portal/dashboard'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, client_account_guard_1.ClientAccountGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getClientPortalDashboard", null);
+__decorate([
+    (0, common_1.Get)('client-portal/current-stock'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, client_account_guard_1.ClientAccountGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, client_portal_stock_query_dto_1.ClientPortalStockQueryDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getClientPortalCurrentStock", null);
 __decorate([
     (0, common_1.Get)('dashboard'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -60,6 +88,15 @@ __decorate([
     __metadata("design:paramtypes", [String, current_stock_filter_dto_1.CurrentStockFilterDto]),
     __metadata("design:returntype", void 0)
 ], InventoryController.prototype, "findCurrentStockByProduct", null);
+__decorate([
+    (0, common_1.Get)('client-portal/ledger'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, client_account_guard_1.ClientAccountGuard),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, inventory_ledger_filter_dto_1.InventoryLedgerFilterDto]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getClientPortalLedger", null);
 __decorate([
     (0, common_1.Get)('ledger'),
     __param(0, (0, common_1.Query)()),

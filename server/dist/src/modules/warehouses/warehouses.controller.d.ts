@@ -5,6 +5,14 @@ import { WarehouseFilterDto } from './dto/warehouse-filter.dto';
 export declare class WarehousesController {
     private readonly warehouses;
     constructor(warehouses: WarehousesService);
+    listClientPortal(): Promise<{
+        id: string;
+        code: string;
+        name: string;
+        isActive: boolean;
+        capacityValue: import("@prisma/client/runtime/library").Decimal | null;
+        capacityUomId: string | null;
+    }[]>;
     create(dto: CreateWarehouseDto): Promise<{
         id: string;
         code: string;

@@ -1,10 +1,78 @@
 import { InventoryService } from './inventory.service';
 import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { ClientPortalStockQueryDto } from './dto/client-portal-stock-query.dto';
 import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 export declare class InventoryController {
     private readonly inventoryService;
     constructor(inventoryService: InventoryService);
+    getClientPortalDashboard(actor: JwtPayload): Promise<{
+        stats: {
+            totalProducts: number;
+            totalStock: number;
+            incomingOrders: number;
+            outgoingOrders: number;
+            recentMovements: number;
+        };
+        movementByMonth: {
+            name: string;
+            inbound: number;
+            outbound: number;
+        }[];
+        stockDistribution: {
+            name: string;
+            value: number;
+        }[];
+        weeklyTrend: {
+            name: string;
+            value: number;
+        }[];
+        recentMovements: {
+            date: Date;
+            movementType: import(".prisma/client").$Enums.MovementType;
+            sku: string;
+            qtyChange: number;
+            referenceId: string | null;
+        }[];
+    }>;
+    getClientPortalCurrentStock(actor: JwtPayload, query: ClientPortalStockQueryDto): Promise<({
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+            defaultUom: {
+                code: string;
+            };
+        };
+        batch: {
+            id: string;
+            batchCode: string;
+        } | null;
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        warehouseId: string;
+        clientId: string;
+        productId: string;
+        batchId: string | null;
+        locationId: string | null;
+        quantity: import("@prisma/client/runtime/library").Decimal;
+    })[]>;
     getDashboard(actor: JwtPayload): Promise<{
         stats: {
             totalProducts: number;
@@ -103,6 +171,45 @@ export declare class InventoryController {
         batchId: string | null;
         locationId: string | null;
         quantity: import("@prisma/client/runtime/library").Decimal;
+    })[]>;
+    getClientPortalLedger(actor: JwtPayload, filter: InventoryLedgerFilterDto): Promise<({
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+        batch: {
+            id: string;
+            batchCode: string;
+        } | null;
+    } & {
+        id: string;
+        createdAt: Date;
+        warehouseId: string;
+        clientId: string;
+        productId: string;
+        movementType: import(".prisma/client").$Enums.MovementType;
+        qtyChange: import("@prisma/client/runtime/library").Decimal;
+        qtyBefore: import("@prisma/client/runtime/library").Decimal;
+        qtyAfter: import("@prisma/client/runtime/library").Decimal;
+        referenceType: string | null;
+        referenceId: string | null;
+        batchId: string | null;
+        locationId: string | null;
     })[]>;
     findLedger(filter: InventoryLedgerFilterDto): Promise<({
         warehouse: {

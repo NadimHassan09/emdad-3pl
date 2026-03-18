@@ -1,5 +1,7 @@
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { CurrentStockFilterDto } from './dto/current-stock-filter.dto';
+import { ClientPortalStockQueryDto } from './dto/client-portal-stock-query.dto';
 import { InventoryLedgerFilterDto } from './dto/inventory-ledger-filter.dto';
 import { CreateLedgerEntryDto } from './dto/create-ledger-entry.dto';
 export declare class InventoryService {
@@ -70,7 +72,45 @@ export declare class InventoryService {
         productId: string;
         batchId: string | null;
         locationId: string | null;
-        quantity: import("@prisma/client/runtime/library").Decimal;
+        quantity: Prisma.Decimal;
+    })[]>;
+    findCurrentStockForClientPortal(clientId: string, query?: ClientPortalStockQueryDto): Promise<({
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+            defaultUom: {
+                code: string;
+            };
+        };
+        batch: {
+            id: string;
+            batchCode: string;
+        } | null;
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        warehouseId: string;
+        clientId: string;
+        productId: string;
+        batchId: string | null;
+        locationId: string | null;
+        quantity: Prisma.Decimal;
     })[]>;
     findCurrentStockByProduct(productId: string, filter?: CurrentStockFilterDto): Promise<({
         warehouse: {
@@ -105,7 +145,7 @@ export declare class InventoryService {
         productId: string;
         batchId: string | null;
         locationId: string | null;
-        quantity: import("@prisma/client/runtime/library").Decimal;
+        quantity: Prisma.Decimal;
     })[]>;
     findLedger(filter?: InventoryLedgerFilterDto): Promise<({
         warehouse: {
@@ -138,9 +178,48 @@ export declare class InventoryService {
         clientId: string;
         productId: string;
         movementType: import(".prisma/client").$Enums.MovementType;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        qtyBefore: import("@prisma/client/runtime/library").Decimal;
-        qtyAfter: import("@prisma/client/runtime/library").Decimal;
+        qtyChange: Prisma.Decimal;
+        qtyBefore: Prisma.Decimal;
+        qtyAfter: Prisma.Decimal;
+        referenceType: string | null;
+        referenceId: string | null;
+        batchId: string | null;
+        locationId: string | null;
+    })[]>;
+    findLedgerForClientPortal(clientId: string, filter?: InventoryLedgerFilterDto): Promise<({
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        location: {
+            id: string;
+            code: string;
+        } | null;
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+        batch: {
+            id: string;
+            batchCode: string;
+        } | null;
+    } & {
+        id: string;
+        createdAt: Date;
+        warehouseId: string;
+        clientId: string;
+        productId: string;
+        movementType: import(".prisma/client").$Enums.MovementType;
+        qtyChange: Prisma.Decimal;
+        qtyBefore: Prisma.Decimal;
+        qtyAfter: Prisma.Decimal;
         referenceType: string | null;
         referenceId: string | null;
         batchId: string | null;
@@ -177,9 +256,9 @@ export declare class InventoryService {
         clientId: string;
         productId: string;
         movementType: import(".prisma/client").$Enums.MovementType;
-        qtyChange: import("@prisma/client/runtime/library").Decimal;
-        qtyBefore: import("@prisma/client/runtime/library").Decimal;
-        qtyAfter: import("@prisma/client/runtime/library").Decimal;
+        qtyChange: Prisma.Decimal;
+        qtyBefore: Prisma.Decimal;
+        qtyAfter: Prisma.Decimal;
         referenceType: string | null;
         referenceId: string | null;
         batchId: string | null;

@@ -106,6 +106,77 @@ let InboundOrdersService = class InboundOrdersService {
             return [];
         }
     }
+    findManyForClientPortal(clientId, filter) {
+        const f = filter ? { ...filter } : {};
+        delete f.clientId;
+        return this.findMany({ ...f, clientId });
+    }
+    async findOneForClientPortal(clientId, ref) {
+        const trimmed = ref.trim();
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(trimmed);
+        const fullInclude = {
+            client: { select: { id: true, code: true, name: true } },
+            warehouse: { select: { id: true, code: true, name: true } },
+            createdByActor: {
+                select: {
+                    id: true,
+                    actorType: true,
+                    user: { select: { id: true, email: true } },
+                    clientAccount: { select: { id: true, email: true } },
+                },
+            },
+            items: {
+                include: {
+                    product: { select: { id: true, sku: true, name: true } },
+                    uom: { select: { id: true, code: true, name: true } },
+                    batches: {
+                        include: {
+                            batch: { select: { id: true, batchCode: true } },
+                            location: { select: { id: true, code: true } },
+                        },
+                    },
+                },
+            },
+        };
+        let order = await this.prisma.inboundOrder.findFirst({
+            where: isUuid
+                ? { id: trimmed, clientId }
+                : { clientId, orderNumber: trimmed },
+            include: fullInclude,
+        });
+        if (!order && !isUuid) {
+            order = await this.prisma.inboundOrder.findFirst({
+                where: {
+                    clientId,
+                    orderNumber: { contains: trimmed, mode: 'insensitive' },
+                },
+                orderBy: { createdAt: 'desc' },
+                include: fullInclude,
+            });
+        }
+        if (!order)
+            throw new common_1.NotFoundException('Inbound order not found');
+        return this.serializeOrder(order);
+    }
+    async createForClientPortal(clientId, actorId, dto) {
+        return this.create({
+            clientId,
+            warehouseId: dto.warehouseId,
+            orderNumber: dto.orderNumber,
+            currentStage: dto.currentStage,
+            expectedDate: dto.expectedDate,
+        }, actorId);
+    }
+    async addItemForClientPortal(clientId, orderId, dto) {
+        const owned = await this.prisma.inboundOrder.findFirst({
+            where: { id: orderId, clientId },
+            select: { id: true },
+        });
+        if (!owned) {
+            throw new common_1.ForbiddenException('Order not found or access denied');
+        }
+        return this.addItem(orderId, dto);
+    }
     async findOne(id) {
         const order = await this.prisma.inboundOrder.findUnique({
             where: { id },

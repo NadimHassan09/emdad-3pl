@@ -4,6 +4,7 @@ import { UpdateOutboundOrderDto } from './dto/update-outbound-order.dto';
 import { OutboundOrderFilterDto } from './dto/outbound-order-filter.dto';
 import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
+import { CreateOutboundOrderClientPortalDto } from './dto/create-outbound-order-client-portal.dto';
 import { StockReservationsService } from '../stock-reservations/stock-reservations.service';
 import { CreateReservationDto } from '../stock-reservations/dto/create-reservation.dto';
 import { ShipOrderDto } from '../stock-reservations/dto/ship-order.dto';
@@ -11,6 +12,179 @@ export declare class OutboundOrdersController {
     private readonly outboundOrders;
     private readonly stockReservations;
     constructor(outboundOrders: OutboundOrdersService, stockReservations: StockReservationsService);
+    findManyClientPortal(filter: OutboundOrderFilterDto, actor: JwtPayload): Promise<({
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        warehouseId: string;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedShipDate: Date | null;
+    })[]>;
+    findOneClientPortal(ref: string, actor: JwtPayload): Promise<{
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+        items: ({
+            uom: {
+                id: string;
+                code: string;
+                name: string;
+            };
+            batches: ({
+                location: {
+                    id: string;
+                    code: string;
+                } | null;
+                batch: {
+                    id: string;
+                    batchCode: string;
+                } | null;
+            } & {
+                id: string;
+                createdAt: Date;
+                updatedAt: Date;
+                batchId: string | null;
+                locationId: string | null;
+                qtyShipped: import("@prisma/client/runtime/library").Decimal;
+                outboundOrderItemId: string;
+            })[];
+            product: {
+                id: string;
+                name: string;
+                sku: string;
+            };
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            productId: string;
+            qtyOrdered: import("@prisma/client/runtime/library").Decimal;
+            uomId: string;
+            outboundOrderId: string;
+            qtyShipped: import("@prisma/client/runtime/library").Decimal;
+        })[];
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        warehouseId: string;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedShipDate: Date | null;
+    }>;
+    createClientPortal(dto: CreateOutboundOrderClientPortalDto, actor: JwtPayload): Promise<{
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        client: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        createdByActor: {
+            id: string;
+            user: {
+                id: string;
+                email: string;
+            } | null;
+            actorType: import(".prisma/client").$Enums.ActorType;
+            clientAccount: {
+                id: string;
+                email: string;
+            } | null;
+        };
+    } & {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        warehouseId: string;
+        status: import(".prisma/client").$Enums.OrderStatus;
+        clientId: string;
+        orderNumber: string | null;
+        currentStage: string | null;
+        createdByActorId: string;
+        expectedShipDate: Date | null;
+    }>;
+    addItemClientPortal(orderId: string, dto: AddOutboundOrderItemDto, actor: JwtPayload): Promise<{
+        qtyOrdered: number;
+        qtyShipped: number;
+        uom: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        product: {
+            id: string;
+            name: string;
+            sku: string;
+        };
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        productId: string;
+        uomId: string;
+        outboundOrderId: string;
+    }>;
     create(dto: CreateOutboundOrderDto, payload: JwtPayload): Promise<{
         warehouse: {
             id: string;

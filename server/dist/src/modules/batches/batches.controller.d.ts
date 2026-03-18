@@ -46,6 +46,8 @@ export declare class BatchesController {
             updatedAt: Date;
             clientId: string;
             sku: string;
+            description: string | null;
+            price: import("@prisma/client/runtime/library").Decimal | null;
             minThreshold: import("@prisma/client/runtime/library").Decimal | null;
             defaultUomId: string;
         };

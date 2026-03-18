@@ -11,7 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BillingService = void 0;
 const common_1 = require("@nestjs/common");
+const client_1 = require("@prisma/client");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
+const charge_category_enum_1 = require("../../common/enums/charge-category.enum");
 let BillingService = class BillingService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -190,6 +192,168 @@ let BillingService = class BillingService {
             where,
             orderBy: { createdAt: 'desc' },
         });
+    }
+    async getClientPortalBillingOverview(clientId) {
+        const now = new Date();
+        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        startOfMonth.setHours(0, 0, 0, 0);
+        const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+            where: { clientId, isCurrent: true },
+            include: {
+                billingPlan: {
+                    select: {
+                        planName: true,
+                        storageIncluded: true,
+                        billingCycle: true,
+                        isActive: true,
+                    },
+                },
+            },
+            orderBy: { startsAt: 'desc' },
+        });
+        const planName = clientPlan?.billingPlan?.planName ?? '—';
+        const renewalDateStr = clientPlan?.endsAt
+            ? new Date(clientPlan.endsAt).toISOString().slice(0, 10)
+            : '—';
+        const statusAr = clientPlan ? 'نشط' : 'لا توجد خطة';
+        const storageCap = clientPlan?.billingPlan?.storageIncluded
+            ? Number(clientPlan.billingPlan.storageIncluded)
+            : null;
+        const stockAgg = await this.prisma.currentStock.aggregate({
+            where: { clientId },
+            _sum: { quantity: true },
+        });
+        const usedUnits = Number(stockAgg._sum.quantity ?? 0);
+        const totalUnits = storageCap != null && storageCap > 0
+            ? storageCap
+            : Math.max(usedUnits, 1);
+        const usedPercent = totalUnits > 0
+            ? Math.min(100, Math.round((usedUnits / totalUnits) * 100))
+            : 0;
+        const [receiptCount, shipmentCount] = await Promise.all([
+            this.prisma.inventoryLedger.count({
+                where: {
+                    clientId,
+                    movementType: client_1.MovementType.RECEIPT,
+                    createdAt: { gte: startOfMonth, lte: now },
+                },
+            }),
+            this.prisma.inventoryLedger.count({
+                where: {
+                    clientId,
+                    movementType: client_1.MovementType.SHIPMENT,
+                    createdAt: { gte: startOfMonth, lte: now },
+                },
+            }),
+        ]);
+        const txAgg = await this.prisma.billingTransaction.groupBy({
+            by: ['chargeCategory'],
+            where: {
+                clientId,
+                createdAt: { gte: startOfMonth, lte: now },
+            },
+            _sum: { amountCents: true },
+        });
+        const sumCents = (cat) => {
+            const row = txAgg.find((t) => t.chargeCategory === cat);
+            const v = row?._sum?.amountCents;
+            if (v == null)
+                return 0;
+            return typeof v === 'bigint' ? Number(v) : Number(v);
+        };
+        const storageCents = sumCents(charge_category_enum_1.ChargeCategory.STORAGE);
+        const movementCents = sumCents(charge_category_enum_1.ChargeCategory.MOVEMENT);
+        const vasCents = sumCents(charge_category_enum_1.ChargeCategory.VAS);
+        const manualChargeCents = sumCents(charge_category_enum_1.ChargeCategory.MANUAL_CHARGE);
+        const manualCreditCents = sumCents(charge_category_enum_1.ChargeCategory.MANUAL_CREDIT);
+        const movementsTotal = receiptCount + shipmentCount;
+        const inboundShare = movementsTotal > 0 ? receiptCount / movementsTotal : 0.5;
+        const incomingCostCents = Math.round(movementCents * inboundShare);
+        const outgoingCostCents = movementCents - incomingCostCents;
+        const totalCents = storageCents +
+            movementCents +
+            vasCents +
+            manualChargeCents -
+            manualCreditCents;
+        return {
+            currentPlan: {
+                planName,
+                renewalDate: renewalDateStr,
+                status: statusAr,
+                billingCycle: clientPlan?.billingPlan?.billingCycle ?? null,
+            },
+            usage: {
+                space: {
+                    usedPercent,
+                    usedUnits,
+                    totalUnits,
+                    estimatedCostUsd: storageCents / 100,
+                },
+                incomingMovements: {
+                    count: receiptCount,
+                    estimatedCostUsd: incomingCostCents / 100,
+                },
+                outgoingOrders: {
+                    count: shipmentCount,
+                    estimatedCostUsd: outgoingCostCents / 100,
+                },
+            },
+            totalEstimatedUsd: totalCents / 100,
+            currency: 'USD',
+            periodStart: startOfMonth.toISOString().slice(0, 10),
+            periodEnd: now.toISOString().slice(0, 10),
+        };
+    }
+    async findManyInvoicesForClientPortal(clientId, query) {
+        const where = { clientId };
+        if (query?.status)
+            where.status = query.status;
+        const and = [];
+        if (query?.periodFrom) {
+            and.push({ periodStart: { gte: new Date(query.periodFrom) } });
+        }
+        if (query?.periodTo) {
+            const end = new Date(query.periodTo);
+            end.setHours(23, 59, 59, 999);
+            and.push({ periodEnd: { lte: end } });
+        }
+        if (and.length)
+            where.AND = and;
+        return this.prisma.invoice.findMany({
+            where,
+            orderBy: { createdAt: 'desc' },
+            select: {
+                id: true,
+                invoiceNumber: true,
+                periodStart: true,
+                periodEnd: true,
+                status: true,
+                subtotalCents: true,
+                taxAmountCents: true,
+                discountAmountCents: true,
+                totalAmountCents: true,
+                currency: true,
+                issuedAt: true,
+                paidAt: true,
+                dueDate: true,
+                notes: true,
+                createdAt: true,
+            },
+        });
+    }
+    async findOneInvoiceForClientPortal(clientId, invoiceId) {
+        const invoice = await this.prisma.invoice.findFirst({
+            where: { id: invoiceId, clientId },
+            include: {
+                lines: {
+                    orderBy: { createdAt: 'asc' },
+                },
+            },
+        });
+        if (!invoice) {
+            throw new common_1.NotFoundException('Invoice not found');
+        }
+        return invoice;
     }
 };
 exports.BillingService = BillingService;

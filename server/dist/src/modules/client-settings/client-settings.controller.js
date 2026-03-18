@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientSettingsController = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
+const client_account_guard_1 = require("../../common/guards/client-account.guard");
 const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
 const client_settings_service_1 = require("./client-settings.service");
 const update_client_profile_dto_1 = require("./dto/update-client-profile.dto");
@@ -71,7 +72,7 @@ __decorate([
 ], ClientSettingsController.prototype, "updatePreferences", null);
 exports.ClientSettingsController = ClientSettingsController = __decorate([
     (0, common_1.Controller)('client-settings'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, client_account_guard_1.ClientAccountGuard),
     __metadata("design:paramtypes", [client_settings_service_1.ClientSettingsService])
 ], ClientSettingsController);
 //# sourceMappingURL=client-settings.controller.js.map

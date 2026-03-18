@@ -2,12 +2,14 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { CreateOutboundOrderDto } from './dto/create-outbound-order.dto';
 import { UpdateOutboundOrderDto } from './dto/update-outbound-order.dto';
 import { OutboundOrderFilterDto } from './dto/outbound-order-filter.dto';
 import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
+import { CreateOutboundOrderClientPortalDto } from './dto/create-outbound-order-client-portal.dto';
 
 function toNumber(value: unknown): number {
   if (typeof value === 'number' && !Number.isNaN(value)) return value;
@@ -126,6 +128,98 @@ export class OutboundOrdersService {
       console.error('[OutboundOrdersService] findMany failed:', e);
       return [];
     }
+  }
+
+  findManyForClientPortal(clientId: string, filter?: OutboundOrderFilterDto) {
+    const f = filter ? { ...filter } : {};
+    delete f.clientId;
+    return this.findMany({ ...f, clientId });
+  }
+
+  async findOneForClientPortal(clientId: string, ref: string) {
+    const trimmed = ref.trim();
+    const isUuid =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        trimmed,
+      );
+
+    const fullInclude = {
+      client: { select: { id: true, code: true, name: true } },
+      warehouse: { select: { id: true, code: true, name: true } },
+      createdByActor: {
+        select: {
+          id: true,
+          actorType: true,
+          user: { select: { id: true, email: true } },
+          clientAccount: { select: { id: true, email: true } },
+        },
+      },
+      items: {
+        include: {
+          product: { select: { id: true, sku: true, name: true } },
+          uom: { select: { id: true, code: true, name: true } },
+          batches: {
+            include: {
+              batch: { select: { id: true, batchCode: true } },
+              location: { select: { id: true, code: true } },
+            },
+          },
+        },
+      },
+    } as const;
+
+    let order = await this.prisma.outboundOrder.findFirst({
+      where: isUuid
+        ? { id: trimmed, clientId }
+        : { clientId, orderNumber: trimmed },
+      include: fullInclude,
+    });
+
+    if (!order && !isUuid) {
+      order = await this.prisma.outboundOrder.findFirst({
+        where: {
+          clientId,
+          orderNumber: { contains: trimmed, mode: 'insensitive' },
+        },
+        orderBy: { createdAt: 'desc' },
+        include: fullInclude,
+      });
+    }
+
+    if (!order) throw new NotFoundException('Outbound order not found');
+    return this.serializeOrder(order);
+  }
+
+  async createForClientPortal(
+    clientId: string,
+    actorId: string,
+    dto: CreateOutboundOrderClientPortalDto,
+  ) {
+    return this.create(
+      {
+        clientId,
+        warehouseId: dto.warehouseId,
+        orderNumber: dto.orderNumber,
+        currentStage: dto.currentStage,
+        expectedShipDate: dto.expectedShipDate,
+      },
+      actorId,
+    );
+  }
+
+  async addItemForClientPortal(
+    clientId: string,
+    orderId: string,
+    dto: AddOutboundOrderItemDto,
+  ) {
+    const owned = await this.prisma.outboundOrder.findFirst({
+      where: { id: orderId, clientId },
+      select: { id: true },
+    });
+    if (!owned) {
+      throw new ForbiddenException('Order not found or access denied');
+    }
+    return this.addItem(orderId, dto);
   }
 
   private serializeOrder<

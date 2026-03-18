@@ -23,6 +23,8 @@ import { BillingModule } from './modules/billing/billing.module';
 import { VasModule } from './modules/vas/vas.module';
 import { ClientSettingsModule } from './modules/client-settings/client-settings.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { ClientPortalTeamModule } from './modules/client-portal-team/client-portal-team.module';
+import { ClientPortalNotificationsModule } from './modules/client-portal-notifications/client-portal-notifications.module';
 import { AppController } from './app.controller';
 
 @Module({
@@ -54,6 +56,8 @@ import { AppController } from './app.controller';
     VasModule,
     ClientSettingsModule,
     DashboardModule,
+    ClientPortalTeamModule,
+    ClientPortalNotificationsModule,
   ],
   controllers: [AppController],
   providers: [],

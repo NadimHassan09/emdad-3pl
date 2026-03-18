@@ -351,6 +351,8 @@ model Product {
   clientId      String   @map("client_id") @db.Uuid
   sku           String   @db.VarChar(100)
   name          String   @db.VarChar(255)
+  description   String?  @db.Text
+  price         Decimal? @db.Decimal(18, 4)
   defaultUomId  String   @map("default_uom_id") @db.Uuid
   minThreshold  Decimal? @default(0) @map("min_threshold") @db.Decimal(18, 4)
   isActive      Boolean  @default(true) @map("is_active") @db.Boolean

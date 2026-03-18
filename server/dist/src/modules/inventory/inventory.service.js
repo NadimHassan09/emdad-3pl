@@ -196,6 +196,48 @@ let InventoryService = class InventoryService {
             ],
         });
     }
+    async findCurrentStockForClientPortal(clientId, query) {
+        const where = { clientId };
+        if (query?.warehouseId)
+            where.warehouseId = query.warehouseId;
+        if (query?.productId)
+            where.productId = query.productId;
+        if (query?.batchId !== undefined) {
+            where.batchId = query.batchId || null;
+        }
+        if (query?.locationId !== undefined) {
+            where.locationId = query.locationId || null;
+        }
+        if (query?.dateFrom || query?.dateTo) {
+            where.updatedAt = {};
+            if (query.dateFrom) {
+                where.updatedAt.gte = new Date(query.dateFrom);
+            }
+            if (query.dateTo) {
+                const end = new Date(query.dateTo);
+                end.setHours(23, 59, 59, 999);
+                where.updatedAt.lte = end;
+            }
+        }
+        return this.prisma.currentStock.findMany({
+            where,
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                product: {
+                    select: {
+                        id: true,
+                        sku: true,
+                        name: true,
+                        defaultUom: { select: { code: true } },
+                    },
+                },
+                batch: { select: { id: true, batchCode: true } },
+                location: { select: { id: true, code: true } },
+            },
+            orderBy: [{ warehouseId: 'asc' }, { productId: 'asc' }],
+        });
+    }
     async findCurrentStockByProduct(productId, filter) {
         return this.findCurrentStock({
             ...filter,
@@ -245,6 +287,11 @@ let InventoryService = class InventoryService {
             },
             orderBy: { createdAt: 'desc' },
         });
+    }
+    async findLedgerForClientPortal(clientId, filter) {
+        const f = filter ? { ...filter } : {};
+        delete f.clientId;
+        return this.findLedger({ ...f, clientId });
     }
     async createLedgerEntry(dto) {
         const currentStock = await this.prisma.currentStock.findFirst({

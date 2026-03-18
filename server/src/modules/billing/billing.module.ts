@@ -4,6 +4,7 @@ import { BillingPlansController } from './billing-plans.controller';
 import { ClientBillingPlansController } from './client-billing-plans.controller';
 import { InvoicesController } from './invoices.controller';
 import { BillingTransactionsController } from './billing-transactions.controller';
+import { BillingClientPortalController } from './billing-client-portal.controller';
 
 @Module({
   controllers: [
@@ -11,6 +12,7 @@ import { BillingTransactionsController } from './billing-transactions.controller
     ClientBillingPlansController,
     InvoicesController,
     BillingTransactionsController,
+    BillingClientPortalController,
   ],
   providers: [BillingService],
   exports: [BillingService],
