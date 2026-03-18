@@ -16,6 +16,7 @@ async function bootstrap() {
       'http://localhost:5174', // Client portal
       'http://127.0.0.1:5173', // Admin app (IPv4)
       'http://127.0.0.1:5174', // Client portal (IPv4)
+      'https://emdad-3pl.onrender.com', // Render (same origin deployments)
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -39,3 +40,4 @@ async function bootstrap() {
 }
 
 void bootstrap();
+//test
