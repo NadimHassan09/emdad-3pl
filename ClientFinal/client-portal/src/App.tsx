@@ -910,7 +910,9 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [user, setUser] = useState<UserInfo | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
+  );
   const activeItem = getActiveSidebarLabel(location.pathname);
 
   // Check authentication on mount
@@ -972,8 +974,8 @@ function App() {
     <div className="min-h-screen bg-gray-50/50 flex">
       {/* Sidebar */}
       <aside
-        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 ${
-          sidebarOpen ? 'w-64 translate-x-0' : 'w-64 translate-x-full'
+        className={`fixed right-0 top-0 h-full bg-white border-l border-gray-200 z-50 transition-all duration-300 w-64 ${
+          sidebarOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'
         }`}
       >
         {/* Logo */}
@@ -993,7 +995,7 @@ function App() {
         </div>
 
         {/* Navigation */}
-        <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100%-4rem)]">
+        <nav className="p-3 sm:p-4 space-y-1 overflow-y-auto h-[calc(100%-3.5rem)] sm:h-[calc(100%-4rem)]">
           {sidebarItems.map((item) => (
             <button
               key={item.label}
@@ -1020,38 +1022,35 @@ function App() {
       </aside>
 
       {/* Main Content */}
-      <main
-        className={`flex-1 transition-all duration-300 ${
-          sidebarOpen ? 'mr-64' : 'mr-0'
-        }`}
-      >
+      <main className="flex-1 transition-all duration-300 min-w-0 mr-0 lg:mr-64">
         {/* Navbar */}
-        <header className="h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <header className="h-14 sm:h-16 bg-white border-b border-gray-200 sticky top-0 z-40 px-4 sm:px-6 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors shrink-0"
+              aria-label="القائمة"
             >
               <Menu className="w-5 h-5 text-gray-600" />
             </button>
-            <div className="relative">
-              <Search className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
+            <div className="relative flex-1 max-w-xs hidden sm:block">
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="البحث..."
-                className="w-64 pr-10 pl-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#176C33]/20 focus:bg-white transition-all"
+                className="w-full min-w-0 pr-9 pl-3 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#176C33]/20 focus:bg-white transition-all"
               />
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors">
+          <div className="flex items-center gap-1 sm:gap-4 shrink-0">
+            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="الإشعارات">
               <Bell className="w-5 h-5 text-gray-600" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
+                <button className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
                   <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
                     <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
                       {user?.role ? user.role.charAt(0) : 'ع'}
@@ -1077,7 +1076,7 @@ function App() {
         </header>
 
         {/* Page Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
@@ -1150,11 +1149,12 @@ function App() {
         </div>
       </main>
 
-      {/* Mobile Sidebar Overlay */}
-      {!sidebarOpen && (
+      {/* Mobile Sidebar Overlay - shown when sidebar is open on small screens */}
+      {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(true)}
+          onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
         />
       )}
     </div>

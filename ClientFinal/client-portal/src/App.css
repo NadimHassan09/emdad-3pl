@@ -85,11 +85,15 @@
   animation: pulse 2s infinite;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .sidebar-open {
-    transform: translateX(0) !important;
-  }
+/* Responsive: tables scroll horizontally on small screens */
+.data-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive: prevent horizontal overflow */
+.data-table {
+  min-width: 600px;
 }
 
 /* Focus styles for accessibility */

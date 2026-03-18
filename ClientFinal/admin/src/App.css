@@ -79,3 +79,13 @@ input:focus-visible {
   color: hsl(var(--primary));
 }
 
+/* Responsive: tables scroll horizontally on small screens */
+.data-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  min-width: 600px;
+}
+
