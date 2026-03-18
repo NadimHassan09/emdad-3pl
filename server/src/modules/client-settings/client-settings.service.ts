@@ -4,7 +4,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { ActorType } from '../../common/enums/actor-type.enum';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
