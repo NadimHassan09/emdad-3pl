@@ -11,13 +11,15 @@ async function bootstrap() {
 
   // Enable CORS for frontend applications
   app.enableCors({
-    origin: [
-      'http://localhost:5173', // Admin app
-      'http://localhost:5174', // Client portal
-      'http://127.0.0.1:5173', // Admin app (IPv4)
-      'http://127.0.0.1:5174', // Client portal (IPv4)
-      'https://emdad-3pl.onrender.com', // Render (same origin deployments)
-    ],
+    // Render frontend hostnames are dynamic (e.g. `frontend-admin-xxxx.onrender.com`),
+    // so we reflect the incoming Origin to avoid CORS blocks.
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void,
+    ) => {
+      if (!origin) return callback(null, true); // non-browser requests
+      return callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
