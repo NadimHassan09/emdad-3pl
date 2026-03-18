@@ -12,4 +12,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  preview: {
+    // Render creates a dynamic *.onrender.com hostname; allow it during `vite preview`.
+    allowedHosts: ['.onrender.com', 'localhost'],
+    host: true,
+  },
 });
