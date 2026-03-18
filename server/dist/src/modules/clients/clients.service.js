@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientsService = void 0;
 const common_1 = require("@nestjs/common");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 let ClientsService = class ClientsService {
     constructor(prisma) {

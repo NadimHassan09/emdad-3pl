@@ -12,7 +12,7 @@ var ClientSettingsService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientSettingsService = void 0;
 const common_1 = require("@nestjs/common");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 const actor_type_enum_1 = require("../../common/enums/actor-type.enum");
 const DEFAULT_PREFERENCES = {
