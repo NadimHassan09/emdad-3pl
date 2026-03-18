@@ -6,6 +6,8 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 // https://vite.dev/config/
 export default defineConfig({
   base: './',
+  // Ensure SPA routes (e.g. /login, /dashboard) fall back to index.html on refresh.
+  appType: 'spa',
   plugins: [inspectAttr(), react()],
   resolve: {
     alias: {
