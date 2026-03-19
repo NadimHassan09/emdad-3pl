@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Download, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -86,10 +87,35 @@ export function InvoicesPage({ onViewInvoice }: { onViewInvoice: (invoiceId: str
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             تحديث
           </Button>
-          <Button variant="outline" className="gap-2" disabled>
-            <Download className="w-4 h-4" />
-            تصدير CSV
-          </Button>
+          <CsvButton
+            columns={[
+              { key: 'invoiceNumber', label: 'رقم الفاتورة' },
+              { key: 'periodStart', label: 'بداية الفترة' },
+              { key: 'periodEnd', label: 'نهاية الفترة' },
+              { key: 'status', label: 'الحالة' },
+              { key: 'total', label: 'الإجمالي' },
+              { key: 'currency', label: 'العملة' },
+              { key: 'issuedAt', label: 'تاريخ الإصدار' },
+              { key: 'paidAt', label: 'تاريخ السداد' },
+            ]}
+            data={rows}
+            getRow={(inv) => {
+              const stAr = invoiceStatusToAr(inv.status);
+              const total = centsToAmount(inv.totalAmountCents);
+              return [
+                inv.invoiceNumber,
+                new Date(inv.periodStart).toLocaleDateString('ar-SA'),
+                new Date(inv.periodEnd).toLocaleDateString('ar-SA'),
+                stAr,
+                total.toLocaleString('ar-SA'),
+                inv.currency,
+                inv.issuedAt ? new Date(inv.issuedAt).toLocaleDateString('ar-SA') : '—',
+                inv.paidAt ? new Date(inv.paidAt).toLocaleDateString('ar-SA') : '—',
+              ];
+            }}
+            filename="invoices"
+            disabled={loading}
+          />
         </div>
       </div>
 
@@ -105,7 +131,7 @@ export function InvoicesPage({ onViewInvoice }: { onViewInvoice: (invoiceId: str
         </Alert>
       )}
 
-      <Card className="border-0 shadow-sm">
+      <Card className="shadow-sm">
         <CardContent className="p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -135,7 +161,7 @@ export function InvoicesPage({ onViewInvoice }: { onViewInvoice: (invoiceId: str
         </CardContent>
       </Card>
 
-      <Card className="border-0 shadow-sm">
+      <Card className="shadow-sm">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="data-table w-full">

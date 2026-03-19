@@ -4,12 +4,14 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
 import { randomBytes } from 'crypto';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { ActorsService } from '../actors/actors.service';
+import { MailService } from '../mail/mail.service';
 import { ClientPortalTeamQueryDto } from './dto/client-portal-team-query.dto';
 import { InviteTeamAccountDto } from './dto/invite-team-account.dto';
 import { UpdateTeamAccountDto } from './dto/update-team-account.dto';
@@ -21,6 +23,8 @@ export class ClientPortalTeamService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly actors: ActorsService,
+    private readonly mail: MailService,
+    private readonly config: ConfigService,
   ) {}
 
   private requireClientAdmin(actor: JwtPayload): void {
@@ -132,6 +136,26 @@ export class ClientPortalTeamService {
 
     await this.actors.getOrCreateForClientAccount(account.id);
 
+    const clientPortalUrl =
+      this.config.get<string>('CLIENT_PORTAL_URL') ?? 'http://localhost:5173';
+    const loginUrl = `${clientPortalUrl.replace(/\/$/, '')}/login`;
+
+    if (this.mail.isConfigured()) {
+      try {
+        await this.mail.sendInvitationEmail({
+          to: account.email,
+          firstName: account.firstName,
+          lastName: account.lastName,
+          temporaryPassword: tempPassword,
+          loginUrl,
+          roleName: account.clientRole.roleName,
+        });
+      } catch (err) {
+        console.error('[ClientPortalTeamService] Failed to send invitation email:', err);
+        // Account is created; admin can share password manually
+      }
+    }
+
     return {
       account: {
         id: account.id,
@@ -144,6 +168,7 @@ export class ClientPortalTeamService {
         createdAt: account.createdAt,
       },
       temporaryPassword: tempPassword,
+      emailSent: this.mail.isConfigured(),
     };
   }
 

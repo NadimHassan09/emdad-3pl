@@ -32,6 +32,11 @@ export class ClientsController {
     return this.clients.findOne(id);
   }
 
+  @Get(':id/accounts')
+  findAccounts(@Param('id', ParseUUIDPipe) id: string) {
+    return this.clients.findAccounts(id);
+  }
+
   @Patch(':id')
   update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateClientDto) {
     return this.clients.update(id, dto);

@@ -196,6 +196,34 @@ export class ClientsService {
     return client;
   }
 
+  async findAccounts(clientId: string) {
+    await this.findOne(clientId);
+    const rows = await this.prisma.clientAccount.findMany({
+      where: { clientId },
+      orderBy: { createdAt: 'desc' },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        isActive: true,
+        clientRoleId: true,
+        createdAt: true,
+        clientRole: { select: { id: true, roleName: true } },
+      },
+    });
+    return rows.map((r) => ({
+      id: r.id,
+      firstName: r.firstName,
+      lastName: r.lastName,
+      email: r.email,
+      isActive: r.isActive,
+      clientRoleId: r.clientRoleId,
+      roleName: r.clientRole.roleName,
+      createdAt: r.createdAt,
+    }));
+  }
+
   async update(id: string, dto: UpdateClientDto) {
     await this.findOne(id);
     const db = this.prisma as unknown as PrismaWithClients;

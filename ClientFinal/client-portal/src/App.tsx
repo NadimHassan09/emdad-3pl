@@ -17,7 +17,8 @@ import {
   ChevronDown,
   Download,
   Plus,
-  Power
+  Power,
+  Database,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -43,7 +44,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { apiFetch } from '@/lib/api';
+import { CsvButton } from '@/components/CsvButton';
 import { LoginPage } from '@/components/LoginPage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { InventoryPage } from '@/pages/InventoryPage';
@@ -58,6 +59,8 @@ import { NotificationsPage } from '@/pages/NotificationsPage';
 import { NotificationsDropdown } from '@/components/NotificationsDropdown';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { ProductsPage } from '@/pages/ProductsPage';
+import { MasterDataPage } from '@/pages/MasterDataPage';
+import { MovementsPage } from '@/pages/MovementsPage';
 import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
 import type { UserInfo } from '@/lib/auth';
 import { fetchClientSettings } from '@/api/clientPortalSettings';
@@ -74,7 +77,7 @@ import {
 const sidebarItems = [
   { icon: LayoutDashboard, label: 'لوحة التحكم', active: true },
   { icon: Package, label: 'المخزون', active: false },
-  { icon: PackageSearch, label: 'المنتجات', active: false },
+  { icon: Database, label: 'البيانات الأساسية', active: false },
   { icon: ShoppingCart, label: 'الطلبات', active: false },
   { icon: ArrowLeftRight, label: 'الحركات', active: false },
   { icon: FileText, label: 'التقارير', active: false },
@@ -86,7 +89,7 @@ const sidebarItems = [
 const labelToRoute: Record<string, string> = {
   'لوحة التحكم': '/dashboard',
   'المخزون': '/inventory',
-  'المنتجات': '/products',
+  'البيانات الأساسية': '/master-data',
   'الطلبات': '/orders',
   'الحركات': '/movements',
   'التقارير': '/reports',
@@ -100,7 +103,7 @@ function getActiveSidebarLabel(pathname: string): string {
   if (pathname.startsWith('/invoices')) return 'الفواتير';
   if (pathname.startsWith('/dashboard')) return 'لوحة التحكم';
   if (pathname.startsWith('/inventory')) return 'المخزون';
-  if (pathname.startsWith('/products')) return 'المنتجات';
+  if (pathname.startsWith('/master-data')) return 'البيانات الأساسية';
   if (pathname.startsWith('/movements')) return 'الحركات';
   if (pathname.startsWith('/reports')) return 'التقارير';
   if (pathname.startsWith('/billing')) return 'الفوترة';
@@ -241,415 +244,6 @@ const generatedReportsData = [
     status: 'قيد المعالجة',
   },
 ];
-
-// Movements Page Component
-function MovementsPage() {
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
-  const [movementType, setMovementType] = useState('');
-  const [productSku, setProductSku] = useState('');
-  const [warehouse, setWarehouse] = useState('');
-  const [location, setLocation] = useState('');
-  const [referenceType, setReferenceType] = useState('');
-  const [movements, setMovements] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedMovement, setSelectedMovement] = useState<any | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    async function load() {
-      try {
-        setLoading(true);
-        setError(null);
-        const params = new URLSearchParams();
-        if (dateFrom) params.append('dateFrom', dateFrom);
-        if (dateTo) params.append('dateTo', dateTo);
-        if (movementType && movementType !== '') {
-          const movementMap: Record<string, string> = {
-            'وارد': 'RECEIPT',
-            'صادر': 'SHIPMENT',
-            'return': 'RETURN',
-          };
-          params.append('movementType', movementMap[movementType] || movementType);
-        }
-        const data = await apiFetch<any[]>(`/inventory/client-portal/ledger?${params.toString()}`);
-        if (!active) return;
-        let mapped = data.map((entry) => ({
-          id: entry.id,
-          dateTime: entry.createdAt ? new Date(entry.createdAt).toLocaleString('ar-SA') : '',
-          movementType:
-            entry.movementType === 'RECEIPT'
-              ? 'وارد'
-              : entry.movementType === 'SHIPMENT'
-                ? 'صادر'
-                : entry.movementType === 'RETURN'
-                  ? 'إرجاع'
-                  : entry.movementType === 'ADJUSTMENT'
-                    ? 'تعديل'
-                    : 'نقل',
-          productName: entry.product?.name || '',
-          sku: entry.product?.sku || '',
-          quantityChange: `${entry.qtyChange > 0 ? '+' : ''}${entry.qtyChange}`,
-          location: entry.location?.code || '',
-          warehouse: entry.warehouse?.name || '',
-          doneBy: entry.createdByActorId || '-',
-          reference: entry.referenceId || '',
-          referenceType: entry.referenceType || '',
-        }));
-        if (productSku) {
-          mapped = mapped.filter((m) =>
-            m.sku.toLowerCase().includes(productSku.toLowerCase()),
-          );
-        }
-        if (warehouse) {
-          mapped = mapped.filter((m) =>
-            (m.warehouse || '').toLowerCase().includes(warehouse.toLowerCase()),
-          );
-        }
-        if (location) {
-          mapped = mapped.filter((m) =>
-            (m.location || '').toLowerCase().includes(location.toLowerCase()),
-          );
-        }
-        if (referenceType) {
-          mapped = mapped.filter((m) => m.referenceType === referenceType);
-        }
-        setMovements(mapped);
-      } catch (e: any) {
-        console.error('Failed to load movements', e);
-        if (active) {
-          setError('تعذر تحميل الحركات. يرجى المحاولة مرة أخرى.');
-          setMovements([]);
-        }
-      } finally {
-        if (active) setLoading(false);
-      }
-    }
-    void load();
-    return () => { active = false; };
-  }, [dateFrom, dateTo, movementType, productSku, warehouse, location, referenceType]);
-
-  const getMovementTypeColor = (type: string) => {
-    switch (type) {
-      case 'وارد':
-        return 'bg-green-100 text-green-700';
-      case 'صادر':
-        return 'bg-rose-100 text-rose-700';
-      case 'إرجاع':
-        return 'bg-amber-100 text-amber-700';
-      case 'تعديل':
-        return 'bg-blue-100 text-blue-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
-    }
-  };
-
-  return (
-    <>
-      {/* Section 1: Title, Buttons, and Filters */}
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">سجل الحركات المخزون</h1>
-          <div className="flex items-center gap-3">
-            <Button variant="outline" className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2">
-              <Download className="w-4 h-4" />
-              تصدير CSV
-            </Button>
-            <Button variant="outline" className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2">
-              <Download className="w-4 h-4" />
-              تصدير PDF
-            </Button>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <Card className="border-0 shadow-sm">
-          <CardContent className="p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Date Range */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  نطاق التاريخ
-                </label>
-                <div className="flex items-center gap-2">
-                  <Input
-                    type="date"
-                    value={dateFrom}
-                    onChange={(e) => setDateFrom(e.target.value)}
-                    className="flex-1"
-                  />
-                  <span className="text-gray-500 text-sm whitespace-nowrap">إلى</span>
-                  <Input
-                    type="date"
-                    value={dateTo}
-                    onChange={(e) => setDateTo(e.target.value)}
-                    className="flex-1"
-                  />
-                </div>
-              </div>
-
-              {/* Movement Type */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  نوع الحركة
-                </label>
-                <Select value={movementType} onValueChange={setMovementType}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر نوع الحركة" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="وارد">وارد</SelectItem>
-                    <SelectItem value="صادر">صادر</SelectItem>
-                    <SelectItem value="return">return</SelectItem>
-                    <SelectItem value="فاتورة">فاتورة</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Product SKU */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  product SKU
-                </label>
-                <Input
-                  type="text"
-                  value={productSku}
-                  onChange={(e) => setProductSku(e.target.value)}
-                  placeholder="أدخل SKU"
-                  className="w-full"
-                />
-              </div>
-
-              {/* Warehouse */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  المستودع
-                </label>
-                <Select value={warehouse} onValueChange={setWarehouse}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر المستودع" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {warehouses.map((wh) => (
-                      <SelectItem key={wh.id} value={wh.id}>
-                        {wh.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Location */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  الموقع
-                </label>
-                <Input
-                  type="text"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  placeholder="أدخل كود الموقع"
-                  className="w-full"
-                />
-              </div>
-
-              {/* Reference Type */}
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
-                  نوع المرجع
-                </label>
-                <Select value={referenceType} onValueChange={setReferenceType}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر نوع المرجع" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="طلب وارد">طلب وارد</SelectItem>
-                    <SelectItem value="طلب صادر">طلب صادر</SelectItem>
-                    <SelectItem value="return">return</SelectItem>
-                    <SelectItem value="فاتورة">فاتورة</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Section 2: Movements Table */}
-      <Card className="border-0 shadow-sm">
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <table className="data-table w-full">
-              <thead>
-                <tr className="border-b border-gray-100">
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    التاريخ والوقت
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    نوع الحركة
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    اسم المنتج
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    SKU
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    تغيير الكمية
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    الموقع
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    تم بواسطة
-                  </th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">
-                    المرجع
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan={8} className="py-8 text-center text-sm text-gray-500">
-                      جارِ تحميل الحركات...
-                    </td>
-                  </tr>
-                ) : error ? (
-                  <tr>
-                    <td colSpan={8} className="py-8 text-center text-sm text-red-500">
-                      {error}
-                    </td>
-                  </tr>
-                ) : movements.length === 0 ? (
-                  <tr>
-                    <td colSpan={8} className="py-8 text-center text-sm text-gray-500">
-                      لا توجد حركات مطابقة للفلاتر الحالية.
-                    </td>
-                  </tr>
-                ) : (
-                  movements.map((movement: any, index: number) => (
-                  <tr
-                    key={index}
-                    onClick={() => setSelectedMovement(movement)}
-                    className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors cursor-pointer"
-                  >
-                    <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                      {movement.dateTime}
-                    </td>
-                    <td className="py-4 px-4">
-                      <span
-                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getMovementTypeColor(movement.movementType)}`}
-                      >
-                        {movement.movementType}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-900 font-medium">
-                      {movement.productName}
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-900 font-mono font-medium">
-                      {movement.sku}
-                    </td>
-                    <td className="py-4 px-4">
-                      <span
-                        className={`text-sm font-medium ${
-                          movement.quantityChange.startsWith('+')
-                            ? 'text-green-600'
-                            : 'text-rose-600'
-                        }`}
-                      >
-                        {movement.quantityChange}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
-                      {movement.location}
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-900">
-                      {movement.doneBy}
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-900 font-mono">
-                      {movement.reference}
-                    </td>
-                  </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Movement Details Dialog */}
-      <Dialog open={selectedMovement !== null} onOpenChange={(open) => !open && setSelectedMovement(null)}>
-        <DialogContent className="sm:max-w-2xl">
-          {selectedMovement && (
-            <>
-              <DialogHeader>
-                <DialogTitle>تفاصيل الحركة - {selectedMovement.id}</DialogTitle>
-                <DialogDescription className="text-right">
-                  {selectedMovement.dateTime}
-                </DialogDescription>
-              </DialogHeader>
-              <div className="mt-4 space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">نوع الحركة</p>
-                    <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getMovementTypeColor(selectedMovement.movementType)}`}
-                    >
-                      {selectedMovement.movementType}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">اسم المنتج</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedMovement.productName}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">SKU</p>
-                    <p className="text-sm font-mono text-gray-900">{selectedMovement.sku}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">تغيير الكمية</p>
-                    <span
-                      className={`text-sm font-medium ${
-                        selectedMovement.quantityChange.startsWith('+')
-                          ? 'text-green-600'
-                          : 'text-rose-600'
-                      }`}
-                    >
-                      {selectedMovement.quantityChange}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">الموقع</p>
-                    <p className="text-sm font-mono text-gray-900">{selectedMovement.location}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">المستودع</p>
-                    <p className="text-sm text-gray-900">{selectedMovement.warehouse}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">تم بواسطة</p>
-                    <p className="text-sm text-gray-900">{selectedMovement.doneBy}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">المرجع</p>
-                    <p className="text-sm font-mono text-gray-900">{selectedMovement.reference}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 mb-1">نوع المرجع</p>
-                    <p className="text-sm text-gray-900">{selectedMovement.referenceType}</p>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-    </>
-  );
-}
 
 // Reports Page Component
 function ReportsPage() {
@@ -800,7 +394,20 @@ function ReportsPage() {
 
       {/* Section 2: Generated Reports Table */}
       <div className="space-y-4">
-        <h2 className="text-xl font-bold text-gray-900">تقارير مولدة مؤخراً</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-gray-900">تقارير مولدة مؤخراً</h2>
+          <CsvButton
+            columns={[
+              { key: 'reportName', label: 'اسم التقرير' },
+              { key: 'creationDate', label: 'تاريخ الإنشاء' },
+              { key: 'extension', label: 'الامتداد' },
+              { key: 'status', label: 'الحالة' },
+            ]}
+            data={generatedReportsData}
+            getRow={(r) => [r.reportName, r.creationDate, r.extension, r.status]}
+            filename="تقارير-مولدة"
+          />
+        </div>
         <Card className="border-0 shadow-sm">
           <CardContent className="p-0">
             <div className="overflow-x-auto">
@@ -1092,6 +699,7 @@ function App() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/master-data" element={<MasterDataPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route
               path="/orders"

@@ -15,16 +15,6 @@ class CreateOutboundOrderClientPortalDto {
 }
 exports.CreateOutboundOrderClientPortalDto = CreateOutboundOrderClientPortalDto;
 __decorate([
-    (0, class_validator_1.IsUUID)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateOutboundOrderClientPortalDto.prototype, "warehouseId", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateOutboundOrderClientPortalDto.prototype, "orderNumber", void 0);
-__decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)

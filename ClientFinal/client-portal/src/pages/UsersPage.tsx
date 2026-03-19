@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Plus, RefreshCw, Copy, Check, Search } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,6 +72,7 @@ export function UsersPage() {
 
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
   const [tempPassword, setTempPassword] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const [editOpen, setEditOpen] = useState(false);
@@ -161,6 +163,7 @@ export function UsersPage() {
         clientRoleId: inviteRoleId,
       });
       setTempPassword(res.temporaryPassword);
+      setEmailSent(res.emailSent ?? false);
       setInviteOpen(false);
       setInviteFirstName('');
       setInviteLastName('');
@@ -259,18 +262,35 @@ export function UsersPage() {
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             تحديث
           </Button>
-          {isAdmin && (
-            <Button
-              onClick={() => {
-                setInviteError(null);
-                setInviteOpen(true);
-              }}
-              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
-            >
-              <Plus className="w-4 h-4" />
-              دعوة مستخدم
-            </Button>
-          )}
+          <CsvButton
+            columns={[
+              { key: 'name', label: 'الاسم' },
+              { key: 'email', label: 'البريد الإلكتروني' },
+              { key: 'roleName', label: 'الدور' },
+              { key: 'status', label: 'الحالة' },
+              { key: 'createdAt', label: 'وقت الإنشاء' },
+            ]}
+            data={accounts}
+            getRow={(u) => [
+              `${u.firstName} ${u.lastName}`,
+              u.email,
+              u.roleName,
+              statusLabel(u.isActive),
+              new Date(u.createdAt).toLocaleString('ar-SA'),
+            ]}
+            filename="users"
+            disabled={loading}
+          />
+          <Button
+            onClick={() => {
+              setInviteError(null);
+              setInviteOpen(true);
+            }}
+            className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            دعوة مستخدم
+          </Button>
         </div>
       </div>
 
@@ -491,9 +511,15 @@ export function UsersPage() {
           <DialogHeader>
             <DialogTitle>تم إنشاء الحساب</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-gray-600 mt-2">
-            شارك كلمة المرور المؤقتة مع المستخدم مرة واحدة فقط. يُنصح بتغييرها بعد أول تسجيل دخول.
-          </p>
+          {emailSent ? (
+            <p className="text-sm text-gray-600 mt-2">
+              تم إرسال الدعوة إلى البريد الإلكتروني. يمكنك نسخ كلمة المرور المؤقتة أدناه إذا احتاج المستخدم إليها.
+            </p>
+          ) : (
+            <p className="text-sm text-gray-600 mt-2">
+              شارك كلمة المرور المؤقتة مع المستخدم مرة واحدة فقط. يُنصح بتغييرها بعد أول تسجيل دخول.
+            </p>
+          )}
           <div className="flex items-center gap-2 mt-4 p-3 bg-gray-100 rounded-lg font-mono text-sm break-all">
             {tempPassword}
           </div>

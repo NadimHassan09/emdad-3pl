@@ -151,13 +151,36 @@ let OutboundOrdersService = class OutboundOrdersService {
         return this.serializeOrder(order);
     }
     async createForClientPortal(clientId, actorId, dto) {
-        return this.create({
-            clientId,
-            warehouseId: dto.warehouseId,
-            orderNumber: dto.orderNumber,
-            currentStage: dto.currentStage,
-            expectedShipDate: dto.expectedShipDate,
-        }, actorId);
+        const client = await this.prisma.client.findUniqueOrThrow({
+            where: { id: clientId },
+            select: { code: true },
+        });
+        const safeCode = client.code.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 20) || 'CL';
+        const orderNumber = `OUT-${safeCode}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+        return this.prisma.outboundOrder.create({
+            data: {
+                clientId,
+                warehouseId: null,
+                orderNumber,
+                currentStage: dto.currentStage?.trim(),
+                expectedShipDate: dto.expectedShipDate
+                    ? new Date(dto.expectedShipDate)
+                    : null,
+                createdByActorId: actorId,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                createdByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+            },
+        });
     }
     async addItemForClientPortal(clientId, orderId, dto) {
         const owned = await this.prisma.outboundOrder.findFirst({

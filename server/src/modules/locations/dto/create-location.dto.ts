@@ -11,10 +11,11 @@ import { MinLength, MaxLength } from 'class-validator';
 import { LocationType } from '../../../common/enums/location-type.enum';
 
 export class CreateLocationDto {
+  @IsOptional()
   @IsString()
   @MinLength(1)
   @MaxLength(50)
-  code: string;
+  code?: string;
 
   @IsEnum(LocationType)
   locationType: LocationType;

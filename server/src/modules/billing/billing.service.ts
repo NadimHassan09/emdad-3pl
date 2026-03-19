@@ -42,6 +42,24 @@ interface PrismaBilling {
   };
 }
 
+/** Convert Prisma Decimal to number. */
+function toNumber(value: unknown): number {
+  if (typeof value === 'number' && !Number.isNaN(value)) return value;
+  if (value != null && typeof value === 'object' && typeof (value as { toNumber?: () => number }).toNumber === 'function')
+    return (value as { toNumber: () => number }).toNumber();
+  if (value != null && typeof (value as { toString?: () => string }).toString === 'function')
+    return parseFloat((value as { toString: () => string }).toString()) || 0;
+  return 0;
+}
+
+/** Plan pricing for order cost calculation. */
+interface PlanPricing {
+  inboundItemFeeCents: number;
+  inboundWeightCentsPerKg: number;
+  outboundItemFeeCents: number;
+  outboundWeightCentsPerKg: number;
+}
+
 /** Input for appending a billing transaction. Operational modules call this to create billable events. */
 export interface CreateBillingTransactionInput {
   clientId: string;
@@ -68,6 +86,11 @@ export class BillingService {
         planName: dto.planName.trim(),
         storageIncluded: dto.storageIncluded,
         billingCycle: dto.billingCycle,
+        baseFeeCents: dto.baseFeeCents ? BigInt(dto.baseFeeCents) : undefined,
+        inboundItemFeeCents: dto.inboundItemFeeCents ? BigInt(dto.inboundItemFeeCents) : undefined,
+        inboundWeightCentsPerKg: dto.inboundWeightCentsPerKg ? BigInt(dto.inboundWeightCentsPerKg) : undefined,
+        outboundItemFeeCents: dto.outboundItemFeeCents ? BigInt(dto.outboundItemFeeCents) : undefined,
+        outboundWeightCentsPerKg: dto.outboundWeightCentsPerKg ? BigInt(dto.outboundWeightCentsPerKg) : undefined,
         isActive: dto.isActive ?? true,
       },
     });
@@ -96,6 +119,11 @@ export class BillingService {
         ...(dto.planName !== undefined && { planName: dto.planName.trim() }),
         ...(dto.storageIncluded !== undefined && { storageIncluded: dto.storageIncluded }),
         ...(dto.billingCycle !== undefined && { billingCycle: dto.billingCycle }),
+        ...(dto.baseFeeCents !== undefined && { baseFeeCents: BigInt(dto.baseFeeCents) }),
+        ...(dto.inboundItemFeeCents !== undefined && { inboundItemFeeCents: BigInt(dto.inboundItemFeeCents) }),
+        ...(dto.inboundWeightCentsPerKg !== undefined && { inboundWeightCentsPerKg: BigInt(dto.inboundWeightCentsPerKg) }),
+        ...(dto.outboundItemFeeCents !== undefined && { outboundItemFeeCents: BigInt(dto.outboundItemFeeCents) }),
+        ...(dto.outboundWeightCentsPerKg !== undefined && { outboundWeightCentsPerKg: BigInt(dto.outboundWeightCentsPerKg) }),
         ...(dto.isActive !== undefined && { isActive: dto.isActive }),
       },
     });
@@ -241,6 +269,185 @@ export class BillingService {
     });
   }
 
+  // ---------- Billing calculation (plan + orders + VAS) ----------
+
+  /** Get client's current plan pricing for order cost calculation. Returns null if no plan. */
+  private async getClientPlanPricing(clientId: string): Promise<PlanPricing | null> {
+    const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+      where: { clientId, isCurrent: true },
+      include: { billingPlan: true },
+      orderBy: { startsAt: 'desc' },
+    });
+    const plan = clientPlan?.billingPlan as { inboundItemFeeCents?: bigint | null; inboundWeightCentsPerKg?: bigint | null; outboundItemFeeCents?: bigint | null; outboundWeightCentsPerKg?: bigint | null } | undefined;
+    if (!plan) return null;
+    return {
+      inboundItemFeeCents: Number(plan.inboundItemFeeCents ?? 0),
+      inboundWeightCentsPerKg: Number(plan.inboundWeightCentsPerKg ?? 0),
+      outboundItemFeeCents: Number(plan.outboundItemFeeCents ?? 0),
+      outboundWeightCentsPerKg: Number(plan.outboundWeightCentsPerKg ?? 0),
+    };
+  }
+
+  /**
+   * Calculate inbound receive cost: (itemFee * qty) + (weightCentsPerKg * totalWeightKg).
+   * totalWeightKg = qty * productWeightKg.
+   */
+  calculateInboundReceiveCost(
+    productWeightKg: number,
+    qtyReceived: number,
+    pricing: PlanPricing,
+  ): number {
+    const itemCost = pricing.inboundItemFeeCents * qtyReceived;
+    const totalWeightKg = productWeightKg * qtyReceived;
+    const weightCost = pricing.inboundWeightCentsPerKg * totalWeightKg;
+    return Math.round(itemCost + weightCost);
+  }
+
+  /**
+   * Calculate outbound ship cost: (itemFee * qty) + (weightCentsPerKg * totalWeightKg).
+   */
+  calculateOutboundShipCost(
+    productWeightKg: number,
+    qtyShipped: number,
+    pricing: PlanPricing,
+  ): number {
+    const itemCost = pricing.outboundItemFeeCents * qtyShipped;
+    const totalWeightKg = productWeightKg * qtyShipped;
+    const weightCost = pricing.outboundWeightCentsPerKg * totalWeightKg;
+    return Math.round(itemCost + weightCost);
+  }
+
+  /**
+   * Record inbound receive charge. Call after successful receive.
+   */
+  async recordInboundReceiveCharge(
+    orderId: string,
+    itemId: string,
+    clientId: string,
+    productId: string,
+    qtyReceived: number,
+  ): Promise<void> {
+    const pricing = await this.getClientPlanPricing(clientId);
+    if (!pricing) return;
+
+    const product = await this.prisma.product.findUnique({
+      where: { id: productId },
+      select: { weight: true },
+    });
+    const weightKg = product ? toNumber(product.weight) : 0;
+
+    const amountCents = this.calculateInboundReceiveCost(weightKg, qtyReceived, pricing);
+    if (amountCents <= 0) return;
+
+    await this.createTransaction({
+      clientId,
+      chargeCategory: ChargeCategory.MOVEMENT,
+      amountCents,
+      description: `Inbound receive: ${qtyReceived} units`,
+      referenceType: 'INBOUND_ORDER',
+      referenceId: orderId,
+    });
+  }
+
+  /**
+   * Record outbound ship charge. Call after successful ship.
+   */
+  async recordOutboundShipCharge(
+    orderId: string,
+    clientId: string,
+    productId: string,
+    qtyShipped: number,
+  ): Promise<void> {
+    const pricing = await this.getClientPlanPricing(clientId);
+    if (!pricing) return;
+
+    const product = await this.prisma.product.findUnique({
+      where: { id: productId },
+      select: { weight: true },
+    });
+    const weightKg = product ? toNumber(product.weight) : 0;
+
+    const amountCents = this.calculateOutboundShipCost(weightKg, qtyShipped, pricing);
+    if (amountCents <= 0) return;
+
+    await this.createTransaction({
+      clientId,
+      chargeCategory: ChargeCategory.MOVEMENT,
+      amountCents,
+      description: `Outbound ship: ${qtyShipped} units`,
+      referenceType: 'OUTBOUND_ORDER',
+      referenceId: orderId,
+    });
+  }
+
+  /**
+   * Record plan subscription charge. Call when generating invoice or at cycle start.
+   */
+  async recordPlanSubscriptionCharge(
+    clientId: string,
+    periodStart: Date,
+    periodEnd: Date,
+    description?: string,
+  ): Promise<void> {
+    const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+      where: { clientId, isCurrent: true },
+      include: { billingPlan: true },
+      orderBy: { startsAt: 'desc' },
+    });
+    const plan = clientPlan?.billingPlan as { baseFeeCents?: bigint | null } | undefined;
+    const baseFeeCents = plan ? Number(plan.baseFeeCents ?? 0) : 0;
+    if (baseFeeCents <= 0) return;
+
+    await this.createTransaction({
+      clientId,
+      chargeCategory: ChargeCategory.PLAN_FEE,
+      amountCents: baseFeeCents,
+      description: description ?? `Plan subscription ${periodStart.toISOString().slice(0, 10)} - ${periodEnd.toISOString().slice(0, 10)}`,
+    });
+  }
+
+  /**
+   * Record VAS charge when VAS is used. Call from VAS workflow when service is performed.
+   */
+  async recordVasCharge(
+    clientId: string,
+    vasId: string,
+    quantity: number,
+    referenceType?: string,
+    referenceId?: string,
+  ): Promise<void> {
+    const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+      where: { clientId, isCurrent: true },
+      include: { billingPlan: true },
+      orderBy: { startsAt: 'desc' },
+    });
+    const planId = clientPlan?.billingPlanId;
+    if (!planId) return;
+
+    const vasPricing = await this.prisma.vasPricing.findFirst({
+      where: { vasId, billingPlanId: planId },
+      include: { vas: { select: { name: true } } },
+    });
+    if (!vasPricing) return;
+
+    const rateCents = Number(vasPricing.rateCents);
+    const minChargeCents = vasPricing.minChargeCents ? Number(vasPricing.minChargeCents) : 0;
+    let amountCents = Math.round(rateCents * quantity);
+    if (minChargeCents > 0 && amountCents < minChargeCents) {
+      amountCents = minChargeCents;
+    }
+    if (amountCents <= 0) return;
+
+    await this.createTransaction({
+      clientId,
+      chargeCategory: ChargeCategory.VAS,
+      amountCents,
+      description: `VAS: ${(vasPricing.vas as { name: string }).name} x ${quantity}`,
+      referenceType: referenceType ?? 'VAS',
+      referenceId: referenceId ?? undefined,
+    });
+  }
+
   /**
    * Client portal: plan + usage summary for one tenant (current calendar month).
    */
@@ -324,6 +531,7 @@ export class BillingService {
     const storageCents = sumCents(ChargeCategory.STORAGE);
     const movementCents = sumCents(ChargeCategory.MOVEMENT);
     const vasCents = sumCents(ChargeCategory.VAS);
+    const planFeeCents = sumCents(ChargeCategory.PLAN_FEE);
     const manualChargeCents = sumCents(ChargeCategory.MANUAL_CHARGE);
     const manualCreditCents = sumCents(ChargeCategory.MANUAL_CREDIT);
 
@@ -337,6 +545,7 @@ export class BillingService {
       storageCents +
       movementCents +
       vasCents +
+      planFeeCents +
       manualChargeCents -
       manualCreditCents;
 

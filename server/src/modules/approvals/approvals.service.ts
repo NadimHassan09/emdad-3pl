@@ -24,6 +24,21 @@ interface PrismaWithApprovals {
       include?: Record<string, unknown>;
     }) => Promise<unknown>;
   };
+  inboundOrder: {
+    findUnique: (args: { where: { id: string }; select?: Record<string, unknown> }) => Promise<unknown>;
+    update: (args: { where: { id: string }; data: Record<string, unknown> }) => Promise<unknown>;
+  };
+  outboundOrder: {
+    findUnique: (args: { where: { id: string }; select?: Record<string, unknown> }) => Promise<unknown>;
+    update: (args: { where: { id: string }; data: Record<string, unknown> }) => Promise<unknown>;
+  };
+}
+
+interface OrderInfo {
+  orderNumber?: string | null;
+  status?: string;
+  client?: { name: string; code?: string } | null;
+  warehouse?: { name: string } | null;
 }
 
 @Injectable()
@@ -62,7 +77,7 @@ export class ApprovalsService {
     if (filter?.requestedByActorId)
       where.requestedByActorId = filter.requestedByActorId;
 
-    return db.approval.findMany({
+    const rows = await db.approval.findMany({
       where,
       include: {
         requestedByActor: {
@@ -84,6 +99,41 @@ export class ApprovalsService {
       },
       orderBy: { createdAt: 'desc' },
     });
+
+    // Enrich ORDER approvals with order details
+    return Promise.all(
+      (rows as Array<Record<string, unknown>>).map(async (row) => {
+        if (row.referenceType !== ApprovalReferenceType.ORDER) return row;
+
+        const refId = row.referenceId as string;
+        const step = row.approvalStep as string;
+        const orderSelect = {
+          orderNumber: true,
+          status: true,
+          client: { select: { name: true, code: true } },
+          warehouse: { select: { name: true } },
+        };
+
+        let orderInfo: OrderInfo | null = null;
+        try {
+          if (step === 'INBOUND_ORDER') {
+            orderInfo = (await db.inboundOrder.findUnique({
+              where: { id: refId },
+              select: orderSelect,
+            })) as OrderInfo | null;
+          } else if (step === 'OUTBOUND_ORDER') {
+            orderInfo = (await db.outboundOrder.findUnique({
+              where: { id: refId },
+              select: orderSelect,
+            })) as OrderInfo | null;
+          }
+        } catch {
+          // order may not exist yet; ignore
+        }
+
+        return { ...row, orderInfo };
+      }),
+    );
   }
 
   async findOne(id: string) {
@@ -116,12 +166,12 @@ export class ApprovalsService {
   async approve(id: string, approverActorId: string, dto: ApprovalDecisionDto) {
     const db = this.prisma as unknown as PrismaWithApprovals;
     const approval = await this.findOne(id);
-    const status = (approval as { status?: ApprovalStatus }).status;
-    if (status !== ApprovalStatus.PENDING) {
+    const approvalRecord = approval as Record<string, unknown>;
+    if (approvalRecord.status !== ApprovalStatus.PENDING) {
       throw new BadRequestException('Only pending approvals can be approved');
     }
 
-    return db.approval.update({
+    const updated = await db.approval.update({
       where: { id },
       data: {
         status: ApprovalStatus.APPROVED,
@@ -148,17 +198,34 @@ export class ApprovalsService {
         },
       },
     });
+
+    // Propagate approval to the referenced order
+    if (approvalRecord.referenceType === ApprovalReferenceType.ORDER) {
+      const refId = approvalRecord.referenceId as string;
+      const step = approvalRecord.approvalStep as string;
+      try {
+        if (step === 'INBOUND_ORDER') {
+          await db.inboundOrder.update({ where: { id: refId }, data: { status: 'IN_PROGRESS' } });
+        } else if (step === 'OUTBOUND_ORDER') {
+          await db.outboundOrder.update({ where: { id: refId }, data: { status: 'IN_PROGRESS' } });
+        }
+      } catch {
+        // order may have been deleted; ignore
+      }
+    }
+
+    return updated;
   }
 
   async reject(id: string, approverActorId: string, dto: ApprovalDecisionDto) {
     const db = this.prisma as unknown as PrismaWithApprovals;
     const approval = await this.findOne(id);
-    const status = (approval as { status?: ApprovalStatus }).status;
-    if (status !== ApprovalStatus.PENDING) {
+    const approvalRecord = approval as Record<string, unknown>;
+    if (approvalRecord.status !== ApprovalStatus.PENDING) {
       throw new BadRequestException('Only pending approvals can be rejected');
     }
 
-    return db.approval.update({
+    const updated = await db.approval.update({
       where: { id },
       data: {
         status: ApprovalStatus.REJECTED,
@@ -185,5 +252,22 @@ export class ApprovalsService {
         },
       },
     });
+
+    // Propagate rejection to the referenced order
+    if (approvalRecord.referenceType === ApprovalReferenceType.ORDER) {
+      const refId = approvalRecord.referenceId as string;
+      const step = approvalRecord.approvalStep as string;
+      try {
+        if (step === 'INBOUND_ORDER') {
+          await db.inboundOrder.update({ where: { id: refId }, data: { status: 'CANCELLED' } });
+        } else if (step === 'OUTBOUND_ORDER') {
+          await db.outboundOrder.update({ where: { id: refId }, data: { status: 'CANCELLED' } });
+        }
+      } catch {
+        // order may have been deleted; ignore
+      }
+    }
+
+    return updated;
   }
 }

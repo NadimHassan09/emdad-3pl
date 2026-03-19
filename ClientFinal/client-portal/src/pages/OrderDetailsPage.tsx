@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Download, ArrowLeftRight } from 'lucide-react';
+import { ArrowLeftRight } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -160,10 +161,18 @@ export function OrderDetailsPage({
           </h1>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" disabled className="gap-2">
-            <Download className="w-4 h-4" />
-            تصدير
-          </Button>
+          <CsvButton
+            columns={[
+              { key: 'productName', label: 'المنتج' },
+              { key: 'productCode', label: 'SKU' },
+              { key: 'requiredQty', label: 'مطلوب' },
+              { key: 'shippedQty', label: isInbound ? 'مستلم' : 'مشحون' },
+              { key: 'remaining', label: 'متبقي' },
+            ]}
+            data={mappedItems}
+            getRow={(i) => [i.productName, i.productCode, i.requiredQty, i.shippedQty, i.remaining]}
+            filename={`طلب-${orderNum}-بنود`}
+          />
           <Button variant="outline" size="sm" disabled className="gap-2">
             <ArrowLeftRight className="w-4 h-4" />
             الحركات

@@ -90,9 +90,7 @@ export async function createInboundPortal(body: {
 }
 
 export async function createOutboundPortal(body: {
-  warehouseId: string;
   expectedShipDate?: string;
-  orderNumber?: string;
 }) {
   return apiFetch<unknown>(OUT_CREATE, {
     method: 'POST',

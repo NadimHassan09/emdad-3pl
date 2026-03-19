@@ -8,6 +8,7 @@ import {
   MoreHorizontal,
   RefreshCw,
 } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import {
   BarChart,
   Bar,
@@ -339,9 +340,24 @@ export function DashboardPage() {
       {!error && (
         <Card className="border-0 shadow-sm mt-6">
           <CardHeader className="pb-2">
-            <div>
-              <CardTitle className="text-lg font-bold">حركات مخزون حديثة</CardTitle>
-              <p className="text-sm text-gray-500 mt-1">آخر 5 حركات لمخزونك</p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <CardTitle className="text-lg font-bold">حركات مخزون حديثة</CardTitle>
+                <p className="text-sm text-gray-500 mt-1">آخر 5 حركات لمخزونك</p>
+              </div>
+              <CsvButton
+                columns={[
+                  { key: 'date', label: 'التاريخ/الوقت' },
+                  { key: 'type', label: 'نوع الحركة' },
+                  { key: 'sku', label: 'SKU' },
+                  { key: 'change', label: 'تغير الكمية' },
+                  { key: 'reference', label: 'المرجع' },
+                ]}
+                data={recentRows}
+                getRow={(r) => [r.date, r.type, r.sku, r.change, r.reference]}
+                filename="recent-movements"
+                disabled={loading}
+              />
             </div>
           </CardHeader>
           <CardContent>

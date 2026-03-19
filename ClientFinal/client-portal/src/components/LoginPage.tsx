@@ -31,11 +31,11 @@ export function LoginPage({ onLoginSuccess }: LoginPageProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#176C33] to-[#104920] p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center space-y-2">
           <div className="flex justify-center mb-4">
-            <div className="p-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-800">
+            <div className="p-3 rounded-full bg-gradient-to-r from-[#176C33] to-[#104920]">
               <Building2 className="h-8 w-8 text-white" />
             </div>
           </div>

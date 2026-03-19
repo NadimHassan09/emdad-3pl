@@ -323,7 +323,7 @@ export declare class StockReservationsService {
             id: string;
             code: string;
             name: string;
-        };
+        } | null;
         client: {
             id: string;
             code: string;
@@ -372,7 +372,7 @@ export declare class StockReservationsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        warehouseId: string;
+        warehouseId: string | null;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
         orderNumber: string | null;
@@ -385,7 +385,7 @@ export declare class StockReservationsService {
             id: string;
             code: string;
             name: string;
-        };
+        } | null;
         client: {
             id: string;
             code: string;
@@ -434,7 +434,7 @@ export declare class StockReservationsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        warehouseId: string;
+        warehouseId: string | null;
         status: import(".prisma/client").$Enums.OrderStatus;
         clientId: string;
         orderNumber: string | null;

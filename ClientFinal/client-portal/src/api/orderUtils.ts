@@ -1,6 +1,12 @@
 /** Map API order status to Arabic UI bucket */
 export function orderStatusToAr(status: string): string {
   switch (status) {
+    case 'PENDING':
+      return 'بانتظار الموافقة';
+    case 'DRAFT':
+      return 'مسودة';
+    case 'CONFIRMED':
+      return 'مؤكد';
     case 'COMPLETED':
     case 'SHIPPED':
       return 'مكتمل';
@@ -15,11 +21,8 @@ export function orderStatusToAr(status: string): string {
 }
 
 export function matchesStatusFilter(arStatus: string, filter: string): boolean {
-  if (filter === 'جديد') return arStatus === 'جديد';
-  if (filter === 'قيد التنفيذ') return arStatus === 'قيد التنفيذ';
-  if (filter === 'مكتمل') return arStatus === 'مكتمل';
-  if (filter === 'ملغي') return arStatus === 'ملغي';
-  return true;
+  if (!filter || filter === 'الكل') return true;
+  return arStatus === filter;
 }
 
 export function getOrdersErrorMessage(err: unknown): string {

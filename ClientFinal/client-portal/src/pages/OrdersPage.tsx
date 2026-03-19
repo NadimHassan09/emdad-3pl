@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Plus, RefreshCw } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,7 +72,7 @@ export function OrdersPage({
   onCreateOrder: (type: 'وارد' | 'صادر') => void;
   onCreateOrderDetails: (orderRef: string, orderType: 'وارد' | 'صادر') => void;
 }) {
-  const [status, setStatus] = useState('جديد');
+  const [status, setStatus] = useState('الكل');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [orderType, setOrderType] = useState<'وارد' | 'صادر'>('وارد');
@@ -114,7 +115,7 @@ export function OrdersPage({
   const tableData = sourceRows.filter((r) => matchesStatusFilter(r.status, status));
 
   const stats = {
-    open: sourceRows.filter((r) => r.status === 'جديد').length,
+    pending: sourceRows.filter((r) => r.status === 'بانتظار الموافقة').length,
     inProgress: sourceRows.filter((r) => r.status === 'قيد التنفيذ').length,
     completed: sourceRows.filter((r) => r.status === 'مكتمل').length,
   };
@@ -163,6 +164,20 @@ export function OrdersPage({
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             تحديث
           </Button>
+          <CsvButton
+            columns={[
+              { key: 'orderNumber', label: 'رقم الطلب' },
+              { key: 'creationDate', label: 'تاريخ الإنشاء' },
+              { key: 'status', label: 'الحالة' },
+              { key: 'expectedDate', label: 'التاريخ المتوقع' },
+              { key: 'itemsCount', label: 'عدد البنود' },
+              { key: 'notes', label: 'ملاحظات' },
+            ]}
+            data={tableData}
+            getRow={(r) => [r.orderNumber, r.creationDate, r.status, r.expectedDate, r.itemsCount, r.notes]}
+            filename={orderType === 'وارد' ? 'orders-inbound' : 'orders-outbound'}
+            disabled={loading}
+          />
           <Button
             onClick={() => onCreateOrder(orderType)}
             className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2"
@@ -199,10 +214,8 @@ export function OrdersPage({
           <>
             <Card className="stat-card border-0 shadow-sm bg-white">
               <CardContent className="p-5">
-                <p className="text-sm text-gray-500 mb-1">
-                  {orderType === 'وارد' ? 'طلبات وارد مفتوحة' : 'طلبات صادر مفتوحة'}
-                </p>
-                <p className="text-2xl font-bold text-gray-900">{stats.open}</p>
+                <p className="text-sm text-gray-500 mb-1">بانتظار الموافقة</p>
+                <p className="text-2xl font-bold text-gray-900">{stats.pending}</p>
               </CardContent>
             </Card>
             <Card className="stat-card border-0 shadow-sm bg-white">
@@ -231,7 +244,9 @@ export function OrdersPage({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="جديد">جديد</SelectItem>
+                  <SelectItem value="الكل">الكل</SelectItem>
+                  <SelectItem value="بانتظار الموافقة">بانتظار الموافقة</SelectItem>
+                  <SelectItem value="مؤكد">مؤكد</SelectItem>
                   <SelectItem value="قيد التنفيذ">قيد التنفيذ</SelectItem>
                   <SelectItem value="مكتمل">مكتمل</SelectItem>
                   <SelectItem value="ملغي">ملغي</SelectItem>
@@ -306,7 +321,11 @@ export function OrdersPage({
                                 ? 'bg-blue-100 text-blue-700'
                                 : row.status === 'ملغي'
                                   ? 'bg-red-100 text-red-700'
-                                  : 'bg-gray-100 text-gray-700'
+                                  : row.status === 'بانتظار الموافقة'
+                                    ? 'bg-yellow-100 text-yellow-700'
+                                    : row.status === 'مؤكد'
+                                      ? 'bg-emerald-100 text-emerald-700'
+                                      : 'bg-gray-100 text-gray-700'
                           }`}
                         >
                           {row.status}

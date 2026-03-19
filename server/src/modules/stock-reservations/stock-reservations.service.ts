@@ -10,6 +10,7 @@ import { ShipOrderDto } from './dto/ship-order.dto';
 import { ReservationStatus } from '../../common/enums/reservation-status.enum';
 import { AllocationStatus } from '../../common/enums/allocation-status.enum';
 import { InventoryService } from '../inventory/inventory.service';
+import { BillingService } from '../billing/billing.service';
 import { MovementType } from '../../common/enums/movement-type.enum';
 import { OrderStatus } from '../../common/enums/order-status.enum';
 
@@ -48,6 +49,7 @@ export class StockReservationsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly inventoryService: InventoryService,
+    private readonly billingService: BillingService,
   ) {}
 
   /**
@@ -68,6 +70,13 @@ export class StockReservationsService {
       },
     });
 
+    const warehouseId = order.warehouseId;
+    if (!warehouseId) {
+      throw new BadRequestException(
+        'Outbound order must have a warehouse assigned before creating a reservation',
+      );
+    }
+
     // Validate all order items exist
     const orderItemIds = new Set(order.items.map((item) => item.id));
     for (const allocation of dto.allocations) {
@@ -81,7 +90,7 @@ export class StockReservationsService {
     // Validate stock availability for each allocation
     await this.validateStockAvailability(
       order.clientId,
-      order.warehouseId,
+      warehouseId,
       dto.allocations,
     );
 
@@ -89,14 +98,14 @@ export class StockReservationsService {
     return this.prisma.stockReservation.create({
       data: {
         clientId: order.clientId,
-        warehouseId: order.warehouseId,
+        warehouseId,
         outboundOrderId: order.id,
         status: 'DRAFT' as any,
         allocations: {
           create: dto.allocations.map((alloc) => ({
             outboundOrderItemId: alloc.outboundOrderItemId,
             clientId: order.clientId,
-            warehouseId: order.warehouseId,
+            warehouseId,
             productId: alloc.productId,
             batchId: alloc.batchId,
             locationId: alloc.locationId,
@@ -595,6 +604,14 @@ export class StockReservationsService {
           referenceType: 'OUTBOUND_ORDER',
           referenceId: outboundOrderId,
         });
+
+        // Record billing charge for shipped quantity
+        await this.billingService.recordOutboundShipCharge(
+          outboundOrderId,
+          allocation.clientId,
+          allocation.productId,
+          qtyToShip,
+        );
       }
 
       updatedAllocations.push(updatedAllocation);

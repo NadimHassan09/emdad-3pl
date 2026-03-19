@@ -1,13 +1,17 @@
+import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { ActorsService } from '../actors/actors.service';
+import { MailService } from '../mail/mail.service';
 import { ClientPortalTeamQueryDto } from './dto/client-portal-team-query.dto';
 import { InviteTeamAccountDto } from './dto/invite-team-account.dto';
 import { UpdateTeamAccountDto } from './dto/update-team-account.dto';
 export declare class ClientPortalTeamService {
     private readonly prisma;
     private readonly actors;
-    constructor(prisma: PrismaService, actors: ActorsService);
+    private readonly mail;
+    private readonly config;
+    constructor(prisma: PrismaService, actors: ActorsService, mail: MailService, config: ConfigService);
     private requireClientAdmin;
     listRoles(): Promise<{
         id: string;
@@ -36,6 +40,7 @@ export declare class ClientPortalTeamService {
             createdAt: Date;
         };
         temporaryPassword: string;
+        emailSent: boolean;
     }>;
     update(actor: JwtPayload, clientId: string, accountId: string, dto: UpdateTeamAccountDto): Promise<{
         id: string;

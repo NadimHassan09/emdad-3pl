@@ -34,6 +34,7 @@ const client_settings_module_1 = require("./modules/client-settings/client-setti
 const dashboard_module_1 = require("./modules/dashboard/dashboard.module");
 const client_portal_team_module_1 = require("./modules/client-portal-team/client-portal-team.module");
 const client_portal_notifications_module_1 = require("./modules/client-portal-notifications/client-portal-notifications.module");
+const mail_module_1 = require("./modules/mail/mail.module");
 const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
@@ -70,6 +71,7 @@ exports.AppModule = AppModule = __decorate([
             dashboard_module_1.DashboardModule,
             client_portal_team_module_1.ClientPortalTeamModule,
             client_portal_notifications_module_1.ClientPortalNotificationsModule,
+            mail_module_1.MailModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [],

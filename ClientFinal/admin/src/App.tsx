@@ -91,6 +91,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { apiFetch } from '@/lib/api';
+import { CsvButton } from '@/components/CsvButton';
+import { LocationBarcodeDialog } from '@/components/LocationBarcodeDialog';
 import { fetchOverview, type OverviewResponse } from '@/lib/dashboard';
 import {
   fetchTaskWorkOrders,
@@ -107,6 +109,7 @@ import {
   fetchProducts,
   fetchWarehouses as fetchWarehousesMasterData,
   fetchLocationsTree,
+  fetchLocationsFlat,
   fetchUomList,
   createClient,
   updateClient,
@@ -114,10 +117,27 @@ import {
   updateProduct,
   createWarehouse,
   updateWarehouse,
+  createLocation,
+  updateLocation,
+  deleteLocation,
+  generateLocationCode,
+  createUom,
+  updateUom,
+  deleteUom,
+  fetchClientAccounts,
+  UOM_DIMENSIONS,
+  UOM_DIMENSION_LABELS,
+  LOCATION_TYPES,
+  LOCATION_TYPE_LABELS,
+  type UomDimension,
+  type UomApi,
+  type LocationTypeValue,
+  type LocationFlatApi,
   type ClientUi,
   type ProductUi,
   type WarehouseUi,
   type LocationUi,
+  type ClientAccountApi,
 } from '@/lib/master-data';
 import {
   fetchUsers,
@@ -504,6 +524,25 @@ function WorkManagementPage() {
       {/* Tasks Table */}
       <Card>
         <CardContent className="p-0">
+          {filteredTasks.length > 0 && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'taskType', label: 'نوع المهمة' },
+                  { key: 'reference', label: 'المرجع' },
+                  { key: 'clientName', label: 'اسم العميل' },
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'status', label: 'الحالة' },
+                  { key: 'assignedAt', label: 'تم التعيين في' },
+                  { key: 'priority', label: 'الأولوية' },
+                ]}
+                data={filteredTasks}
+                getRow={(t) => [t.taskType, t.reference, t.clientName, t.warehouse, t.status, t.assignedAt, t.priority]}
+                filename="tasks"
+                disabled={loading}
+              />
+            </div>
+          )}
           {loading ? (
             <div className="py-8 text-center text-sm text-gray-500">
               جارِ تحميل مهام العمل...
@@ -936,6 +975,23 @@ function IdentityAndAccessPage() {
       {/* Accounts Table */}
       <Card>
         <CardContent className="p-0">
+          {filteredAccounts.length > 0 && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'name', label: 'الاسم' },
+                  { key: 'email', label: 'البريد الإلكتروني' },
+                  { key: 'role', label: 'الدور' },
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'status', label: 'الحالة' },
+                ]}
+                data={filteredAccounts}
+                getRow={(a) => [a.name, a.email, a.role, a.warehouse, a.status]}
+                filename="accounts"
+                disabled={loading}
+              />
+            </div>
+          )}
           {loading ? (
             <div className="py-8 text-center text-sm text-gray-500">
               جارِ تحميل المستخدمين...
@@ -1154,7 +1210,7 @@ function IdentityAndAccessPage() {
 }
 
 // Master Data Types
-type MasterDataType = 'clients' | 'products' | 'warehouses' | 'locations' | 'uom' | 'packaging' | 'suppliers' | 'carriers' | 'reasons';
+type MasterDataType = 'clients' | 'products' | 'warehouses' | 'locations' | 'uom';
 
 type UOMConversion = {
   id: string;
@@ -1176,6 +1232,10 @@ function MasterDataPage() {
   const [selectedClient, setSelectedClient] = useState<ClientUi | null>(null);
   const [isEditClientOpen, setIsEditClientOpen] = useState(false);
   const [clientFormData, setClientFormData] = useState<Partial<ClientUi> & { address?: string; password?: string }>({});
+  const [clientAccountsOpen, setClientAccountsOpen] = useState(false);
+  const [clientAccountsClient, setClientAccountsClient] = useState<ClientUi | null>(null);
+  const [clientAccounts, setClientAccounts] = useState<ClientAccountApi[]>([]);
+  const [clientAccountsLoading, setClientAccountsLoading] = useState(false);
 
   // Products state
   const [products, setProducts] = useState<ProductUi[]>([]);
@@ -1189,6 +1249,27 @@ function MasterDataPage() {
   const [uomConversions, setUomConversions] = useState<UOMConversion[]>([]);
   const [uomList, setUomList] = useState<{ id: string; code: string; name: string }[]>([]);
 
+  // UOM management state
+  const [uoms, setUoms] = useState<UomApi[]>([]);
+  const [uomsLoading, setUomsLoading] = useState(false);
+  const [uomSearchFilter, setUomSearchFilter] = useState('');
+  const [uomDimensionFilter, setUomDimensionFilter] = useState('');
+  const [isCreateUomOpen, setIsCreateUomOpen] = useState(false);
+  const [isEditUomOpen, setIsEditUomOpen] = useState(false);
+  const [selectedUom, setSelectedUom] = useState<UomApi | null>(null);
+  const [isDeleteUomOpen, setIsDeleteUomOpen] = useState(false);
+  const [deleteUomTarget, setDeleteUomTarget] = useState<UomApi | null>(null);
+  const [deleteUomSubmitting, setDeleteUomSubmitting] = useState(false);
+  const [uomFormData, setUomFormData] = useState<{
+    code: string;
+    name: string;
+    dimension: UomDimension;
+    baseConversion: string;
+    isActive: boolean;
+  }>({ code: '', name: '', dimension: 'COUNT', baseConversion: '1', isActive: true });
+  const [uomFormError, setUomFormError] = useState<string | null>(null);
+  const [uomFormSubmitting, setUomFormSubmitting] = useState(false);
+
   // Warehouses state
   const [warehouses, setWarehouses] = useState<WarehouseUi[]>([]);
   const [warehousesLoading, setWarehousesLoading] = useState(false);
@@ -1198,11 +1279,33 @@ function MasterDataPage() {
   const [isEditWarehouseOpen, setIsEditWarehouseOpen] = useState(false);
   const [warehouseFormData, setWarehouseFormData] = useState<Partial<WarehouseUi>>({});
 
-  // Locations state (tree from API)
+  // Locations state (tree – kept for renderLocationTree helper used elsewhere)
   const [locationTree, setLocationTree] = useState<LocationUi[]>([]);
   const [locationsLoading, setLocationsLoading] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<LocationUi | null>(null);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+
+  // Locations CRUD state (flat list)
+  const [locationsFlat, setLocationsFlat] = useState<LocationFlatApi[]>([]);
+  const [locationsFlatLoading, setLocationsFlatLoading] = useState(false);
+  const [locationWarehouseFilter, setLocationWarehouseFilter] = useState('');
+  const [locationTypeFilter, setLocationTypeFilter] = useState('');
+  const [locationSearchFilter, setLocationSearchFilter] = useState('');
+  const [isCreateLocationOpen, setIsCreateLocationOpen] = useState(false);
+  const [isEditLocationOpen, setIsEditLocationOpen] = useState(false);
+  const [isDeleteLocationOpen, setIsDeleteLocationOpen] = useState(false);
+  const [selectedLocationForEdit, setSelectedLocationForEdit] = useState<LocationFlatApi | null>(null);
+  const [deleteLocationTarget, setDeleteLocationTarget] = useState<LocationFlatApi | null>(null);
+  const [deleteLocationSubmitting, setDeleteLocationSubmitting] = useState(false);
+  const [locationFormData, setLocationFormData] = useState<{
+    warehouseId: string;
+    locationType: LocationTypeValue;
+    parentLocationId: string;
+    isActive: boolean;
+  }>({ warehouseId: '', locationType: 'ZONE', parentLocationId: '', isActive: true });
+  const [locationFormError, setLocationFormError] = useState<string | null>(null);
+  const [locationFormSubmitting, setLocationFormSubmitting] = useState(false);
+  const [barcodeLoc, setBarcodeLoc] = useState<LocationFlatApi | null>(null);
 
   // Fetch master data when tab or relevant filters change
   useEffect(() => {
@@ -1249,8 +1352,43 @@ function MasterDataPage() {
         })
         .catch(() => setLocationTree([]))
         .finally(() => setLocationsLoading(false));
+      // Also load flat list and warehouses for CRUD
+      setLocationsFlatLoading(true);
+      fetchLocationsFlat()
+        .then(setLocationsFlat)
+        .catch(() => setLocationsFlat([]))
+        .finally(() => setLocationsFlatLoading(false));
+      fetchWarehousesMasterData()
+        .then(setWarehouses)
+        .catch(() => {});
     }
   }, [activeDataType]);
+
+  const reloadLocations = () => {
+    setLocationsFlatLoading(true);
+    fetchLocationsFlat()
+      .then(setLocationsFlat)
+      .catch(() => setLocationsFlat([]))
+      .finally(() => setLocationsFlatLoading(false));
+  };
+
+  useEffect(() => {
+    if (activeDataType === 'uom') {
+      setUomsLoading(true);
+      fetchUomList()
+        .then(setUoms)
+        .catch(() => setUoms([]))
+        .finally(() => setUomsLoading(false));
+    }
+  }, [activeDataType]);
+
+  const reloadUoms = () => {
+    setUomsLoading(true);
+    fetchUomList()
+      .then(setUoms)
+      .catch(() => setUoms([]))
+      .finally(() => setUomsLoading(false));
+  };
 
   // Filter functions
   const filteredClients = clients.filter((client) => {
@@ -1268,6 +1406,21 @@ function MasterDataPage() {
 
   const filteredWarehouses = warehouses.filter((warehouse) => {
     if (warehouseNameFilter && !warehouse.name.toLowerCase().includes(warehouseNameFilter.toLowerCase())) return false;
+    return true;
+  });
+
+  const filteredLocations = locationsFlat.filter((l) => {
+    if (locationWarehouseFilter && l.warehouseId !== locationWarehouseFilter) return false;
+    if (locationTypeFilter && l.locationType !== locationTypeFilter) return false;
+    const q = locationSearchFilter.toLowerCase();
+    if (q && !l.code.toLowerCase().includes(q) && !l.warehouseName.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  const filteredUoms = uoms.filter((u) => {
+    if (uomDimensionFilter && uomDimensionFilter !== 'all' && u.dimension !== uomDimensionFilter) return false;
+    const q = uomSearchFilter.toLowerCase();
+    if (q && !u.code.toLowerCase().includes(q) && !u.name.toLowerCase().includes(q)) return false;
     return true;
   });
 
@@ -1366,34 +1519,6 @@ function MasterDataPage() {
             >
               وحدة القياس
             </Button>
-            <Button
-              variant={activeDataType === 'packaging' ? 'default' : 'outline'}
-              onClick={() => setActiveDataType('packaging')}
-              size="sm"
-            >
-              التعبئة
-            </Button>
-            <Button
-              variant={activeDataType === 'suppliers' ? 'default' : 'outline'}
-              onClick={() => setActiveDataType('suppliers')}
-              size="sm"
-            >
-              الموردون
-            </Button>
-            <Button
-              variant={activeDataType === 'carriers' ? 'default' : 'outline'}
-              onClick={() => setActiveDataType('carriers')}
-              size="sm"
-            >
-              الناقلون
-            </Button>
-            <Button
-              variant={activeDataType === 'reasons' ? 'default' : 'outline'}
-              onClick={() => setActiveDataType('reasons')}
-              size="sm"
-            >
-              الأسباب/الأكواد
-            </Button>
           </div>
         </CardContent>
       </Card>
@@ -1453,6 +1578,24 @@ function MasterDataPage() {
               {clientsLoading ? (
                 <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
               ) : (
+              <>
+              {filteredClients.length > 0 && (
+                <div className="p-4 border-b flex justify-end">
+                  <CsvButton
+                    columns={[
+                      { key: 'name', label: 'اسم العميل' },
+                      { key: 'code', label: 'رمز العميل' },
+                      { key: 'contactEmail', label: 'البريد الإلكتروني' },
+                      { key: 'contactPhone', label: 'الهاتف' },
+                      { key: 'status', label: 'الحالة' },
+                      { key: 'createdAt', label: 'تاريخ الإنشاء' },
+                    ]}
+                    data={filteredClients}
+                    getRow={(c) => [c.name, c.code, c.contactEmail, c.contactPhone, c.status, c.createdAt]}
+                    filename="clients"
+                  />
+                </div>
+              )}
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -1467,7 +1610,20 @@ function MasterDataPage() {
                 </TableHeader>
                 <TableBody>
                   {filteredClients.map((client) => (
-                    <TableRow key={client.id}>
+                    <TableRow
+                      key={client.id}
+                      className="cursor-pointer hover:bg-muted/50"
+                      onClick={() => {
+                        setClientAccountsClient(client);
+                        setClientAccountsOpen(true);
+                        setClientAccounts([]);
+                        setClientAccountsLoading(true);
+                        fetchClientAccounts(client.id)
+                          .then(setClientAccounts)
+                          .catch(() => setClientAccounts([]))
+                          .finally(() => setClientAccountsLoading(false));
+                      }}
+                    >
                       <TableCell>{client.name}</TableCell>
                       <TableCell className="font-mono">{client.code}</TableCell>
                       <TableCell>{client.contactEmail}</TableCell>
@@ -1481,13 +1637,35 @@ function MasterDataPage() {
                       <TableCell>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 w-8 p-0"
+                              onClick={(e) => e.stopPropagation()}
+                            >
                               <MoreHorizontal className="w-4 h-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setClientAccountsClient(client);
+                                setClientAccountsOpen(true);
+                                setClientAccounts([]);
+                                setClientAccountsLoading(true);
+                                fetchClientAccounts(client.id)
+                                  .then(setClientAccounts)
+                                  .catch(() => setClientAccounts([]))
+                                  .finally(() => setClientAccountsLoading(false));
+                              }}
+                            >
+                              <Users className="w-4 h-4 ml-2" />
+                              الحسابات
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setSelectedClient(client);
                                 setClientFormData(client);
                                 setIsEditClientOpen(true);
@@ -1503,6 +1681,7 @@ function MasterDataPage() {
                   ))}
                 </TableBody>
               </Table>
+              </>
               )}
             </CardContent>
           </Card>
@@ -1616,6 +1795,87 @@ function MasterDataPage() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
+
+          {/* Client Accounts Dialog */}
+          <Dialog open={clientAccountsOpen} onOpenChange={(open) => {
+            if (!open) {
+              setClientAccountsOpen(false);
+              setClientAccountsClient(null);
+              setClientAccounts([]);
+            }
+          }}>
+            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>
+                  حسابات العميل: {clientAccountsClient?.name}
+                  {clientAccountsClient && (
+                    <span className="mr-2 text-sm font-normal text-gray-500 font-mono">({clientAccountsClient.code})</span>
+                  )}
+                </DialogTitle>
+                <DialogDescription>
+                  قائمة بجميع الحسابات المرتبطة بهذا العميل وأدوارهم
+                </DialogDescription>
+              </DialogHeader>
+              {clientAccountsLoading ? (
+                <div className="py-10 text-center text-gray-500">جاري التحميل...</div>
+              ) : clientAccounts.length === 0 ? (
+                <div className="py-10 text-center text-gray-500">لا توجد حسابات لهذا العميل</div>
+              ) : (
+                <>
+                  <div className="flex justify-end mb-2">
+                    <CsvButton
+                      columns={[
+                        { key: 'firstName', label: 'الاسم الأول' },
+                        { key: 'lastName', label: 'الاسم الأخير' },
+                        { key: 'email', label: 'البريد الإلكتروني' },
+                        { key: 'roleName', label: 'الدور' },
+                        { key: 'isActive', label: 'الحالة' },
+                        { key: 'createdAt', label: 'تاريخ الإنشاء' },
+                      ]}
+                      data={clientAccounts}
+                      getRow={(a) => [
+                        a.firstName,
+                        a.lastName,
+                        a.email,
+                        a.roleName,
+                        a.isActive ? 'نشط' : 'غير نشط',
+                        new Date(a.createdAt).toISOString().split('T')[0],
+                      ]}
+                      filename={`حسابات-${clientAccountsClient?.code ?? 'client'}`}
+                    />
+                  </div>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="text-right">الاسم</TableHead>
+                        <TableHead className="text-right">البريد الإلكتروني</TableHead>
+                        <TableHead className="text-right">الدور</TableHead>
+                        <TableHead className="text-right">الحالة</TableHead>
+                        <TableHead className="text-right">تاريخ الإنشاء</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {clientAccounts.map((acc) => (
+                        <TableRow key={acc.id}>
+                          <TableCell>{acc.firstName} {acc.lastName}</TableCell>
+                          <TableCell>{acc.email}</TableCell>
+                          <TableCell>
+                            <Badge variant="outline">{acc.roleName}</Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant={acc.isActive ? 'default' : 'secondary'}>
+                              {acc.isActive ? 'نشط' : 'غير نشط'}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{new Date(acc.createdAt).toISOString().split('T')[0]}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
         </>
       )}
 
@@ -1670,6 +1930,22 @@ function MasterDataPage() {
               {productsLoading ? (
                 <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
               ) : (
+              <>
+              {filteredProducts.length > 0 && (
+                <div className="p-4 border-b flex justify-end">
+                  <CsvButton
+                    columns={[
+                      { key: 'name', label: 'اسم المنتج' },
+                      { key: 'sku', label: 'SKU' },
+                      { key: 'clientName', label: 'اسم العميل' },
+                      { key: 'status', label: 'الحالة' },
+                    ]}
+                    data={filteredProducts}
+                    getRow={(p) => [p.name, p.sku, p.clientName, p.status]}
+                    filename="products"
+                  />
+                </div>
+              )}
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -1729,6 +2005,7 @@ function MasterDataPage() {
                   ))}
                 </TableBody>
               </Table>
+              </>
               )}
             </CardContent>
           </Card>
@@ -1824,6 +2101,17 @@ function MasterDataPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium">وحدات القياس والتحويلات</label>
+                    <div className="flex items-center gap-2">
+                      <CsvButton
+                        columns={[
+                          { key: 'alternateUOM', label: 'وحدة القياس البديلة' },
+                          { key: 'conversionFactor', label: 'عامل التحويل' },
+                          { key: 'active', label: 'نشط' },
+                        ]}
+                        data={uomConversions}
+                        getRow={(c) => [c.alternateUOM, c.conversionFactor, c.active ? 'نعم' : 'لا']}
+                        filename="تحويلات-وحدات-القياس"
+                      />
                     <Button
                       type="button"
                       variant="outline"
@@ -1840,6 +2128,7 @@ function MasterDataPage() {
                       <Plus className="w-4 h-4 ml-2" />
                       إضافة تحويل
                     </Button>
+                    </div>
                   </div>
                   <Table>
                     <TableHeader>
@@ -2006,6 +2295,23 @@ function MasterDataPage() {
               {warehousesLoading ? (
                 <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
               ) : (
+              <>
+              {filteredWarehouses.length > 0 && (
+                <div className="p-4 border-b flex justify-end">
+                  <CsvButton
+                    columns={[
+                      { key: 'name', label: 'اسم المستودع' },
+                      { key: 'code', label: 'رمز المستودع' },
+                      { key: 'status', label: 'الحالة' },
+                      { key: 'address', label: 'العنوان' },
+                      { key: 'adjustmentApproverRequired', label: 'موافقة معدل مطلوبة' },
+                    ]}
+                    data={filteredWarehouses}
+                    getRow={(w) => [w.name, w.code, w.status, w.address, w.adjustmentApproverRequired ? 'نعم' : 'لا']}
+                    filename="warehouses"
+                  />
+                </div>
+              )}
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -2052,6 +2358,7 @@ function MasterDataPage() {
                   ))}
                 </TableBody>
               </Table>
+              </>
               )}
             </CardContent>
           </Card>
@@ -2156,82 +2463,842 @@ function MasterDataPage() {
 
       {/* Locations Section */}
       {activeDataType === 'locations' && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Location Tree */}
-          <Card className="lg:col-span-1">
+        <>
+          {/* Filters + Add */}
+          <Card>
             <CardHeader>
-              <CardTitle>شجرة المواقع</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle>الفلاتر</CardTitle>
+                <Button
+                  onClick={() => {
+                    setLocationFormData({ warehouseId: warehouses[0]?.id ?? '', locationType: 'ZONE', parentLocationId: '', isActive: true });
+                    setLocationFormError(null);
+                    setIsCreateLocationOpen(true);
+                  }}
+                >
+                  <Plus className="w-4 h-4 ml-2" />
+                  إضافة موقع
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="max-h-96 overflow-y-auto">
-                {locationsLoading ? (
-                  <div className="p-4 text-center text-gray-500">جاري التحميل...</div>
-                ) : locationTree.length === 0 ? (
-                  <div className="p-4 text-center text-gray-500">لا توجد مواقع</div>
-                ) : (
-                  renderLocationTree(locationTree)
-                )}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">المستودع</label>
+                  <Select value={locationWarehouseFilter || 'all'} onValueChange={(v) => setLocationWarehouseFilter(v === 'all' ? '' : v)}>
+                    <SelectTrigger><SelectValue placeholder="الكل" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">الكل</SelectItem>
+                      {warehouses.map((w) => (
+                        <SelectItem key={w.id} value={w.id}>{w.name} ({w.code})</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">النوع</label>
+                  <Select value={locationTypeFilter || 'all'} onValueChange={(v) => setLocationTypeFilter(v === 'all' ? '' : v)}>
+                    <SelectTrigger><SelectValue placeholder="الكل" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">الكل</SelectItem>
+                      {LOCATION_TYPES.map((t) => (
+                        <SelectItem key={t} value={t}>{LOCATION_TYPE_LABELS[t]}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">بحث (كود)</label>
+                  <Input
+                    value={locationSearchFilter}
+                    onChange={(e) => setLocationSearchFilter(e.target.value)}
+                    placeholder="ابحث بالكود..."
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Location Details */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle>تفاصيل الموقع</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {selectedLocation ? (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">الكود</label>
-                      <Input value={selectedLocation.code} />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">الاسم</label>
-                      <Input value={selectedLocation.name} />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">النوع</label>
-                      <Input value={selectedLocation.type} />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">الأب</label>
-                      <Input value={selectedLocation.parentId || ''} />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">الباركود</label>
-                      <Input value={selectedLocation.barcode || ''} />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">نشط</label>
-                      <Checkbox checked={selectedLocation.active} />
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button>حفظ</Button>
-                    <Button variant="outline">
-                      <Printer className="w-4 h-4 ml-2" />
-                      طباعة تسمية الموقع
-                    </Button>
-                  </div>
-                </div>
+          {/* Locations Table */}
+          <Card>
+            <CardContent className="p-0">
+              {locationsFlatLoading ? (
+                <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
               ) : (
-                <p className="text-gray-500 text-center py-8">اختر موقعاً لعرض التفاصيل</p>
+                <>
+                  {filteredLocations.length > 0 && (
+                    <div className="p-4 border-b flex justify-end">
+                      <CsvButton
+                        columns={[
+                          { key: 'code', label: 'الكود' },
+                          { key: 'barcode', label: 'الباركود' },
+                          { key: 'locationType', label: 'النوع' },
+                          { key: 'parentCode', label: 'الموقع الأب' },
+                          { key: 'warehouseName', label: 'المستودع' },
+                          { key: 'isActive', label: 'الحالة' },
+                        ]}
+                        data={filteredLocations}
+                        getRow={(l) => [
+                          l.code,
+                          l.barcode,
+                          LOCATION_TYPE_LABELS[l.locationType as LocationTypeValue] ?? l.locationType,
+                          l.parentCode ?? '-',
+                          l.warehouseName,
+                          l.isActive ? 'نشط' : 'غير نشط',
+                        ]}
+                        filename="مواقع-المستودع"
+                      />
+                    </div>
+                  )}
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="text-right">الكود</TableHead>
+                        <TableHead className="text-right">الباركود</TableHead>
+                        <TableHead className="text-right">النوع</TableHead>
+                        <TableHead className="text-right">الموقع الأب</TableHead>
+                        <TableHead className="text-right">المستودع</TableHead>
+                        <TableHead className="text-right">الحالة</TableHead>
+                        <TableHead className="text-right">الإجراءات</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {filteredLocations.length === 0 ? (
+                        <TableRow>
+                          <TableCell colSpan={7} className="text-center py-10 text-gray-500">
+                            لا توجد مواقع
+                          </TableCell>
+                        </TableRow>
+                      ) : (
+                        filteredLocations.map((loc) => (
+                          <TableRow key={loc.id}>
+                            <TableCell className="font-mono font-semibold">{loc.code}</TableCell>
+                            <TableCell>
+                              <button
+                                type="button"
+                                onClick={() => setBarcodeLoc(loc)}
+                                className="flex items-center gap-1.5 font-mono text-xs text-gray-600 hover:text-[#176C33] group transition-colors"
+                                title="عرض الباركود"
+                              >
+                                <QrCode className="w-3.5 h-3.5 shrink-0 group-hover:text-[#176C33]" />
+                                <span className="underline decoration-dashed underline-offset-2">{loc.barcode}</span>
+                              </button>
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant="outline">
+                                {LOCATION_TYPE_LABELS[loc.locationType as LocationTypeValue] ?? loc.locationType}
+                              </Badge>
+                            </TableCell>
+                            <TableCell className="font-mono text-sm text-gray-600">{loc.parentCode ?? '—'}</TableCell>
+                            <TableCell className="text-sm">{loc.warehouseName}</TableCell>
+                            <TableCell>
+                              <Badge variant={loc.isActive ? 'default' : 'secondary'}>
+                                {loc.isActive ? 'نشط' : 'غير نشط'}
+                              </Badge>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-1">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0"
+                                  onClick={() => {
+                                    setSelectedLocationForEdit(loc);
+                                    setLocationFormData({
+                                      warehouseId: loc.warehouseId,
+                                      locationType: (loc.locationType as LocationTypeValue) ?? 'ZONE',
+                                      parentLocationId: loc.parentLocationId ?? '',
+                                      isActive: loc.isActive,
+                                    });
+                                    setLocationFormError(null);
+                                    setIsEditLocationOpen(true);
+                                  }}
+                                >
+                                  <Edit className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                  onClick={() => {
+                                    setDeleteLocationTarget(loc);
+                                    setIsDeleteLocationOpen(true);
+                                  }}
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      )}
+                    </TableBody>
+                  </Table>
+                </>
               )}
             </CardContent>
           </Card>
-        </div>
+
+          {/* Create Location Dialog */}
+          <Dialog open={isCreateLocationOpen} onOpenChange={(open) => { if (!open) setIsCreateLocationOpen(false); }}>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle>إضافة موقع جديد</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-2">
+                {locationFormError && (
+                  <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">{locationFormError}</div>
+                )}
+                    <div className="space-y-2">
+                  <label className="text-sm font-medium">المستودع *</label>
+                  <Select
+                    value={locationFormData.warehouseId}
+                    onValueChange={(v) => setLocationFormData({ ...locationFormData, warehouseId: v, parentLocationId: '' })}
+                  >
+                    <SelectTrigger><SelectValue placeholder="اختر المستودع" /></SelectTrigger>
+                    <SelectContent>
+                      {warehouses.map((w) => (
+                        <SelectItem key={w.id} value={w.id}>{w.name} ({w.code})</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                    </div>
+                    <div className="space-y-2">
+                  <label className="text-sm font-medium">النوع *</label>
+                  <Select
+                    value={locationFormData.locationType}
+                    onValueChange={(v) => setLocationFormData({ ...locationFormData, locationType: v as LocationTypeValue })}
+                  >
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {LOCATION_TYPES.map((t) => (
+                        <SelectItem key={t} value={t}>{LOCATION_TYPE_LABELS[t]}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                    </div>
+                    <div className="space-y-2">
+                  <label className="text-sm font-medium">الموقع الأب (اختياري)</label>
+                  <Select
+                    value={locationFormData.parentLocationId || 'none'}
+                    onValueChange={(v) => setLocationFormData({ ...locationFormData, parentLocationId: v === 'none' ? '' : v })}
+                  >
+                    <SelectTrigger><SelectValue placeholder="لا يوجد أب" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">لا يوجد أب</SelectItem>
+                      {locationsFlat
+                        .filter((l) => l.warehouseId === locationFormData.warehouseId)
+                        .map((l) => (
+                          <SelectItem key={l.id} value={l.id}>
+                            {l.code} — {LOCATION_TYPE_LABELS[l.locationType as LocationTypeValue] ?? l.locationType}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                    </div>
+                <div className="p-3 bg-blue-50 rounded border border-blue-100 text-xs text-blue-700 space-y-1">
+                  <div className="font-medium">يُنشأ تلقائياً:</div>
+                  <div>• <span className="font-mono">الكود</span> — مثال: WH1-ZN-A3B7F</div>
+                  <div>• <span className="font-mono">الباركود</span> — مطابق للكود (قابل للطباعة والمسح)</div>
+                    </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={locationFormData.isActive}
+                    onCheckedChange={(c) => setLocationFormData({ ...locationFormData, isActive: !!c })}
+                  />
+                  <label className="text-sm font-medium">نشط</label>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsCreateLocationOpen(false)} disabled={locationFormSubmitting}>إلغاء</Button>
+                <Button
+                  disabled={locationFormSubmitting}
+                  onClick={async () => {
+                    if (!locationFormData.warehouseId) {
+                      setLocationFormError('يجب اختيار المستودع.');
+                      return;
+                    }
+                    try {
+                      setLocationFormSubmitting(true);
+                      setLocationFormError(null);
+                      const warehouseCode = warehouses.find((w) => w.id === locationFormData.warehouseId)?.code ?? 'WH';
+                      const code = generateLocationCode(warehouseCode, locationFormData.locationType);
+                      await createLocation(locationFormData.warehouseId, {
+                        code,
+                        locationType: locationFormData.locationType,
+                        parentLocationId: locationFormData.parentLocationId || undefined,
+                        isActive: locationFormData.isActive,
+                      });
+                      setIsCreateLocationOpen(false);
+                      reloadLocations();
+                    } catch {
+                      setLocationFormError('تعذر إنشاء الموقع. تأكد من البيانات.');
+                    } finally {
+                      setLocationFormSubmitting(false);
+                    }
+                  }}
+                >
+                  {locationFormSubmitting ? 'جاري الحفظ...' : 'حفظ'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          {/* Edit Location Dialog */}
+          <Dialog open={isEditLocationOpen} onOpenChange={(open) => { if (!open) { setIsEditLocationOpen(false); setSelectedLocationForEdit(null); } }}>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle>
+                  تعديل الموقع
+                  {selectedLocationForEdit && (
+                    <span className="mr-2 text-sm font-mono font-normal text-gray-500">({selectedLocationForEdit.code})</span>
+                  )}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-2">
+                {locationFormError && (
+                  <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">{locationFormError}</div>
+                )}
+                {/* Code & Barcode read-only display */}
+                {selectedLocationForEdit && (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-xs font-medium text-gray-500">الكود (تلقائي)</label>
+                      <div className="font-mono text-sm bg-gray-50 border rounded px-3 py-2">{selectedLocationForEdit.code}</div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-medium text-gray-500">الباركود (تلقائي)</label>
+                      <div className="font-mono text-sm bg-gray-50 border rounded px-3 py-2 flex items-center gap-1">
+                        <QrCode className="w-3 h-3 shrink-0 text-gray-400" />
+                        {selectedLocationForEdit.barcode}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                    <div className="space-y-2">
+                  <label className="text-sm font-medium">النوع *</label>
+                  <Select
+                    value={locationFormData.locationType}
+                    onValueChange={(v) => setLocationFormData({ ...locationFormData, locationType: v as LocationTypeValue })}
+                  >
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {LOCATION_TYPES.map((t) => (
+                        <SelectItem key={t} value={t}>{LOCATION_TYPE_LABELS[t]}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                    </div>
+                    <div className="space-y-2">
+                  <label className="text-sm font-medium">الموقع الأب (اختياري)</label>
+                  <Select
+                    value={locationFormData.parentLocationId || 'none'}
+                    onValueChange={(v) => setLocationFormData({ ...locationFormData, parentLocationId: v === 'none' ? '' : v })}
+                  >
+                    <SelectTrigger><SelectValue placeholder="لا يوجد أب" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">لا يوجد أب</SelectItem>
+                      {locationsFlat
+                        .filter((l) => l.warehouseId === locationFormData.warehouseId && l.id !== selectedLocationForEdit?.id)
+                        .map((l) => (
+                          <SelectItem key={l.id} value={l.id}>
+                            {l.code} — {LOCATION_TYPE_LABELS[l.locationType as LocationTypeValue] ?? l.locationType}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={locationFormData.isActive}
+                    onCheckedChange={(c) => setLocationFormData({ ...locationFormData, isActive: !!c })}
+                  />
+                      <label className="text-sm font-medium">نشط</label>
+                    </div>
+                  </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => { setIsEditLocationOpen(false); setSelectedLocationForEdit(null); }} disabled={locationFormSubmitting}>إلغاء</Button>
+                <Button
+                  disabled={locationFormSubmitting}
+                  onClick={async () => {
+                    if (!selectedLocationForEdit) return;
+                    try {
+                      setLocationFormSubmitting(true);
+                      setLocationFormError(null);
+                      await updateLocation(selectedLocationForEdit.warehouseId, selectedLocationForEdit.id, {
+                        locationType: locationFormData.locationType,
+                        parentLocationId: locationFormData.parentLocationId || null,
+                        isActive: locationFormData.isActive,
+                      });
+                      setIsEditLocationOpen(false);
+                      setSelectedLocationForEdit(null);
+                      reloadLocations();
+                    } catch {
+                      setLocationFormError('تعذر تحديث الموقع.');
+                    } finally {
+                      setLocationFormSubmitting(false);
+                    }
+                  }}
+                >
+                  {locationFormSubmitting ? 'جاري الحفظ...' : 'حفظ'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          {/* Barcode Popup */}
+          <LocationBarcodeDialog
+            open={barcodeLoc !== null}
+            onClose={() => setBarcodeLoc(null)}
+            locationCode={barcodeLoc?.barcode ?? ''}
+            warehouseName={barcodeLoc?.warehouseName}
+            locationType={LOCATION_TYPE_LABELS[barcodeLoc?.locationType as LocationTypeValue] ?? barcodeLoc?.locationType}
+          />
+
+          {/* Delete Location Confirmation Dialog */}
+          <Dialog open={isDeleteLocationOpen} onOpenChange={(open) => { if (!open) { setIsDeleteLocationOpen(false); setDeleteLocationTarget(null); } }}>
+            <DialogContent className="max-w-sm">
+              <DialogHeader>
+                <DialogTitle>تأكيد الحذف</DialogTitle>
+              </DialogHeader>
+              <p className="text-sm text-gray-600 py-2">
+                هل أنت متأكد من حذف الموقع <span className="font-mono font-semibold">{deleteLocationTarget?.code}</span>؟
+                لا يمكن حذف موقع يحتوي على مواقع فرعية أو مخزون.
+              </p>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => { setIsDeleteLocationOpen(false); setDeleteLocationTarget(null); }} disabled={deleteLocationSubmitting}>
+                  إلغاء
+                </Button>
+                <Button
+                  variant="destructive"
+                  disabled={deleteLocationSubmitting}
+                  onClick={async () => {
+                    if (!deleteLocationTarget) return;
+                    try {
+                      setDeleteLocationSubmitting(true);
+                      await deleteLocation(deleteLocationTarget.warehouseId, deleteLocationTarget.id);
+                      setIsDeleteLocationOpen(false);
+                      setDeleteLocationTarget(null);
+                      reloadLocations();
+                    } catch {
+                      setIsDeleteLocationOpen(false);
+                      setDeleteLocationTarget(null);
+                    } finally {
+                      setDeleteLocationSubmitting(false);
+                    }
+                  }}
+                >
+                  {deleteLocationSubmitting ? 'جاري الحذف...' : 'حذف'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </>
       )}
 
-      {/* Placeholder sections for other data types */}
-      {['uom', 'packaging', 'suppliers', 'carriers', 'reasons'].includes(activeDataType) && (
-        <Card>
-          <CardContent className="p-8 text-center">
-            <p className="text-gray-500">قريباً: {activeDataType}</p>
-          </CardContent>
-        </Card>
+      {/* UOM Section */}
+      {activeDataType === 'uom' && (
+        <>
+          {/* Filters */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle>الفلاتر</CardTitle>
+                <Button
+                  onClick={() => {
+                    setUomFormData({ code: '', name: '', dimension: 'COUNT', baseConversion: '1', isActive: true });
+                    setUomFormError(null);
+                    setIsCreateUomOpen(true);
+                  }}
+                >
+                  <Plus className="w-4 h-4 ml-2" />
+                  إضافة وحدة قياس
+                    </Button>
+                  </div>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">بحث (كود / اسم)</label>
+                  <Input
+                    value={uomSearchFilter}
+                    onChange={(e) => setUomSearchFilter(e.target.value)}
+                    placeholder="ابحث بالكود أو الاسم"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">البُعد</label>
+                  <Select value={uomDimensionFilter || 'all'} onValueChange={(v) => setUomDimensionFilter(v === 'all' ? '' : v)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="الكل" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">الكل</SelectItem>
+                      {UOM_DIMENSIONS.map((d) => (
+                        <SelectItem key={d} value={d}>{UOM_DIMENSION_LABELS[d]}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* UOM Table */}
+          <Card>
+            <CardContent className="p-0">
+              {uomsLoading ? (
+                <div className="p-8 text-center text-gray-500">جاري التحميل...</div>
+              ) : (
+                <>
+                  {filteredUoms.length > 0 && (
+                    <div className="p-4 border-b flex justify-end">
+                      <CsvButton
+                        columns={[
+                          { key: 'code', label: 'الكود' },
+                          { key: 'name', label: 'الاسم' },
+                          { key: 'dimension', label: 'البُعد' },
+                          { key: 'baseConversion', label: 'معامل التحويل' },
+                          { key: 'isActive', label: 'الحالة' },
+                        ]}
+                        data={filteredUoms}
+                        getRow={(u) => [
+                          u.code,
+                          u.name,
+                          UOM_DIMENSION_LABELS[u.dimension as keyof typeof UOM_DIMENSION_LABELS] ?? u.dimension,
+                          u.baseConversion ?? 1,
+                          u.isActive ? 'نشط' : 'غير نشط',
+                        ]}
+                        filename="وحدات-القياس"
+                      />
+                    </div>
+                  )}
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="text-right">الكود</TableHead>
+                        <TableHead className="text-right">الاسم</TableHead>
+                        <TableHead className="text-right">البُعد</TableHead>
+                        <TableHead className="text-right">معامل التحويل</TableHead>
+                        <TableHead className="text-right">الحالة</TableHead>
+                        <TableHead className="text-right">الإجراءات</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {filteredUoms.length === 0 ? (
+                        <TableRow>
+                          <TableCell colSpan={6} className="text-center py-10 text-gray-500">
+                            لا توجد وحدات قياس
+                          </TableCell>
+                        </TableRow>
+                      ) : (
+                        filteredUoms.map((uom) => (
+                          <TableRow key={uom.id}>
+                            <TableCell className="font-mono">{uom.code}</TableCell>
+                            <TableCell>{uom.name}</TableCell>
+                            <TableCell>
+                              <Badge variant="outline">
+                                {UOM_DIMENSION_LABELS[uom.dimension as keyof typeof UOM_DIMENSION_LABELS] ?? uom.dimension}
+                              </Badge>
+                            </TableCell>
+                            <TableCell>{uom.baseConversion ?? 1}</TableCell>
+                            <TableCell>
+                              <Badge variant={uom.isActive ? 'default' : 'secondary'}>
+                                {uom.isActive ? 'نشط' : 'غير نشط'}
+                              </Badge>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-1">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0"
+                                  onClick={() => {
+                                    setSelectedUom(uom);
+                                    setUomFormData({
+                                      code: uom.code,
+                                      name: uom.name,
+                                      dimension: (uom.dimension as UomDimension) ?? 'COUNT',
+                                      baseConversion: String(uom.baseConversion ?? 1),
+                                      isActive: uom.isActive,
+                                    });
+                                    setUomFormError(null);
+                                    setIsEditUomOpen(true);
+                                  }}
+                                >
+                                  <Edit className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                  onClick={() => {
+                                    setDeleteUomTarget(uom);
+                                    setIsDeleteUomOpen(true);
+                                  }}
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      )}
+                    </TableBody>
+                  </Table>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Create UOM Dialog */}
+          <Dialog open={isCreateUomOpen} onOpenChange={(open) => { if (!open) setIsCreateUomOpen(false); }}>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle>إضافة وحدة قياس جديدة</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-2">
+                {uomFormError && (
+                  <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">
+                    {uomFormError}
+        </div>
+      )}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">الكود *</label>
+                  <Input
+                    value={uomFormData.code}
+                    onChange={(e) => setUomFormData({ ...uomFormData, code: e.target.value })}
+                    placeholder="مثال: KG"
+                    maxLength={20}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">الاسم *</label>
+                  <Input
+                    value={uomFormData.name}
+                    onChange={(e) => setUomFormData({ ...uomFormData, name: e.target.value })}
+                    placeholder="مثال: كيلوجرام"
+                    maxLength={100}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">البُعد *</label>
+                  <Select value={uomFormData.dimension} onValueChange={(v) => setUomFormData({ ...uomFormData, dimension: v as UomDimension })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {UOM_DIMENSIONS.map((d) => (
+                        <SelectItem key={d} value={d}>{UOM_DIMENSION_LABELS[d]}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">معامل التحويل</label>
+                  <Input
+                    type="number"
+                    step="0.0001"
+                    min="0"
+                    value={uomFormData.baseConversion}
+                    onChange={(e) => setUomFormData({ ...uomFormData, baseConversion: e.target.value })}
+                    placeholder="1"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={uomFormData.isActive}
+                    onCheckedChange={(c) => setUomFormData({ ...uomFormData, isActive: !!c })}
+                  />
+                  <label className="text-sm font-medium">نشط</label>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsCreateUomOpen(false)} disabled={uomFormSubmitting}>
+                  إلغاء
+                </Button>
+                <Button
+                  disabled={uomFormSubmitting}
+                  onClick={async () => {
+                    if (!uomFormData.code.trim() || !uomFormData.name.trim()) {
+                      setUomFormError('الكود والاسم مطلوبان.');
+                      return;
+                    }
+                    const conv = parseFloat(uomFormData.baseConversion);
+                    if (Number.isNaN(conv) || conv <= 0) {
+                      setUomFormError('معامل التحويل يجب أن يكون أكبر من صفر.');
+                      return;
+                    }
+                    try {
+                      setUomFormSubmitting(true);
+                      setUomFormError(null);
+                      await createUom({
+                        code: uomFormData.code.trim(),
+                        name: uomFormData.name.trim(),
+                        dimension: uomFormData.dimension,
+                        baseConversion: conv,
+                        isActive: uomFormData.isActive,
+                      });
+                      setIsCreateUomOpen(false);
+                      reloadUoms();
+                    } catch {
+                      setUomFormError('تعذر إضافة وحدة القياس. تأكد من عدم تكرار الكود.');
+                    } finally {
+                      setUomFormSubmitting(false);
+                    }
+                  }}
+                >
+                  {uomFormSubmitting ? 'جاري الحفظ...' : 'حفظ'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          {/* Edit UOM Dialog */}
+          <Dialog open={isEditUomOpen} onOpenChange={(open) => { if (!open) { setIsEditUomOpen(false); setSelectedUom(null); } }}>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <DialogTitle>تعديل وحدة القياس</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-2">
+                {uomFormError && (
+                  <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded p-3">
+                    {uomFormError}
+                  </div>
+                )}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">الكود *</label>
+                  <Input
+                    value={uomFormData.code}
+                    onChange={(e) => setUomFormData({ ...uomFormData, code: e.target.value })}
+                    maxLength={20}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">الاسم *</label>
+                  <Input
+                    value={uomFormData.name}
+                    onChange={(e) => setUomFormData({ ...uomFormData, name: e.target.value })}
+                    maxLength={100}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">البُعد *</label>
+                  <Select value={uomFormData.dimension} onValueChange={(v) => setUomFormData({ ...uomFormData, dimension: v as UomDimension })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {UOM_DIMENSIONS.map((d) => (
+                        <SelectItem key={d} value={d}>{UOM_DIMENSION_LABELS[d]}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">معامل التحويل</label>
+                  <Input
+                    type="number"
+                    step="0.0001"
+                    min="0"
+                    value={uomFormData.baseConversion}
+                    onChange={(e) => setUomFormData({ ...uomFormData, baseConversion: e.target.value })}
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={uomFormData.isActive}
+                    onCheckedChange={(c) => setUomFormData({ ...uomFormData, isActive: !!c })}
+                  />
+                  <label className="text-sm font-medium">نشط</label>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => { setIsEditUomOpen(false); setSelectedUom(null); }} disabled={uomFormSubmitting}>
+                  إلغاء
+                </Button>
+                <Button
+                  disabled={uomFormSubmitting}
+                  onClick={async () => {
+                    if (!selectedUom) return;
+                    if (!uomFormData.code.trim() || !uomFormData.name.trim()) {
+                      setUomFormError('الكود والاسم مطلوبان.');
+                      return;
+                    }
+                    const conv = parseFloat(uomFormData.baseConversion);
+                    if (Number.isNaN(conv) || conv <= 0) {
+                      setUomFormError('معامل التحويل يجب أن يكون أكبر من صفر.');
+                      return;
+                    }
+                    try {
+                      setUomFormSubmitting(true);
+                      setUomFormError(null);
+                      await updateUom(selectedUom.id, {
+                        code: uomFormData.code.trim(),
+                        name: uomFormData.name.trim(),
+                        dimension: uomFormData.dimension,
+                        baseConversion: conv,
+                        isActive: uomFormData.isActive,
+                      });
+                      setIsEditUomOpen(false);
+                      setSelectedUom(null);
+                      reloadUoms();
+                    } catch {
+                      setUomFormError('تعذر تحديث وحدة القياس.');
+                    } finally {
+                      setUomFormSubmitting(false);
+                    }
+                  }}
+                >
+                  {uomFormSubmitting ? 'جاري الحفظ...' : 'حفظ'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          {/* Delete UOM Confirmation Dialog */}
+          <Dialog open={isDeleteUomOpen} onOpenChange={(open) => { if (!open) { setIsDeleteUomOpen(false); setDeleteUomTarget(null); } }}>
+            <DialogContent className="max-w-sm">
+              <DialogHeader>
+                <DialogTitle>تأكيد الحذف</DialogTitle>
+              </DialogHeader>
+              <p className="text-sm text-gray-600 py-2">
+                هل أنت متأكد من حذف وحدة القياس &quot;{deleteUomTarget?.name}&quot; ({deleteUomTarget?.code})؟
+                لا يمكن التراجع عن هذا الإجراء.
+              </p>
+              <DialogFooter>
+                <Button
+                  variant="outline"
+                  onClick={() => { setIsDeleteUomOpen(false); setDeleteUomTarget(null); }}
+                  disabled={deleteUomSubmitting}
+                >
+                  إلغاء
+                </Button>
+                <Button
+                  variant="destructive"
+                  disabled={deleteUomSubmitting}
+                  onClick={async () => {
+                    if (!deleteUomTarget) return;
+                    try {
+                      setDeleteUomSubmitting(true);
+                      await deleteUom(deleteUomTarget.id);
+                      setIsDeleteUomOpen(false);
+                      setDeleteUomTarget(null);
+                      reloadUoms();
+                    } catch {
+                      setIsDeleteUomOpen(false);
+                      setDeleteUomTarget(null);
+                    } finally {
+                      setDeleteUomSubmitting(false);
+                    }
+                  }}
+                >
+                  {deleteUomSubmitting ? 'جاري الحذف...' : 'حذف'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </>
       )}
     </div>
   );
@@ -2313,7 +3380,8 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
       .catch(() => {});
   }, []);
 
-  const filteredOrders = orders;
+  // PENDING orders belong to the approvals queue only; exclude them from this page
+  const filteredOrders = orders.filter((o) => o.status !== 'بانتظار الموافقة');
 
   /** Products belonging to the selected client only (for create order form). */
   const productsForSelectedClient = createFormData.clientId
@@ -2476,6 +3544,25 @@ function InboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) => 
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
               <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
+          {filteredOrders.length > 0 && !loading && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'orderId', label: 'رقم الطلب' },
+                  { key: 'client', label: 'العميل' },
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'status', label: 'الحالة' },
+                  { key: 'shipmentStatus', label: 'حالة الشحن' },
+                  { key: 'expectedDate', label: 'التاريخ المتوقع' },
+                  { key: 'assignedTo', label: 'تم التعيين لـ' },
+                  { key: 'createdAt', label: 'تاريخ الإنشاء' },
+                ]}
+                data={filteredOrders}
+                getRow={(o) => [o.orderId, o.client, o.warehouse, o.status, o.shipmentStatus, o.expectedDate, o.assignedTo, o.createdAt]}
+                filename="طلبات-الوارد"
+              />
             </div>
           )}
           <Table>
@@ -3355,7 +4442,8 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
     ? products.filter((p) => p.clientId === createFormData.clientId)
     : [];
 
-  const filteredOrders = orders;
+  // PENDING orders belong to the approvals queue only; exclude them from this page
+  const filteredOrders = orders.filter((o) => o.status !== 'بانتظار الموافقة');
 
   const addOrderItem = () => {
     setCreateFormData({
@@ -3526,6 +4614,25 @@ function OutboundOrdersPage({ onOpenOrder }: { onOpenOrder: (orderId: string) =>
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
               <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
+          {filteredOrders.length > 0 && !loading && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'orderId', label: 'رقم الطلب' },
+                  { key: 'client', label: 'العميل' },
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'status', label: 'الحالة' },
+                  { key: 'shipmentStatus', label: 'حالة الشحن' },
+                  { key: 'expectedShipDate', label: 'تاريخ الشحن المتوقع' },
+                  { key: 'shortageFlag', label: 'مؤشر النقص' },
+                  { key: 'createdAt', label: 'تاريخ الإنشاء' },
+                ]}
+                data={filteredOrders}
+                getRow={(o) => [o.orderId, o.client, o.warehouse, o.status, o.shipmentStatus, o.expectedShipDate, o.shortageFlag ? 'نعم' : 'لا', o.createdAt]}
+                filename="طلبات-الصادر"
+              />
             </div>
           )}
           <Table>
@@ -4638,6 +5745,27 @@ function InventoryPage({ onViewLedger }: { onViewLedger: (productId: string) => 
       {/* Inventory Table */}
       <Card>
         <CardContent className="p-0">
+          {filteredInventory.length > 0 && !loading && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'client', label: 'العميل' },
+                  { key: 'sku', label: 'SKU' },
+                  { key: 'batchCode', label: 'رمز الدفعة' },
+                  { key: 'expiredDate', label: 'تاريخ انتهاء الصلاحية' },
+                  { key: 'location', label: 'الموقع' },
+                  { key: 'quantity', label: 'الكمية' },
+                  { key: 'minThreshold', label: 'الحد الأدنى' },
+                  { key: 'lowStockFlag', label: 'مؤشر النقص' },
+                  { key: 'lastMovementAt', label: 'آخر حركة في' },
+                ]}
+                data={filteredInventory}
+                getRow={(i) => [i.warehouse, i.client, i.sku, i.batchCode ?? '', i.expiredDate ?? '', i.location ?? '', i.quantity, i.minThreshold ?? '', i.lowStockFlag ? 'نعم' : 'لا', i.lastMovementAt ?? '']}
+                filename="المخزون"
+              />
+            </div>
+          )}
           {loading ? (
             <div className="py-8 text-center text-sm text-gray-500">
               جارِ تحميل بيانات المخزون...
@@ -5052,6 +6180,28 @@ function InventoryLedgerPage({ itemId, onBack }: { itemId: string; onBack: () =>
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
               <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
+          {filteredEntries.length > 0 && !loading && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'timestamp', label: 'الوقت' },
+                  { key: 'movementType', label: 'نوع الحركة' },
+                  { key: 'sku', label: 'SKU' },
+                  { key: 'batch', label: 'الدفعة' },
+                  { key: 'location', label: 'الموقع' },
+                  { key: 'quantityChange', label: 'تغيير الكمية' },
+                  { key: 'quantityBefore', label: 'الكمية قبل' },
+                  { key: 'quantityAfter', label: 'الكمية بعد' },
+                  { key: 'user', label: 'المستخدم' },
+                  { key: 'referenceType', label: 'نوع المرجع' },
+                  { key: 'referenceId', label: 'رقم المرجع' },
+                ]}
+                data={filteredEntries}
+                getRow={(e) => [e.timestamp, e.movementType, e.sku, e.batch ?? '', e.location ?? '', e.quantityChange, e.quantityBefore, e.quantityAfter, e.user ?? '', e.referenceType ?? '', e.referenceId ?? '']}
+                filename="سجل-المخزون"
+              />
             </div>
           )}
           <Table>
@@ -5708,6 +6858,27 @@ function AdjustmentsPage() {
               <p className="text-sm text-red-700">{error}</p>
             </div>
           )}
+          {filteredAdjustments.length > 0 && !loading && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'requestedAt', label: 'تم الطلب في' },
+                  { key: 'client', label: 'العميل' },
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'sku', label: 'SKU' },
+                  { key: 'batch', label: 'الدفعة' },
+                  { key: 'location', label: 'الموقع' },
+                  { key: 'quantityChange', label: 'تغيير الكمية' },
+                  { key: 'reason', label: 'السبب' },
+                  { key: 'status', label: 'الحالة' },
+                  { key: 'requestedBy', label: 'طلب بواسطة' },
+                ]}
+                data={filteredAdjustments}
+                getRow={(a) => [a.requestedAt, a.client, a.warehouse, a.sku, a.batch ?? '-', a.location ?? '', a.quantityChange > 0 ? '+' + a.quantityChange : a.quantityChange, a.reason ?? '', a.status, a.requestedBy ?? '']}
+                filename="التعديلات"
+              />
+            </div>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -6299,6 +7470,27 @@ function ReturnsPage({ onProcessReturn }: { onProcessReturn: (returnId: string) 
           {error && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-md m-4">
               <p className="text-sm text-red-700">{error}</p>
+            </div>
+          )}
+          {filteredReturns.length > 0 && !loading && (
+            <div className="p-4 border-b flex justify-end">
+              <CsvButton
+                columns={[
+                  { key: 'returnId', label: 'رقم الإرجاع' },
+                  { key: 'client', label: 'العميل' },
+                  { key: 'warehouse', label: 'المستودع' },
+                  { key: 'relatedOutboundOrder', label: 'طلب صادر ذو صلة' },
+                  { key: 'status', label: 'الحالة' },
+                  { key: 'disposition', label: 'التصرف' },
+                  { key: 'dateFrom', label: 'التاريخ من' },
+                  { key: 'dateTo', label: 'التاريخ إلى' },
+                  { key: 'createdAt', label: 'تاريخ الإنشاء' },
+                  { key: 'createdBy', label: 'تم الإنشاء بواسطة' },
+                ]}
+                data={filteredReturns}
+                getRow={(r) => [r.returnId, r.client, r.warehouse, r.relatedOutboundOrder ?? '-', r.status, r.disposition ?? '', r.dateFrom ?? '', r.dateTo ?? '', r.createdAt, r.createdBy ?? '']}
+                filename="الإرجاعات"
+              />
             </div>
           )}
           <Table>
@@ -8319,7 +9511,7 @@ function ValueAddedServicesPage() {
 }
 
 // Approvals Center Types (mapped from backend ApprovalReferenceType)
-type ApprovalType = 'order' | 'adjustment' | 'return' | 'invoice';
+type ApprovalType = 'order' | 'inbound' | 'outbound' | 'adjustment' | 'return' | 'invoice';
 type ApprovalStatus = 'قيد الانتظار' | 'موافق عليه' | 'مرفوض';
 
 type Approval = {
@@ -8366,35 +9558,38 @@ function ApprovalsCenterPage() {
         params.set('referenceType', refType);
         const data = await apiFetch<any[]>(`/approvals?${params.toString()}`);
         if (!active) return;
-        const mapped: Approval[] = (Array.isArray(data) ? data : []).map((a) => ({
-          id: a.id,
-          type:
-            a.referenceType === 'ADJUSTMENT'
-              ? 'adjustment'
-              : a.referenceType === 'RETURN'
-                ? 'return'
-                : a.referenceType === 'INVOICE'
-                  ? 'invoice'
-                  : 'order',
-          reference: a.referenceId || '',
-          client: '', // approval does not store client/warehouse directly
-          warehouse: '',
-          requestedBy:
-            a.requestedByActor?.user?.email ||
-            a.requestedByActor?.clientAccount?.email ||
-            a.requestedByActorId ||
-            '-',
-          requestedAt: a.createdAt ? new Date(a.createdAt).toISOString().slice(0, 16).replace('T', ' ') : '',
-          reason: a.requestNotes || '',
-          status:
-            a.status === 'APPROVED'
-              ? ('موافق عليه' as ApprovalStatus)
-              : a.status === 'REJECTED'
-                ? ('مرفوض' as ApprovalStatus)
-                : ('قيد الانتظار' as ApprovalStatus),
-          details: a.approvalStep ? `Step: ${a.approvalStep}` : '',
-          notes: a.decisionNotes || undefined,
-        }));
+        const mapped: Approval[] = (Array.isArray(data) ? data : []).map((a) => {
+          const orderInfo = a.orderInfo as { orderNumber?: string; client?: { name?: string; code?: string }; warehouse?: { name?: string }; status?: string } | null | undefined;
+          const orderType =
+            a.approvalStep === 'INBOUND_ORDER' ? 'inbound' :
+            a.approvalStep === 'OUTBOUND_ORDER' ? 'outbound' :
+            a.referenceType === 'ADJUSTMENT' ? 'adjustment' :
+            a.referenceType === 'RETURN' ? 'return' :
+            a.referenceType === 'INVOICE' ? 'invoice' : 'order';
+
+          return {
+            id: a.id,
+            type: orderType as Approval['type'],
+            reference: orderInfo?.orderNumber || a.referenceId || '',
+            client: orderInfo?.client?.name || '',
+            warehouse: orderInfo?.warehouse?.name || '',
+            requestedBy:
+              a.requestedByActor?.user?.email ||
+              a.requestedByActor?.clientAccount?.email ||
+              a.requestedByActorId ||
+              '-',
+            requestedAt: a.createdAt ? new Date(a.createdAt).toISOString().slice(0, 16).replace('T', ' ') : '',
+            reason: a.requestNotes || '',
+            status:
+              a.status === 'APPROVED'
+                ? ('موافق عليه' as ApprovalStatus)
+                : a.status === 'REJECTED'
+                  ? ('مرفوض' as ApprovalStatus)
+                  : ('قيد الانتظار' as ApprovalStatus),
+            details: orderInfo?.status ? `حالة الطلب: ${orderInfo.status}` : (a.approvalStep ?? ''),
+            notes: a.decisionNotes || undefined,
+          };
+        });
         setApprovals(mapped);
       } catch (e: any) {
         console.error('Failed to load approvals', e);
@@ -8526,12 +9721,12 @@ function ApprovalsCenterPage() {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="text-right">النوع</TableHead>
                 <TableHead className="text-right">المرجع</TableHead>
                 <TableHead className="text-right">العميل</TableHead>
                 <TableHead className="text-right">المستودع</TableHead>
                 <TableHead className="text-right">طلب بواسطة</TableHead>
                 <TableHead className="text-right">تم الطلب في</TableHead>
-                <TableHead className="text-right">السبب أو الملخص</TableHead>
                 <TableHead className="text-right">الحالة</TableHead>
                 <TableHead className="text-right">الإجراءات</TableHead>
               </TableRow>
@@ -8552,12 +9747,20 @@ function ApprovalsCenterPage() {
               ) : (
                 currentApprovals.map((approval) => (
                 <TableRow key={approval.id}>
+                  <TableCell>
+                    <Badge variant="outline" className="text-xs whitespace-nowrap">
+                      {approval.type === 'inbound' ? 'وارد' :
+                       approval.type === 'outbound' ? 'صادر' :
+                       approval.type === 'adjustment' ? 'تعديل' :
+                       approval.type === 'return' ? 'مرتجع' :
+                       approval.type === 'invoice' ? 'فاتورة' : 'طلب'}
+                    </Badge>
+                  </TableCell>
                   <TableCell className="font-mono">{approval.reference}</TableCell>
                   <TableCell>{approval.client}</TableCell>
                   <TableCell>{approval.warehouse}</TableCell>
                   <TableCell>{approval.requestedBy}</TableCell>
                   <TableCell className="font-mono text-sm">{approval.requestedAt}</TableCell>
-                  <TableCell>{approval.reason}</TableCell>
                   <TableCell>
                     <Badge
                       variant={
@@ -8603,9 +9806,12 @@ function ApprovalsCenterPage() {
                 <div>
                   <label className="text-sm font-medium text-gray-500">النوع</label>
                   <p className="text-base font-semibold mt-1">
-                    {selectedApproval.type === 'inbound' ? 'موافقة وارد' :
-                     selectedApproval.type === 'outbound' ? 'موافقة صادر' :
-                     'موافقة تعديل'}
+                    {selectedApproval.type === 'inbound' ? 'موافقة طلب وارد' :
+                     selectedApproval.type === 'outbound' ? 'موافقة طلب صادر' :
+                     selectedApproval.type === 'adjustment' ? 'موافقة تعديل' :
+                     selectedApproval.type === 'return' ? 'موافقة مرتجع' :
+                     selectedApproval.type === 'invoice' ? 'موافقة فاتورة' :
+                     'موافقة طلب'}
                   </p>
                 </div>
                 <div>

@@ -10,6 +10,8 @@ import { UpdateOutboundOrderDto } from './dto/update-outbound-order.dto';
 import { OutboundOrderFilterDto } from './dto/outbound-order-filter.dto';
 import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
 import { CreateOutboundOrderClientPortalDto } from './dto/create-outbound-order-client-portal.dto';
+import { ApprovalsService } from '../approvals/approvals.service';
+import { ApprovalReferenceType } from '../../common/enums/approval-reference-type.enum';
 
 function toNumber(value: unknown): number {
   if (typeof value === 'number' && !Number.isNaN(value)) return value;
@@ -39,7 +41,10 @@ function toNumber(value: unknown): number {
  */
 @Injectable()
 export class OutboundOrdersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly approvalsService: ApprovalsService,
+  ) {}
 
   async create(dto: CreateOutboundOrderDto, createdByActorId: string) {
     // Validate client and warehouse exist
@@ -48,6 +53,7 @@ export class OutboundOrdersService {
       where: { id: dto.warehouseId },
     });
 
+    // Admin-created orders bypass approval and go straight to IN_PROGRESS
     return this.prisma.outboundOrder.create({
       data: {
         clientId: dto.clientId,
@@ -57,6 +63,7 @@ export class OutboundOrdersService {
         expectedShipDate: dto.expectedShipDate
           ? new Date(dto.expectedShipDate)
           : null,
+        status: 'IN_PROGRESS',
         createdByActorId,
       },
       include: {
@@ -195,16 +202,49 @@ export class OutboundOrdersService {
     actorId: string,
     dto: CreateOutboundOrderClientPortalDto,
   ) {
-    return this.create(
-      {
+    const client = await this.prisma.client.findUniqueOrThrow({
+      where: { id: clientId },
+      select: { code: true },
+    });
+    const safeCode = client.code.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 20) || 'CL';
+    const orderNumber = `OUT-${safeCode}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+    // Client-created orders start as PENDING and require admin approval
+    const order = await this.prisma.outboundOrder.create({
+      data: {
         clientId,
-        warehouseId: dto.warehouseId,
-        orderNumber: dto.orderNumber,
-        currentStage: dto.currentStage,
-        expectedShipDate: dto.expectedShipDate,
+        warehouseId: null,
+        orderNumber,
+        currentStage: dto.currentStage?.trim(),
+        expectedShipDate: dto.expectedShipDate
+          ? new Date(dto.expectedShipDate)
+          : null,
+        status: 'PENDING',
+        createdByActorId: actorId,
       },
-      actorId,
-    );
+      include: {
+        client: { select: { id: true, code: true, name: true } },
+        warehouse: { select: { id: true, code: true, name: true } },
+        createdByActor: {
+          select: {
+            id: true,
+            actorType: true,
+            user: { select: { id: true, email: true } },
+            clientAccount: { select: { id: true, email: true } },
+          },
+        },
+      },
+    });
+
+    // Create approval request for admin review
+    await this.approvalsService.createRequest({
+      referenceType: ApprovalReferenceType.ORDER,
+      referenceId: order.id,
+      requestedByActorId: actorId,
+      approvalStep: 'OUTBOUND_ORDER',
+    });
+
+    return order;
   }
 
   async addItemForClientPortal(

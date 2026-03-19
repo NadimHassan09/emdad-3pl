@@ -41,7 +41,11 @@ export async function inviteTeamAccount(body: {
   lastName: string;
   email: string;
   clientRoleId: string;
-}): Promise<{ account: TeamAccountRow; temporaryPassword: string }> {
+}): Promise<{
+  account: TeamAccountRow;
+  temporaryPassword: string;
+  emailSent?: boolean;
+}> {
   return apiFetch(`${BASE}/accounts`, {
     method: 'POST',
     body: JSON.stringify(body),

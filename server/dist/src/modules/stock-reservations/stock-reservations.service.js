@@ -30,24 +30,28 @@ let StockReservationsService = class StockReservationsService {
                 warehouse: true,
             },
         });
+        const warehouseId = order.warehouseId;
+        if (!warehouseId) {
+            throw new common_1.BadRequestException('Outbound order must have a warehouse assigned before creating a reservation');
+        }
         const orderItemIds = new Set(order.items.map((item) => item.id));
         for (const allocation of dto.allocations) {
             if (!orderItemIds.has(allocation.outboundOrderItemId)) {
                 throw new common_1.BadRequestException(`Order item ${allocation.outboundOrderItemId} does not belong to order ${outboundOrderId}`);
             }
         }
-        await this.validateStockAvailability(order.clientId, order.warehouseId, dto.allocations);
+        await this.validateStockAvailability(order.clientId, warehouseId, dto.allocations);
         return this.prisma.stockReservation.create({
             data: {
                 clientId: order.clientId,
-                warehouseId: order.warehouseId,
+                warehouseId,
                 outboundOrderId: order.id,
                 status: 'DRAFT',
                 allocations: {
                     create: dto.allocations.map((alloc) => ({
                         outboundOrderItemId: alloc.outboundOrderItemId,
                         clientId: order.clientId,
-                        warehouseId: order.warehouseId,
+                        warehouseId,
                         productId: alloc.productId,
                         batchId: alloc.batchId,
                         locationId: alloc.locationId,

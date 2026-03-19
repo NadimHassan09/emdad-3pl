@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { RefreshCw, Trash2 } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import {
   fetchClientNotifications,
   markNotificationRead,
@@ -128,6 +129,27 @@ export function NotificationsPage({
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             تحديث
           </Button>
+          <CsvButton
+            columns={[
+              { key: 'createdAt', label: 'وقت الإنشاء' },
+              { key: 'importance', label: 'الأهمية' },
+              { key: 'title', label: 'العنوان' },
+              { key: 'referenceType', label: 'نوع المرجع' },
+              { key: 'referenceId', label: 'معرف المرجع' },
+              { key: 'readStatus', label: 'القراءة' },
+            ]}
+            data={notifications}
+            getRow={(n) => [
+              new Date(n.createdAt).toLocaleString('ar-SA'),
+              importanceToAr(n.importance),
+              n.title,
+              n.referenceType || '-',
+              n.referenceId || '-',
+              readStatusToAr(n.readStatus),
+            ]}
+            filename="notifications"
+            disabled={loading}
+          />
         </div>
       </div>
 

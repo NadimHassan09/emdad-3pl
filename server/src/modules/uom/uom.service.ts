@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { CreateUomDto } from './dto/create-uom.dto';
 import { UpdateUomDto } from './dto/update-uom.dto';
@@ -47,6 +47,21 @@ export class UomService {
     const uom = await this.prisma.uom.findUnique({ where: { id } });
     if (!uom) throw new NotFoundException('UOM not found');
     return uom;
+  }
+
+  async remove(id: string) {
+    await this.findOne(id);
+    const usedByProduct = await this.prisma.product.findFirst({
+      where: { defaultUomId: id },
+      select: { id: true },
+    });
+    if (usedByProduct) {
+      throw new ConflictException(
+        'Cannot delete UOM: it is referenced by one or more products.',
+      );
+    }
+    await this.prisma.uom.delete({ where: { id } });
+    return { success: true };
   }
 
   async update(id: string, dto: UpdateUomDto) {

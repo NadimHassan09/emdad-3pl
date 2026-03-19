@@ -61,11 +61,18 @@ export class ReturnOrdersService {
       });
     }
 
+    const warehouseId = outboundOrder.warehouseId;
+    if (!warehouseId) {
+      throw new BadRequestException(
+        'Outbound order must have a warehouse assigned before creating a return order',
+      );
+    }
+
     // Create return order
     return this.prisma.returnOrder.create({
       data: {
         clientId: outboundOrder.clientId,
-        warehouseId: outboundOrder.warehouseId,
+        warehouseId,
         outboundOrderId: dto.outboundOrderId,
         returnNumber: dto.returnNumber.trim(),
         productId: dto.productId,

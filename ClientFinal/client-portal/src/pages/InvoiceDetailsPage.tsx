@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Download, RefreshCw, ArrowRight } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -108,6 +109,22 @@ export function InvoiceDetailsPage({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <h1 className="text-2xl font-bold text-gray-900">فاتورة</h1>
           <div className="flex flex-wrap items-center gap-2">
+            <CsvButton
+              columns={[
+                { key: 'description', label: 'البند' },
+                { key: 'quantity', label: 'الكمية' },
+                { key: 'unitPrice', label: 'سعر الوحدة' },
+                { key: 'totalAmount', label: 'المبلغ' },
+              ]}
+              data={detail.lines}
+              getRow={(line) => [
+                lineLabel(line),
+                Number(line.quantity),
+                centsToAmount(line.unitPriceCents).toLocaleString('ar-SA'),
+                centsToAmount(line.totalAmountCents).toLocaleString('ar-SA'),
+              ]}
+              filename={`فاتورة-${detail.invoiceNumber}-بنود`}
+            />
             <Button
               type="button"
               variant="outline"

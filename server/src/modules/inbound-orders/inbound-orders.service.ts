@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { InventoryService } from '../inventory/inventory.service';
+import { BillingService } from '../billing/billing.service';
 import { CreateInboundOrderDto } from './dto/create-inbound-order.dto';
 import { UpdateInboundOrderDto } from './dto/update-inbound-order.dto';
 import { InboundOrderFilterDto } from './dto/inbound-order-filter.dto';
@@ -13,6 +14,8 @@ import { AddInboundOrderItemDto } from './dto/add-inbound-order-item.dto';
 import { ReceiveInboundOrderDto } from './dto/receive-inbound-order.dto';
 import { CreateInboundOrderClientPortalDto } from './dto/create-inbound-order-client-portal.dto';
 import { MovementType } from '../../common/enums/movement-type.enum';
+import { ApprovalsService } from '../approvals/approvals.service';
+import { ApprovalReferenceType } from '../../common/enums/approval-reference-type.enum';
 
 /** Convert Prisma Decimal to number for JSON serialization. */
 function toNumber(value: unknown): number {
@@ -45,6 +48,8 @@ export class InboundOrdersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly inventoryService: InventoryService,
+    private readonly billingService: BillingService,
+    private readonly approvalsService: ApprovalsService,
   ) {}
 
   async create(dto: CreateInboundOrderDto, createdByActorId: string) {
@@ -54,6 +59,7 @@ export class InboundOrdersService {
       where: { id: dto.warehouseId },
     });
 
+    // Admin-created orders bypass approval and go straight to IN_PROGRESS
     return this.prisma.inboundOrder.create({
       data: {
         clientId: dto.clientId,
@@ -61,6 +67,7 @@ export class InboundOrdersService {
         orderNumber: dto.orderNumber?.trim(),
         currentStage: dto.currentStage?.trim(),
         expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
+        status: 'IN_PROGRESS',
         createdByActorId,
       },
       include: {
@@ -213,12 +220,15 @@ export class InboundOrdersService {
         where: { id: dto.warehouseId },
       });
     }
-    return this.prisma.inboundOrder.create({
+
+    // Client-created orders start as PENDING and require admin approval
+    const order = await this.prisma.inboundOrder.create({
       data: {
         clientId,
         warehouseId: dto.warehouseId ?? null,
         currentStage: dto.currentStage?.trim(),
         expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
+        status: 'PENDING',
         createdByActorId: actorId,
       },
       include: {
@@ -234,6 +244,16 @@ export class InboundOrdersService {
         },
       },
     });
+
+    // Create approval request for admin review
+    await this.approvalsService.createRequest({
+      referenceType: ApprovalReferenceType.ORDER,
+      referenceId: order.id,
+      requestedByActorId: actorId,
+      approvalStep: 'INBOUND_ORDER',
+    });
+
+    return order;
   }
 
   async addItemForClientPortal(
@@ -552,6 +572,15 @@ export class InboundOrdersService {
         data: { status: 'RECEIVING' as any },
       });
     }
+
+    // Record billing charge for received quantity
+    await this.billingService.recordInboundReceiveCharge(
+      orderId,
+      dto.itemId,
+      order.clientId,
+      item.productId,
+      totalQtyReceived,
+    );
 
     return this.findOne(orderId);
   }

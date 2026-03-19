@@ -20,6 +20,31 @@ export class UpdateBillingPlanDto {
   billingCycle?: BillingCycleEnum;
 
   @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  baseFeeCents?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  inboundItemFeeCents?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  inboundWeightCentsPerKg?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  outboundItemFeeCents?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  outboundWeightCentsPerKg?: number;
+
+  @IsOptional()
   @IsBoolean()
   isActive?: boolean;
 }

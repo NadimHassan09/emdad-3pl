@@ -11,15 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientPortalTeamService = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const bcrypt = require("bcryptjs");
 const crypto_1 = require("crypto");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 const actors_service_1 = require("../actors/actors.service");
+const mail_service_1 = require("../mail/mail.service");
 const CLIENT_ADMIN_ROLE = 'CLIENT_ADMIN';
 let ClientPortalTeamService = class ClientPortalTeamService {
-    constructor(prisma, actors) {
+    constructor(prisma, actors, mail, config) {
         this.prisma = prisma;
         this.actors = actors;
+        this.mail = mail;
+        this.config = config;
     }
     requireClientAdmin(actor) {
         if (actor.role !== CLIENT_ADMIN_ROLE) {
@@ -121,6 +125,23 @@ let ClientPortalTeamService = class ClientPortalTeamService {
             },
         });
         await this.actors.getOrCreateForClientAccount(account.id);
+        const clientPortalUrl = this.config.get('CLIENT_PORTAL_URL') ?? 'http://localhost:5173';
+        const loginUrl = `${clientPortalUrl.replace(/\/$/, '')}/login`;
+        if (this.mail.isConfigured()) {
+            try {
+                await this.mail.sendInvitationEmail({
+                    to: account.email,
+                    firstName: account.firstName,
+                    lastName: account.lastName,
+                    temporaryPassword: tempPassword,
+                    loginUrl,
+                    roleName: account.clientRole.roleName,
+                });
+            }
+            catch (err) {
+                console.error('[ClientPortalTeamService] Failed to send invitation email:', err);
+            }
+        }
         return {
             account: {
                 id: account.id,
@@ -133,6 +154,7 @@ let ClientPortalTeamService = class ClientPortalTeamService {
                 createdAt: account.createdAt,
             },
             temporaryPassword: tempPassword,
+            emailSent: this.mail.isConfigured(),
         };
     }
     async update(actor, clientId, accountId, dto) {
@@ -213,6 +235,8 @@ exports.ClientPortalTeamService = ClientPortalTeamService;
 exports.ClientPortalTeamService = ClientPortalTeamService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        actors_service_1.ActorsService])
+        actors_service_1.ActorsService,
+        mail_service_1.MailService,
+        config_1.ConfigService])
 ], ClientPortalTeamService);
 //# sourceMappingURL=client-portal-team.service.js.map

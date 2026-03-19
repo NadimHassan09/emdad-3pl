@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Plus, RefreshCw, Pencil, Trash2 } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -334,6 +335,24 @@ export function ProductsPage() {
               <RefreshCw className="w-4 h-4" />
               تحديث
             </Button>
+            <CsvButton
+              columns={[
+                { key: 'sku', label: 'SKU' },
+                { key: 'name', label: 'الاسم' },
+                { key: 'price', label: 'السعر' },
+                { key: 'description', label: 'الوصف' },
+                { key: 'uom', label: 'وحدة القياس' },
+              ]}
+              data={products}
+              getRow={(p) => [
+                p.sku,
+                p.name,
+                formatPrice(p.price),
+                p.description || '-',
+                p.defaultUom?.code ?? '-',
+              ]}
+              filename="products"
+            />
             <Button
               type="button"
               onClick={openCreate}

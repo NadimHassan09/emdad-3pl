@@ -36,10 +36,14 @@ let ReturnOrdersService = class ReturnOrdersService {
                 where: { id: dto.batchId },
             });
         }
+        const warehouseId = outboundOrder.warehouseId;
+        if (!warehouseId) {
+            throw new common_1.BadRequestException('Outbound order must have a warehouse assigned before creating a return order');
+        }
         return this.prisma.returnOrder.create({
             data: {
                 clientId: outboundOrder.clientId,
-                warehouseId: outboundOrder.warehouseId,
+                warehouseId,
                 outboundOrderId: dto.outboundOrderId,
                 returnNumber: dto.returnNumber.trim(),
                 productId: dto.productId,

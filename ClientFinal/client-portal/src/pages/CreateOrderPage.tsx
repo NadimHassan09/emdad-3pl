@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Plus, Trash2 } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,13 +14,11 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
-  fetchClientPortalWarehouses,
   fetchClientPortalProducts,
   createInboundPortal,
   createOutboundPortal,
   addInboundPortalItem,
   addOutboundPortalItem,
-  type PortalWarehouse,
   type PortalProduct,
 } from '@/api/clientPortalOrders';
 import { getOrdersErrorMessage } from '@/api/orderUtils';
@@ -31,12 +30,9 @@ export function CreateOrderPage({
   orderType: 'وارد' | 'صادر';
   onCancel: () => void;
 }) {
-  const [warehouses, setWarehouses] = useState<PortalWarehouse[]>([]);
   const [products, setProducts] = useState<PortalProduct[]>([]);
   const [metaLoading, setMetaLoading] = useState(true);
-  const [warehouseId, setWarehouseId] = useState('');
   const [expectedDate, setExpectedDate] = useState('');
-  const [orderReference, setOrderReference] = useState('');
   const [orderItems, setOrderItems] = useState<
     Array<{ id: string; productId: string; quantity: number }>
   >([]);
@@ -47,18 +43,14 @@ export function CreateOrderPage({
     try {
       setMetaLoading(true);
       setError(null);
-      const [wh, pr] = await Promise.all([
-        orderType === 'صادر' ? fetchClientPortalWarehouses() : Promise.resolve([]),
-        fetchClientPortalProducts(),
-      ]);
-      setWarehouses(wh);
+      const pr = await fetchClientPortalProducts();
       setProducts(pr);
     } catch (e) {
       setError(getOrdersErrorMessage(e));
     } finally {
       setMetaLoading(false);
     }
-  }, [orderType]);
+  }, []);
 
   useEffect(() => {
     void loadMeta();
@@ -86,10 +78,6 @@ export function CreateOrderPage({
   };
 
   const handleSubmit = async () => {
-    if (orderType !== 'وارد' && !warehouseId) {
-      setError('اختر المستودع.');
-      return;
-    }
     const lines = orderItems.filter((i) => i.productId && i.quantity > 0);
     if (lines.length === 0) {
       setError('أضف بنداً واحداً على الأقل بكمية صحيحة.');
@@ -115,9 +103,7 @@ export function CreateOrderPage({
         }
       } else {
         const created = (await createOutboundPortal({
-          warehouseId,
           expectedShipDate: expectedDate || undefined,
-          orderNumber: orderReference.trim() || undefined,
         })) as { id: string };
         const oid = created.id;
         for (const item of lines) {
@@ -163,23 +149,6 @@ export function CreateOrderPage({
             <Skeleton className="h-40 w-full" />
           ) : (
             <>
-              {orderType === 'صادر' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">المستودع</label>
-                  <Select value={warehouseId} onValueChange={setWarehouseId}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="اختر المستودع" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {warehouses.map((wh) => (
-                        <SelectItem key={wh.id} value={wh.id}>
-                          {wh.name} ({wh.code})
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              )}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {orderType === 'وارد' ? 'تاريخ الوصول المتوقع' : 'تاريخ الشحن المتوقع'}
@@ -191,36 +160,38 @@ export function CreateOrderPage({
                   className="w-full"
                 />
               </div>
-              {orderType === 'صادر' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    رقم مرجعي لطلبك <span className="text-gray-400 text-xs">(اختياري)</span>
-                  </label>
-                  <Input
-                    value={orderReference}
-                    onChange={(e) => setOrderReference(e.target.value)}
-                    placeholder="مثال: PO-2026-001"
-                    className="w-full"
-                  />
-                </div>
-              )}
             </>
           )}
         </CardContent>
       </Card>
 
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-xl font-bold text-gray-900">بنود الطلب</h2>
-          <Button
-            type="button"
-            onClick={addOrderItem}
-            disabled={metaLoading}
-            className="bg-gradient-to-r from-[#176C33] to-[#104920] text-white gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            إضافة بند
-          </Button>
+          <div className="flex items-center gap-2">
+            <CsvButton
+              columns={[
+                { key: 'product', label: 'المنتج' },
+                { key: 'quantity', label: 'الكمية' },
+              ]}
+              data={orderItems}
+              getRow={(item) => {
+                const p = products.find((pr) => pr.id === item.productId);
+                return [p ? `${p.name} (${p.sku})` : '-', item.quantity ?? ''];
+              }}
+              filename="order-items"
+              disabled={metaLoading || orderItems.length === 0}
+            />
+            <Button
+              type="button"
+              onClick={addOrderItem}
+              disabled={metaLoading}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] text-white gap-2"
+            >
+              <Plus className="w-4 h-4" />
+              إضافة بند
+            </Button>
+          </div>
         </div>
         <Card className="border-0 shadow-sm">
           <CardContent className="p-0">

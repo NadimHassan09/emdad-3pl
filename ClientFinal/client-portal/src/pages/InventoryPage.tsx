@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Download, RefreshCw } from 'lucide-react';
+import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -67,10 +68,28 @@ export function InventoryPage() {
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             تحديث
           </Button>
-          <Button variant="outline" className="text-[#176C33] border-[#176C33]/30 gap-2" disabled>
-            <Download className="w-4 h-4" />
-            تصدير CSV
-          </Button>
+          <CsvButton
+            columns={[
+              { key: 'productName', label: 'اسم المنتج' },
+              { key: 'productCode', label: 'كود المنتج' },
+              { key: 'uom', label: 'وحدة القياس' },
+              { key: 'currentQuantity', label: 'الكمية الحالية' },
+              { key: 'lastMovementDate', label: 'آخر تحديث' },
+              { key: 'notes', label: 'تفاصيل' },
+            ]}
+            data={rows}
+            getRow={(r) => [
+              r.productName,
+              r.productCode,
+              r.uom,
+              r.currentQuantity.toLocaleString('ar-SA'),
+              r.lastMovementDate,
+              r.notes || '-',
+            ]}
+            filename="inventory"
+            disabled={loading}
+            className="text-[#176C33] border-[#176C33]/30"
+          />
           <Button variant="outline" className="text-[#176C33] border-[#176C33]/30 gap-2" disabled>
             <Download className="w-4 h-4" />
             تصدير PDF
@@ -90,7 +109,7 @@ export function InventoryPage() {
         </Alert>
       )}
 
-      <Card className="border-0 shadow-sm mt-6">
+      <Card className="shadow-sm mt-6">
         <CardContent className="p-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -115,7 +134,7 @@ export function InventoryPage() {
         </CardContent>
       </Card>
 
-      <Card className="border-0 shadow-sm mt-6">
+      <Card className="shadow-sm mt-6">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="data-table w-full">

@@ -91,7 +91,7 @@ export function BillingPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {loading && !data ? (
           [1, 2, 3].map((i) => (
-            <Card key={i} className="border-0 shadow-sm bg-white">
+            <Card key={i} className="shadow-sm">
               <CardContent className="p-5">
                 <Skeleton className="h-4 w-24 mb-2" />
                 <Skeleton className="h-8 w-40" />
@@ -100,19 +100,19 @@ export function BillingPage() {
           ))
         ) : (
           <>
-            <Card className="border-0 shadow-sm bg-white">
+            <Card className="shadow-sm">
               <CardContent className="p-5">
                 <p className="text-sm text-gray-500 mb-1">الخطة</p>
                 <p className="text-lg font-bold text-gray-900">{plan?.planName ?? '—'}</p>
               </CardContent>
             </Card>
-            <Card className="border-0 shadow-sm bg-white">
+            <Card className="shadow-sm">
               <CardContent className="p-5">
                 <p className="text-sm text-gray-500 mb-1">تاريخ انتهاء الاشتراك</p>
                 <p className="text-lg font-bold text-gray-900 font-mono">{plan?.renewalDate ?? '—'}</p>
               </CardContent>
             </Card>
-            <Card className="border-0 shadow-sm bg-white">
+            <Card className="shadow-sm">
               <CardContent className="p-5">
                 <p className="text-sm text-gray-500 mb-1">الحالة</p>
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
@@ -127,7 +127,7 @@ export function BillingPage() {
       <div className="space-y-4">
         <h2 className="text-lg font-semibold text-gray-900">دورة الاستخدام الحالية</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="border-0 shadow-sm bg-white">
+          <Card className="shadow-sm">
             <CardHeader>
               <CardTitle className="text-base font-semibold">المخزون (مقارنة بسقف الخطة)</CardTitle>
             </CardHeader>
@@ -170,7 +170,7 @@ export function BillingPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white">
+          <Card className="shadow-sm">
             <CardHeader>
               <CardTitle className="text-base font-semibold">حركات الوارد</CardTitle>
             </CardHeader>
@@ -196,7 +196,7 @@ export function BillingPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm bg-white">
+          <Card className="shadow-sm">
             <CardHeader>
               <CardTitle className="text-base font-semibold">طلبات الصادر</CardTitle>
             </CardHeader>
@@ -224,7 +224,7 @@ export function BillingPage() {
         </div>
       </div>
 
-      <Card className="border-0 shadow-sm bg-gradient-to-r from-[#176C33]/10 to-[#104920]/10">
+      <Card className="shadow-sm bg-gradient-to-r from-[#176C33]/10 to-[#104920]/10">
         <CardContent className="p-6">
           {loading && !data ? (
             <Skeleton className="h-16 w-full max-w-md" />

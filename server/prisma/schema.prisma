@@ -549,7 +549,7 @@ model InboundOrderItemBatch {
 model OutboundOrder {
   id                String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   clientId          String      @map("client_id") @db.Uuid
-  warehouseId       String      @map("warehouse_id") @db.Uuid
+  warehouseId       String?     @map("warehouse_id") @db.Uuid
   orderNumber       String?     @map("order_number") @db.VarChar(50)
   status            OrderStatus @default(DRAFT)
   currentStage      String?     @map("current_stage") @db.VarChar(100)
@@ -559,7 +559,7 @@ model OutboundOrder {
   updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   client            Client              @relation(fields: [clientId], references: [id], onDelete: Restrict)
-  warehouse         Warehouse           @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse?          @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
   createdByActor    Actor               @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
   items             OutboundOrderItem[]
   stockReservations StockReservation[]
@@ -820,19 +820,25 @@ enum ChargeCategory {
   STORAGE
   MOVEMENT
   VAS
+  PLAN_FEE
   MANUAL_CREDIT
   MANUAL_CHARGE
   @@map("charge_category")
 }
 
 model BillingPlan {
-  id               String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  planName         String           @map("plan_name") @db.VarChar(100)
-  storageIncluded  Decimal?         @map("storage_included") @db.Decimal(18, 4)
-  billingCycle     BillingCycleEnum @map("billing_cycle")
-  isActive         Boolean          @default(true) @map("is_active") @db.Boolean
-  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt        DateTime         @default(now()) @map("updated_at") @db.Timestamptz(6)
+  id                        String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  planName                  String           @map("plan_name") @db.VarChar(100)
+  storageIncluded           Decimal?         @map("storage_included") @db.Decimal(18, 4)
+  billingCycle              BillingCycleEnum @map("billing_cycle")
+  baseFeeCents              BigInt?          @default(0) @map("base_fee_cents") @db.BigInt
+  inboundItemFeeCents       BigInt?          @default(0) @map("inbound_item_fee_cents") @db.BigInt
+  inboundWeightCentsPerKg   BigInt?          @default(0) @map("inbound_weight_cents_per_kg") @db.BigInt
+  outboundItemFeeCents      BigInt?          @default(0) @map("outbound_item_fee_cents") @db.BigInt
+  outboundWeightCentsPerKg  BigInt?          @default(0) @map("outbound_weight_cents_per_kg") @db.BigInt
+  isActive                  Boolean          @default(true) @map("is_active") @db.Boolean
+  createdAt                 DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt                 DateTime         @default(now()) @map("updated_at") @db.Timestamptz(6)
 
   clientBillingPlans ClientBillingPlan[]
   vasPricings       VasPricing[]

@@ -25,6 +25,7 @@ import { ClientSettingsModule } from './modules/client-settings/client-settings.
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ClientPortalTeamModule } from './modules/client-portal-team/client-portal-team.module';
 import { ClientPortalNotificationsModule } from './modules/client-portal-notifications/client-portal-notifications.module';
+import { MailModule } from './modules/mail/mail.module';
 import { AppController } from './app.controller';
 
 @Module({
@@ -58,6 +59,7 @@ import { AppController } from './app.controller';
     DashboardModule,
     ClientPortalTeamModule,
     ClientPortalNotificationsModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [],

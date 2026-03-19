@@ -30,6 +30,7 @@ export interface InboundOrderApi {
 
 // UI types (match App.tsx InboundOrder)
 export type InboundOrderStatusUi =
+  | 'بانتظار الموافقة'
   | 'جديد'
   | 'قيد المعالجة'
   | 'قيد الاستلام'
@@ -86,7 +87,7 @@ function toNum(x: number | string | unknown): number {
 function statusToUi(status: string): InboundOrderStatusUi {
   const map: Record<string, InboundOrderStatusUi> = {
     DRAFT: 'جديد',
-    PENDING: 'جديد',
+    PENDING: 'بانتظار الموافقة',
     CONFIRMED: 'قيد المعالجة',
     IN_PROGRESS: 'قيد المعالجة',
     RECEIVING: 'قيد الاستلام',
@@ -236,7 +237,7 @@ export async function addInboundOrderItem(
 
 /** Status UI label -> backend enum for filter */
 export const INBOUND_STATUS_TO_API: Record<string, string> = {
-  جديد: 'PENDING',
+  جديد: 'DRAFT',
   'قيد المعالجة': 'IN_PROGRESS',
   'قيد الاستلام': 'RECEIVING',
   مكتمل: 'COMPLETED',

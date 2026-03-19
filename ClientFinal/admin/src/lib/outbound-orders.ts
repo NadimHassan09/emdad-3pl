@@ -24,6 +24,7 @@ export interface OutboundOrderApi {
 }
 
 export type OutboundOrderStatusUi =
+  | 'بانتظار الموافقة'
   | 'جديد'
   | 'قيد المعالجة'
   | 'قيد الشحن'
@@ -86,7 +87,7 @@ function toNum(x: number | string | unknown): number {
 function statusToUi(status: string): OutboundOrderStatusUi {
   const map: Record<string, OutboundOrderStatusUi> = {
     DRAFT: 'جديد',
-    PENDING: 'جديد',
+    PENDING: 'بانتظار الموافقة',
     CONFIRMED: 'قيد المعالجة',
     IN_PROGRESS: 'قيد المعالجة',
     RECEIVING: 'قيد المعالجة',
@@ -251,7 +252,7 @@ export async function addOutboundOrderItem(
 
 /** Status UI label -> backend enum for filter */
 export const OUTBOUND_STATUS_TO_API: Record<string, string> = {
-  جديد: 'PENDING',
+  جديد: 'DRAFT',
   'قيد المعالجة': 'IN_PROGRESS',
   'قيد الشحن': 'IN_PROGRESS',
   مكتمل: 'COMPLETED',

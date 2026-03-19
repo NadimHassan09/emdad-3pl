@@ -215,8 +215,202 @@ export async function fetchLocationsTree(): Promise<LocationUi[]> {
   return arr.map(mapLocationNodeToUi);
 }
 
+export interface LocationFlatApi {
+  id: string;
+  code: string;
+  barcode: string;
+  locationType: string;
+  parentLocationId: string | null;
+  parentCode: string | null;
+  warehouseId: string;
+  warehouseName: string;
+  warehouseCode: string;
+  isActive: boolean;
+  capacityValue: number | null;
+  createdAt: string;
+}
+
+export const LOCATION_TYPES = ['ZONE', 'AISLE', 'RACK', 'BIN', 'STAGING'] as const;
+export type LocationTypeValue = (typeof LOCATION_TYPES)[number];
+export const LOCATION_TYPE_LABELS: Record<LocationTypeValue, string> = {
+  ZONE: 'منطقة',
+  AISLE: 'ممر',
+  RACK: 'رف',
+  BIN: 'خانة',
+  STAGING: 'منطقة تجميع',
+};
+
+/**
+ * Fetches a flat list of locations by combining the existing
+ * GET /locations/tree and GET /warehouses endpoints.
+ * This avoids depending on the newer GET /locations/flat endpoint
+ * that may not yet be deployed on the server.
+ */
+export async function fetchLocationsFlat(warehouseId?: string): Promise<LocationFlatApi[]> {
+  const [rawTree, rawWarehouses] = await Promise.all([
+    apiFetch<LocationTreeNodeApi[]>('/locations/tree').catch(() => [] as LocationTreeNodeApi[]),
+    apiFetch<WarehouseApi[]>('/warehouses').catch(() => [] as WarehouseApi[]),
+  ]);
+
+  const warehouseMap = new Map(
+    (Array.isArray(rawWarehouses) ? rawWarehouses : []).map((w) => [w.id, w]),
+  );
+
+  // Flatten tree recursively and build id→code lookup
+  const allNodes: LocationTreeNodeApi[] = [];
+  function collect(nodes: LocationTreeNodeApi[]) {
+    for (const n of nodes) {
+      allNodes.push(n);
+      if (n.children?.length) collect(n.children);
+    }
+  }
+  collect(Array.isArray(rawTree) ? rawTree : []);
+
+  const idToCode = new Map(allNodes.map((n) => [n.id, n.code]));
+
+  return allNodes
+    .filter((n) => !warehouseId || n.warehouseId === warehouseId)
+    .map((n) => {
+      const wh = warehouseMap.get(n.warehouseId ?? '');
+      return {
+        id: n.id,
+        code: n.code,
+        barcode: n.code,
+        locationType: n.locationType,
+        parentLocationId: n.parentLocationId,
+        parentCode: n.parentLocationId ? (idToCode.get(n.parentLocationId) ?? null) : null,
+        warehouseId: n.warehouseId ?? '',
+        warehouseName: wh?.name ?? '',
+        warehouseCode: wh?.code ?? '',
+        isActive: true,
+        capacityValue: null,
+        createdAt: '',
+      } satisfies LocationFlatApi;
+    });
+}
+
+export interface CreateLocationPayload {
+  code: string;
+  locationType: LocationTypeValue;
+  parentLocationId?: string;
+  isActive?: boolean;
+}
+
+const LOCATION_TYPE_ABBREV: Record<string, string> = {
+  ZONE: 'ZN',
+  AISLE: 'AS',
+  RACK: 'RK',
+  BIN: 'BN',
+  STAGING: 'ST',
+};
+
+/** Generate a unique-enough location code on the client side. */
+export function generateLocationCode(warehouseCode: string, locationType: string): string {
+  const safe = warehouseCode.replace(/[^A-Za-z0-9]/g, '').slice(0, 6).toUpperCase() || 'WH';
+  const abbrev = LOCATION_TYPE_ABBREV[locationType] ?? locationType.slice(0, 2).toUpperCase();
+  const suffix = Math.random().toString(36).slice(2, 7).toUpperCase();
+  return `${safe}-${abbrev}-${suffix}`;
+}
+
+export interface UpdateLocationPayload {
+  locationType?: LocationTypeValue;
+  parentLocationId?: string | null;
+  isActive?: boolean;
+}
+
+export async function createLocation(
+  warehouseId: string,
+  payload: CreateLocationPayload,
+): Promise<LocationFlatApi> {
+  return apiFetch<LocationFlatApi>(`/warehouses/${warehouseId}/locations`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function updateLocation(
+  warehouseId: string,
+  id: string,
+  payload: UpdateLocationPayload,
+): Promise<LocationFlatApi> {
+  return apiFetch<LocationFlatApi>(`/warehouses/${warehouseId}/locations/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function deleteLocation(
+  warehouseId: string,
+  id: string,
+): Promise<{ success: boolean }> {
+  return apiFetch<{ success: boolean }>(`/warehouses/${warehouseId}/locations/${id}`, {
+    method: 'DELETE',
+  });
+}
+
 export async function fetchUomList(): Promise<UomApi[]> {
   const list = await apiFetch<UomApi[]>('/uom');
+  return Array.isArray(list) ? list : [];
+}
+
+export const UOM_DIMENSIONS = ['COUNT', 'LENGTH', 'WEIGHT', 'VOLUME', 'TEMPERATURE'] as const;
+export type UomDimension = (typeof UOM_DIMENSIONS)[number];
+
+export const UOM_DIMENSION_LABELS: Record<UomDimension, string> = {
+  COUNT: 'عدد',
+  LENGTH: 'طول',
+  WEIGHT: 'وزن',
+  VOLUME: 'حجم',
+  TEMPERATURE: 'درجة حرارة',
+};
+
+export interface CreateUomPayload {
+  code: string;
+  name: string;
+  dimension: UomDimension;
+  baseConversion?: number;
+  isActive?: boolean;
+}
+
+export interface UpdateUomPayload {
+  code?: string;
+  name?: string;
+  dimension?: UomDimension;
+  baseConversion?: number;
+  isActive?: boolean;
+}
+
+export async function createUom(payload: CreateUomPayload): Promise<UomApi> {
+  return apiFetch<UomApi>('/uom', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function updateUom(id: string, payload: UpdateUomPayload): Promise<UomApi> {
+  return apiFetch<UomApi>(`/uom/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function deleteUom(id: string): Promise<{ success: boolean }> {
+  return apiFetch<{ success: boolean }>(`/uom/${id}`, { method: 'DELETE' });
+}
+
+export interface ClientAccountApi {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  isActive: boolean;
+  clientRoleId: string;
+  roleName: string;
+  createdAt: string;
+}
+
+export async function fetchClientAccounts(clientId: string): Promise<ClientAccountApi[]> {
+  const list = await apiFetch<ClientAccountApi[]>(`/clients/${clientId}/accounts`);
   return Array.isArray(list) ? list : [];
 }
 

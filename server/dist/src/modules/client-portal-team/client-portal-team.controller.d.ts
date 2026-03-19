@@ -33,6 +33,7 @@ export declare class ClientPortalTeamController {
             createdAt: Date;
         };
         temporaryPassword: string;
+        emailSent: boolean;
     }>;
     update(id: string, actor: JwtPayload, dto: UpdateTeamAccountDto): Promise<{
         id: string;
