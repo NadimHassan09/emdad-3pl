@@ -18,22 +18,29 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const isProd = process.env.NODE_ENV === 'production';
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message: string = 'Internal server error';
+    let message: string | string[] = 'Internal server error';
 
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       const res = exception.getResponse();
-      message = typeof res === 'string' ? res : (res as { message?: string }).message ?? message;
+      if (typeof res === 'string') {
+        message = res;
+      } else if (res && typeof res === 'object') {
+        const resObj = res as { message?: string | string[] };
+        message = resObj.message ?? message;
+      }
     } else if (exception instanceof Error) {
       message = exception.message;
       this.logger.error(`Unhandled error: ${exception.message}`, exception.stack);
     }
 
-    const body: { statusCode: number; message: string } = {
-      statusCode: status,
-      message: status === 500 && !isProd ? message : status === 500 ? 'Internal server error' : message,
-    };
+    const safeMessage: string | string[] =
+      status === 500
+        ? isProd
+          ? 'Internal server error'
+          : (typeof message === 'string' ? message : message[0]) ?? 'Internal server error'
+        : message;
 
-    response.status(status).json(body);
+    response.status(status).json({ statusCode: status, message: safeMessage });
   }
 }

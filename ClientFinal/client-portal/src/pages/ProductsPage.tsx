@@ -4,6 +4,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import {
   Select,
   SelectContent,
@@ -29,6 +31,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { BarcodeInput } from '@/components/BarcodeInput';
 import {
   fetchMyProducts,
   createProduct,
@@ -55,10 +58,23 @@ export function ProductsPage() {
 
   const [createOpen, setCreateOpen] = useState(false);
   const [createName, setCreateName] = useState('');
-  const [createSku, setCreateSku] = useState('');
-  const [createPrice, setCreatePrice] = useState('');
   const [createDescription, setCreateDescription] = useState('');
+  const [createCategory, setCreateCategory] = useState('');
+  const [createBrand, setCreateBrand] = useState('');
+  const [createWeight, setCreateWeight] = useState('');
+  const [createLength, setCreateLength] = useState('');
+  const [createWidth, setCreateWidth] = useState('');
+  const [createHeight, setCreateHeight] = useState('');
+  const [createUnitsPerCarton, setCreateUnitsPerCarton] = useState('');
   const [createUomId, setCreateUomId] = useState('');
+  const [createBarcode, setCreateBarcode] = useState('');
+  const [createIsSerialized, setCreateIsSerialized] = useState(false);
+  const [createIsBatchTracked, setCreateIsBatchTracked] = useState(false);
+  const [createRequiresExpiryDate, setCreateRequiresExpiryDate] = useState(false);
+  const [createMinThreshold, setCreateMinThreshold] = useState('');
+  const [createReorderPoint, setCreateReorderPoint] = useState('');
+  const [createDeclaredValue, setCreateDeclaredValue] = useState('');
+  const [createPrice, setCreatePrice] = useState('');
   const [createSubmitting, setCreateSubmitting] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
 
@@ -66,9 +82,23 @@ export function ProductsPage() {
   const [editProduct, setEditProduct] = useState<MyProduct | null>(null);
   const [editName, setEditName] = useState('');
   const [editSku, setEditSku] = useState('');
-  const [editPrice, setEditPrice] = useState('');
   const [editDescription, setEditDescription] = useState('');
+  const [editCategory, setEditCategory] = useState('');
+  const [editBrand, setEditBrand] = useState('');
+  const [editWeight, setEditWeight] = useState('');
+  const [editLength, setEditLength] = useState('');
+  const [editWidth, setEditWidth] = useState('');
+  const [editHeight, setEditHeight] = useState('');
+  const [editUnitsPerCarton, setEditUnitsPerCarton] = useState('');
   const [editUomId, setEditUomId] = useState('');
+  const [editBarcode, setEditBarcode] = useState('');
+  const [editIsSerialized, setEditIsSerialized] = useState(false);
+  const [editIsBatchTracked, setEditIsBatchTracked] = useState(false);
+  const [editRequiresExpiryDate, setEditRequiresExpiryDate] = useState(false);
+  const [editMinThreshold, setEditMinThreshold] = useState('');
+  const [editReorderPoint, setEditReorderPoint] = useState('');
+  const [editDeclaredValue, setEditDeclaredValue] = useState('');
+  const [editPrice, setEditPrice] = useState('');
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editError, setEditError] = useState<string | null>(null);
 
@@ -104,45 +134,118 @@ export function ProductsPage() {
 
   const openCreate = () => {
     setCreateName('');
-    setCreateSku('');
-    setCreatePrice('');
     setCreateDescription('');
+    setCreateCategory('');
+    setCreateBrand('');
+    setCreateWeight('');
+    setCreateLength('');
+    setCreateWidth('');
+    setCreateHeight('');
+    setCreateUnitsPerCarton('');
     setCreateUomId(uoms[0]?.id ?? '');
+    setCreateBarcode('');
+    setCreateIsSerialized(false);
+    setCreateIsBatchTracked(false);
+    setCreateRequiresExpiryDate(false);
+    setCreateMinThreshold('');
+    setCreateReorderPoint('');
+    setCreateDeclaredValue('');
+    setCreatePrice('');
     setCreateError(null);
     setCreateOpen(true);
   };
 
   const handleCreate = async () => {
-    if (!createName.trim() || !createSku.trim() || !createUomId) {
-      setCreateError('الاسم و SKU ووحدة القياس مطلوبة.');
+    const weight = parseFloat(createWeight);
+    const length = parseFloat(createLength);
+    const width = parseFloat(createWidth);
+    const height = parseFloat(createHeight);
+    const unitsPerCarton = parseInt(createUnitsPerCarton, 10);
+    if (!createName.trim() || !createUomId) {
+      setCreateError('الاسم ووحدة القياس مطلوبة.');
+      return;
+    }
+    if (Number.isNaN(weight) || weight < 0) {
+      setCreateError('الوزن مطلوب ويجب أن يكون 0 أو أكثر.');
+      return;
+    }
+    if (Number.isNaN(length) || length < 0 || Number.isNaN(width) || width < 0 || Number.isNaN(height) || height < 0) {
+      setCreateError('الطول والعرض والارتفاع مطلوبة ويجب أن تكون 0 أو أكثر.');
+      return;
+    }
+    if (Number.isNaN(unitsPerCarton) || unitsPerCarton < 1) {
+      setCreateError('الوحدات لكل كرتون مطلوبة ويجب أن تكون 1 أو أكثر.');
       return;
     }
     try {
       setCreateSubmitting(true);
       setCreateError(null);
+      const minTh = createMinThreshold ? parseFloat(createMinThreshold) : undefined;
+      const reorder = createReorderPoint ? parseFloat(createReorderPoint) : undefined;
+      const declared = createDeclaredValue ? parseFloat(createDeclaredValue) : undefined;
+      const priceVal = createPrice ? parseFloat(createPrice) : undefined;
       await createProduct({
         name: createName.trim(),
-        sku: createSku.trim(),
-        price: createPrice ? parseFloat(createPrice) : undefined,
         description: createDescription.trim() || undefined,
+        category: createCategory.trim() || undefined,
+        brand: createBrand.trim() || undefined,
+        weight,
+        length,
+        width,
+        height,
+        unitsPerCarton,
         defaultUomId: createUomId,
+        barcode: createBarcode.trim() || undefined,
+        isSerialized: createIsSerialized,
+        isBatchTracked: createIsBatchTracked,
+        requiresExpiryDate: createRequiresExpiryDate,
+        minThreshold: minTh != null && !Number.isNaN(minTh) ? minTh : undefined,
+        reorderPoint: reorder != null && !Number.isNaN(reorder) ? reorder : undefined,
+        declaredValue: declared != null && !Number.isNaN(declared) ? declared : undefined,
+        price: priceVal != null && !Number.isNaN(priceVal) ? priceVal : undefined,
       });
       setCreateOpen(false);
       void load();
     } catch (e) {
+      const apiErr = e as { status?: number; body?: unknown };
+      if (apiErr?.body && typeof apiErr.body === 'object' && 'message' in apiErr.body) {
+        const msgs = (apiErr.body as { message: unknown }).message;
+        if (Array.isArray(msgs)) {
+          console.error('[ProductsPage] Validation errors (400):', msgs);
+        } else {
+          console.error('[ProductsPage] Error response body:', apiErr.body);
+        }
+      }
       setCreateError(getProductsErrorMessage(e, 'تعذر إضافة المنتج.'));
     } finally {
       setCreateSubmitting(false);
     }
   };
 
+  const toNum = (v: number | string | null | undefined): string =>
+    v != null && v !== '' ? String(v) : '';
+
   const openEdit = (p: MyProduct) => {
     setEditProduct(p);
     setEditName(p.name);
     setEditSku(p.sku);
-    setEditPrice(p.price != null ? String(p.price) : '');
     setEditDescription(p.description ?? '');
+    setEditCategory(p.category ?? '');
+    setEditBrand(p.brand ?? '');
+    setEditWeight(toNum(p.weight));
+    setEditLength(toNum(p.lengthCm));
+    setEditWidth(toNum(p.widthCm));
+    setEditHeight(toNum(p.heightCm));
+    setEditUnitsPerCarton(p.unitsPerCarton != null ? String(p.unitsPerCarton) : '');
     setEditUomId(p.defaultUom?.id ?? uoms[0]?.id ?? '');
+    setEditBarcode(p.barcode ?? '');
+    setEditIsSerialized(p.isSerialized ?? false);
+    setEditIsBatchTracked(p.isBatchTracked ?? false);
+    setEditRequiresExpiryDate(p.requiresExpiryDate ?? false);
+    setEditMinThreshold(toNum(p.minThreshold));
+    setEditReorderPoint(toNum(p.reorderPoint));
+    setEditDeclaredValue(toNum(p.declaredValue));
+    setEditPrice(toNum(p.price));
     setEditError(null);
     setEditOpen(true);
   };
@@ -158,9 +261,23 @@ export function ProductsPage() {
       await updateProduct(editProduct.id, {
         name: editName.trim(),
         sku: editSku.trim(),
-        price: editPrice ? parseFloat(editPrice) : undefined,
         description: editDescription.trim() || undefined,
+        category: editCategory.trim() || undefined,
+        brand: editBrand.trim() || undefined,
+        weight: editWeight ? parseFloat(editWeight) : undefined,
+        length: editLength ? parseFloat(editLength) : undefined,
+        width: editWidth ? parseFloat(editWidth) : undefined,
+        height: editHeight ? parseFloat(editHeight) : undefined,
+        unitsPerCarton: editUnitsPerCarton ? parseInt(editUnitsPerCarton, 10) : undefined,
         defaultUomId: editUomId || undefined,
+        barcode: editBarcode.trim() || undefined,
+        isSerialized: editIsSerialized,
+        isBatchTracked: editIsBatchTracked,
+        requiresExpiryDate: editRequiresExpiryDate,
+        minThreshold: editMinThreshold ? parseFloat(editMinThreshold) : undefined,
+        reorderPoint: editReorderPoint ? parseFloat(editReorderPoint) : undefined,
+        declaredValue: editDeclaredValue ? parseFloat(editDeclaredValue) : undefined,
+        price: editPrice ? parseFloat(editPrice) : undefined,
       });
       setEditOpen(false);
       setEditProduct(null);
@@ -326,168 +443,392 @@ export function ProductsPage() {
 
       {/* Create Dialog */}
       <Dialog open={createOpen} onOpenChange={setCreateOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className="flex flex-col h-[85vh] max-h-[85vh] w-[calc(100vw-2rem)] sm:max-w-xl p-0 gap-0 overflow-hidden">
+          <DialogHeader className="shrink-0 px-6 pt-6 pb-4 pr-12 border-b border-gray-100">
             <DialogTitle>إضافة منتج جديد</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 mt-4">
-            {createError && (
-              <Alert variant="destructive">
-                <AlertDescription>{createError}</AlertDescription>
-              </Alert>
-            )}
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                الاسم *</label>
-              <Input
-                value={createName}
-                onChange={(e) => setCreateName(e.target.value)}
-                placeholder="اسم المنتج"
-              />
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+            <div className="space-y-8 px-6 py-5">
+              {createError && (
+                <Alert variant="destructive">
+                  <AlertDescription>{createError}</AlertDescription>
+                </Alert>
+              )}
+
+              {/* Product Definition */}
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">تعريف المنتج</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label>اسم المنتج *</Label>
+                    <Input
+                      value={createName}
+                      onChange={(e) => setCreateName(e.target.value)}
+                      placeholder="اسم المنتج"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الفئة</Label>
+                    <Input
+                      value={createCategory}
+                      onChange={(e) => setCreateCategory(e.target.value)}
+                      placeholder="مثال: إلكترونيات"
+                    />
+                  </div>
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label>الوصف</Label>
+                    <Textarea
+                      value={createDescription}
+                      onChange={(e) => setCreateDescription(e.target.value)}
+                      placeholder="وصف المنتج"
+                      rows={2}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>العلامة التجارية</Label>
+                    <Input
+                      value={createBrand}
+                      onChange={(e) => setCreateBrand(e.target.value)}
+                      placeholder="العلامة التجارية"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Logistics Information */}
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">معلومات الشحن</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>الوزن (كجم) *</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={createWeight}
+                      onChange={(e) => setCreateWeight(e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الوحدات لكل كرتون *</Label>
+                    <Input
+                      type="number"
+                      min="1"
+                      value={createUnitsPerCarton}
+                      onChange={(e) => setCreateUnitsPerCarton(e.target.value)}
+                      placeholder="1"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الطول (سم) *</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={createLength}
+                      onChange={(e) => setCreateLength(e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>العرض (سم) *</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={createWidth}
+                      onChange={(e) => setCreateWidth(e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الارتفاع (سم) *</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={createHeight}
+                      onChange={(e) => setCreateHeight(e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>وحدة القياس *</Label>
+                    <Select value={createUomId} onValueChange={setCreateUomId}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="اختر وحدة القياس" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {uoms.map((u) => (
+                          <SelectItem key={u.id} value={u.id}>
+                            {u.code} - {u.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Identification & Tracking */}
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">التعريف والتتبع</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label>الباركود / UPC</Label>
+                    <BarcodeInput
+                      value={createBarcode}
+                      onChange={setCreateBarcode}
+                      id="create-barcode"
+                      placeholder="رمز الباركود أو امسح/ارفع صورة"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border p-4">
+                    <Label htmlFor="create-serialized" className="cursor-pointer">منتج مسلسل؟</Label>
+                    <Switch
+                      id="create-serialized"
+                      checked={createIsSerialized}
+                      onCheckedChange={setCreateIsSerialized}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border p-4">
+                    <Label htmlFor="create-batch" className="cursor-pointer">تتبع بالدفعة/اللوت؟</Label>
+                    <Switch
+                      id="create-batch"
+                      checked={createIsBatchTracked}
+                      onCheckedChange={setCreateIsBatchTracked}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border p-4 sm:col-span-2">
+                    <Label htmlFor="create-expiry" className="cursor-pointer">يتطلب تاريخ انتهاء؟</Label>
+                    <Switch
+                      id="create-expiry"
+                      checked={createRequiresExpiryDate}
+                      onCheckedChange={setCreateRequiresExpiryDate}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Inventory Rules */}
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">قواعد المخزون (اختياري)</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>حد التنبيه الأدنى للمخزون</Label>
+                    <Input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={createMinThreshold}
+                      onChange={(e) => setCreateMinThreshold(e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>نقطة إعادة الطلب</Label>
+                    <Input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={createReorderPoint}
+                      onChange={(e) => setCreateReorderPoint(e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Commercial Info */}
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">المعلومات التجارية (اختياري)</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>القيمة المعلنة</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={createDeclaredValue}
+                      onChange={(e) => setCreateDeclaredValue(e.target.value)}
+                      placeholder="0.00"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>سعر البيع</Label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={createPrice}
+                      onChange={(e) => setCreatePrice(e.target.value)}
+                      placeholder="0.00"
+                    />
+                  </div>
+                </div>
+              </div>
+
             </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                SKU *</label>
-              <Input
-                value={createSku}
-                onChange={(e) => setCreateSku(e.target.value)}
-                placeholder="رمز المنتج"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                السعر</label>
-              <Input
-                type="number"
-                step="0.01"
-                min="0"
-                value={createPrice}
-                onChange={(e) => setCreatePrice(e.target.value)}
-                placeholder="0.00"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                الوصف</label>
-              <Textarea
-                value={createDescription}
-                onChange={(e) => setCreateDescription(e.target.value)}
-                placeholder="وصف المنتج"
-                rows={3}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                وحدة القياس *</label>
-              <Select value={createUomId} onValueChange={setCreateUomId}>
-                <SelectTrigger>
-                  <SelectValue placeholder="اختر وحدة القياس" />
-                </SelectTrigger>
-                <SelectContent>
-                  {uoms.map((u) => (
-                    <SelectItem key={u.id} value={u.id}>
-                      {u.code} - {u.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex justify-end gap-2 pt-4">
-              <Button variant="outline" onClick={() => setCreateOpen(false)}>
-                إلغاء
-              </Button>
-              <Button
-                onClick={() => void handleCreate()}
-                disabled={createSubmitting}
-                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
-              >
-                {createSubmitting ? 'جاري الإضافة...' : 'إضافة'}
-              </Button>
-            </div>
+          </div>
+          <div className="shrink-0 flex justify-end gap-2 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
+            <Button variant="outline" onClick={() => setCreateOpen(false)}>
+              إلغاء
+            </Button>
+            <Button
+              onClick={() => void handleCreate()}
+              disabled={createSubmitting}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              {createSubmitting ? 'جاري الإضافة...' : 'إضافة'}
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
 
       {/* Edit Dialog */}
       <Dialog open={editOpen} onOpenChange={(open) => !open && setEditProduct(null)}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className="flex flex-col h-[85vh] max-h-[85vh] w-[calc(100vw-2rem)] sm:max-w-xl p-0 gap-0 overflow-hidden">
+          <DialogHeader className="shrink-0 px-6 pt-6 pb-4 pr-12 border-b border-gray-100">
             <DialogTitle>تعديل المنتج</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 mt-4">
-            {editError && (
-              <Alert variant="destructive">
-                <AlertDescription>{editError}</AlertDescription>
-              </Alert>
-            )}
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                الاسم *</label>
-              <Input
-                value={editName}
-                onChange={(e) => setEditName(e.target.value)}
-                placeholder="اسم المنتج"
-              />
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+            <div className="space-y-8 px-6 py-5">
+              {editError && (
+                <Alert variant="destructive">
+                  <AlertDescription>{editError}</AlertDescription>
+                </Alert>
+              )}
+
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">تعريف المنتج</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label>اسم المنتج *</Label>
+                    <Input value={editName} onChange={(e) => setEditName(e.target.value)} placeholder="اسم المنتج" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>SKU *</Label>
+                    <Input value={editSku} onChange={(e) => setEditSku(e.target.value)} placeholder="رمز المنتج" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الفئة</Label>
+                    <Input value={editCategory} onChange={(e) => setEditCategory(e.target.value)} placeholder="الفئة" />
+                  </div>
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label>الوصف</Label>
+                    <Textarea value={editDescription} onChange={(e) => setEditDescription(e.target.value)} placeholder="الوصف" rows={2} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>العلامة التجارية</Label>
+                    <Input value={editBrand} onChange={(e) => setEditBrand(e.target.value)} placeholder="العلامة التجارية" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">معلومات الشحن</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>الوزن (كجم)</Label>
+                    <Input type="number" step="0.01" min="0" value={editWeight} onChange={(e) => setEditWeight(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الوحدات لكل كرتون</Label>
+                    <Input type="number" min="1" value={editUnitsPerCarton} onChange={(e) => setEditUnitsPerCarton(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الطول (سم)</Label>
+                    <Input type="number" step="0.01" min="0" value={editLength} onChange={(e) => setEditLength(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>العرض (سم)</Label>
+                    <Input type="number" step="0.01" min="0" value={editWidth} onChange={(e) => setEditWidth(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>الارتفاع (سم)</Label>
+                    <Input type="number" step="0.01" min="0" value={editHeight} onChange={(e) => setEditHeight(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>وحدة القياس</Label>
+                    <Select value={editUomId} onValueChange={setEditUomId}>
+                      <SelectTrigger><SelectValue placeholder="وحدة القياس" /></SelectTrigger>
+                      <SelectContent>
+                        {uoms.map((u) => (
+                          <SelectItem key={u.id} value={u.id}>{u.code} - {u.name}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-sm font-semibold text-gray-800 border-b pb-2">التعريف والتتبع</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2 sm:col-span-2">
+                    <Label>الباركود / UPC</Label>
+                    <BarcodeInput
+                      value={editBarcode}
+                      onChange={setEditBarcode}
+                      id="edit-barcode"
+                      placeholder="رمز الباركود أو امسح/ارفع صورة"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border p-4">
+                    <Label htmlFor="edit-serialized" className="cursor-pointer">منتج مسلسل؟</Label>
+                    <Switch id="edit-serialized" checked={editIsSerialized} onCheckedChange={setEditIsSerialized} />
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border p-4">
+                    <Label htmlFor="edit-batch" className="cursor-pointer">تتبع بالدفعة؟</Label>
+                    <Switch id="edit-batch" checked={editIsBatchTracked} onCheckedChange={setEditIsBatchTracked} />
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border p-4 sm:col-span-2">
+                    <Label htmlFor="edit-expiry" className="cursor-pointer">يتطلب تاريخ انتهاء؟</Label>
+                    <Switch id="edit-expiry" checked={editRequiresExpiryDate} onCheckedChange={setEditRequiresExpiryDate} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">قواعد المخزون</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>حد التنبيه الأدنى</Label>
+                    <Input type="number" min="0" step="0.01" value={editMinThreshold} onChange={(e) => setEditMinThreshold(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>نقطة إعادة الطلب</Label>
+                    <Input type="number" min="0" step="0.01" value={editReorderPoint} onChange={(e) => setEditReorderPoint(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-2">
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">المعلومات التجارية</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>القيمة المعلنة</Label>
+                    <Input type="number" step="0.01" min="0" value={editDeclaredValue} onChange={(e) => setEditDeclaredValue(e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>سعر البيع</Label>
+                    <Input type="number" step="0.01" min="0" value={editPrice} onChange={(e) => setEditPrice(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+
             </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                SKU *</label>
-              <Input
-                value={editSku}
-                onChange={(e) => setEditSku(e.target.value)}
-                placeholder="رمز المنتج"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                السعر</label>
-              <Input
-                type="number"
-                step="0.01"
-                min="0"
-                value={editPrice}
-                onChange={(e) => setEditPrice(e.target.value)}
-                placeholder="0.00"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                الوصف</label>
-              <Textarea
-                value={editDescription}
-                onChange={(e) => setEditDescription(e.target.value)}
-                placeholder="وصف المنتج"
-                rows={3}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                وحدة القياس</label>
-              <Select value={editUomId} onValueChange={setEditUomId}>
-                <SelectTrigger>
-                  <SelectValue placeholder="اختر وحدة القياس" />
-                </SelectTrigger>
-                <SelectContent>
-                  {uoms.map((u) => (
-                    <SelectItem key={u.id} value={u.id}>
-                      {u.code} - {u.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex justify-end gap-2 pt-4">
-              <Button variant="outline" onClick={() => setEditOpen(false)}>
-                إلغاء
-              </Button>
-              <Button
-                onClick={() => void handleEdit()}
-                disabled={editSubmitting}
-                className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
-              >
-                {editSubmitting ? 'جاري الحفظ...' : 'حفظ'}
-              </Button>
-            </div>
+          </div>
+          <div className="shrink-0 flex justify-end gap-2 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
+            <Button variant="outline" onClick={() => setEditOpen(false)}>إلغاء</Button>
+            <Button
+              onClick={() => void handleEdit()}
+              disabled={editSubmitting}
+              className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
+            >
+              {editSubmitting ? 'جاري الحفظ...' : 'حفظ'}
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

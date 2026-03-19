@@ -10,7 +10,6 @@ exports.InboundOrdersModule = void 0;
 const common_1 = require("@nestjs/common");
 const inbound_orders_service_1 = require("./inbound-orders.service");
 const inbound_orders_controller_1 = require("./inbound-orders.controller");
-const prisma_service_1 = require("../../database/prisma/prisma.service");
 const inventory_module_1 = require("../inventory/inventory.module");
 let InboundOrdersModule = class InboundOrdersModule {
 };
@@ -19,7 +18,7 @@ exports.InboundOrdersModule = InboundOrdersModule = __decorate([
     (0, common_1.Module)({
         imports: [inventory_module_1.InventoryModule],
         controllers: [inbound_orders_controller_1.InboundOrdersController],
-        providers: [inbound_orders_service_1.InboundOrdersService, prisma_service_1.PrismaService],
+        providers: [inbound_orders_service_1.InboundOrdersService],
         exports: [inbound_orders_service_1.InboundOrdersService],
     })
 ], InboundOrdersModule);

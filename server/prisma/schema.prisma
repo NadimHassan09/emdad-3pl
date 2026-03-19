@@ -69,7 +69,25 @@ model Client {
   clientBillingPlans ClientBillingPlan[]
   invoices       Invoice[]
   billingTransactions BillingTransaction[]
+  notifications   ClientNotification[]
   @@map("client")
+}
+
+model ClientNotification {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId    String   @map("client_id") @db.Uuid
+  title       String   @db.VarChar(255)
+  message     String   @db.Text
+  importance  String   @default("MEDIUM") @db.VarChar(20)
+  referenceType String? @map("reference_type") @db.VarChar(100)
+  referenceId String?  @map("reference_id") @db.VarChar(255)
+  isRead      Boolean  @default(false) @map("is_read") @db.Boolean
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  @@index([clientId])
+  @@index([clientId, isRead])
+  @@map("client_notification")
 }
 
 model ClientRole {
@@ -347,17 +365,30 @@ model Location {
 }
 
 model Product {
-  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  clientId      String   @map("client_id") @db.Uuid
-  sku           String   @db.VarChar(100)
-  name          String   @db.VarChar(255)
-  description   String?  @db.Text
-  price         Decimal? @db.Decimal(18, 4)
-  defaultUomId  String   @map("default_uom_id") @db.Uuid
-  minThreshold  Decimal? @default(0) @map("min_threshold") @db.Decimal(18, 4)
-  isActive      Boolean  @default(true) @map("is_active") @db.Boolean
-  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt     DateTime @default(now()) @map("updated_at") @db.Timestamptz(6)
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clientId          String    @map("client_id") @db.Uuid
+  sku               String    @db.VarChar(100)
+  name              String    @db.VarChar(255)
+  description       String?   @db.Text
+  category          String?   @db.VarChar(100)
+  brand             String?   @db.VarChar(100)
+  price             Decimal?  @db.Decimal(18, 4)
+  declaredValue     Decimal?  @map("declared_value") @db.Decimal(18, 4)
+  defaultUomId      String    @map("default_uom_id") @db.Uuid
+  weight            Decimal?  @default(0) @db.Decimal(18, 4)
+  lengthCm          Decimal?  @map("length_cm") @default(0) @db.Decimal(18, 4)
+  widthCm           Decimal?  @map("width_cm") @default(0) @db.Decimal(18, 4)
+  heightCm          Decimal?  @map("height_cm") @default(0) @db.Decimal(18, 4)
+  unitsPerCarton    Int?      @map("units_per_carton") @default(1) @db.Integer
+  barcode           String?   @db.VarChar(100)
+  isSerialized      Boolean   @default(false) @map("is_serialized") @db.Boolean
+  isBatchTracked   Boolean   @default(false) @map("is_batch_tracked") @db.Boolean
+  requiresExpiryDate Boolean  @default(false) @map("requires_expiry_date") @db.Boolean
+  minThreshold      Decimal?  @default(0) @map("min_threshold") @db.Decimal(18, 4)
+  reorderPoint      Decimal?  @map("reorder_point") @db.Decimal(18, 4)
+  isActive          Boolean   @default(true) @map("is_active") @db.Boolean
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt         DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
 
   client       Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
   defaultUom   Uom      @relation(fields: [defaultUomId], references: [id], onDelete: Restrict)
@@ -457,7 +488,7 @@ model CurrentStock {
 model InboundOrder {
   id                String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   clientId          String      @map("client_id") @db.Uuid
-  warehouseId       String      @map("warehouse_id") @db.Uuid
+  warehouseId       String?     @map("warehouse_id") @db.Uuid
   orderNumber       String?     @map("order_number") @db.VarChar(50)
   status            OrderStatus @default(DRAFT)
   currentStage      String?     @map("current_stage") @db.VarChar(100)
@@ -467,7 +498,7 @@ model InboundOrder {
   updatedAt         DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   client            Client              @relation(fields: [clientId], references: [id], onDelete: Restrict)
-  warehouse         Warehouse            @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse?          @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
   createdByActor    Actor                @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
   items             InboundOrderItem[]
 

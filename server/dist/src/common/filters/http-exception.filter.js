@@ -22,17 +22,24 @@ let AllExceptionsFilter = AllExceptionsFilter_1 = class AllExceptionsFilter {
         if (exception instanceof common_1.HttpException) {
             status = exception.getStatus();
             const res = exception.getResponse();
-            message = typeof res === 'string' ? res : res.message ?? message;
+            if (typeof res === 'string') {
+                message = res;
+            }
+            else if (res && typeof res === 'object') {
+                const resObj = res;
+                message = resObj.message ?? message;
+            }
         }
         else if (exception instanceof Error) {
             message = exception.message;
             this.logger.error(`Unhandled error: ${exception.message}`, exception.stack);
         }
-        const body = {
-            statusCode: status,
-            message: status === 500 && !isProd ? message : status === 500 ? 'Internal server error' : message,
-        };
-        response.status(status).json(body);
+        const safeMessage = status === 500
+            ? isProd
+                ? 'Internal server error'
+                : (typeof message === 'string' ? message : message[0]) ?? 'Internal server error'
+            : message;
+        response.status(status).json({ statusCode: status, message: safeMessage });
     }
 };
 exports.AllExceptionsFilter = AllExceptionsFilter;

@@ -10,7 +10,6 @@ exports.ReturnOrdersModule = void 0;
 const common_1 = require("@nestjs/common");
 const return_orders_service_1 = require("./return-orders.service");
 const return_orders_controller_1 = require("./return-orders.controller");
-const prisma_service_1 = require("../../database/prisma/prisma.service");
 const inventory_module_1 = require("../inventory/inventory.module");
 let ReturnOrdersModule = class ReturnOrdersModule {
 };
@@ -19,7 +18,7 @@ exports.ReturnOrdersModule = ReturnOrdersModule = __decorate([
     (0, common_1.Module)({
         imports: [inventory_module_1.InventoryModule],
         controllers: [return_orders_controller_1.ReturnOrdersController],
-        providers: [return_orders_service_1.ReturnOrdersService, prisma_service_1.PrismaService],
+        providers: [return_orders_service_1.ReturnOrdersService],
         exports: [return_orders_service_1.ReturnOrdersService],
     })
 ], ReturnOrdersModule);

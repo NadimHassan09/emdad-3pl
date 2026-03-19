@@ -9,24 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateInboundOrderClientPortalDto = void 0;
+exports.UnreadNotificationsQueryDto = void 0;
 const class_validator_1 = require("class-validator");
-class CreateInboundOrderClientPortalDto {
+const class_transformer_1 = require("class-transformer");
+class UnreadNotificationsQueryDto {
+    constructor() {
+        this.limit = 5;
+    }
 }
-exports.CreateInboundOrderClientPortalDto = CreateInboundOrderClientPortalDto;
+exports.UnreadNotificationsQueryDto = UnreadNotificationsQueryDto;
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsUUID)(),
-    __metadata("design:type", String)
-], CreateInboundOrderClientPortalDto.prototype, "warehouseId", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateInboundOrderClientPortalDto.prototype, "currentStage", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsDateString)(),
-    __metadata("design:type", String)
-], CreateInboundOrderClientPortalDto.prototype, "expectedDate", void 0);
-//# sourceMappingURL=create-inbound-order-client-portal.dto.js.map
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(1),
+    (0, class_validator_1.Max)(20),
+    __metadata("design:type", Number)
+], UnreadNotificationsQueryDto.prototype, "limit", void 0);
+//# sourceMappingURL=unread-query.dto.js.map

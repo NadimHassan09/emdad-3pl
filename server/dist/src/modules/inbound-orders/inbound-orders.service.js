@@ -159,13 +159,33 @@ let InboundOrdersService = class InboundOrdersService {
         return this.serializeOrder(order);
     }
     async createForClientPortal(clientId, actorId, dto) {
-        return this.create({
-            clientId,
-            warehouseId: dto.warehouseId,
-            orderNumber: dto.orderNumber,
-            currentStage: dto.currentStage,
-            expectedDate: dto.expectedDate,
-        }, actorId);
+        await this.prisma.client.findUniqueOrThrow({ where: { id: clientId } });
+        if (dto.warehouseId) {
+            await this.prisma.warehouse.findUniqueOrThrow({
+                where: { id: dto.warehouseId },
+            });
+        }
+        return this.prisma.inboundOrder.create({
+            data: {
+                clientId,
+                warehouseId: dto.warehouseId ?? null,
+                currentStage: dto.currentStage?.trim(),
+                expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
+                createdByActorId: actorId,
+            },
+            include: {
+                client: { select: { id: true, code: true, name: true } },
+                warehouse: { select: { id: true, code: true, name: true } },
+                createdByActor: {
+                    select: {
+                        id: true,
+                        actorType: true,
+                        user: { select: { id: true, email: true } },
+                        clientAccount: { select: { id: true, email: true } },
+                    },
+                },
+            },
+        });
     }
     async addItemForClientPortal(clientId, orderId, dto) {
         const owned = await this.prisma.inboundOrder.findFirst({
@@ -284,6 +304,10 @@ let InboundOrdersService = class InboundOrdersService {
     }
     async receive(orderId, dto) {
         const order = await this.findOne(orderId);
+        const warehouseId = order.warehouseId;
+        if (!warehouseId) {
+            throw new common_1.BadRequestException('يجب تعيين المستودع للطلب قبل استلام البضاعة. يرجى تعيين المستودع أولاً.');
+        }
         const item = await this.prisma.inboundOrderItem.findUnique({
             where: { id: dto.itemId },
             include: {
@@ -344,7 +368,7 @@ let InboundOrdersService = class InboundOrdersService {
                 const location = await this.prisma.location.findUnique({
                     where: { id: batchDto.locationId },
                 });
-                if (location?.warehouseId !== order.warehouseId) {
+                if (location?.warehouseId !== warehouseId) {
                     throw new common_1.BadRequestException('Location does not belong to the order warehouse');
                 }
             }
@@ -358,7 +382,7 @@ let InboundOrdersService = class InboundOrdersService {
             });
             await this.inventoryService.createLedgerEntry({
                 clientId: order.clientId,
-                warehouseId: order.warehouseId,
+                warehouseId,
                 productId: item.productId,
                 batchId: batchId,
                 locationId: batchDto.locationId,

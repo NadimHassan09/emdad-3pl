@@ -1,14 +1,10 @@
-import { IsUUID, IsNotEmpty, IsOptional, IsString, IsDateString } from 'class-validator';
+import { IsUUID, IsOptional, IsString, IsDateString } from 'class-validator';
 
-/** Client portal: server sets clientId from JWT. */
+/** Client portal: server sets clientId from JWT. Warehouse is assigned by admin during approval. */
 export class CreateInboundOrderClientPortalDto {
-  @IsUUID()
-  @IsNotEmpty()
-  warehouseId: string;
-
   @IsOptional()
-  @IsString()
-  orderNumber?: string;
+  @IsUUID()
+  warehouseId?: string;
 
   @IsOptional()
   @IsString()

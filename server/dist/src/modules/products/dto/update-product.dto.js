@@ -32,6 +32,18 @@ __decorate([
 ], UpdateProductDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_2.MaxLength)(100),
+    __metadata("design:type", String)
+], UpdateProductDto.prototype, "category", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_2.MaxLength)(100),
+    __metadata("design:type", String)
+], UpdateProductDto.prototype, "brand", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsUUID)(),
     __metadata("design:type", String)
 ], UpdateProductDto.prototype, "defaultUomId", void 0);

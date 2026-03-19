@@ -10,7 +10,6 @@ exports.StockReservationsModule = void 0;
 const common_1 = require("@nestjs/common");
 const stock_reservations_service_1 = require("./stock-reservations.service");
 const stock_reservations_controller_1 = require("./stock-reservations.controller");
-const prisma_service_1 = require("../../database/prisma/prisma.service");
 const inventory_module_1 = require("../inventory/inventory.module");
 let StockReservationsModule = class StockReservationsModule {
 };
@@ -19,7 +18,7 @@ exports.StockReservationsModule = StockReservationsModule = __decorate([
     (0, common_1.Module)({
         imports: [inventory_module_1.InventoryModule],
         controllers: [stock_reservations_controller_1.StockReservationsController],
-        providers: [stock_reservations_service_1.StockReservationsService, prisma_service_1.PrismaService],
+        providers: [stock_reservations_service_1.StockReservationsService],
         exports: [stock_reservations_service_1.StockReservationsService],
     })
 ], StockReservationsModule);

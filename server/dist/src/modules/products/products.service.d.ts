@@ -22,8 +22,21 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     findMany(filter?: ProductFilterDto): Promise<({
@@ -45,8 +58,21 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     })[]>;
     findManyForClientPortal(clientId: string): Promise<({
@@ -68,8 +94,21 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     })[]>;
     findOne(id: string): Promise<{
@@ -110,8 +149,21 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     update(id: string, dto: UpdateProductDto): Promise<{
@@ -123,10 +175,24 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
+    private generateUniqueSku;
     createForClientPortal(clientId: string, dto: CreateProductClientPortalDto): Promise<{
         defaultUom: {
             id: string;
@@ -142,8 +208,21 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     updateForClientPortal(id: string, clientId: string, dto: UpdateProductClientPortalDto): Promise<{
@@ -161,8 +240,21 @@ export declare class ProductsService {
         clientId: string;
         sku: string;
         description: string | null;
+        category: string | null;
+        brand: string | null;
         price: import("@prisma/client/runtime/library").Decimal | null;
+        declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+        widthCm: import("@prisma/client/runtime/library").Decimal | null;
+        heightCm: import("@prisma/client/runtime/library").Decimal | null;
+        unitsPerCarton: number | null;
+        barcode: string | null;
+        isSerialized: boolean;
+        isBatchTracked: boolean;
+        requiresExpiryDate: boolean;
         minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+        reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
         defaultUomId: string;
     }>;
     deleteForClientPortal(id: string, clientId: string): Promise<{

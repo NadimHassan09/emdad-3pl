@@ -19,6 +19,7 @@ const client_account_guard_1 = require("../../common/guards/client-account.guard
 const current_actor_decorator_1 = require("../../common/decorators/current-actor.decorator");
 const client_portal_notifications_service_1 = require("./client-portal-notifications.service");
 const client_portal_notification_query_dto_1 = require("./dto/client-portal-notification-query.dto");
+const unread_query_dto_1 = require("./dto/unread-query.dto");
 let ClientPortalNotificationsController = class ClientPortalNotificationsController {
     constructor(notifications) {
         this.notifications = notifications;
@@ -26,8 +27,17 @@ let ClientPortalNotificationsController = class ClientPortalNotificationsControl
     list(actor, query) {
         return this.notifications.listForActor(actor, query);
     }
+    findUnread(actor, query) {
+        return this.notifications.findUnreadForActor(actor, query.limit ?? 5);
+    }
+    markAllRead(actor) {
+        return this.notifications.markAllReadForActor(actor);
+    }
     markRead(id, actor) {
         return this.notifications.markRead(actor, id);
+    }
+    delete(id, actor) {
+        return this.notifications.deleteForActor(actor, id);
     }
 };
 exports.ClientPortalNotificationsController = ClientPortalNotificationsController;
@@ -40,6 +50,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClientPortalNotificationsController.prototype, "list", null);
 __decorate([
+    (0, common_1.Get)('unread'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __param(1, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, unread_query_dto_1.UnreadNotificationsQueryDto]),
+    __metadata("design:returntype", void 0)
+], ClientPortalNotificationsController.prototype, "findUnread", null);
+__decorate([
+    (0, common_1.Patch)('mark-all-read'),
+    __param(0, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], ClientPortalNotificationsController.prototype, "markAllRead", null);
+__decorate([
     (0, common_1.Patch)(':id/read'),
     __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __param(1, (0, current_actor_decorator_1.CurrentActor)()),
@@ -47,6 +72,14 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ClientPortalNotificationsController.prototype, "markRead", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(1, (0, current_actor_decorator_1.CurrentActor)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
+], ClientPortalNotificationsController.prototype, "delete", null);
 exports.ClientPortalNotificationsController = ClientPortalNotificationsController = __decorate([
     (0, common_1.Controller)('client-portal/notifications'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, client_account_guard_1.ClientAccountGuard),

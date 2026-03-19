@@ -36,11 +36,52 @@ export async function fetchClientNotifications(params: NotificationsQuery = {}):
   return apiFetch<ClientNotification[]>(q ? `${BASE}?${q}` : BASE);
 }
 
+export async function fetchUnreadNotifications(limit = 5): Promise<ClientNotification[]> {
+  try {
+    return await apiFetch<ClientNotification[]>(`${BASE}/unread?limit=${limit}`);
+  } catch (e) {
+    const err = e as ApiError;
+    if (err?.status === 404) {
+      const all = await apiFetch<ClientNotification[]>(`${BASE}?readStatus=UNREAD`);
+      return all.slice(0, limit);
+    }
+    throw e;
+  }
+}
+
+export async function markAllNotificationsRead(): Promise<{ count: number }> {
+  try {
+    return await apiFetch<{ count: number }>(`${BASE}/mark-all-read`, { method: 'PATCH' });
+  } catch (e) {
+    const err = e as ApiError;
+    if (err?.status === 404) {
+      const unread = await apiFetch<ClientNotification[]>(`${BASE}?readStatus=UNREAD`);
+      let count = 0;
+      for (const n of unread) {
+        try {
+          await apiFetch(`${BASE}/${encodeURIComponent(n.id)}/read`, { method: 'PATCH' });
+          count++;
+        } catch {
+          // ignore per-item failures
+        }
+      }
+      return { count };
+    }
+    throw e;
+  }
+}
+
 export async function markNotificationRead(id: string): Promise<{ id: string; readStatus: NotificationReadStatus }> {
   return apiFetch<{ id: string; readStatus: NotificationReadStatus }>(
     `${BASE}/${encodeURIComponent(id)}/read`,
     { method: 'PATCH' },
   );
+}
+
+export async function deleteNotification(id: string): Promise<{ success: boolean }> {
+  return apiFetch<{ success: boolean }>(`${BASE}/${encodeURIComponent(id)}`, {
+    method: 'DELETE',
+  });
 }
 
 function bodyMessage(body: unknown): string | undefined {

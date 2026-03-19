@@ -6,7 +6,6 @@ import {
   ArrowUp,
   Activity,
   MoreHorizontal,
-  Download,
   RefreshCw,
 } from 'lucide-react';
 import {
@@ -132,10 +131,6 @@ export function DashboardPage() {
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             تحديث
-          </Button>
-          <Button className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white gap-2">
-            <Download className="w-4 h-4" />
-            تصدير التقرير
           </Button>
         </div>
       </div>

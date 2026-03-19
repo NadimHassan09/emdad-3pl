@@ -10,7 +10,6 @@ import {
   CreditCard,
   Receipt,
   Users,
-  Bell,
   Settings,
   Search,
   Menu,
@@ -22,7 +21,6 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import {
@@ -57,10 +55,12 @@ import { InvoicesPage } from '@/pages/InvoicesPage';
 import { InvoiceDetailsPage } from '@/pages/InvoiceDetailsPage';
 import { UsersPage } from '@/pages/UsersPage';
 import { NotificationsPage } from '@/pages/NotificationsPage';
+import { NotificationsDropdown } from '@/components/NotificationsDropdown';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { ProductsPage } from '@/pages/ProductsPage';
 import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
 import type { UserInfo } from '@/lib/auth';
+import { fetchClientSettings } from '@/api/clientPortalSettings';
 import {
   Navigate,
   Route,
@@ -81,8 +81,6 @@ const sidebarItems = [
   { icon: CreditCard, label: 'الفوترة', active: false },
   { icon: Receipt, label: 'الفواتير', active: false },
   { icon: Users, label: 'المستخدمون', active: false },
-  { icon: Bell, label: 'الإشعارات', active: false },
-  { icon: Settings, label: 'الإعدادات', active: false },
 ];
 
 const labelToRoute: Record<string, string> = {
@@ -95,8 +93,6 @@ const labelToRoute: Record<string, string> = {
   'الفوترة': '/billing',
   'الفواتير': '/invoices',
   'المستخدمون': '/users',
-  'الإشعارات': '/notifications',
-  'الإعدادات': '/settings',
 };
 
 function getActiveSidebarLabel(pathname: string): string {
@@ -109,8 +105,6 @@ function getActiveSidebarLabel(pathname: string): string {
   if (pathname.startsWith('/reports')) return 'التقارير';
   if (pathname.startsWith('/billing')) return 'الفوترة';
   if (pathname.startsWith('/users')) return 'المستخدمون';
-  if (pathname.startsWith('/notifications')) return 'الإشعارات';
-  if (pathname.startsWith('/settings')) return 'الإعدادات';
   return 'لوحة التحكم';
 }
 
@@ -910,6 +904,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [user, setUser] = useState<UserInfo | null>(null);
+  const [profileName, setProfileName] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(() =>
     typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
   );
@@ -924,6 +919,15 @@ function App() {
           if (userInfo) {
             setUser(userInfo);
             setAuthenticated(true);
+            try {
+              const settings = await fetchClientSettings();
+              setProfileName(
+                [settings.profile.firstName, settings.profile.lastName].filter(Boolean).join(' ') ||
+                  null
+              );
+            } catch {
+              setProfileName(null);
+            }
           } else {
             setAuthenticated(false);
           }
@@ -943,6 +947,14 @@ function App() {
     if (userInfo) {
       setUser(userInfo);
       setAuthenticated(true);
+      try {
+        const settings = await fetchClientSettings();
+        setProfileName(
+          [settings.profile.firstName, settings.profile.lastName].filter(Boolean).join(' ') || null
+        );
+      } catch {
+        setProfileName(null);
+      }
       navigate('/dashboard', { replace: true });
     }
   };
@@ -951,6 +963,7 @@ function App() {
     logout();
     setAuthenticated(false);
     setUser(null);
+    setProfileName(null);
   };
 
   // Show loading state while checking authentication
@@ -1011,11 +1024,6 @@ function App() {
             >
               <item.icon className="w-5 h-5" />
               <span>{item.label}</span>
-              {item.label === 'الإشعارات' && (
-                <Badge className="mr-auto bg-red-500 text-white text-xs px-2 py-0.5">
-                  3
-                </Badge>
-              )}
             </button>
           ))}
         </nav>
@@ -1044,28 +1052,31 @@ function App() {
           </div>
 
           <div className="flex items-center gap-1 sm:gap-4 shrink-0">
-            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="الإشعارات">
-              <Bell className="w-5 h-5 text-gray-600" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
+            <NotificationsDropdown />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
                   <Avatar className="w-9 h-9 border-2 border-[#176C33]/20">
                     <AvatarFallback className="bg-gradient-to-br from-[#176C33] to-[#104920] text-white text-sm font-medium">
-                      {user?.role ? user.role.charAt(0) : 'ع'}
+                      {profileName ? profileName.charAt(0) : user?.role ? user.role.charAt(0) : 'ع'}
                     </AvatarFallback>
                   </Avatar>
                   <div className="hidden md:block text-right">
                     <p className="text-sm font-medium text-gray-900">
                       {user?.role || 'عميل'}
                     </p>
-                    <p className="text-xs text-gray-500">حساب عميل</p>
+                    <p className="text-xs text-gray-500">
+                      {profileName || 'حساب عميل'}
+                    </p>
                   </div>
                   <ChevronDown className="w-4 h-4 text-gray-400" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => navigate('/settings')} className="cursor-pointer">
+                  <Settings className="w-4 h-4 ml-2" />
+                  الإعدادات
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout} className="text-red-600 cursor-pointer">
                   <Power className="w-4 h-4 ml-2" />
                   تسجيل الخروج

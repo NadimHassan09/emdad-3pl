@@ -1,6 +1,5 @@
 export declare class CreateInboundOrderClientPortalDto {
-    warehouseId: string;
-    orderNumber?: string;
+    warehouseId?: string;
     currentStage?: string;
     expectedDate?: string;
 }

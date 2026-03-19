@@ -12,10 +12,11 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, Trash2 } from 'lucide-react';
 import {
   fetchClientNotifications,
   markNotificationRead,
+  deleteNotification,
   getNotificationsErrorMessage,
   importanceToAr,
   arToImportance,
@@ -88,6 +89,17 @@ export function NotificationsPage({
       setNotifications((prev) =>
         prev.map((n) => (n.id === id ? { ...n, readStatus: 'READ' } : n)),
       );
+      setSelected(null);
+    } catch (e) {
+      console.error(e);
+      setError(getNotificationsErrorMessage(e));
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteNotification(id);
+      setNotifications((prev) => prev.filter((n) => n.id !== id));
       setSelected(null);
     } catch (e) {
       console.error(e);
@@ -203,7 +215,7 @@ export function NotificationsPage({
                   <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">نوع المرجع</th>
                   <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">معرف المرجع</th>
                   <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">القراءة</th>
-                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">ملاحظات</th>
+                  <th className="py-3 px-4 text-right text-sm font-semibold text-gray-600">الإجراءات</th>
                 </tr>
               </thead>
               <tbody>
@@ -255,14 +267,24 @@ export function NotificationsPage({
                           </span>
                         </td>
                         <td className="py-4 px-4">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setSelected(n)}
-                            className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
-                          >
-                            عرض
-                          </Button>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => setSelected(n)}
+                              className="text-[#176C33] hover:text-[#104920] hover:bg-[#176C33]/10"
+                            >
+                              عرض
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => void handleDelete(n.id)}
+                              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
                         </td>
                       </tr>
                     );
@@ -310,20 +332,31 @@ export function NotificationsPage({
                   </p>
                 </div>
               </div>
-              <div className="mt-6 flex items-center justify-between gap-3">
+              <div className="mt-6 flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => handleGoToReference(selected)}
+                    className="text-[#176C33] border-[#176C33]/40 hover:bg-[#176C33]/5"
+                  >
+                    الانتقال إلى التفاصيل
+                  </Button>
+                  {selected.readStatus === 'UNREAD' && (
+                    <Button type="button" onClick={() => void handleMarkAsRead(selected.id)}>
+                      تعليم كمقروء
+                    </Button>
+                  )}
+                </div>
                 <Button
                   type="button"
-                  variant="outline"
-                  onClick={() => handleGoToReference(selected)}
-                  className="text-[#176C33] border-[#176C33]/40 hover:bg-[#176C33]/5"
+                  variant="ghost"
+                  onClick={() => void handleDelete(selected.id)}
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
                 >
-                  الانتقال إلى التفاصيل
+                  <Trash2 className="w-4 h-4 ml-1" />
+                  حذف
                 </Button>
-                {selected.readStatus === 'UNREAD' && (
-                  <Button type="button" onClick={() => void handleMarkAsRead(selected.id)}>
-                    تعليم كمقروء
-                  </Button>
-                )}
               </div>
             </>
           )}

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../../database/prisma/prisma.service';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { ClientPortalNotificationQueryDto } from './dto/client-portal-notification-query.dto';
 
@@ -18,115 +19,113 @@ export interface ClientPortalNotification {
   readStatus: NotificationReadStatus;
 }
 
+function toApi(n: {
+  id: string;
+  clientId: string;
+  createdAt: Date;
+  importance: string;
+  title: string;
+  message: string;
+  referenceType: string | null;
+  referenceId: string | null;
+  isRead: boolean;
+}): ClientPortalNotification {
+  const msg = n.message || '';
+  return {
+    id: n.id,
+    clientId: n.clientId,
+    createdAt: n.createdAt.toISOString(),
+    importance: (n.importance as NotificationImportance) || 'MEDIUM',
+    title: n.title,
+    messagePreview: msg.length > 80 ? msg.slice(0, 80) + '...' : msg,
+    fullMessage: msg,
+    referenceType: n.referenceType || '',
+    referenceId: n.referenceId || '',
+    readStatus: n.isRead ? 'READ' : 'UNREAD',
+  };
+}
+
 @Injectable()
 export class ClientPortalNotificationsService {
-  private readonly store = new Map<string, ClientPortalNotification[]>();
+  constructor(private readonly prisma: PrismaService) {}
 
-  private seedForClient(clientId: string): ClientPortalNotification[] {
-    const existing = this.store.get(clientId);
-    if (existing) return existing;
-    const now = new Date();
-    const iso = (offsetHours: number) => {
-      const d = new Date(now.getTime() - offsetHours * 3600 * 1000);
-      return d.toISOString();
-    };
-    const seeded: ClientPortalNotification[] = [
-      {
-        id: 'NOT-001',
-        clientId,
-        createdAt: iso(2),
-        importance: 'HIGH',
-        title: '??? ???? ???? ????? ??? ????????',
-        messagePreview:
-          '?? ????? ??? ???? ???? INB-00041 ????? ??? ?????? ???????...',
-        fullMessage:
-          '?? ????? ??? ???? ???? ???? INB-00041 ????? ??? ?????? ???????. ???? ?????? ?????? ????? ????????? ???? ?? ???? ??? ????.',
-        referenceType: '??? ????',
-        referenceId: 'INB-00041',
-        readStatus: 'UNREAD',
-      },
-      {
-        id: 'NOT-002',
-        clientId,
-        createdAt: iso(3),
-        importance: 'MEDIUM',
-        title: '?????? ????? ?????',
-        messagePreview: '?? ????? ?????? ????? INV-001 ???????? ???????...',
-        fullMessage:
-          '?? ????? ?????? ????? ???? INV-001 ???????? ??????? - ??????. ???? ?????? ???????? ??????? ?? ??????? ????????.',
-        referenceType: '??????',
-        referenceId: 'INV-001',
-        readStatus: 'READ',
-      },
-      {
-        id: 'NOT-003',
-        clientId,
-        createdAt: iso(10),
-        importance: 'CRITICAL',
-        title: '?????: ??? ?? ???????',
-        messagePreview:
-          '?????: ?????? SKU-1001 ??? ??? ???? ?????? ?? ???????...',
-        fullMessage:
-          '?????: ?????? SKU-1001 (Product A) ??? ??? ???? ?????? ?? ???????. ?????? ???????: 50 ????. ???? ????? ????? ?? ???? ??? ????.',
-        referenceType: '??????',
-        referenceId: 'RPT-ALERT-001',
-        readStatus: 'UNREAD',
-      },
-      {
-        id: 'NOT-004',
-        clientId,
-        createdAt: iso(20),
-        importance: 'LOW',
-        title: '????? ???? ???????',
-        messagePreview:
-          '????? ??????? ?????? ???? ???????...',
-        fullMessage:
-          '????? ??????? ?????? - ?????? 2026 ???? ???????. ????? ????? ??????? ???? ?? ???? ????????.',
-        referenceType: '??????',
-        referenceId: 'RPT-001',
-        readStatus: 'READ',
-      },
-    ];
-    this.store.set(clientId, seeded);
-    return seeded;
-  }
-
-  private getAllForClient(clientId: string): ClientPortalNotification[] {
-    return this.seedForClient(clientId);
-  }
-
-  listForActor(actor: JwtPayload, query?: ClientPortalNotificationQueryDto) {
+  async listForActor(
+    actor: JwtPayload,
+    query?: ClientPortalNotificationQueryDto,
+  ): Promise<ClientPortalNotification[]> {
     const clientId = actor.clientId!;
-    let items = this.getAllForClient(clientId);
-    if (query?.importance) {
-      items = items.filter((n) => n.importance === query.importance);
-    }
-    if (query?.readStatus) {
-      items = items.filter((n) => n.readStatus === query.readStatus);
-    }
-    if (query?.referenceType) {
-      items = items.filter((n) => n.referenceType === query.referenceType);
-    }
+    const where: {
+      clientId: string;
+      importance?: string;
+      isRead?: boolean;
+      referenceType?: string;
+      createdAt?: { gte?: Date; lte?: Date };
+    } = { clientId };
+
+    if (query?.importance) where.importance = query.importance;
+    if (query?.readStatus) where.isRead = query.readStatus === 'READ';
+    if (query?.referenceType) where.referenceType = query.referenceType;
     if (query?.dateFrom) {
-      const from = new Date(query.dateFrom);
-      items = items.filter((n) => new Date(n.createdAt) >= from);
+      where.createdAt = { ...where.createdAt, gte: new Date(query.dateFrom) };
     }
     if (query?.dateTo) {
       const to = new Date(query.dateTo);
       to.setHours(23, 59, 59, 999);
-      items = items.filter((n) => new Date(n.createdAt) <= to);
+      where.createdAt = { ...where.createdAt, lte: to };
     }
-    return items.sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    );
+
+    const rows = await this.prisma.clientNotification.findMany({
+      where,
+      orderBy: { createdAt: 'desc' },
+    });
+    return rows.map(toApi);
   }
 
-  markRead(actor: JwtPayload, id: string) {
+  async findUnreadForActor(
+    actor: JwtPayload,
+    limit = 5,
+  ): Promise<ClientPortalNotification[]> {
     const clientId = actor.clientId!;
-    const items = this.getAllForClient(clientId);
-    const idx = items.findIndex((n) => n.id === id);
-    if (idx === -1) return { id, readStatus: 'READ' as NotificationReadStatus };
-    items[idx] = { ...items[idx], readStatus: 'READ' };
-    return { id, readStatus: items[idx].readStatus };
+    const rows = await this.prisma.clientNotification.findMany({
+      where: { clientId, isRead: false },
+      orderBy: { createdAt: 'desc' },
+      take: Math.min(limit, 20),
+    });
+    return rows.map(toApi);
+  }
+
+  async markAllReadForActor(actor: JwtPayload): Promise<{ count: number }> {
+    const clientId = actor.clientId!;
+    const result = await this.prisma.clientNotification.updateMany({
+      where: { clientId, isRead: false },
+      data: { isRead: true },
+    });
+    return { count: result.count };
+  }
+
+  async markRead(
+    actor: JwtPayload,
+    id: string,
+  ): Promise<{ id: string; readStatus: NotificationReadStatus }> {
+    const clientId = actor.clientId!;
+    const n = await this.prisma.clientNotification.findFirst({
+      where: { id, clientId },
+    });
+    if (!n) return { id, readStatus: 'READ' };
+    await this.prisma.clientNotification.update({
+      where: { id },
+      data: { isRead: true },
+    });
+    return { id, readStatus: 'READ' };
+  }
+
+  async deleteForActor(actor: JwtPayload, id: string): Promise<{ success: boolean }> {
+    const clientId = actor.clientId!;
+    const n = await this.prisma.clientNotification.findFirst({
+      where: { id, clientId },
+    });
+    if (!n) return { success: false };
+    await this.prisma.clientNotification.delete({ where: { id } });
+    return { success: true };
   }
 }

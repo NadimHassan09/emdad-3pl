@@ -1,3 +1,4 @@
+import { PrismaService } from '../../database/prisma/prisma.service';
 import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 import { ClientPortalNotificationQueryDto } from './dto/client-portal-notification-query.dto';
 export type NotificationImportance = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
@@ -15,12 +16,18 @@ export interface ClientPortalNotification {
     readStatus: NotificationReadStatus;
 }
 export declare class ClientPortalNotificationsService {
-    private readonly store;
-    private seedForClient;
-    private getAllForClient;
-    listForActor(actor: JwtPayload, query?: ClientPortalNotificationQueryDto): ClientPortalNotification[];
-    markRead(actor: JwtPayload, id: string): {
+    private readonly prisma;
+    constructor(prisma: PrismaService);
+    listForActor(actor: JwtPayload, query?: ClientPortalNotificationQueryDto): Promise<ClientPortalNotification[]>;
+    findUnreadForActor(actor: JwtPayload, limit?: number): Promise<ClientPortalNotification[]>;
+    markAllReadForActor(actor: JwtPayload): Promise<{
+        count: number;
+    }>;
+    markRead(actor: JwtPayload, id: string): Promise<{
         id: string;
         readStatus: NotificationReadStatus;
-    };
+    }>;
+    deleteForActor(actor: JwtPayload, id: string): Promise<{
+        success: boolean;
+    }>;
 }

@@ -48,7 +48,7 @@ export function CreateOrderPage({
       setMetaLoading(true);
       setError(null);
       const [wh, pr] = await Promise.all([
-        fetchClientPortalWarehouses(),
+        orderType === 'صادر' ? fetchClientPortalWarehouses() : Promise.resolve([]),
         fetchClientPortalProducts(),
       ]);
       setWarehouses(wh);
@@ -58,7 +58,7 @@ export function CreateOrderPage({
     } finally {
       setMetaLoading(false);
     }
-  }, []);
+  }, [orderType]);
 
   useEffect(() => {
     void loadMeta();
@@ -86,7 +86,7 @@ export function CreateOrderPage({
   };
 
   const handleSubmit = async () => {
-    if (!warehouseId) {
+    if (orderType !== 'وارد' && !warehouseId) {
       setError('اختر المستودع.');
       return;
     }
@@ -100,9 +100,7 @@ export function CreateOrderPage({
     try {
       if (orderType === 'وارد') {
         const created = (await createInboundPortal({
-          warehouseId,
           expectedDate: expectedDate || undefined,
-          orderNumber: orderReference.trim() || undefined,
         })) as { id: string };
         const oid = created.id;
         for (const item of lines) {
@@ -165,21 +163,23 @@ export function CreateOrderPage({
             <Skeleton className="h-40 w-full" />
           ) : (
             <>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">المستودع</label>
-                <Select value={warehouseId} onValueChange={setWarehouseId}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="اختر المستودع" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {warehouses.map((wh) => (
-                      <SelectItem key={wh.id} value={wh.id}>
-                        {wh.name} ({wh.code})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              {orderType === 'صادر' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">المستودع</label>
+                  <Select value={warehouseId} onValueChange={setWarehouseId}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="اختر المستودع" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {warehouses.map((wh) => (
+                        <SelectItem key={wh.id} value={wh.id}>
+                          {wh.name} ({wh.code})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {orderType === 'وارد' ? 'تاريخ الوصول المتوقع' : 'تاريخ الشحن المتوقع'}
@@ -191,17 +191,19 @@ export function CreateOrderPage({
                   className="w-full"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  رقم مرجعي لطلبك <span className="text-gray-400 text-xs">(اختياري)</span>
-                </label>
-                <Input
-                  value={orderReference}
-                  onChange={(e) => setOrderReference(e.target.value)}
-                  placeholder="مثال: PO-2026-001"
-                  className="w-full"
-                />
-              </div>
+              {orderType === 'صادر' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    رقم مرجعي لطلبك <span className="text-gray-400 text-xs">(اختياري)</span>
+                  </label>
+                  <Input
+                    value={orderReference}
+                    onChange={(e) => setOrderReference(e.target.value)}
+                    placeholder="مثال: PO-2026-001"
+                    className="w-full"
+                  />
+                </div>
+              )}
             </>
           )}
         </CardContent>

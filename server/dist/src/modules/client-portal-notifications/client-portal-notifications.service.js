@@ -5,113 +5,99 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientPortalNotificationsService = void 0;
 const common_1 = require("@nestjs/common");
+const prisma_service_1 = require("../../database/prisma/prisma.service");
+function toApi(n) {
+    const msg = n.message || '';
+    return {
+        id: n.id,
+        clientId: n.clientId,
+        createdAt: n.createdAt.toISOString(),
+        importance: n.importance || 'MEDIUM',
+        title: n.title,
+        messagePreview: msg.length > 80 ? msg.slice(0, 80) + '...' : msg,
+        fullMessage: msg,
+        referenceType: n.referenceType || '',
+        referenceId: n.referenceId || '',
+        readStatus: n.isRead ? 'READ' : 'UNREAD',
+    };
+}
 let ClientPortalNotificationsService = class ClientPortalNotificationsService {
-    constructor() {
-        this.store = new Map();
+    constructor(prisma) {
+        this.prisma = prisma;
     }
-    seedForClient(clientId) {
-        const existing = this.store.get(clientId);
-        if (existing)
-            return existing;
-        const now = new Date();
-        const iso = (offsetHours) => {
-            const d = new Date(now.getTime() - offsetHours * 3600 * 1000);
-            return d.toISOString();
-        };
-        const seeded = [
-            {
-                id: 'NOT-001',
-                clientId,
-                createdAt: iso(2),
-                importance: 'HIGH',
-                title: '??? ???? ???? ????? ??? ????????',
-                messagePreview: '?? ????? ??? ???? ???? INB-00041 ????? ??? ?????? ???????...',
-                fullMessage: '?? ????? ??? ???? ???? ???? INB-00041 ????? ??? ?????? ???????. ???? ?????? ?????? ????? ????????? ???? ?? ???? ??? ????.',
-                referenceType: '??? ????',
-                referenceId: 'INB-00041',
-                readStatus: 'UNREAD',
-            },
-            {
-                id: 'NOT-002',
-                clientId,
-                createdAt: iso(3),
-                importance: 'MEDIUM',
-                title: '?????? ????? ?????',
-                messagePreview: '?? ????? ?????? ????? INV-001 ???????? ???????...',
-                fullMessage: '?? ????? ?????? ????? ???? INV-001 ???????? ??????? - ??????. ???? ?????? ???????? ??????? ?? ??????? ????????.',
-                referenceType: '??????',
-                referenceId: 'INV-001',
-                readStatus: 'READ',
-            },
-            {
-                id: 'NOT-003',
-                clientId,
-                createdAt: iso(10),
-                importance: 'CRITICAL',
-                title: '?????: ??? ?? ???????',
-                messagePreview: '?????: ?????? SKU-1001 ??? ??? ???? ?????? ?? ???????...',
-                fullMessage: '?????: ?????? SKU-1001 (Product A) ??? ??? ???? ?????? ?? ???????. ?????? ???????: 50 ????. ???? ????? ????? ?? ???? ??? ????.',
-                referenceType: '??????',
-                referenceId: 'RPT-ALERT-001',
-                readStatus: 'UNREAD',
-            },
-            {
-                id: 'NOT-004',
-                clientId,
-                createdAt: iso(20),
-                importance: 'LOW',
-                title: '????? ???? ???????',
-                messagePreview: '????? ??????? ?????? ???? ???????...',
-                fullMessage: '????? ??????? ?????? - ?????? 2026 ???? ???????. ????? ????? ??????? ???? ?? ???? ????????.',
-                referenceType: '??????',
-                referenceId: 'RPT-001',
-                readStatus: 'READ',
-            },
-        ];
-        this.store.set(clientId, seeded);
-        return seeded;
-    }
-    getAllForClient(clientId) {
-        return this.seedForClient(clientId);
-    }
-    listForActor(actor, query) {
+    async listForActor(actor, query) {
         const clientId = actor.clientId;
-        let items = this.getAllForClient(clientId);
-        if (query?.importance) {
-            items = items.filter((n) => n.importance === query.importance);
-        }
-        if (query?.readStatus) {
-            items = items.filter((n) => n.readStatus === query.readStatus);
-        }
-        if (query?.referenceType) {
-            items = items.filter((n) => n.referenceType === query.referenceType);
-        }
+        const where = { clientId };
+        if (query?.importance)
+            where.importance = query.importance;
+        if (query?.readStatus)
+            where.isRead = query.readStatus === 'READ';
+        if (query?.referenceType)
+            where.referenceType = query.referenceType;
         if (query?.dateFrom) {
-            const from = new Date(query.dateFrom);
-            items = items.filter((n) => new Date(n.createdAt) >= from);
+            where.createdAt = { ...where.createdAt, gte: new Date(query.dateFrom) };
         }
         if (query?.dateTo) {
             const to = new Date(query.dateTo);
             to.setHours(23, 59, 59, 999);
-            items = items.filter((n) => new Date(n.createdAt) <= to);
+            where.createdAt = { ...where.createdAt, lte: to };
         }
-        return items.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        const rows = await this.prisma.clientNotification.findMany({
+            where,
+            orderBy: { createdAt: 'desc' },
+        });
+        return rows.map(toApi);
     }
-    markRead(actor, id) {
+    async findUnreadForActor(actor, limit = 5) {
         const clientId = actor.clientId;
-        const items = this.getAllForClient(clientId);
-        const idx = items.findIndex((n) => n.id === id);
-        if (idx === -1)
+        const rows = await this.prisma.clientNotification.findMany({
+            where: { clientId, isRead: false },
+            orderBy: { createdAt: 'desc' },
+            take: Math.min(limit, 20),
+        });
+        return rows.map(toApi);
+    }
+    async markAllReadForActor(actor) {
+        const clientId = actor.clientId;
+        const result = await this.prisma.clientNotification.updateMany({
+            where: { clientId, isRead: false },
+            data: { isRead: true },
+        });
+        return { count: result.count };
+    }
+    async markRead(actor, id) {
+        const clientId = actor.clientId;
+        const n = await this.prisma.clientNotification.findFirst({
+            where: { id, clientId },
+        });
+        if (!n)
             return { id, readStatus: 'READ' };
-        items[idx] = { ...items[idx], readStatus: 'READ' };
-        return { id, readStatus: items[idx].readStatus };
+        await this.prisma.clientNotification.update({
+            where: { id },
+            data: { isRead: true },
+        });
+        return { id, readStatus: 'READ' };
+    }
+    async deleteForActor(actor, id) {
+        const clientId = actor.clientId;
+        const n = await this.prisma.clientNotification.findFirst({
+            where: { id, clientId },
+        });
+        if (!n)
+            return { success: false };
+        await this.prisma.clientNotification.delete({ where: { id } });
+        return { success: true };
     }
 };
 exports.ClientPortalNotificationsService = ClientPortalNotificationsService;
 exports.ClientPortalNotificationsService = ClientPortalNotificationsService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], ClientPortalNotificationsService);
 //# sourceMappingURL=client-portal-notifications.service.js.map

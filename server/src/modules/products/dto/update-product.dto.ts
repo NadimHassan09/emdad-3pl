@@ -22,6 +22,16 @@ export class UpdateProductDto {
   name?: string;
 
   @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  category?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  brand?: string;
+
+  @IsOptional()
   @IsUUID()
   defaultUomId?: string;
 

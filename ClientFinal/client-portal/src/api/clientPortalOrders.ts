@@ -81,9 +81,7 @@ export async function fetchOutboundOrderDetail(ref: string) {
 }
 
 export async function createInboundPortal(body: {
-  warehouseId: string;
   expectedDate?: string;
-  orderNumber?: string;
 }) {
   return apiFetch<unknown>(IN_CREATE, {
     method: 'POST',

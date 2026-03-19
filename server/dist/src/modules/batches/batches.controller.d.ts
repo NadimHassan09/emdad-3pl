@@ -47,8 +47,21 @@ export declare class BatchesController {
             clientId: string;
             sku: string;
             description: string | null;
+            category: string | null;
+            brand: string | null;
             price: import("@prisma/client/runtime/library").Decimal | null;
+            declaredValue: import("@prisma/client/runtime/library").Decimal | null;
+            weight: import("@prisma/client/runtime/library").Decimal | null;
+            lengthCm: import("@prisma/client/runtime/library").Decimal | null;
+            widthCm: import("@prisma/client/runtime/library").Decimal | null;
+            heightCm: import("@prisma/client/runtime/library").Decimal | null;
+            unitsPerCarton: number | null;
+            barcode: string | null;
+            isSerialized: boolean;
+            isBatchTracked: boolean;
+            requiresExpiryDate: boolean;
             minThreshold: import("@prisma/client/runtime/library").Decimal | null;
+            reorderPoint: import("@prisma/client/runtime/library").Decimal | null;
             defaultUomId: string;
         };
     } & {

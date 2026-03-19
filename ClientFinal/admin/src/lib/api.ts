@@ -1,5 +1,10 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000';
+function buildApiUrl(path: string): string {
+  const base = (
+    import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000'
+  ).replace(/\/+$/, '');
+  const pathStr = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${pathStr}`;
+}
 
 export interface ApiError extends Error {
   status?: number;
@@ -15,7 +20,7 @@ export async function apiFetch<T = any>(
       ? window.localStorage.getItem('authToken')
       : null;
 
-  const res = await fetch(`${API_BASE_URL}${path}`, {
+  const res = await fetch(buildApiUrl(path), {
     ...options,
     headers: {
       'Content-Type': 'application/json',
