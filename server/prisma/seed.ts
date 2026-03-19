@@ -388,6 +388,45 @@ async function main() {
   console.log('\n🔑 Login credentials:');
   console.log('   Admin: admin@emdad3pl.com / password123');
   console.log('   Manager: manager@emdad3pl.com / password123');
+  // Seed sample notifications for client1
+  try {
+    const { clientNotification } = prisma;
+    await clientNotification.createMany({
+      data: [
+        {
+          clientId: client1.id,
+          title: 'تم استلام طلبك الوارد',
+          message: 'تم استلام طلبك الوارد INB-00041 بنجاح. سيتم تجهيز الشحنة في أقرب وقت.',
+          importance: 'HIGH',
+          referenceType: 'طلب وارد',
+          referenceId: 'INB-00041',
+          isRead: false,
+        },
+        {
+          clientId: client1.id,
+          title: 'فاتورة جديدة جاهزة',
+          message: 'تم إنشاء فاتورة INV-001 للعميل. يرجى مراجعة التفاصيل.',
+          importance: 'MEDIUM',
+          referenceType: 'فاتورة',
+          referenceId: 'INV-001',
+          isRead: true,
+        },
+        {
+          clientId: client1.id,
+          title: 'تنبيه: مخزون منخفض',
+          message: 'تنبيه: منتج SKU-1001 (Widget A) وصل إلى الحد الأدنى للمخزون. الكمية الحالية: 50 وحدة.',
+          importance: 'CRITICAL',
+          referenceType: 'تقارير',
+          referenceId: 'RPT-ALERT-001',
+          isRead: false,
+        },
+      ],
+    });
+    console.log('🔔 Sample notifications created for client1');
+  } catch (e) {
+    console.log('⚠️  Could not seed notifications (table may not exist yet):', (e as Error).message);
+  }
+
   console.log('   Client: client1@acme.com / password123');
 }
 
