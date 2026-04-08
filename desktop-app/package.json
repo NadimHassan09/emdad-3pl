@@ -1,0 +1,51 @@
+{
+  "name": "emdad-desktop-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline desktop bundle: NestJS (SQLite) + Admin + Client React apps (Electron).",
+  "author": "Emdad 3PL",
+  "main": "main.js",
+  "scripts": {
+    "install:all": "npm install --prefix server && npm install --prefix client && npm install --prefix admin && npm install",
+    "convert:schema": "node tools/convert-prisma-sqlite.mjs",
+    "db:push": "cd server && npx prisma db push --accept-data-loss",
+    "db:seed": "cd server && npx prisma db seed",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:all": "npm run build:server && npm run build:client && npm run build:admin",
+    "electron": "npm run build:all && electron .",
+    "dist": "npm run build:all && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.emdad.desktop",
+    "productName": "Emdad3PLDesktop",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "package.json",
+      "server/dist/**/*",
+      "server/package.json",
+      "server/prisma/**/*",
+      "server/node_modules/**/*",
+      "client/dist/**/*",
+      "admin/dist/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "signAndEditExecutable": false,
+      "signDlls": false
+    },
+    "forceCodeSigning": false
+  }
+}

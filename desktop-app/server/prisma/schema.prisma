@@ -1,0 +1,988 @@
+// =============================================================================
+// Prisma schema - 3PL WMS Backend
+// =============================================================================
+//
+// The canonical database structure is defined in the project context:
+//   /context/schema.sql
+//
+// Use Prisma introspection against an existing PostgreSQL database, or
+// run migrations, depending on environment. Do not duplicate model
+// definitions here until aligned with schema.sql.
+//
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// -----------------------------------------------------------------------------
+// IAM (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+enum ClientStatus {
+  ACTIVE
+  SUSPENDED
+  CLOSED
+  @@map("client_status")
+}
+
+enum ActorType {
+  INTERNAL_USER
+  CLIENT_ACCOUNT
+  SYSTEM
+  @@map("actor_type")
+}
+
+model Client {
+  id            String    @id @default(uuid())
+  code          String    @unique
+  name          String
+  contactEmail  String?   @map("contact_email")
+  contactPhone  String?   @map("contact_phone")
+  addressLine1  String?   @map("address_line1")
+  city          String?
+  stateRegion   String?   @map("state_region")
+  postalCode    String?   @map("postal_code")
+  countryCode   String?   @map("country_code")
+  balanceCents  BigInt    @default(0) @map("balance_cents")
+  currency      String    @default("USD")
+  status        ClientStatus @default(ACTIVE)
+  isActive      Boolean   @default(true) @map("is_active")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @map("updated_at")
+
+  clientAccounts ClientAccount[]
+  products      Product[]
+  inventoryLedgers InventoryLedger[]
+  currentStocks   CurrentStock[]
+  inboundOrders InboundOrder[]
+  outboundOrders OutboundOrder[]
+  returnOrders ReturnOrder[]
+  taskWorkOrders TaskWorkOrder[]
+  stockReservations StockReservation[]
+  outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
+  clientBillingPlans ClientBillingPlan[]
+  invoices       Invoice[]
+  billingTransactions BillingTransaction[]
+  notifications   ClientNotification[]
+  @@map("client")
+}
+
+model ClientNotification {
+  id          String   @id @default(uuid())
+  clientId    String   @map("client_id")
+  title       String
+  message     String
+  importance  String   @default("MEDIUM")
+  referenceType String? @map("reference_type")
+  referenceId String?  @map("reference_id")
+  isRead      Boolean  @default(false) @map("is_read")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  @@index([clientId])
+  @@index([clientId, isRead])
+  @@map("client_notification")
+}
+
+model ClientRole {
+  id              String   @id @default(uuid())
+  roleName        String   @unique @map("role_name")
+  permissionsJson Json     @map("permissions_json")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @default(now()) @map("updated_at")
+
+  clientAccounts ClientAccount[]
+  @@map("client_roles")
+}
+
+model ClientAccount {
+  id           String    @id @default(uuid())
+  clientId     String    @map("client_id")
+  clientRoleId String    @map("client_role_id")
+  email        String    @unique
+  passwordHash String?   @map("password_hash")
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  isActive     Boolean   @default(true) @map("is_active")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @default(now()) @map("updated_at")
+
+  client     Client      @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  clientRole ClientRole  @relation(fields: [clientRoleId], references: [id], onDelete: Restrict)
+  actor      Actor?
+  @@index([clientId])
+  @@map("client_account")
+}
+
+model UserRole {
+  id              String   @id @default(uuid())
+  roleName        String   @unique @map("role_name")
+  permissionsJson Json     @map("permissions_json")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @default(now()) @map("updated_at")
+
+  users User[]
+  @@map("user_roles")
+}
+
+model User {
+  id               String    @id @default(uuid())
+  email            String    @unique
+  passwordHash     String?   @map("password_hash")
+  firstName        String    @map("first_name")
+  lastName         String    @map("last_name")
+  internalRoleId   String?   @map("internal_role_id")
+  warehouseId      String?   @map("warehouse_id")
+  isActive         Boolean   @default(true) @map("is_active")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @default(now()) @map("updated_at")
+
+  internalRole UserRole?  @relation(fields: [internalRoleId], references: [id], onDelete: SetNull)
+  warehouse    Warehouse? @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
+  actor        Actor?
+  assignedTasks TaskWorkOrder[]
+  @@index([internalRoleId])
+  @@index([warehouseId])
+  @@map("users")
+}
+
+model Actor {
+  id               String    @id @default(uuid())
+  actorType        ActorType @map("actor_type")
+  userId           String?   @unique @map("user_id")
+  clientAccountId  String?   @unique @map("client_account_id")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @default(now()) @map("updated_at")
+
+  user          User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientAccount ClientAccount? @relation(fields: [clientAccountId], references: [id], onDelete: Cascade)
+  inboundOrders InboundOrder[]
+  outboundOrders OutboundOrder[]
+  adjustments Adjustment[]
+  requestedApprovals Approval[] @relation("RequestedApprovals")
+  approvedApprovals  Approval[] @relation("ApprovedApprovals")
+  auditLogs          AuditLog[]
+  @@index([actorType])
+  @@map("actor")
+}
+
+// -----------------------------------------------------------------------------
+// Master Data (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+enum UomDimension {
+  COUNT
+  LENGTH
+  WEIGHT
+  VOLUME
+  TEMPERATURE
+  @@map("uom_dimension")
+}
+
+enum LocationType {
+  ZONE
+  AISLE
+  RACK
+  BIN
+  STAGING
+  @@map("location_type")
+}
+
+enum BatchStatus {
+  AVAILABLE
+  HOLD
+  QUARANTINE
+  EXPIRED
+  CONSUMED
+  @@map("batch_status")
+}
+
+enum MovementType {
+  RECEIPT
+  PUTAWAY
+  PICK
+  SHIPMENT
+  ADJUSTMENT
+  TRANSFER_IN
+  TRANSFER_OUT
+  RETURN
+  CYCLE_COUNT
+  @@map("movement_type")
+}
+
+enum OrderStatus {
+  DRAFT
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  RECEIVING
+  SHIPPED
+  COMPLETED
+  CANCELLED
+  @@map("order_status")
+}
+
+enum TaskType {
+  RECEIVING
+  PUTAWAY
+  PICKING
+  PACKING
+  SHIPPING
+  CYCLE_COUNT
+  REPLENISHMENT
+  ADJUSTMENT
+  @@map("task_type")
+}
+
+enum TaskStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  @@map("task_status")
+}
+
+enum TaskPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+  @@map("task_priority")
+}
+
+enum AdjustmentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  APPLIED
+  @@map("adjustment_status")
+}
+
+enum ReturnDisposition {
+  RESTOCK
+  DAMAGED
+  QUARANTINE
+  DISPOSAL
+  @@map("return_disposition")
+}
+
+enum ReservationStatus {
+  DRAFT
+  CONFIRMED
+  RELEASED
+  CANCELLED
+  @@map("reservation_status")
+}
+
+enum AllocationStatus {
+  RESERVED
+  PARTIALLY_PICKED
+  PICKED
+  PARTIALLY_SHIPPED
+  SHIPPED
+  CANCELLED
+  @@map("allocation_status")
+}
+
+model Uom {
+  id              String       @id @default(uuid())
+  code            String       @unique
+  name            String
+  dimension       UomDimension
+  baseConversion  Decimal      @default(1) @map("base_conversion")
+  isActive        Boolean      @default(true) @map("is_active")
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @default(now()) @map("updated_at")
+
+  warehouses     Warehouse[]
+  locations      Location[]
+  products       Product[]
+  inboundOrderItems InboundOrderItem[]
+  outboundOrderItems OutboundOrderItem[]
+  vasPricings    VasPricing[]
+  @@map("uom")
+}
+
+model Warehouse {
+  id             String    @id @default(uuid())
+  code           String    @unique
+  name           String
+  capacityValue  Decimal?  @map("capacity_value")
+  capacityUomId  String?   @map("capacity_uom_id")
+  isActive       Boolean   @default(true) @map("is_active")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @map("updated_at")
+
+  users         User[]
+  capacityUom   Uom?       @relation(fields: [capacityUomId], references: [id], onDelete: SetNull)
+  locations     Location[]
+  inventoryLedgers InventoryLedger[]
+  currentStocks   CurrentStock[]
+  inboundOrders InboundOrder[]
+  outboundOrders OutboundOrder[]
+  returnOrders ReturnOrder[]
+  taskWorkOrders TaskWorkOrder[]
+  stockReservations StockReservation[]
+  outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
+  @@map("warehouse")
+}
+
+model Location {
+  id               String       @id @default(uuid())
+  warehouseId      String       @map("warehouse_id")
+  parentLocationId String?      @map("parent_location_id")
+  code             String
+  locationType     LocationType @map("location_type")
+  capacityValue    Decimal?     @map("capacity_value")
+  capacityUomId    String?      @map("capacity_uom_id")
+  isActive         Boolean      @default(true) @map("is_active")
+  createdAt        DateTime    @default(now()) @map("created_at")
+  updatedAt        DateTime    @default(now()) @map("updated_at")
+
+  warehouse     Warehouse  @relation(fields: [warehouseId], references: [id], onDelete: Cascade)
+  parentLocation Location?  @relation("LocationHierarchy", fields: [parentLocationId], references: [id], onDelete: Cascade)
+  childLocations Location[] @relation("LocationHierarchy")
+  capacityUom   Uom?       @relation(fields: [capacityUomId], references: [id], onDelete: SetNull)
+  inventoryLedgers InventoryLedger[]
+  currentStocks   CurrentStock[]
+  inboundOrderItemBatches InboundOrderItemBatch[]
+  outboundOrderItemBatches OutboundOrderItemBatch[]
+  outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
+  @@unique([warehouseId, code])
+  @@index([warehouseId, parentLocationId])
+  @@map("location")
+}
+
+model Product {
+  id                String    @id @default(uuid())
+  clientId          String    @map("client_id")
+  sku               String
+  name              String
+  description       String?
+  category          String?
+  brand             String?
+  price             Decimal?
+  declaredValue     Decimal?  @map("declared_value")
+  defaultUomId      String    @map("default_uom_id")
+  weight            Decimal?  @default(0)
+  lengthCm          Decimal?  @map("length_cm") @default(0)
+  widthCm           Decimal?  @map("width_cm") @default(0)
+  heightCm          Decimal?  @map("height_cm") @default(0)
+  unitsPerCarton    Int?      @map("units_per_carton") @default(1)
+  barcode           String?
+  isSerialized      Boolean   @default(false) @map("is_serialized")
+  isBatchTracked   Boolean   @default(false) @map("is_batch_tracked")
+  requiresExpiryDate Boolean  @default(false) @map("requires_expiry_date")
+  minThreshold      Decimal?  @default(0) @map("min_threshold")
+  reorderPoint      Decimal?  @map("reorder_point")
+  isActive          Boolean   @default(true) @map("is_active")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @default(now()) @map("updated_at")
+
+  client       Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  defaultUom   Uom      @relation(fields: [defaultUomId], references: [id], onDelete: Restrict)
+  batches      Batch[]
+  inventoryLedgers InventoryLedger[]
+  currentStocks   CurrentStock[]
+  inboundOrderItems InboundOrderItem[]
+  outboundOrderItems OutboundOrderItem[]
+  returnOrders ReturnOrder[]
+  outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
+  @@unique([clientId, sku])
+  @@map("product")
+}
+
+model Batch {
+  id                  String      @id @default(uuid())
+  productId           String      @map("product_id")
+  batchCode           String      @map("batch_code")
+  expiryDate          DateTime?   @map("expiry_date")
+  manufacturingDate   DateTime?   @map("manufacturing_date")
+  receivedDate        DateTime?   @map("received_date")
+  lotNumber           String?     @map("lot_number")
+  supplierBatchCode   String?     @map("supplier_batch_code")
+  batchStatus         BatchStatus @default(AVAILABLE) @map("batch_status")
+  createdAt           DateTime    @default(now()) @map("created_at")
+  updatedAt           DateTime    @default(now()) @map("updated_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  inventoryLedgers InventoryLedger[]
+  currentStocks   CurrentStock[]
+  inboundOrderItemBatches InboundOrderItemBatch[]
+  outboundOrderItemBatches OutboundOrderItemBatch[]
+  returnOrders ReturnOrder[]
+  outboundAllocations OutboundAllocation[]
+  adjustments Adjustment[]
+  @@unique([productId, batchCode])
+  @@index([batchStatus])
+  @@map("batch")
+}
+
+// -----------------------------------------------------------------------------
+// Inventory Tracking (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model InventoryLedger {
+  id            String       @id @default(uuid())
+  clientId     String       @map("client_id")
+  warehouseId  String       @map("warehouse_id")
+  productId    String       @map("product_id")
+  batchId      String?      @map("batch_id")
+  locationId   String?      @map("location_id")
+  movementType MovementType @map("movement_type")
+  qtyChange    Decimal      @map("qty_change")
+  qtyBefore    Decimal      @map("qty_before")
+  qtyAfter     Decimal      @map("qty_after")
+  referenceType String?     @map("reference_type")
+  referenceId   String?      @map("reference_id")
+  createdAt    DateTime     @default(now()) @map("created_at")
+
+  client    Client    @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse Warehouse @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
+  batch     Batch?    @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location  Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, warehouseId, productId, createdAt])
+  @@map("inventory_ledger")
+}
+
+model CurrentStock {
+  id          String    @id @default(uuid())
+  clientId    String    @map("client_id")
+  warehouseId String    @map("warehouse_id")
+  productId   String    @map("product_id")
+  batchId     String?   @map("batch_id")
+  locationId  String?   @map("location_id")
+  quantity    Decimal   @default(0)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  client    Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  warehouse Warehouse @relation(fields: [warehouseId], references: [id], onDelete: Cascade)
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  batch     Batch?    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  location  Location? @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  @@unique([clientId, warehouseId, productId, batchId, locationId], name: "idx_current_stock_unique")
+  @@index([clientId, warehouseId, productId])
+  @@map("current_stock")
+}
+
+// -----------------------------------------------------------------------------
+// Inbound Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model InboundOrder {
+  id                String      @id @default(uuid())
+  clientId          String      @map("client_id")
+  warehouseId       String?     @map("warehouse_id")
+  orderNumber       String?     @map("order_number")
+  status            OrderStatus @default(DRAFT)
+  currentStage      String?     @map("current_stage")
+  expectedDate      DateTime?   @map("expected_date")
+  createdByActorId  String      @map("created_by_actor_id")
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  client            Client              @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse?          @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
+  createdByActor    Actor                @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
+  items             InboundOrderItem[]
+
+  @@index([clientId, warehouseId])
+  @@map("inbound_order")
+}
+
+model InboundOrderItem {
+  id              String    @id @default(uuid())
+  inboundOrderId  String    @map("inbound_order_id")
+  productId       String    @map("product_id")
+  qtyOrdered      Decimal   @map("qty_ordered")
+  qtyReceived     Decimal   @default(0) @map("qty_received")
+  uomId           String    @map("uom_id")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  inboundOrder    InboundOrder              @relation(fields: [inboundOrderId], references: [id], onDelete: Cascade)
+  product         Product                  @relation(fields: [productId], references: [id], onDelete: Restrict)
+  uom             Uom                      @relation(fields: [uomId], references: [id], onDelete: Restrict)
+  batches         InboundOrderItemBatch[]
+
+  @@index([inboundOrderId])
+  @@map("inbound_order_item")
+}
+
+model InboundOrderItemBatch {
+  id                  String    @id @default(uuid())
+  inboundOrderItemId  String    @map("inbound_order_item_id")
+  batchId             String?   @map("batch_id")
+  locationId          String?   @map("location_id")
+  qtyReceived         Decimal   @default(0) @map("qty_received")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  inboundOrderItem    InboundOrderItem  @relation(fields: [inboundOrderItemId], references: [id], onDelete: Cascade)
+  batch               Batch?            @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location            Location?         @relation(fields: [locationId], references: [id], onDelete: SetNull)
+
+  @@index([inboundOrderItemId])
+  @@map("inbound_order_item_batch")
+}
+
+// -----------------------------------------------------------------------------
+// Outbound Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model OutboundOrder {
+  id                String      @id @default(uuid())
+  clientId          String      @map("client_id")
+  warehouseId       String?     @map("warehouse_id")
+  orderNumber       String?     @map("order_number")
+  status            OrderStatus @default(DRAFT)
+  currentStage      String?     @map("current_stage")
+  expectedShipDate  DateTime?   @map("expected_ship_date")
+  createdByActorId  String      @map("created_by_actor_id")
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  client            Client              @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse?          @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
+  createdByActor    Actor               @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
+  items             OutboundOrderItem[]
+  stockReservations StockReservation[]
+  returnOrders      ReturnOrder[]
+
+  @@index([clientId, warehouseId])
+  @@map("outbound_order")
+}
+
+model OutboundOrderItem {
+  id              String    @id @default(uuid())
+  outboundOrderId String    @map("outbound_order_id")
+  productId       String    @map("product_id")
+  qtyOrdered      Decimal   @map("qty_ordered")
+  qtyShipped      Decimal   @default(0) @map("qty_shipped")
+  uomId           String    @map("uom_id")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  outboundOrder   OutboundOrder         @relation(fields: [outboundOrderId], references: [id], onDelete: Cascade)
+  product         Product               @relation(fields: [productId], references: [id], onDelete: Restrict)
+  uom             Uom                   @relation(fields: [uomId], references: [id], onDelete: Restrict)
+  batches         OutboundOrderItemBatch[]
+  allocations    OutboundAllocation[]
+
+  @@index([outboundOrderId])
+  @@map("outbound_order_item")
+}
+
+model OutboundOrderItemBatch {
+  id                  String    @id @default(uuid())
+  outboundOrderItemId String    @map("outbound_order_item_id")
+  batchId             String?   @map("batch_id")
+  locationId          String?   @map("location_id")
+  qtyShipped          Decimal   @default(0) @map("qty_shipped")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  outboundOrderItem   OutboundOrderItem  @relation(fields: [outboundOrderItemId], references: [id], onDelete: Cascade)
+  batch               Batch?             @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location            Location?          @relation(fields: [locationId], references: [id], onDelete: SetNull)
+
+  @@index([outboundOrderItemId])
+  @@map("outbound_order_item_batch")
+}
+
+// -----------------------------------------------------------------------------
+// Stock Reservations (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model StockReservation {
+  id                String            @id @default(uuid())
+  clientId          String            @map("client_id")
+  warehouseId       String            @map("warehouse_id")
+  outboundOrderId   String            @map("outbound_order_id")
+  status            ReservationStatus @default(DRAFT)
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  client            Client            @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse         @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  outboundOrder     OutboundOrder     @relation(fields: [outboundOrderId], references: [id], onDelete: Cascade)
+  allocations       OutboundAllocation[]
+
+  @@index([outboundOrderId])
+  @@index([clientId, warehouseId])
+  @@map("stock_reservation")
+}
+
+model OutboundAllocation {
+  id                  String          @id @default(uuid())
+  stockReservationId  String          @map("stock_reservation_id")
+  outboundOrderItemId String          @map("outbound_order_item_id")
+  clientId            String          @map("client_id")
+  warehouseId         String          @map("warehouse_id")
+  productId           String          @map("product_id")
+  batchId             String?         @map("batch_id")
+  locationId          String?         @map("location_id")
+  reservedQty         Decimal         @default(0) @map("reserved_qty")
+  pickedQty           Decimal         @default(0) @map("picked_qty")
+  shippedQty          Decimal         @default(0) @map("shipped_qty")
+  status              AllocationStatus @default(RESERVED)
+  createdAt           DateTime        @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  stockReservation   StockReservation  @relation(fields: [stockReservationId], references: [id], onDelete: Cascade)
+  outboundOrderItem  OutboundOrderItem @relation(fields: [outboundOrderItemId], references: [id], onDelete: Cascade)
+  client             Client            @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse          Warehouse         @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  product            Product           @relation(fields: [productId], references: [id], onDelete: Restrict)
+  batch              Batch?            @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location           Location?         @relation(fields: [locationId], references: [id], onDelete: SetNull)
+
+  @@index([stockReservationId])
+  @@index([outboundOrderItemId])
+  @@index([clientId, warehouseId, productId])
+  @@map("outbound_allocation")
+}
+
+// -----------------------------------------------------------------------------
+// Task Work Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model TaskWorkOrder {
+  id                String      @id @default(uuid())
+  clientId          String      @map("client_id")
+  warehouseId       String      @map("warehouse_id")
+  taskType          TaskType    @map("task_type")
+  referenceType     String?     @map("reference_type")
+  referenceId       String?     @map("reference_id")
+  referenceItemId   String?     @map("reference_item_id")
+  assignedUserId    String?     @map("assigned_user_id")
+  priority          TaskPriority @default(NORMAL)
+  status            TaskStatus  @default(PENDING)
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  client            Client      @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse   @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  assignedUser      User?       @relation(fields: [assignedUserId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, warehouseId])
+  @@index([referenceType, referenceId])
+  @@index([referenceType, referenceItemId])
+  @@map("task_work_order")
+}
+
+// -----------------------------------------------------------------------------
+// Adjustments (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model Adjustment {
+  id                String          @id @default(uuid())
+  clientId          String          @map("client_id")
+  warehouseId       String          @map("warehouse_id")
+  productId         String?         @map("product_id")
+  batchId           String?         @map("batch_id")
+  locationId        String?         @map("location_id")
+  qtyChange         Decimal         @map("qty_change")
+  reason            String?
+  status            AdjustmentStatus @default(PENDING)
+  createdByActorId  String          @map("created_by_actor_id")
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  client            Client          @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse       @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  product           Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  batch             Batch?          @relation(fields: [batchId], references: [id], onDelete: SetNull)
+  location          Location?       @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  createdByActor    Actor           @relation(fields: [createdByActorId], references: [id], onDelete: Restrict)
+
+  @@index([clientId, warehouseId])
+  @@map("adjustment")
+}
+
+// -----------------------------------------------------------------------------
+// Return Orders (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model ReturnOrder {
+  id                String          @id @default(uuid())
+  clientId          String          @map("client_id")
+  warehouseId       String          @map("warehouse_id")
+  outboundOrderId   String          @map("outbound_order_id")
+  returnNumber      String          @map("return_number")
+  productId         String          @map("product_id")
+  batchId           String?         @map("batch_id")
+  qty               Decimal
+  disposition       ReturnDisposition @default(RESTOCK)
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  client            Client          @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  warehouse         Warehouse       @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  outboundOrder     OutboundOrder   @relation(fields: [outboundOrderId], references: [id], onDelete: Restrict)
+  product           Product         @relation(fields: [productId], references: [id], onDelete: Restrict)
+  batch             Batch?          @relation(fields: [batchId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, warehouseId])
+  @@index([outboundOrderId])
+  @@map("return_order")
+}
+
+// -----------------------------------------------------------------------------
+// Approvals (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  @@map("approval_status")
+}
+
+enum ApprovalReferenceType {
+  ADJUSTMENT
+  RETURN
+  INVOICE
+  ORDER
+  @@map("approval_reference_type")
+}
+
+model Approval {
+  id                  String                @id @default(uuid())
+  referenceType       ApprovalReferenceType @map("reference_type")
+  referenceId         String                @map("reference_id")
+  approvalStep        String                @default("INITIAL") @map("approval_step")
+  sequenceNo          Int                   @default(1) @map("sequence_no")
+  requestedByActorId  String                @map("requested_by_actor_id")
+  approvedByActorId   String?               @map("approved_by_actor_id")
+  status              ApprovalStatus        @default(PENDING)
+  requestNotes        String?               @map("request_notes")
+  decisionNotes       String?               @map("decision_notes")
+  decisionAt          DateTime?             @map("decision_at")
+  createdAt           DateTime              @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  requestedByActor    Actor                 @relation("RequestedApprovals", fields: [requestedByActorId], references: [id], onDelete: Restrict)
+  approvedByActor     Actor?                @relation("ApprovedApprovals", fields: [approvedByActorId], references: [id], onDelete: SetNull)
+
+  @@index([referenceType, referenceId], name: "idx_approval_reference")
+  @@index([requestedByActorId], name: "idx_approval_requested")
+  @@map("approval")
+}
+
+// -----------------------------------------------------------------------------
+// Billing & Finance (aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+enum BillingCycleEnum {
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ANNUALLY
+  @@map("billing_cycle_enum")
+}
+
+enum PricingMethod {
+  FIXED
+  PER_UNIT
+  PER_VOLUME
+  PER_WEIGHT
+  CUSTOM
+  @@map("pricing_method")
+}
+
+enum InvoiceStatus {
+  DRAFT
+  ISSUED
+  PAID
+  OVERDUE
+  CANCELLED
+  @@map("invoice_status")
+}
+
+enum ChargeCategory {
+  STORAGE
+  MOVEMENT
+  VAS
+  PLAN_FEE
+  MANUAL_CREDIT
+  MANUAL_CHARGE
+  @@map("charge_category")
+}
+
+model BillingPlan {
+  id                        String           @id @default(uuid())
+  planName                  String           @map("plan_name")
+  storageIncluded           Decimal?         @map("storage_included")
+  billingCycle              BillingCycleEnum @map("billing_cycle")
+  baseFeeCents              BigInt?          @default(0) @map("base_fee_cents")
+  inboundItemFeeCents       BigInt?          @default(0) @map("inbound_item_fee_cents")
+  inboundWeightCentsPerKg   BigInt?          @default(0) @map("inbound_weight_cents_per_kg")
+  outboundItemFeeCents      BigInt?          @default(0) @map("outbound_item_fee_cents")
+  outboundWeightCentsPerKg  BigInt?          @default(0) @map("outbound_weight_cents_per_kg")
+  isActive                  Boolean          @default(true) @map("is_active")
+  createdAt                 DateTime         @default(now()) @map("created_at")
+  updatedAt                 DateTime         @default(now()) @map("updated_at")
+
+  clientBillingPlans ClientBillingPlan[]
+  vasPricings       VasPricing[]
+  @@map("billing_plan")
+}
+
+model Vas {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String?
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @map("updated_at")
+
+  vasPricings VasPricing[]
+  @@map("vas")
+}
+
+model VasPricing {
+  id             String        @id @default(uuid())
+  vasId          String        @map("vas_id")
+  billingPlanId  String        @map("billing_plan_id")
+  pricingMethod  PricingMethod @default(FIXED) @map("pricing_method")
+  rateCents      BigInt        @map("rate_cents")
+  baseUomId      String?       @map("base_uom_id")
+  minChargeCents BigInt?      @map("min_charge_cents")
+  billingUnit    String?      @map("billing_unit")
+  ruleJson       Json         @map("rule_json")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @default(now()) @map("updated_at")
+
+  vas           Vas      @relation(fields: [vasId], references: [id], onDelete: Cascade)
+  billingPlan   BillingPlan @relation(fields: [billingPlanId], references: [id], onDelete: Cascade)
+  baseUom       Uom?     @relation(fields: [baseUomId], references: [id], onDelete: SetNull)
+
+  @@unique([vasId, billingPlanId])
+  @@map("vas_pricing")
+}
+
+model ClientBillingPlan {
+  id            String      @id @default(uuid())
+  clientId      String      @map("client_id")
+  billingPlanId String      @map("billing_plan_id")
+  startsAt      DateTime    @default(now()) @map("starts_at")
+  endsAt        DateTime?   @map("ends_at")
+  isCurrent     Boolean     @default(true) @map("is_current")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @default(now()) @map("updated_at")
+
+  client       Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  billingPlan  BillingPlan  @relation(fields: [billingPlanId], references: [id], onDelete: Restrict)
+
+  @@index([clientId])
+  @@map("client_billing_plan")
+}
+
+model Invoice {
+  id                   String        @id @default(uuid())
+  clientId             String       @map("client_id")
+  invoiceNumber        String       @unique @map("invoice_number")
+  periodStart          DateTime     @map("period_start")
+  periodEnd            DateTime     @map("period_end")
+  subtotalCents        BigInt       @default(0) @map("subtotal_cents")
+  taxAmountCents       BigInt       @default(0) @map("tax_amount_cents")
+  discountAmountCents  BigInt       @default(0) @map("discount_amount_cents")
+  totalAmountCents     BigInt       @default(0) @map("total_amount_cents")
+  currency             String       @default("USD")
+  status               InvoiceStatus @default(DRAFT)
+  dueDate              DateTime?    @map("due_date")
+  issuedAt             DateTime?    @map("issued_at")
+  paidAt               DateTime?    @map("paid_at")
+  notes                String?
+  createdAt            DateTime     @default(now()) @map("created_at")
+  updatedAt            DateTime     @default(now()) @map("updated_at")
+
+  client        Client         @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  lines         InvoiceLine[]
+  billingTransactions BillingTransaction[]
+
+  @@index([clientId])
+  @@map("invoice")
+}
+
+model InvoiceLine {
+  id                String         @id @default(uuid())
+  invoiceId         String        @map("invoice_id")
+  chargeCategory    ChargeCategory @map("charge_category")
+  description       String?
+  quantity          Decimal       @default(0)
+  unitPriceCents    BigInt        @map("unit_price_cents")
+  totalAmountCents  BigInt        @map("total_amount_cents")
+  currency          String        @default("USD")
+  referenceType     String?       @map("reference_type")
+  referenceId       String?       @map("reference_id")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @default(now()) @map("updated_at")
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@index([invoiceId])
+  @@index([referenceType, referenceId])
+  @@map("invoice_line")
+}
+
+model BillingTransaction {
+  id             String          @id @default(uuid())
+  clientId       String          @map("client_id")
+  invoiceId      String?         @map("invoice_id")
+  chargeCategory ChargeCategory  @map("charge_category")
+  description    String?
+  amountCents    BigInt          @map("amount_cents")
+  currency       String          @default("USD")
+  referenceType  String?         @map("reference_type")
+  referenceId    String?         @map("reference_id")
+  createdAt      DateTime        @default(now()) @map("created_at")
+
+  client  Client   @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  invoice Invoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+
+  @@index([clientId])
+  @@index([invoiceId])
+  @@index([referenceType, referenceId])
+  @@map("billing_transaction")
+}
+
+// -----------------------------------------------------------------------------
+// System Audit (append-only, immutable; aligned with /context/schema.sql)
+// -----------------------------------------------------------------------------
+
+model AuditLog {
+  id           String   @id @default(uuid())
+  actorId      String?  @map("actor_id")
+  action       String
+  resourceType String   @map("resource_type")
+  resourceId   String?  @map("resource_id")
+  ipAddress    String?  @map("ip_address")
+  detailsJson  Json     @map("details_json")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  actor Actor? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([actorId], name: "idx_audit_log_actor")
+  @@index([resourceType, resourceId], name: "idx_audit_log_resource")
+  @@index([createdAt], name: "idx_audit_log_created")
+  @@map("audit_log")
+}

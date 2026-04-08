@@ -1,0 +1,13 @@
+node_modules/
+release/
+# NSIS / electron-builder output (this folder name only at desktop-app root)
+/dist/
+server/node_modules/
+server/dist/
+client/node_modules/
+client/dist/
+admin/node_modules/
+admin/dist/
+server/prisma/dev.db
+server/prisma/dev.db-journal
+*.log
