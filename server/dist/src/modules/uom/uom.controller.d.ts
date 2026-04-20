@@ -45,4 +45,7 @@ export declare class UomController {
         createdAt: Date;
         updatedAt: Date;
     }>;
+    remove(id: string): Promise<{
+        success: boolean;
+    }>;
 }

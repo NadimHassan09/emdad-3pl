@@ -5,7 +5,7 @@ import { JwtPayload } from '../../common/interfaces/jwt-payload.interface';
 export declare class ApprovalsController {
     private readonly approvals;
     constructor(approvals: ApprovalsService);
-    findMany(filter: ApprovalFilterDto): Promise<unknown[]>;
+    findMany(filter: ApprovalFilterDto): Promise<Record<string, unknown>[]>;
     findOne(id: string): Promise<{}>;
     approve(id: string, dto: ApprovalDecisionDto, payload: JwtPayload): Promise<unknown>;
     reject(id: string, dto: ApprovalDecisionDto, payload: JwtPayload): Promise<unknown>;

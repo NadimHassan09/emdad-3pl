@@ -3,10 +3,12 @@ import { CreateReservationDto } from './dto/create-reservation.dto';
 import { PickAllocationDto } from './dto/pick-allocation.dto';
 import { ShipOrderDto } from './dto/ship-order.dto';
 import { InventoryService } from '../inventory/inventory.service';
+import { BillingService } from '../billing/billing.service';
 export declare class StockReservationsService {
     private readonly prisma;
     private readonly inventoryService;
-    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    private readonly billingService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService, billingService: BillingService);
     createReservation(outboundOrderId: string, dto: CreateReservationDto): Promise<{
         warehouse: {
             id: string;

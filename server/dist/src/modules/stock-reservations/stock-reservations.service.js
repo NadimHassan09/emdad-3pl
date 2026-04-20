@@ -14,12 +14,14 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 const allocation_status_enum_1 = require("../../common/enums/allocation-status.enum");
 const inventory_service_1 = require("../inventory/inventory.service");
+const billing_service_1 = require("../billing/billing.service");
 const movement_type_enum_1 = require("../../common/enums/movement-type.enum");
 const order_status_enum_1 = require("../../common/enums/order-status.enum");
 let StockReservationsService = class StockReservationsService {
-    constructor(prisma, inventoryService) {
+    constructor(prisma, inventoryService, billingService) {
         this.prisma = prisma;
         this.inventoryService = inventoryService;
+        this.billingService = billingService;
     }
     async createReservation(outboundOrderId, dto) {
         const order = await this.prisma.outboundOrder.findUniqueOrThrow({
@@ -431,6 +433,7 @@ let StockReservationsService = class StockReservationsService {
                     referenceType: 'OUTBOUND_ORDER',
                     referenceId: outboundOrderId,
                 });
+                await this.billingService.recordOutboundShipCharge(outboundOrderId, allocation.clientId, allocation.productId, qtyToShip);
             }
             updatedAllocations.push(updatedAllocation);
         }
@@ -527,6 +530,7 @@ exports.StockReservationsService = StockReservationsService;
 exports.StockReservationsService = StockReservationsService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        inventory_service_1.InventoryService])
+        inventory_service_1.InventoryService,
+        billing_service_1.BillingService])
 ], StockReservationsService);
 //# sourceMappingURL=stock-reservations.service.js.map

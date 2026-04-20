@@ -1,6 +1,6 @@
 import { LocationType } from '../../../common/enums/location-type.enum';
 export declare class CreateLocationDto {
-    code: string;
+    code?: string;
     locationType: LocationType;
     parentLocationId?: string;
     capacityValue?: number;

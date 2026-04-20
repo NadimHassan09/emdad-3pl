@@ -13,7 +13,10 @@ exports.InboundOrdersService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 const inventory_service_1 = require("../inventory/inventory.service");
+const billing_service_1 = require("../billing/billing.service");
 const movement_type_enum_1 = require("../../common/enums/movement-type.enum");
+const approvals_service_1 = require("../approvals/approvals.service");
+const approval_reference_type_enum_1 = require("../../common/enums/approval-reference-type.enum");
 function toNumber(value) {
     if (typeof value === 'number' && !Number.isNaN(value))
         return value;
@@ -24,9 +27,11 @@ function toNumber(value) {
     return 0;
 }
 let InboundOrdersService = class InboundOrdersService {
-    constructor(prisma, inventoryService) {
+    constructor(prisma, inventoryService, billingService, approvalsService) {
         this.prisma = prisma;
         this.inventoryService = inventoryService;
+        this.billingService = billingService;
+        this.approvalsService = approvalsService;
     }
     async create(dto, createdByActorId) {
         await this.prisma.client.findUniqueOrThrow({ where: { id: dto.clientId } });
@@ -40,6 +45,7 @@ let InboundOrdersService = class InboundOrdersService {
                 orderNumber: dto.orderNumber?.trim(),
                 currentStage: dto.currentStage?.trim(),
                 expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
+                status: 'IN_PROGRESS',
                 createdByActorId,
             },
             include: {
@@ -165,12 +171,13 @@ let InboundOrdersService = class InboundOrdersService {
                 where: { id: dto.warehouseId },
             });
         }
-        return this.prisma.inboundOrder.create({
+        const order = await this.prisma.inboundOrder.create({
             data: {
                 clientId,
                 warehouseId: dto.warehouseId ?? null,
                 currentStage: dto.currentStage?.trim(),
                 expectedDate: dto.expectedDate ? new Date(dto.expectedDate) : null,
+                status: 'PENDING',
                 createdByActorId: actorId,
             },
             include: {
@@ -186,6 +193,13 @@ let InboundOrdersService = class InboundOrdersService {
                 },
             },
         });
+        await this.approvalsService.createRequest({
+            referenceType: approval_reference_type_enum_1.ApprovalReferenceType.ORDER,
+            referenceId: order.id,
+            requestedByActorId: actorId,
+            approvalStep: 'INBOUND_ORDER',
+        });
+        return order;
     }
     async addItemForClientPortal(clientId, orderId, dto) {
         const owned = await this.prisma.inboundOrder.findFirst({
@@ -427,6 +441,7 @@ let InboundOrdersService = class InboundOrdersService {
                 data: { status: 'RECEIVING' },
             });
         }
+        await this.billingService.recordInboundReceiveCharge(orderId, dto.itemId, order.clientId, item.productId, totalQtyReceived);
         return this.findOne(orderId);
     }
 };
@@ -434,6 +449,8 @@ exports.InboundOrdersService = InboundOrdersService;
 exports.InboundOrdersService = InboundOrdersService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        inventory_service_1.InventoryService])
+        inventory_service_1.InventoryService,
+        billing_service_1.BillingService,
+        approvals_service_1.ApprovalsService])
 ], InboundOrdersService);
 //# sourceMappingURL=inbound-orders.service.js.map

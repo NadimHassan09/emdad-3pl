@@ -13,7 +13,7 @@ export declare class ApprovalsService {
         sequenceNo?: number;
         requestNotes?: string;
     }): Promise<unknown>;
-    findMany(filter?: ApprovalFilterDto): Promise<unknown[]>;
+    findMany(filter?: ApprovalFilterDto): Promise<Record<string, unknown>[]>;
     findOne(id: string): Promise<{}>;
     approve(id: string, approverActorId: string, dto: ApprovalDecisionDto): Promise<unknown>;
     reject(id: string, approverActorId: string, dto: ApprovalDecisionDto): Promise<unknown>;

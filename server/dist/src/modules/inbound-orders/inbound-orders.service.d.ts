@@ -1,15 +1,19 @@
 import { PrismaService } from '../../database/prisma/prisma.service';
 import { InventoryService } from '../inventory/inventory.service';
+import { BillingService } from '../billing/billing.service';
 import { CreateInboundOrderDto } from './dto/create-inbound-order.dto';
 import { UpdateInboundOrderDto } from './dto/update-inbound-order.dto';
 import { InboundOrderFilterDto } from './dto/inbound-order-filter.dto';
 import { AddInboundOrderItemDto } from './dto/add-inbound-order-item.dto';
 import { ReceiveInboundOrderDto } from './dto/receive-inbound-order.dto';
 import { CreateInboundOrderClientPortalDto } from './dto/create-inbound-order-client-portal.dto';
+import { ApprovalsService } from '../approvals/approvals.service';
 export declare class InboundOrdersService {
     private readonly prisma;
     private readonly inventoryService;
-    constructor(prisma: PrismaService, inventoryService: InventoryService);
+    private readonly billingService;
+    private readonly approvalsService;
+    constructor(prisma: PrismaService, inventoryService: InventoryService, billingService: BillingService, approvalsService: ApprovalsService);
     create(dto: CreateInboundOrderDto, createdByActorId: string): Promise<{
         warehouse: {
             id: string;

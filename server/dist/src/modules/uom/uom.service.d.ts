@@ -35,6 +35,9 @@ export declare class UomService {
         createdAt: Date;
         updatedAt: Date;
     }>;
+    remove(id: string): Promise<{
+        success: boolean;
+    }>;
     update(id: string, dto: UpdateUomDto): Promise<{
         id: string;
         code: string;

@@ -4,9 +4,11 @@ import { UpdateOutboundOrderDto } from './dto/update-outbound-order.dto';
 import { OutboundOrderFilterDto } from './dto/outbound-order-filter.dto';
 import { AddOutboundOrderItemDto } from './dto/add-outbound-order-item.dto';
 import { CreateOutboundOrderClientPortalDto } from './dto/create-outbound-order-client-portal.dto';
+import { ApprovalsService } from '../approvals/approvals.service';
 export declare class OutboundOrdersService {
     private readonly prisma;
-    constructor(prisma: PrismaService);
+    private readonly approvalsService;
+    constructor(prisma: PrismaService, approvalsService: ApprovalsService);
     create(dto: CreateOutboundOrderDto, createdByActorId: string): Promise<{
         warehouse: {
             id: string;

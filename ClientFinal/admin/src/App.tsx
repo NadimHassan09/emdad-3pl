@@ -112,6 +112,7 @@ import {
   fetchLocationsFlat,
   fetchUomList,
   createClient,
+  onboardClient,
   updateClient,
   createProduct,
   updateProduct,
@@ -125,6 +126,12 @@ import {
   updateUom,
   deleteUom,
   fetchClientAccounts,
+  createClientAccount,
+  updateClientAccount,
+  setClientAccountActive,
+  fetchClientRoleCatalog,
+  fetchClientRolesWithPermissions as fetchClientRolesWithPermissionsMasterData,
+  createClientRole as createClientRoleMasterData,
   UOM_DIMENSIONS,
   UOM_DIMENSION_LABELS,
   LOCATION_TYPES,
@@ -138,6 +145,8 @@ import {
   type WarehouseUi,
   type LocationUi,
   type ClientAccountApi,
+  type ClientRoleCatalogPanel,
+  type ClientRoleInfo,
 } from '@/lib/master-data';
 import {
   fetchUsers,
@@ -1236,6 +1245,23 @@ function MasterDataPage() {
   const [clientAccountsClient, setClientAccountsClient] = useState<ClientUi | null>(null);
   const [clientAccounts, setClientAccounts] = useState<ClientAccountApi[]>([]);
   const [clientAccountsLoading, setClientAccountsLoading] = useState(false);
+  const [clientRoles, setClientRoles] = useState<ClientRoleInfo[]>([]);
+  const [clientRoleCatalog, setClientRoleCatalog] = useState<ClientRoleCatalogPanel[]>([]);
+  const [clientRolesDialogOpen, setClientRolesDialogOpen] = useState(false);
+  const [clientRoleNameInput, setClientRoleNameInput] = useState('');
+  const [clientRolePermissionsInput, setClientRolePermissionsInput] = useState<string[]>([]);
+  const [accountFormOpen, setAccountFormOpen] = useState(false);
+  const [editingAccountId, setEditingAccountId] = useState<string | null>(null);
+  const [accountFormData, setAccountFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    clientRoleId: '',
+  });
+  const [addAccountsAfterCreate, setAddAccountsAfterCreate] = useState(false);
+  const [newClientAccounts, setNewClientAccounts] = useState<
+    Array<{ firstName: string; lastName: string; email: string; clientRoleId: string }>
+  >([]);
 
   // Products state
   const [products, setProducts] = useState<ProductUi[]>([]);
@@ -1311,8 +1337,12 @@ function MasterDataPage() {
   useEffect(() => {
     if (activeDataType === 'clients') {
       setClientsLoading(true);
-      fetchClients()
-        .then(setClients)
+      Promise.all([fetchClients(), fetchClientRolesWithPermissionsMasterData(), fetchClientRoleCatalog()])
+        .then(([clientList, roleList, roleCatalog]) => {
+          setClients(clientList);
+          setClientRoles(roleList);
+          setClientRoleCatalog(roleCatalog);
+        })
         .catch(() => setClients([]))
         .finally(() => setClientsLoading(false));
     }
@@ -1435,6 +1465,19 @@ function MasterDataPage() {
     setExpandedNodes(newExpanded);
   };
 
+  const parseRolePermissions = (permissionsJson?: { permissions?: string[] } | string[]) => {
+    if (Array.isArray(permissionsJson)) return permissionsJson;
+    if (permissionsJson && Array.isArray(permissionsJson.permissions)) return permissionsJson.permissions;
+    return [];
+  };
+
+  const addDraftClientAccount = () => {
+    setNewClientAccounts((prev) => [
+      ...prev,
+      { firstName: '', lastName: '', email: '', clientRoleId: clientRoles[0]?.id ?? '' },
+    ]);
+  };
+
   const renderLocationTree = (nodes: (LocationUi & { children?: LocationUi[] })[], level = 0) => {
     return (
       <div className="space-y-1">
@@ -1531,10 +1574,15 @@ function MasterDataPage() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>الفلاتر</CardTitle>
-                <Button onClick={() => setIsCreateClientOpen(true)}>
-                  <Plus className="w-4 h-4 ml-2" />
-                  إنشاء عميل
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" onClick={() => setClientRolesDialogOpen(true)}>
+                    إدارة أدوار العملاء
+                  </Button>
+                  <Button onClick={() => setIsCreateClientOpen(true)}>
+                    <Plus className="w-4 h-4 ml-2" />
+                    إنشاء عميل
+                  </Button>
+                </div>
               </div>
             </CardHeader>
             <CardContent>
@@ -1693,6 +1741,8 @@ function MasterDataPage() {
               setIsEditClientOpen(false);
               setSelectedClient(null);
               setClientFormData({});
+              setAddAccountsAfterCreate(false);
+              setNewClientAccounts([]);
             }
           }}>
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -1746,6 +1796,88 @@ function MasterDataPage() {
                     />
                     <label className="text-sm font-medium">نشط</label>
                   </div>
+                  {isCreateClientOpen && (
+                    <div className="col-span-2 border rounded-lg p-3 space-y-3">
+                      <div className="flex items-center gap-2">
+                        <Checkbox
+                          checked={addAccountsAfterCreate}
+                          onCheckedChange={(checked) =>
+                            setAddAccountsAfterCreate(Boolean(checked))
+                          }
+                        />
+                        <label className="text-sm font-medium">
+                          إضافة حسابات مباشرة بعد إنشاء الشركة
+                        </label>
+                      </div>
+                      {addAccountsAfterCreate && (
+                        <div className="space-y-3">
+                          {newClientAccounts.map((acc, index) => (
+                            <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                              <Input
+                                placeholder="الاسم الأول"
+                                value={acc.firstName}
+                                onChange={(e) =>
+                                  setNewClientAccounts((prev) =>
+                                    prev.map((row, i) =>
+                                      i === index ? { ...row, firstName: e.target.value } : row,
+                                    ),
+                                  )
+                                }
+                              />
+                              <Input
+                                placeholder="الاسم الأخير"
+                                value={acc.lastName}
+                                onChange={(e) =>
+                                  setNewClientAccounts((prev) =>
+                                    prev.map((row, i) =>
+                                      i === index ? { ...row, lastName: e.target.value } : row,
+                                    ),
+                                  )
+                                }
+                              />
+                              <Input
+                                placeholder="البريد الإلكتروني"
+                                type="email"
+                                value={acc.email}
+                                onChange={(e) =>
+                                  setNewClientAccounts((prev) =>
+                                    prev.map((row, i) =>
+                                      i === index ? { ...row, email: e.target.value } : row,
+                                    ),
+                                  )
+                                }
+                              />
+                              <Select
+                                value={acc.clientRoleId || undefined}
+                                onValueChange={(v) =>
+                                  setNewClientAccounts((prev) =>
+                                    prev.map((row, i) =>
+                                      i === index ? { ...row, clientRoleId: v } : row,
+                                    ),
+                                  )
+                                }
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="الدور" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {clientRoles.map((role) => (
+                                    <SelectItem key={role.id} value={role.id}>
+                                      {role.roleName}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          ))}
+                          <Button type="button" variant="outline" onClick={addDraftClientAccount}>
+                            <Plus className="w-4 h-4 ml-2" />
+                            إضافة حساب
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
               <DialogFooter>
@@ -1754,21 +1886,51 @@ function MasterDataPage() {
                   setIsEditClientOpen(false);
                   setSelectedClient(null);
                   setClientFormData({});
+                  setAddAccountsAfterCreate(false);
+                  setNewClientAccounts([]);
                 }}>
                   إلغاء
                 </Button>
                 <Button onClick={async () => {
                   try {
                     if (isCreateClientOpen) {
-                      await createClient({
-                        code: clientFormData.code!,
-                        name: clientFormData.name!,
-                        contactEmail: clientFormData.contactEmail,
-                        contactPhone: clientFormData.contactPhone,
-                        addressLine1: clientFormData.address,
-                        status: clientFormData.status,
-                        isActive: clientFormData.status === 'نشط',
-                      });
+                      if (addAccountsAfterCreate && newClientAccounts.length > 0) {
+                        const onboarded = await onboardClient({
+                          code: clientFormData.code!,
+                          name: clientFormData.name!,
+                          contactEmail: clientFormData.contactEmail,
+                          contactPhone: clientFormData.contactPhone,
+                          addressLine1: clientFormData.address,
+                          status: clientFormData.status,
+                          isActive: clientFormData.status === 'نشط',
+                          accounts: newClientAccounts.filter(
+                            (acc) =>
+                              acc.firstName.trim() &&
+                              acc.lastName.trim() &&
+                              acc.email.trim() &&
+                              acc.clientRoleId,
+                          ),
+                        });
+                        if (onboarded.accounts.length > 0) {
+                          const credentials = onboarded.accounts
+                            .map(
+                              (acc) =>
+                                `${acc.firstName} ${acc.lastName} (${acc.email}) -> ${acc.temporaryPassword}`,
+                            )
+                            .join('\n');
+                          window.alert(`تم إنشاء الحسابات المؤقتة:\n${credentials}`);
+                        }
+                      } else {
+                        await createClient({
+                          code: clientFormData.code!,
+                          name: clientFormData.name!,
+                          contactEmail: clientFormData.contactEmail,
+                          contactPhone: clientFormData.contactPhone,
+                          addressLine1: clientFormData.address,
+                          status: clientFormData.status,
+                          isActive: clientFormData.status === 'نشط',
+                        });
+                      }
                     } else if (selectedClient) {
                       await updateClient(selectedClient.id, {
                         code: clientFormData.code,
@@ -1786,6 +1948,8 @@ function MasterDataPage() {
                     setIsEditClientOpen(false);
                     setSelectedClient(null);
                     setClientFormData({});
+                    setAddAccountsAfterCreate(false);
+                    setNewClientAccounts([]);
                   } catch {
                     // leave dialog open on error
                   }
@@ -1802,6 +1966,8 @@ function MasterDataPage() {
               setClientAccountsOpen(false);
               setClientAccountsClient(null);
               setClientAccounts([]);
+              setAccountFormOpen(false);
+              setEditingAccountId(null);
             }
           }}>
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -1815,7 +1981,115 @@ function MasterDataPage() {
                 <DialogDescription>
                   قائمة بجميع الحسابات المرتبطة بهذا العميل وأدوارهم
                 </DialogDescription>
+                <div className="flex items-center justify-between pt-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setEditingAccountId(null);
+                      setAccountFormData({
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        clientRoleId: clientRoles[0]?.id ?? '',
+                      });
+                      setAccountFormOpen(true);
+                    }}
+                  >
+                    <Plus className="w-4 h-4 ml-2" />
+                    إضافة حساب
+                  </Button>
+                </div>
               </DialogHeader>
+              {accountFormOpen && (
+                <div className="border rounded-lg p-3 space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <Input
+                      placeholder="الاسم الأول"
+                      value={accountFormData.firstName}
+                      onChange={(e) =>
+                        setAccountFormData((prev) => ({ ...prev, firstName: e.target.value }))
+                      }
+                    />
+                    <Input
+                      placeholder="الاسم الأخير"
+                      value={accountFormData.lastName}
+                      onChange={(e) =>
+                        setAccountFormData((prev) => ({ ...prev, lastName: e.target.value }))
+                      }
+                    />
+                    <Input
+                      placeholder="البريد الإلكتروني"
+                      type="email"
+                      value={accountFormData.email}
+                      onChange={(e) =>
+                        setAccountFormData((prev) => ({ ...prev, email: e.target.value }))
+                      }
+                    />
+                    <Select
+                      value={accountFormData.clientRoleId || undefined}
+                      onValueChange={(v) =>
+                        setAccountFormData((prev) => ({ ...prev, clientRoleId: v }))
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="الدور" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {clientRoles.map((role) => (
+                          <SelectItem key={role.id} value={role.id}>
+                            {role.roleName}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      type="button"
+                      onClick={async () => {
+                        if (!clientAccountsClient) return;
+                        if (editingAccountId) {
+                          await updateClientAccount(clientAccountsClient.id, editingAccountId, {
+                            firstName: accountFormData.firstName,
+                            lastName: accountFormData.lastName,
+                            email: accountFormData.email,
+                            clientRoleId: accountFormData.clientRoleId,
+                          });
+                        } else {
+                          const created = await createClientAccount(clientAccountsClient.id, {
+                            firstName: accountFormData.firstName,
+                            lastName: accountFormData.lastName,
+                            email: accountFormData.email,
+                            clientRoleId: accountFormData.clientRoleId,
+                          });
+                          window.alert(
+                            `تم إنشاء الحساب. كلمة المرور المؤقتة: ${created.temporaryPassword}`,
+                          );
+                        }
+                        setAccountFormOpen(false);
+                        setEditingAccountId(null);
+                        setClientAccountsLoading(true);
+                        fetchClientAccounts(clientAccountsClient.id)
+                          .then(setClientAccounts)
+                          .catch(() => setClientAccounts([]))
+                          .finally(() => setClientAccountsLoading(false));
+                      }}
+                    >
+                      حفظ الحساب
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setAccountFormOpen(false);
+                        setEditingAccountId(null);
+                      }}
+                    >
+                      إلغاء
+                    </Button>
+                  </div>
+                </div>
+              )}
               {clientAccountsLoading ? (
                 <div className="py-10 text-center text-gray-500">جاري التحميل...</div>
               ) : clientAccounts.length === 0 ? (
@@ -1852,6 +2126,7 @@ function MasterDataPage() {
                         <TableHead className="text-right">الدور</TableHead>
                         <TableHead className="text-right">الحالة</TableHead>
                         <TableHead className="text-right">تاريخ الإنشاء</TableHead>
+                        <TableHead className="text-right">إجراءات</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -1868,12 +2143,137 @@ function MasterDataPage() {
                             </Badge>
                           </TableCell>
                           <TableCell>{new Date(acc.createdAt).toISOString().split('T')[0]}</TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => {
+                                  setEditingAccountId(acc.id);
+                                  setAccountFormData({
+                                    firstName: acc.firstName,
+                                    lastName: acc.lastName,
+                                    email: acc.email,
+                                    clientRoleId: acc.clientRoleId,
+                                  });
+                                  setAccountFormOpen(true);
+                                }}
+                              >
+                                تعديل
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={async () => {
+                                  if (!clientAccountsClient) return;
+                                  await setClientAccountActive(
+                                    clientAccountsClient.id,
+                                    acc.id,
+                                    !acc.isActive,
+                                  );
+                                  setClientAccountsLoading(true);
+                                  fetchClientAccounts(clientAccountsClient.id)
+                                    .then(setClientAccounts)
+                                    .catch(() => setClientAccounts([]))
+                                    .finally(() => setClientAccountsLoading(false));
+                                }}
+                              >
+                                {acc.isActive ? 'تعطيل' : 'تفعيل'}
+                              </Button>
+                            </div>
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
                 </>
               )}
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={clientRolesDialogOpen} onOpenChange={setClientRolesDialogOpen}>
+            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>إدارة أدوار العميل</DialogTitle>
+                <DialogDescription>
+                  إنشاء أدوار تعتمد على كتالوج ثابت للواجهات والميزات
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="border rounded-lg p-3 space-y-3">
+                  <Input
+                    placeholder="اسم الدور"
+                    value={clientRoleNameInput}
+                    onChange={(e) => setClientRoleNameInput(e.target.value)}
+                  />
+                  <div className="space-y-2">
+                    {clientRoleCatalog.map((panel) => (
+                      <div key={panel.key} className="border rounded p-2">
+                        <div className="text-sm font-semibold">{panel.label}</div>
+                        <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {panel.features.flatMap((feature) =>
+                            feature.permissions.map((permission) => (
+                              <label
+                                key={`${feature.key}-${permission}`}
+                                className="flex items-center gap-2 text-sm"
+                              >
+                                <Checkbox
+                                  checked={clientRolePermissionsInput.includes(permission)}
+                                  onCheckedChange={(checked) =>
+                                    setClientRolePermissionsInput((prev) =>
+                                      checked
+                                        ? Array.from(new Set([...prev, permission]))
+                                        : prev.filter((p) => p !== permission),
+                                    )
+                                  }
+                                />
+                                <span>{feature.label} - {permission}</span>
+                              </label>
+                            )),
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Button
+                    onClick={async () => {
+                      const role = await createClientRoleMasterData({
+                        roleName: clientRoleNameInput,
+                        permissions: clientRolePermissionsInput,
+                      });
+                      setClientRoles((prev) => [...prev, role]);
+                      setClientRoleNameInput('');
+                      setClientRolePermissionsInput([]);
+                    }}
+                  >
+                    إضافة دور
+                  </Button>
+                </div>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="text-right">الدور</TableHead>
+                      <TableHead className="text-right">الصلاحيات</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {clientRoles.map((role) => (
+                      <TableRow key={role.id}>
+                        <TableCell>{role.roleName}</TableCell>
+                        <TableCell>
+                          <div className="flex flex-wrap gap-1">
+                            {parseRolePermissions(role.permissionsJson).map((permission) => (
+                              <Badge key={permission} variant="outline">
+                                {permission}
+                              </Badge>
+                            ))}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </DialogContent>
           </Dialog>
         </>

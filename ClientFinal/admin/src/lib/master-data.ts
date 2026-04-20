@@ -414,6 +414,118 @@ export async function fetchClientAccounts(clientId: string): Promise<ClientAccou
   return Array.isArray(list) ? list : [];
 }
 
+export interface ClientRoleCatalogPanel {
+  key: string;
+  label: string;
+  features: Array<{
+    key: string;
+    label: string;
+    permissions: string[];
+  }>;
+}
+
+export interface ClientRoleInfo {
+  id: string;
+  roleName: string;
+  isActive?: boolean;
+  permissionsJson?: { permissions?: string[] } | string[];
+}
+
+export interface CreateClientRolePayload {
+  roleName: string;
+  permissions?: string[];
+}
+
+export interface UpdateClientRolePayload {
+  roleName?: string;
+  permissions?: string[];
+  isActive?: boolean;
+}
+
+export interface CreateClientAccountPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  clientRoleId: string;
+}
+
+export interface UpdateClientAccountPayload {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  clientRoleId?: string;
+}
+
+export async function fetchClientRoleCatalog(): Promise<ClientRoleCatalogPanel[]> {
+  const data = await apiFetch<ClientRoleCatalogPanel[]>('/clients/roles/catalog');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function fetchClientRoles(): Promise<ClientRoleInfo[]> {
+  const data = await apiFetch<ClientRoleInfo[]>('/clients/roles');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function fetchClientRolesWithPermissions(): Promise<ClientRoleInfo[]> {
+  const data = await apiFetch<ClientRoleInfo[]>('/clients/roles/with-permissions');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function createClientRole(payload: CreateClientRolePayload): Promise<ClientRoleInfo> {
+  return apiFetch<ClientRoleInfo>('/clients/roles', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function updateClientRole(
+  roleId: string,
+  payload: UpdateClientRolePayload,
+): Promise<ClientRoleInfo> {
+  return apiFetch<ClientRoleInfo>(`/clients/roles/${roleId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function createClientAccount(
+  clientId: string,
+  payload: CreateClientAccountPayload,
+): Promise<{ account: ClientAccountApi; temporaryPassword: string }> {
+  return apiFetch<{ account: ClientAccountApi; temporaryPassword: string }>(
+    `/clients/${clientId}/accounts`,
+    {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    },
+  );
+}
+
+export async function updateClientAccount(
+  clientId: string,
+  accountId: string,
+  payload: UpdateClientAccountPayload,
+): Promise<ClientAccountApi> {
+  return apiFetch<ClientAccountApi>(`/clients/${clientId}/accounts/${accountId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function setClientAccountActive(
+  clientId: string,
+  accountId: string,
+  isActive: boolean,
+): Promise<{ id: string; isActive: boolean }> {
+  return apiFetch<{ id: string; isActive: boolean }>(
+    `/clients/${clientId}/accounts/${accountId}/active`,
+    {
+      method: 'PATCH',
+      body: JSON.stringify({ isActive }),
+    },
+  );
+}
+
 // --- Create / Update ---
 export interface CreateClientPayload {
   code: string;
@@ -427,6 +539,10 @@ export interface CreateClientPayload {
   countryCode?: string;
   status?: string;
   isActive?: boolean;
+}
+
+export interface OnboardClientPayload extends CreateClientPayload {
+  accounts?: CreateClientAccountPayload[];
 }
 
 export interface UpdateClientPayload {
@@ -462,6 +578,37 @@ export async function createClient(payload: CreateClientPayload): Promise<Client
     body: JSON.stringify(body),
   });
   return mapClientApiToUi(created);
+}
+
+export async function onboardClient(payload: OnboardClientPayload): Promise<{
+  client: ClientApi;
+  accounts: Array<{
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    roleName: string;
+    temporaryPassword: string;
+  }>;
+}> {
+  const body: Record<string, unknown> = {
+    code: payload.code.trim(),
+    name: payload.name.trim(),
+    contactEmail: payload.contactEmail?.trim() || undefined,
+    contactPhone: payload.contactPhone?.trim() || undefined,
+    addressLine1: payload.addressLine1?.trim() || undefined,
+    city: payload.city?.trim() || undefined,
+    stateRegion: payload.stateRegion?.trim() || undefined,
+    postalCode: payload.postalCode?.trim() || undefined,
+    countryCode: payload.countryCode?.trim() || undefined,
+    status: payload.status === 'نشط' ? 'ACTIVE' : payload.status === 'غير نشط' ? 'SUSPENDED' : 'ACTIVE',
+    isActive: payload.status === 'نشط' || payload.isActive !== false,
+    accounts: payload.accounts ?? [],
+  };
+  return apiFetch('/clients/onboard', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  });
 }
 
 export async function updateClient(id: string, payload: UpdateClientPayload): Promise<ClientUi> {
