@@ -132,6 +132,33 @@ let ClientsService = class ClientsService {
             throw new common_1.NotFoundException('Client not found');
         return client;
     }
+    async findAccounts(clientId) {
+        await this.findOne(clientId);
+        const rows = await this.prisma.clientAccount.findMany({
+            where: { clientId },
+            orderBy: { createdAt: 'desc' },
+            select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                email: true,
+                isActive: true,
+                clientRoleId: true,
+                createdAt: true,
+                clientRole: { select: { id: true, roleName: true } },
+            },
+        });
+        return rows.map((r) => ({
+            id: r.id,
+            firstName: r.firstName,
+            lastName: r.lastName,
+            email: r.email,
+            isActive: r.isActive,
+            clientRoleId: r.clientRoleId,
+            roleName: r.clientRole.roleName,
+            createdAt: r.createdAt,
+        }));
+    }
     async update(id, dto) {
         await this.findOne(id);
         const db = this.prisma;

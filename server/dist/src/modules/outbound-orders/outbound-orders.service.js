@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OutboundOrdersService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
+const approvals_service_1 = require("../approvals/approvals.service");
+const approval_reference_type_enum_1 = require("../../common/enums/approval-reference-type.enum");
 function toNumber(value) {
     if (typeof value === 'number' && !Number.isNaN(value))
         return value;
@@ -22,8 +24,9 @@ function toNumber(value) {
     return 0;
 }
 let OutboundOrdersService = class OutboundOrdersService {
-    constructor(prisma) {
+    constructor(prisma, approvalsService) {
         this.prisma = prisma;
+        this.approvalsService = approvalsService;
     }
     async create(dto, createdByActorId) {
         await this.prisma.client.findUniqueOrThrow({ where: { id: dto.clientId } });
@@ -39,6 +42,7 @@ let OutboundOrdersService = class OutboundOrdersService {
                 expectedShipDate: dto.expectedShipDate
                     ? new Date(dto.expectedShipDate)
                     : null,
+                status: 'IN_PROGRESS',
                 createdByActorId,
             },
             include: {
@@ -157,7 +161,7 @@ let OutboundOrdersService = class OutboundOrdersService {
         });
         const safeCode = client.code.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 20) || 'CL';
         const orderNumber = `OUT-${safeCode}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-        return this.prisma.outboundOrder.create({
+        const order = await this.prisma.outboundOrder.create({
             data: {
                 clientId,
                 warehouseId: null,
@@ -166,6 +170,7 @@ let OutboundOrdersService = class OutboundOrdersService {
                 expectedShipDate: dto.expectedShipDate
                     ? new Date(dto.expectedShipDate)
                     : null,
+                status: 'PENDING',
                 createdByActorId: actorId,
             },
             include: {
@@ -181,6 +186,13 @@ let OutboundOrdersService = class OutboundOrdersService {
                 },
             },
         });
+        await this.approvalsService.createRequest({
+            referenceType: approval_reference_type_enum_1.ApprovalReferenceType.ORDER,
+            referenceId: order.id,
+            requestedByActorId: actorId,
+            approvalStep: 'OUTBOUND_ORDER',
+        });
+        return order;
     }
     async addItemForClientPortal(clientId, orderId, dto) {
         const owned = await this.prisma.outboundOrder.findFirst({
@@ -299,6 +311,7 @@ let OutboundOrdersService = class OutboundOrdersService {
 exports.OutboundOrdersService = OutboundOrdersService;
 exports.OutboundOrdersService = OutboundOrdersService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        approvals_service_1.ApprovalsService])
 ], OutboundOrdersService);
 //# sourceMappingURL=outbound-orders.service.js.map

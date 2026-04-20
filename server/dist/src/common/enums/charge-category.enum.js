@@ -6,6 +6,7 @@ var ChargeCategory;
     ChargeCategory["STORAGE"] = "STORAGE";
     ChargeCategory["MOVEMENT"] = "MOVEMENT";
     ChargeCategory["VAS"] = "VAS";
+    ChargeCategory["PLAN_FEE"] = "PLAN_FEE";
     ChargeCategory["MANUAL_CREDIT"] = "MANUAL_CREDIT";
     ChargeCategory["MANUAL_CHARGE"] = "MANUAL_CHARGE";
 })(ChargeCategory || (exports.ChargeCategory = ChargeCategory = {}));

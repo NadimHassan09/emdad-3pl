@@ -32,5 +32,15 @@ export declare class ClientsService {
     create(dto: CreateClientDto): Promise<unknown>;
     findMany(filter?: ClientFilterDto): Promise<unknown[]>;
     findOne(id: string): Promise<{}>;
+    findAccounts(clientId: string): Promise<{
+        id: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        isActive: boolean;
+        clientRoleId: string;
+        roleName: string;
+        createdAt: Date;
+    }[]>;
     update(id: string, dto: UpdateClientDto): Promise<unknown>;
 }

@@ -14,6 +14,15 @@ const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
 const prisma_service_1 = require("../../database/prisma/prisma.service");
 const charge_category_enum_1 = require("../../common/enums/charge-category.enum");
+function toNumber(value) {
+    if (typeof value === 'number' && !Number.isNaN(value))
+        return value;
+    if (value != null && typeof value === 'object' && typeof value.toNumber === 'function')
+        return value.toNumber();
+    if (value != null && typeof value.toString === 'function')
+        return parseFloat(value.toString()) || 0;
+    return 0;
+}
 let BillingService = class BillingService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -27,6 +36,11 @@ let BillingService = class BillingService {
                 planName: dto.planName.trim(),
                 storageIncluded: dto.storageIncluded,
                 billingCycle: dto.billingCycle,
+                baseFeeCents: dto.baseFeeCents ? BigInt(dto.baseFeeCents) : undefined,
+                inboundItemFeeCents: dto.inboundItemFeeCents ? BigInt(dto.inboundItemFeeCents) : undefined,
+                inboundWeightCentsPerKg: dto.inboundWeightCentsPerKg ? BigInt(dto.inboundWeightCentsPerKg) : undefined,
+                outboundItemFeeCents: dto.outboundItemFeeCents ? BigInt(dto.outboundItemFeeCents) : undefined,
+                outboundWeightCentsPerKg: dto.outboundWeightCentsPerKg ? BigInt(dto.outboundWeightCentsPerKg) : undefined,
                 isActive: dto.isActive ?? true,
             },
         });
@@ -54,6 +68,11 @@ let BillingService = class BillingService {
                 ...(dto.planName !== undefined && { planName: dto.planName.trim() }),
                 ...(dto.storageIncluded !== undefined && { storageIncluded: dto.storageIncluded }),
                 ...(dto.billingCycle !== undefined && { billingCycle: dto.billingCycle }),
+                ...(dto.baseFeeCents !== undefined && { baseFeeCents: BigInt(dto.baseFeeCents) }),
+                ...(dto.inboundItemFeeCents !== undefined && { inboundItemFeeCents: BigInt(dto.inboundItemFeeCents) }),
+                ...(dto.inboundWeightCentsPerKg !== undefined && { inboundWeightCentsPerKg: BigInt(dto.inboundWeightCentsPerKg) }),
+                ...(dto.outboundItemFeeCents !== undefined && { outboundItemFeeCents: BigInt(dto.outboundItemFeeCents) }),
+                ...(dto.outboundWeightCentsPerKg !== undefined && { outboundWeightCentsPerKg: BigInt(dto.outboundWeightCentsPerKg) }),
                 ...(dto.isActive !== undefined && { isActive: dto.isActive }),
             },
         });
@@ -193,6 +212,125 @@ let BillingService = class BillingService {
             orderBy: { createdAt: 'desc' },
         });
     }
+    async getClientPlanPricing(clientId) {
+        const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+            where: { clientId, isCurrent: true },
+            include: { billingPlan: true },
+            orderBy: { startsAt: 'desc' },
+        });
+        const plan = clientPlan?.billingPlan;
+        if (!plan)
+            return null;
+        return {
+            inboundItemFeeCents: Number(plan.inboundItemFeeCents ?? 0),
+            inboundWeightCentsPerKg: Number(plan.inboundWeightCentsPerKg ?? 0),
+            outboundItemFeeCents: Number(plan.outboundItemFeeCents ?? 0),
+            outboundWeightCentsPerKg: Number(plan.outboundWeightCentsPerKg ?? 0),
+        };
+    }
+    calculateInboundReceiveCost(productWeightKg, qtyReceived, pricing) {
+        const itemCost = pricing.inboundItemFeeCents * qtyReceived;
+        const totalWeightKg = productWeightKg * qtyReceived;
+        const weightCost = pricing.inboundWeightCentsPerKg * totalWeightKg;
+        return Math.round(itemCost + weightCost);
+    }
+    calculateOutboundShipCost(productWeightKg, qtyShipped, pricing) {
+        const itemCost = pricing.outboundItemFeeCents * qtyShipped;
+        const totalWeightKg = productWeightKg * qtyShipped;
+        const weightCost = pricing.outboundWeightCentsPerKg * totalWeightKg;
+        return Math.round(itemCost + weightCost);
+    }
+    async recordInboundReceiveCharge(orderId, itemId, clientId, productId, qtyReceived) {
+        const pricing = await this.getClientPlanPricing(clientId);
+        if (!pricing)
+            return;
+        const product = await this.prisma.product.findUnique({
+            where: { id: productId },
+            select: { weight: true },
+        });
+        const weightKg = product ? toNumber(product.weight) : 0;
+        const amountCents = this.calculateInboundReceiveCost(weightKg, qtyReceived, pricing);
+        if (amountCents <= 0)
+            return;
+        await this.createTransaction({
+            clientId,
+            chargeCategory: charge_category_enum_1.ChargeCategory.MOVEMENT,
+            amountCents,
+            description: `Inbound receive: ${qtyReceived} units`,
+            referenceType: 'INBOUND_ORDER',
+            referenceId: orderId,
+        });
+    }
+    async recordOutboundShipCharge(orderId, clientId, productId, qtyShipped) {
+        const pricing = await this.getClientPlanPricing(clientId);
+        if (!pricing)
+            return;
+        const product = await this.prisma.product.findUnique({
+            where: { id: productId },
+            select: { weight: true },
+        });
+        const weightKg = product ? toNumber(product.weight) : 0;
+        const amountCents = this.calculateOutboundShipCost(weightKg, qtyShipped, pricing);
+        if (amountCents <= 0)
+            return;
+        await this.createTransaction({
+            clientId,
+            chargeCategory: charge_category_enum_1.ChargeCategory.MOVEMENT,
+            amountCents,
+            description: `Outbound ship: ${qtyShipped} units`,
+            referenceType: 'OUTBOUND_ORDER',
+            referenceId: orderId,
+        });
+    }
+    async recordPlanSubscriptionCharge(clientId, periodStart, periodEnd, description) {
+        const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+            where: { clientId, isCurrent: true },
+            include: { billingPlan: true },
+            orderBy: { startsAt: 'desc' },
+        });
+        const plan = clientPlan?.billingPlan;
+        const baseFeeCents = plan ? Number(plan.baseFeeCents ?? 0) : 0;
+        if (baseFeeCents <= 0)
+            return;
+        await this.createTransaction({
+            clientId,
+            chargeCategory: charge_category_enum_1.ChargeCategory.PLAN_FEE,
+            amountCents: baseFeeCents,
+            description: description ?? `Plan subscription ${periodStart.toISOString().slice(0, 10)} - ${periodEnd.toISOString().slice(0, 10)}`,
+        });
+    }
+    async recordVasCharge(clientId, vasId, quantity, referenceType, referenceId) {
+        const clientPlan = await this.prisma.clientBillingPlan.findFirst({
+            where: { clientId, isCurrent: true },
+            include: { billingPlan: true },
+            orderBy: { startsAt: 'desc' },
+        });
+        const planId = clientPlan?.billingPlanId;
+        if (!planId)
+            return;
+        const vasPricing = await this.prisma.vasPricing.findFirst({
+            where: { vasId, billingPlanId: planId },
+            include: { vas: { select: { name: true } } },
+        });
+        if (!vasPricing)
+            return;
+        const rateCents = Number(vasPricing.rateCents);
+        const minChargeCents = vasPricing.minChargeCents ? Number(vasPricing.minChargeCents) : 0;
+        let amountCents = Math.round(rateCents * quantity);
+        if (minChargeCents > 0 && amountCents < minChargeCents) {
+            amountCents = minChargeCents;
+        }
+        if (amountCents <= 0)
+            return;
+        await this.createTransaction({
+            clientId,
+            chargeCategory: charge_category_enum_1.ChargeCategory.VAS,
+            amountCents,
+            description: `VAS: ${vasPricing.vas.name} x ${quantity}`,
+            referenceType: referenceType ?? 'VAS',
+            referenceId: referenceId ?? undefined,
+        });
+    }
     async getClientPortalBillingOverview(clientId) {
         const now = new Date();
         const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -264,6 +402,7 @@ let BillingService = class BillingService {
         const storageCents = sumCents(charge_category_enum_1.ChargeCategory.STORAGE);
         const movementCents = sumCents(charge_category_enum_1.ChargeCategory.MOVEMENT);
         const vasCents = sumCents(charge_category_enum_1.ChargeCategory.VAS);
+        const planFeeCents = sumCents(charge_category_enum_1.ChargeCategory.PLAN_FEE);
         const manualChargeCents = sumCents(charge_category_enum_1.ChargeCategory.MANUAL_CHARGE);
         const manualCreditCents = sumCents(charge_category_enum_1.ChargeCategory.MANUAL_CREDIT);
         const movementsTotal = receiptCount + shipmentCount;
@@ -273,6 +412,7 @@ let BillingService = class BillingService {
         const totalCents = storageCents +
             movementCents +
             vasCents +
+            planFeeCents +
             manualChargeCents -
             manualCreditCents;
         return {

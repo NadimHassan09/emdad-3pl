@@ -25,6 +25,7 @@ import {
   arToReadStatus,
   type ClientNotification,
 } from '@/api/clientPortalNotifications';
+import { formatDateTimeEn } from '@/lib/dateFormat';
 
 function importanceBadgeClass(ar: string) {
   switch (ar) {
@@ -140,7 +141,7 @@ export function NotificationsPage({
             ]}
             data={notifications}
             getRow={(n) => [
-              new Date(n.createdAt).toLocaleString('ar-SA'),
+              formatDateTimeEn(n.createdAt),
               importanceToAr(n.importance),
               n.title,
               n.referenceType || '-',
@@ -265,7 +266,7 @@ export function NotificationsPage({
                         }`}
                       >
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                          {new Date(n.createdAt).toLocaleString('ar-SA')}
+                          {formatDateTimeEn(n.createdAt)}
                         </td>
                         <td className="py-4 px-4">
                           <span
@@ -325,7 +326,7 @@ export function NotificationsPage({
               <DialogHeader>
                 <DialogTitle>{selected.title}</DialogTitle>
                 <DialogDescription className="text-right">
-                  {new Date(selected.createdAt).toLocaleString('ar-SA')}
+                  {formatDateTimeEn(selected.createdAt)}
                 </DialogDescription>
               </DialogHeader>
               <div className="mt-4 space-y-4">

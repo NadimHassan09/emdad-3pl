@@ -12,7 +12,18 @@ export interface LocationTreeNode {
 export declare class LocationsService {
     private readonly prisma;
     constructor(prisma: PrismaService);
+    private generateCode;
     create(warehouseId: string, dto: CreateLocationDto): Promise<{
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        parentLocation: {
+            id: string;
+            code: string;
+        } | null;
+    } & {
         id: string;
         code: string;
         isActive: boolean;
@@ -46,6 +57,20 @@ export declare class LocationsService {
         locationType: import(".prisma/client").$Enums.LocationType;
         parentLocationId: string | null;
     })[]>;
+    findFlat(warehouseId?: string): Promise<{
+        id: string;
+        code: string;
+        barcode: string;
+        locationType: import(".prisma/client").$Enums.LocationType;
+        parentLocationId: string | null;
+        parentCode: string | null;
+        warehouseId: string;
+        warehouseName: string;
+        warehouseCode: string;
+        isActive: boolean;
+        capacityValue: number | null;
+        createdAt: Date;
+    }[]>;
     findOne(id: string): Promise<{
         warehouse: {
             id: string;
@@ -91,7 +116,17 @@ export declare class LocationsService {
         locationType: import(".prisma/client").$Enums.LocationType;
         parentLocationId: string | null;
     }>;
-    update(id: string, dto: UpdateLocationDto): Promise<{
+    update(id: string, warehouseId: string, dto: UpdateLocationDto): Promise<{
+        warehouse: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        parentLocation: {
+            id: string;
+            code: string;
+        } | null;
+    } & {
         id: string;
         code: string;
         isActive: boolean;
@@ -102,6 +137,9 @@ export declare class LocationsService {
         capacityUomId: string | null;
         locationType: import(".prisma/client").$Enums.LocationType;
         parentLocationId: string | null;
+    }>;
+    remove(id: string, warehouseId: string): Promise<{
+        success: boolean;
     }>;
     findTree(): Promise<LocationTreeNode[]>;
 }

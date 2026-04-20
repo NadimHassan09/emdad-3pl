@@ -22,6 +22,7 @@ import {
   matchesStatusFilter,
   getOrdersErrorMessage,
 } from '@/api/orderUtils';
+import { formatDateEn } from '@/lib/dateFormat';
 
 export type SimpleOrderRow = {
   id: string;
@@ -40,10 +41,10 @@ function mapInbound(o: Record<string, unknown>): SimpleOrderRow {
     id: String(o.id),
     orderNumber: (o.orderNumber as string) || String(o.id).slice(0, 8),
     creationDate: o.createdAt
-      ? new Date(o.createdAt as string).toLocaleDateString('ar-SA')
+      ? formatDateEn(o.createdAt as string)
       : '',
     status: orderStatusToAr(String(o.status || '')),
-    expectedDate: exp ? new Date(exp).toLocaleDateString('ar-SA') : '—',
+    expectedDate: exp ? formatDateEn(exp) : '—',
     itemsCount: items.length,
     notes: (o.currentStage as string) || '',
   };
@@ -56,10 +57,10 @@ function mapOutbound(o: Record<string, unknown>): SimpleOrderRow {
     id: String(o.id),
     orderNumber: (o.orderNumber as string) || String(o.id).slice(0, 8),
     creationDate: o.createdAt
-      ? new Date(o.createdAt as string).toLocaleDateString('ar-SA')
+      ? formatDateEn(o.createdAt as string)
       : '',
     status: orderStatusToAr(String(o.status || '')),
-    expectedDate: exp ? new Date(exp).toLocaleDateString('ar-SA') : '—',
+    expectedDate: exp ? formatDateEn(exp) : '—',
     itemsCount: items.length,
     notes: (o.currentStage as string) || '',
   };

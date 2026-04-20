@@ -34,12 +34,13 @@ import {
   type ClientPortalDashboardResponse,
 } from '@/api/clientPortalDashboard';
 import { assignStockColors, computeMovementMonthOverMonthPercent } from './dashboardUtils';
+import { formatDateTimeEn } from '@/lib/dateFormat';
 
 function mapRecentMovements(
   entries: ClientPortalDashboardResponse['recentMovements'],
 ) {
   return entries.map((entry) => ({
-    date: entry.date ? new Date(entry.date).toLocaleString('ar-SA') : '',
+    date: entry.date ? formatDateTimeEn(entry.date) : '',
     type:
       entry.movementType === 'RECEIPT'
         ? 'وارد'

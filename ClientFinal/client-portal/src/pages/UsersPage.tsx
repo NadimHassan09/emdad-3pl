@@ -30,6 +30,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { getCurrentUser } from '@/lib/auth';
+import { formatDateTimeEn } from '@/lib/dateFormat';
 import {
   fetchTeamAccounts,
   fetchTeamRoles,
@@ -276,7 +277,7 @@ export function UsersPage() {
               u.email,
               u.roleName,
               statusLabel(u.isActive),
-              new Date(u.createdAt).toLocaleString('ar-SA'),
+              formatDateTimeEn(u.createdAt),
             ]}
             filename="users"
             disabled={loading}
@@ -403,7 +404,7 @@ export function UsersPage() {
                           </span>
                         </td>
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                          {new Date(user.createdAt).toLocaleString('ar-SA')}
+                          {formatDateTimeEn(user.createdAt)}
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex flex-wrap items-center gap-2">

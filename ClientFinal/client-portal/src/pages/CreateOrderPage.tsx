@@ -78,6 +78,10 @@ export function CreateOrderPage({
   };
 
   const handleSubmit = async () => {
+    if (orderType === 'صادر' && orderItems.some((i) => i.quantity < 0)) {
+      setError('في الطلب الصادر، الكمية لا يمكن أن تكون سالبة.');
+      return;
+    }
     const lines = orderItems.filter((i) => i.productId && i.quantity > 0);
     if (lines.length === 0) {
       setError('أضف بنداً واحداً على الأقل بكمية صحيحة.');
@@ -238,11 +242,7 @@ export function CreateOrderPage({
                             step="any"
                             value={item.quantity || ''}
                             onChange={(e) =>
-                              updateOrderItem(
-                                item.id,
-                                'quantity',
-                                parseFloat(e.target.value) || 0,
-                              )
+                              updateOrderItem(item.id, 'quantity', Math.max(0, parseFloat(e.target.value) || 0))
                             }
                             className="w-full"
                           />

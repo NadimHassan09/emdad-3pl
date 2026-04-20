@@ -9,7 +9,6 @@ import {
   FileText,
   CreditCard,
   Receipt,
-  Users,
   Settings,
   Search,
   Menu,
@@ -54,7 +53,6 @@ import { OrderDetailsPage } from '@/pages/OrderDetailsPage';
 import { BillingPage } from '@/pages/BillingPage';
 import { InvoicesPage } from '@/pages/InvoicesPage';
 import { InvoiceDetailsPage } from '@/pages/InvoiceDetailsPage';
-import { UsersPage } from '@/pages/UsersPage';
 import { NotificationsPage } from '@/pages/NotificationsPage';
 import { NotificationsDropdown } from '@/components/NotificationsDropdown';
 import { SettingsPage } from '@/pages/SettingsPage';
@@ -83,7 +81,6 @@ const sidebarItems = [
   { icon: FileText, label: 'التقارير', active: false },
   { icon: CreditCard, label: 'الفوترة', active: false },
   { icon: Receipt, label: 'الفواتير', active: false },
-  { icon: Users, label: 'المستخدمون', active: false },
 ];
 
 const labelToRoute: Record<string, string> = {
@@ -95,7 +92,6 @@ const labelToRoute: Record<string, string> = {
   'التقارير': '/reports',
   'الفوترة': '/billing',
   'الفواتير': '/invoices',
-  'المستخدمون': '/users',
 };
 
 function getActiveSidebarLabel(pathname: string): string {
@@ -107,7 +103,6 @@ function getActiveSidebarLabel(pathname: string): string {
   if (pathname.startsWith('/movements')) return 'الحركات';
   if (pathname.startsWith('/reports')) return 'التقارير';
   if (pathname.startsWith('/billing')) return 'الفوترة';
-  if (pathname.startsWith('/users')) return 'المستخدمون';
   return 'لوحة التحكم';
 }
 
@@ -741,7 +736,6 @@ function App() {
               path="/invoices/:invoiceId"
               element={<InvoiceDetailsRoute onBack={() => navigate('/invoices')} />}
             />
-            <Route path="/users" element={<UsersPage />} />
             <Route
               path="/notifications"
               element={

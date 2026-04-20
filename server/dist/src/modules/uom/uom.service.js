@@ -50,6 +50,18 @@ let UomService = class UomService {
             throw new common_1.NotFoundException('UOM not found');
         return uom;
     }
+    async remove(id) {
+        await this.findOne(id);
+        const usedByProduct = await this.prisma.product.findFirst({
+            where: { defaultUomId: id },
+            select: { id: true },
+        });
+        if (usedByProduct) {
+            throw new common_1.ConflictException('Cannot delete UOM: it is referenced by one or more products.');
+        }
+        await this.prisma.uom.delete({ where: { id } });
+        return { success: true };
+    }
     async update(id, dto) {
         await this.findOne(id);
         return this.prisma.uom.update({

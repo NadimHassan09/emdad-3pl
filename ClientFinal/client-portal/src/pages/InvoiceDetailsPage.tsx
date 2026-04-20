@@ -12,6 +12,7 @@ import {
   centsToAmount,
   type ClientPortalInvoiceDetail,
 } from '@/api/clientPortalInvoices';
+import { formatDateEn } from '@/lib/dateFormat';
 
 function statusBadgeClass(ar: string) {
   if (ar === 'مدفوع') return 'bg-green-100 text-green-700';
@@ -153,13 +154,13 @@ export function InvoiceDetailsPage({
               <div>
                 <p className="text-sm text-gray-500 mb-1">بداية الفترة</p>
                 <p className="text-lg font-bold text-gray-900 font-mono">
-                  {new Date(detail.periodStart).toLocaleDateString('ar-SA')}
+                  {formatDateEn(detail.periodStart)}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">نهاية الفترة</p>
                 <p className="text-lg font-bold text-gray-900 font-mono">
-                  {new Date(detail.periodEnd).toLocaleDateString('ar-SA')}
+                  {formatDateEn(detail.periodEnd)}
                 </p>
               </div>
               <div>
@@ -178,7 +179,7 @@ export function InvoiceDetailsPage({
                 <div>
                   <p className="text-sm text-gray-500 mb-1">تاريخ الاستحقاق</p>
                   <p className="text-lg font-bold text-gray-900 font-mono">
-                    {new Date(detail.dueDate).toLocaleDateString('ar-SA')}
+                    {formatDateEn(detail.dueDate)}
                   </p>
                 </div>
               )}

@@ -11,6 +11,12 @@ import { GenerateInvoiceDto } from './dto/generate-invoice.dto';
 import { InvoiceFilterDto } from './dto/invoice-filter.dto';
 import { BillingTransactionFilterDto } from './dto/billing-transaction-filter.dto';
 import { ClientPortalInvoiceQueryDto } from './dto/client-portal-invoice-query.dto';
+interface PlanPricing {
+    inboundItemFeeCents: number;
+    inboundWeightCentsPerKg: number;
+    outboundItemFeeCents: number;
+    outboundWeightCentsPerKg: number;
+}
 export interface CreateBillingTransactionInput {
     clientId: string;
     chargeCategory: ChargeCategory;
@@ -37,6 +43,13 @@ export declare class BillingService {
     findOneInvoice(id: string): Promise<{}>;
     createTransaction(input: CreateBillingTransactionInput): Promise<unknown>;
     findManyTransactions(filter?: BillingTransactionFilterDto): Promise<unknown[]>;
+    private getClientPlanPricing;
+    calculateInboundReceiveCost(productWeightKg: number, qtyReceived: number, pricing: PlanPricing): number;
+    calculateOutboundShipCost(productWeightKg: number, qtyShipped: number, pricing: PlanPricing): number;
+    recordInboundReceiveCharge(orderId: string, itemId: string, clientId: string, productId: string, qtyReceived: number): Promise<void>;
+    recordOutboundShipCharge(orderId: string, clientId: string, productId: string, qtyShipped: number): Promise<void>;
+    recordPlanSubscriptionCharge(clientId: string, periodStart: Date, periodEnd: Date, description?: string): Promise<void>;
+    recordVasCharge(clientId: string, vasId: string, quantity: number, referenceType?: string, referenceId?: string): Promise<void>;
     getClientPortalBillingOverview(clientId: string): Promise<{
         currentPlan: {
             planName: string;
@@ -117,3 +130,4 @@ export declare class BillingService {
         notes: string | null;
     }>;
 }
+export {};

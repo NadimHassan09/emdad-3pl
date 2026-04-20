@@ -34,6 +34,9 @@ let UomController = class UomController {
     update(id, dto) {
         return this.uom.update(id, dto);
     }
+    remove(id) {
+        return this.uom.remove(id);
+    }
 };
 exports.UomController = UomController;
 __decorate([
@@ -65,6 +68,13 @@ __decorate([
     __metadata("design:paramtypes", [String, update_uom_dto_1.UpdateUomDto]),
     __metadata("design:returntype", void 0)
 ], UomController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UomController.prototype, "remove", null);
 exports.UomController = UomController = __decorate([
     (0, common_1.Controller)('uom'),
     __metadata("design:paramtypes", [uom_service_1.UomService])

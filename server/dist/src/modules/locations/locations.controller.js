@@ -16,12 +16,16 @@ exports.WarehouseLocationsController = exports.LocationsController = void 0;
 const common_1 = require("@nestjs/common");
 const locations_service_1 = require("./locations.service");
 const create_location_dto_1 = require("./dto/create-location.dto");
+const update_location_dto_1 = require("./dto/update-location.dto");
 let LocationsController = class LocationsController {
     constructor(locations) {
         this.locations = locations;
     }
     findTree() {
         return this.locations.findTree();
+    }
+    findFlat(warehouseId) {
+        return this.locations.findFlat(warehouseId);
     }
 };
 exports.LocationsController = LocationsController;
@@ -31,6 +35,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], LocationsController.prototype, "findTree", null);
+__decorate([
+    (0, common_1.Get)('flat'),
+    __param(0, (0, common_1.Query)('warehouseId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], LocationsController.prototype, "findFlat", null);
 exports.LocationsController = LocationsController = __decorate([
     (0, common_1.Controller)('locations'),
     __metadata("design:paramtypes", [locations_service_1.LocationsService])
@@ -44,6 +55,12 @@ let WarehouseLocationsController = class WarehouseLocationsController {
     }
     findMany(warehouseId) {
         return this.locations.findManyByWarehouse(warehouseId);
+    }
+    update(warehouseId, id, dto) {
+        return this.locations.update(id, warehouseId, dto);
+    }
+    remove(warehouseId, id) {
+        return this.locations.remove(id, warehouseId);
     }
 };
 exports.WarehouseLocationsController = WarehouseLocationsController;
@@ -62,6 +79,23 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], WarehouseLocationsController.prototype, "findMany", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('warehouseId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, update_location_dto_1.UpdateLocationDto]),
+    __metadata("design:returntype", void 0)
+], WarehouseLocationsController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('warehouseId', common_1.ParseUUIDPipe)),
+    __param(1, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], WarehouseLocationsController.prototype, "remove", null);
 exports.WarehouseLocationsController = WarehouseLocationsController = __decorate([
     (0, common_1.Controller)('warehouses/:warehouseId/locations'),
     __metadata("design:paramtypes", [locations_service_1.LocationsService])

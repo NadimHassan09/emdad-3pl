@@ -31,6 +31,9 @@ let ClientsController = class ClientsController {
     findOne(id) {
         return this.clients.findOne(id);
     }
+    findAccounts(id) {
+        return this.clients.findAccounts(id);
+    }
     update(id, dto) {
         return this.clients.update(id, dto);
     }
@@ -57,6 +60,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClientsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)(':id/accounts'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ClientsController.prototype, "findAccounts", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),

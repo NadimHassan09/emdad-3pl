@@ -1,4 +1,5 @@
 import { apiFetch, type ApiError } from '@/lib/api';
+import { formatDateTimeEn } from '@/lib/dateFormat';
 
 const BASE = '/inventory/client-portal/current-stock';
 
@@ -63,7 +64,7 @@ export function mapStockToTableRow(row: ClientPortalCurrentStockRow) {
     uom: row.product?.defaultUom?.code || '—',
     currentQuantity: qty,
     lastMovementDate: row.updatedAt
-      ? new Date(row.updatedAt).toLocaleString('ar-SA')
+      ? formatDateTimeEn(row.updatedAt)
       : '—',
     notes: detailParts.length > 0 ? detailParts.join(' · ') : '',
   };

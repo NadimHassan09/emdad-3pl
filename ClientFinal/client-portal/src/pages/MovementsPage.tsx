@@ -27,6 +27,7 @@ import {
   fetchClientPortalWarehouses,
   type PortalWarehouse,
 } from '@/api/clientPortalOrders';
+import { formatDateTimeEn } from '@/lib/dateFormat';
 
 const MOVEMENT_TYPE_MAP: Record<string, string> = {
   RECEIPT: 'وارد',
@@ -65,7 +66,7 @@ function mapLedgerToMovement(entry: LedgerEntry): MappedMovement {
   const typeAr = MOVEMENT_TYPE_MAP[entry.movementType] ?? entry.movementType;
   return {
     id: entry.id,
-    dateTime: entry.createdAt ? new Date(entry.createdAt).toLocaleString('ar-SA') : '',
+    dateTime: entry.createdAt ? formatDateTimeEn(entry.createdAt) : '',
     movementType: typeAr,
     productName: entry.product?.name ?? '',
     sku: entry.product?.sku ?? '',
