@@ -2,12 +2,26 @@ import {
   Injectable,
   UnauthorizedException,
   NotFoundException,
+  ConflictException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
+import { randomBytes } from 'crypto';
 import { PrismaService } from '../../database/prisma/prisma.service';
+import { ActorsService } from '../actors/actors.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { ClientFilterDto } from './dto/client-filter.dto';
+import { CreateClientRoleDto } from './dto/create-client-role.dto';
+import { UpdateClientRoleDto } from './dto/update-client-role.dto';
+import { CreateClientAccountDto } from './dto/create-client-account.dto';
+import { UpdateClientAccountDto } from './dto/update-client-account.dto';
+import { OnboardClientDto } from './dto/onboard-client.dto';
+import { CLIENT_PERMISSION_CATALOG } from './client-permissions.catalog';
+import {
+  normalizePermissionsForCatalog,
+  parsePermissionList,
+  validatePermissionsAgainstCatalog,
+} from './client-permissions.util';
 
 /** Type for Prisma delegate access when PrismaClient types are not resolved. */
 interface PrismaWithClients {
@@ -61,7 +75,10 @@ export interface ClientAccountWithRelations {
 
 @Injectable()
 export class ClientsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly actors: ActorsService,
+  ) {}
 
   /**
    * Find client_account by email; used by auth to resolve client login.
@@ -131,6 +148,86 @@ export class ClientsService {
         currency: dto.currency ?? 'USD',
       },
     });
+  }
+
+  getClientPermissionCatalog() {
+    return CLIENT_PERMISSION_CATALOG;
+  }
+
+  async findAllClientRoles() {
+    const rows = await this.prisma.clientRole.findMany({
+      where: { isActive: true },
+      select: { id: true, roleName: true },
+      orderBy: { roleName: 'asc' },
+    });
+    return rows;
+  }
+
+  async findAllClientRolesWithPermissions() {
+    const rows = await this.prisma.clientRole.findMany({
+      where: { isActive: true },
+      select: { id: true, roleName: true, permissionsJson: true, isActive: true },
+      orderBy: { roleName: 'asc' },
+    });
+    return rows.map((row) => ({
+      ...row,
+      permissionsJson: { permissions: normalizePermissionsForCatalog(row.permissionsJson) },
+    }));
+  }
+
+  async createClientRole(dto: CreateClientRoleDto) {
+    const trimmedName = dto.roleName.trim();
+    const existing = await this.prisma.clientRole.findFirst({
+      where: { roleName: { equals: trimmedName, mode: 'insensitive' } },
+    });
+    if (existing) throw new ConflictException('Role name already exists');
+    const normalizedPermissions = validatePermissionsAgainstCatalog(dto.permissions);
+    const created = await this.prisma.clientRole.create({
+      data: {
+        roleName: trimmedName,
+        permissionsJson: { permissions: normalizedPermissions },
+        isActive: true,
+      },
+      select: { id: true, roleName: true, permissionsJson: true, isActive: true },
+    });
+    return created;
+  }
+
+  async backfillClientRolePermissions() {
+    const roles = await this.prisma.clientRole.findMany({
+      select: { id: true, permissionsJson: true },
+    });
+    let updatedCount = 0;
+    for (const role of roles) {
+      const normalized = normalizePermissionsForCatalog(role.permissionsJson);
+      const current = JSON.stringify({ permissions: parsePermissionList(role.permissionsJson) });
+      const next = JSON.stringify({ permissions: normalized });
+      if (current === next) continue;
+      await this.prisma.clientRole.update({
+        where: { id: role.id },
+        data: { permissionsJson: { permissions: normalized } },
+      });
+      updatedCount += 1;
+    }
+    return { updatedCount };
+  }
+
+  async updateClientRole(roleId: string, dto: UpdateClientRoleDto) {
+    const existing = await this.prisma.clientRole.findUnique({ where: { id: roleId } });
+    if (!existing) throw new NotFoundException('Role not found');
+    const data: { roleName?: string; permissionsJson?: { permissions: string[] }; isActive?: boolean } =
+      {};
+    if (dto.roleName !== undefined) data.roleName = dto.roleName.trim();
+    if (dto.permissions !== undefined) {
+      data.permissionsJson = { permissions: validatePermissionsAgainstCatalog(dto.permissions) };
+    }
+    if (dto.isActive !== undefined) data.isActive = dto.isActive;
+    const updated = await this.prisma.clientRole.update({
+      where: { id: roleId },
+      data,
+      select: { id: true, roleName: true, permissionsJson: true, isActive: true },
+    });
+    return updated;
   }
 
   async findMany(filter?: ClientFilterDto) {
@@ -222,6 +319,166 @@ export class ClientsService {
       roleName: r.clientRole.roleName,
       createdAt: r.createdAt,
     }));
+  }
+
+  private async ensureClientExists(clientId: string): Promise<void> {
+    const exists = await this.prisma.client.findUnique({
+      where: { id: clientId },
+      select: { id: true },
+    });
+    if (!exists) throw new NotFoundException('Client not found');
+  }
+
+  private async ensureActiveClientRole(roleId: string) {
+    const role = await this.prisma.clientRole.findFirst({
+      where: { id: roleId, isActive: true },
+      select: { id: true, roleName: true },
+    });
+    if (!role) throw new NotFoundException('Role not found');
+    return role;
+  }
+
+  private async getClientAccountOrThrow(clientId: string, accountId: string) {
+    const account = await this.prisma.clientAccount.findFirst({
+      where: { id: accountId, clientId },
+      select: { id: true, email: true },
+    });
+    if (!account) throw new NotFoundException('Account not found');
+    return account;
+  }
+
+  async createAccount(clientId: string, dto: CreateClientAccountDto) {
+    await this.ensureClientExists(clientId);
+    await this.ensureActiveClientRole(dto.clientRoleId);
+    const email = dto.email.trim().toLowerCase();
+    const existing = await this.prisma.clientAccount.findUnique({ where: { email } });
+    if (existing) throw new ConflictException('An account with this email already exists');
+
+    const temporaryPassword = randomBytes(12).toString('base64url');
+    const passwordHash = await bcrypt.hash(temporaryPassword, 10);
+    const account = await this.prisma.clientAccount.create({
+      data: {
+        clientId,
+        clientRoleId: dto.clientRoleId,
+        email,
+        passwordHash,
+        firstName: dto.firstName.trim(),
+        lastName: dto.lastName.trim(),
+        isActive: true,
+      },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        isActive: true,
+        clientRoleId: true,
+        createdAt: true,
+        clientRole: { select: { roleName: true } },
+      },
+    });
+    await this.actors.getOrCreateForClientAccount(account.id);
+    return {
+      account: {
+        id: account.id,
+        firstName: account.firstName,
+        lastName: account.lastName,
+        email: account.email,
+        isActive: account.isActive,
+        clientRoleId: account.clientRoleId,
+        roleName: account.clientRole.roleName,
+        createdAt: account.createdAt,
+      },
+      temporaryPassword,
+    };
+  }
+
+  async updateAccount(clientId: string, accountId: string, dto: UpdateClientAccountDto) {
+    await this.ensureClientExists(clientId);
+    const existing = await this.getClientAccountOrThrow(clientId, accountId);
+    const data: {
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+      clientRole?: { connect: { id: string } };
+    } = {};
+    if (dto.firstName !== undefined) data.firstName = dto.firstName.trim();
+    if (dto.lastName !== undefined) data.lastName = dto.lastName.trim();
+    if (dto.email !== undefined) {
+      const email = dto.email.trim().toLowerCase();
+      if (email !== existing.email) {
+        const taken = await this.prisma.clientAccount.findUnique({ where: { email } });
+        if (taken) throw new ConflictException('Email already in use');
+      }
+      data.email = email;
+    }
+    if (dto.clientRoleId !== undefined) {
+      await this.ensureActiveClientRole(dto.clientRoleId);
+      data.clientRole = { connect: { id: dto.clientRoleId } };
+    }
+    const updated = await this.prisma.clientAccount.update({
+      where: { id: accountId },
+      data,
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        isActive: true,
+        clientRoleId: true,
+        createdAt: true,
+        clientRole: { select: { roleName: true } },
+      },
+    });
+    return {
+      id: updated.id,
+      firstName: updated.firstName,
+      lastName: updated.lastName,
+      email: updated.email,
+      isActive: updated.isActive,
+      clientRoleId: updated.clientRoleId,
+      roleName: updated.clientRole.roleName,
+      createdAt: updated.createdAt,
+    };
+  }
+
+  async setAccountActive(clientId: string, accountId: string, isActive: boolean) {
+    await this.ensureClientExists(clientId);
+    await this.getClientAccountOrThrow(clientId, accountId);
+    await this.prisma.clientAccount.update({
+      where: { id: accountId },
+      data: { isActive },
+    });
+    return { id: accountId, isActive };
+  }
+
+  async onboard(dto: OnboardClientDto) {
+    const created = await this.create(dto);
+    const client = created as { id: string };
+    const accounts = Array.isArray(dto.accounts) ? dto.accounts : [];
+    const createdAccounts: Array<{
+      id: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      roleName: string;
+      temporaryPassword: string;
+    }> = [];
+    for (const account of accounts) {
+      const createdAccount = await this.createAccount(client.id, account);
+      createdAccounts.push({
+        id: createdAccount.account.id,
+        firstName: createdAccount.account.firstName,
+        lastName: createdAccount.account.lastName,
+        email: createdAccount.account.email,
+        roleName: createdAccount.account.roleName,
+        temporaryPassword: createdAccount.temporaryPassword,
+      });
+    }
+    return {
+      client: created,
+      accounts: createdAccounts,
+    };
   }
 
   async update(id: string, dto: UpdateClientDto) {
