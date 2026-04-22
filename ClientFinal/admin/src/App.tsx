@@ -1,17 +1,14 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, NavLink, Outlet, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import './App.css';
 import {
   LayoutDashboard,
   Users,
   Warehouse,
-  UserCheck,
   FileCheck,
   Package,
   Menu,
   X,
-  Search,
-  Bell,
   ChevronDown,
   ClipboardList,
   Shield,
@@ -23,7 +20,6 @@ import {
   Trash2,
   QrCode,
   ChevronRight,
-  Printer,
   PackageSearch,
   ExternalLink,
   CheckCircle2,
@@ -31,7 +27,6 @@ import {
   XCircle,
   Clock,
   AlertCircle,
-  PackageX,
   MapPin,
   Eye,
   Boxes,
@@ -41,18 +36,13 @@ import {
   FileEdit,
   CheckCircle,
   XCircle as XCircleIcon,
-  RotateCcw,
   Eye as EyeIcon,
   Play,
   FileBarChart,
   Download,
   FileDown,
-  CreditCard,
   DollarSign,
   Euro,
-  Sparkles,
-  CheckSquare,
-  XSquare
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -154,7 +144,6 @@ import {
   fetchWarehouses,
   updateUser,
   createRole,
-  fetchRolesWithPermissions,
   PERMISSION_OPTIONS,
   type UserRoleInfo,
   type WarehouseResponse,
@@ -179,6 +168,13 @@ import {
   type OutboundOrderUi,
 } from '@/lib/outbound-orders';
 import { LoginPage } from '@/components/LoginPage';
+import { ApprovalDetailsView } from '@/components/approvals/ApprovalDetailsView';
+import {
+  approvalTypeLabel,
+  mapApiApproval,
+  type Approval,
+  type ApprovalFilterType,
+} from '@/components/approvals/approval-model';
 import { isAuthenticated, logout, getCurrentUser } from '@/lib/auth';
 import type { UserInfo } from '@/lib/auth';
 import {
@@ -189,15 +185,12 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  AreaChart,
-  Area,
-  Legend,
   PieChart,
   Pie,
 } from 'recharts';
 
 // Sales statistics data
-const salesData = [
+export const salesData = [
   { month: 'أغسطس', sales: 45000, orders: 120 },
   { month: 'سبتمبر', sales: 52000, orders: 145 },
   { month: 'أكتوبر', sales: 48000, orders: 132 },
@@ -207,7 +200,7 @@ const salesData = [
 ];
 
 // Inventory statistics data
-const inventoryData = [
+export const inventoryData = [
   { month: 'أغسطس', total: 8500, used: 5200, available: 3300 },
   { month: 'سبتمبر', total: 9200, used: 5800, available: 3400 },
   { month: 'أكتوبر', total: 8800, used: 5400, available: 3400 },
@@ -217,7 +210,7 @@ const inventoryData = [
 ];
 
 // Activity log data
-const activityLogData = [
+export const activityLogData = [
   {
     timestamp: '2026-02-02 10:15',
     user: 'ahmed.mohamed@example.com',
@@ -274,7 +267,7 @@ type Task = {
 const warehouses: { id: string; name: string }[] = [];
 
 // Roles data
-const roles = [
+export const roles = [
   'مدير النظام',
   'مدير المخزون',
   'مدير المبيعات',
@@ -310,19 +303,10 @@ type AdminPage =
   | 'work-management'
   | 'identity-access'
   | 'master-data'
-  | 'inbound-orders'
-  | 'inbound-order-workspace'
-  | 'outbound-orders'
-  | 'outbound-order-workspace'
+  | 'orders'
   | 'inventory'
   | 'inventory-ledger'
   | 'adjustments'
-  | 'returns'
-  | 'return-workspace'
-  | 'reports'
-  | 'report-detail'
-  | 'billing'
-  | 'value-added-services'
   | 'approvals-center';
 
 const PAGE_TO_PATH: Record<string, string> = {
@@ -330,14 +314,9 @@ const PAGE_TO_PATH: Record<string, string> = {
   'work-management': '/work-management',
   'identity-access': '/identity-access',
   'master-data': '/master-data',
-  'inbound-orders': '/inbound-orders',
-  'outbound-orders': '/outbound-orders',
+  orders: '/orders',
   inventory: '/inventory',
   adjustments: '/adjustments',
-  returns: '/returns',
-  reports: '/reports',
-  billing: '/billing',
-  'value-added-services': '/value-added-services',
   'approvals-center': '/approvals',
 };
 
@@ -346,14 +325,9 @@ const sidebarItems = [
   { icon: ClipboardList, label: 'إدارة العمل', page: 'work-management' },
   { icon: Shield, label: 'الهوية والوصول', page: 'identity-access' },
   { icon: Database, label: 'البيانات الأساسية', page: 'master-data' },
-  { icon: PackageSearch, label: 'طلبات الوارد', page: 'inbound-orders' },
-  { icon: PackageX, label: 'طلبات الصادر', page: 'outbound-orders' },
+  { icon: PackageSearch, label: 'الطلبات', page: 'orders' },
   { icon: Boxes, label: 'المخزون', page: 'inventory' },
   { icon: FileEdit, label: 'التعديلات', page: 'adjustments' },
-  { icon: RotateCcw, label: 'الإرجاعات', page: 'returns' },
-  { icon: FileBarChart, label: 'التقارير', page: 'reports' },
-  { icon: CreditCard, label: 'الفواتير والفوترة', page: 'billing' },
-  { icon: Sparkles, label: 'الخدمات ذات القيمة المضافة', page: 'value-added-services' },
   { icon: FileCheck, label: 'مركز الموافقات', page: 'approvals-center' },
 ];
 
@@ -8466,7 +8440,7 @@ const reportCards: ReportCard[] = [
   },
 ];
 
-function ReportsPage({ onOpenReport }: { onOpenReport: (reportType: ReportType) => void }) {
+export function ReportsPage({ onOpenReport }: { onOpenReport: (reportType: ReportType) => void }) {
   return (
     <div className="space-y-6">
       <div>
@@ -8613,7 +8587,7 @@ function BaseReportPage({
 }
 
 // Inventory Report Page
-function InventoryReportPage({ onBack }: { onBack: () => void }) {
+export function InventoryReportPage({ onBack }: { onBack: () => void }) {
   const [warehouseFilter, setWarehouseFilter] = useState('');
   const [clientFilter, setClientFilter] = useState('');
   const [skuFilter, setSkuFilter] = useState('');
@@ -8748,7 +8722,7 @@ function InventoryReportPage({ onBack }: { onBack: () => void }) {
 }
 
 // Orders Report Page
-function OrdersReportPage({ onBack }: { onBack: () => void }) {
+export function OrdersReportPage({ onBack }: { onBack: () => void }) {
   const [orderTypeFilter, setOrderTypeFilter] = useState('');
   const [warehouseFilter, setWarehouseFilter] = useState('');
   const [clientFilter, setClientFilter] = useState('');
@@ -8921,7 +8895,7 @@ type BillingPlan = {
   movementRates: MovementRate[];
 };
 
-function BillingPage() {
+export function BillingPage() {
   const [plans, setPlans] = useState<BillingPlan[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -9575,7 +9549,7 @@ type ValueAddedService = {
   costCalculationMethod: CostCalculationMethod;
 };
 
-function ValueAddedServicesPage() {
+export function ValueAddedServicesPage() {
   const [services, setServices] = useState<ValueAddedService[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -9910,207 +9884,177 @@ function ValueAddedServicesPage() {
   );
 }
 
-// Approvals Center Types (mapped from backend ApprovalReferenceType)
-type ApprovalType = 'order' | 'inbound' | 'outbound' | 'adjustment' | 'return' | 'invoice';
-type ApprovalStatus = 'قيد الانتظار' | 'موافق عليه' | 'مرفوض';
-
-type Approval = {
-  id: string;
-  type: ApprovalType;
-  reference: string;
-  client: string;
-  warehouse: string;
-  requestedBy: string;
-  requestedAt: string;
-  reason: string;
-  status: ApprovalStatus;
-  details?: string;
-  notes?: string;
+const APPROVAL_REF_TYPES: Record<ApprovalFilterType, string> = {
+  order: 'ORDER',
+  adjustment: 'ADJUSTMENT',
+  return: 'RETURN',
+  invoice: 'INVOICE',
 };
 
-// Approvals are loaded dynamically from backend /approvals
+const APPROVAL_FILTERS: ApprovalFilterType[] = ['order', 'adjustment', 'return', 'invoice'];
 
-function ApprovalsCenterPage() {
-  const [activeApprovalType, setActiveApprovalType] = useState<ApprovalType>('order');
-  const [approvals, setApprovals] = useState<Approval[]>([]);
+const APPROVAL_FILTER_LABELS: Record<ApprovalFilterType, string> = {
+  order: 'موافقات الطلبات',
+  adjustment: 'موافقات التعديل',
+  return: 'موافقات المرتجعات',
+  invoice: 'موافقات الفواتير',
+};
+
+type ApprovalCache = Record<ApprovalFilterType, Approval[]>;
+
+async function fetchApprovalsByFilter(filter: ApprovalFilterType): Promise<Approval[]> {
+  const params = new URLSearchParams();
+  params.set('referenceType', APPROVAL_REF_TYPES[filter]);
+  const data = await apiFetch<any[]>(`/approvals?${params.toString()}`);
+  return (Array.isArray(data) ? data : []).map(mapApiApproval);
+}
+
+function ApprovalDetailsRoute({
+  approvalsByFilter,
+  updateApprovalInCache,
+  upsertApprovalToCache,
+}: {
+  approvalsByFilter: ApprovalCache;
+  updateApprovalInCache: (approvalId: string, nextStatus: Approval['status'], notes?: string) => void;
+  upsertApprovalToCache: (approval: Approval) => void;
+}) {
+  const { id = '' } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [approval, setApproval] = useState<Approval | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
-  const [isRejectDialogOpen, setIsRejectDialogOpen] = useState(false);
-  const [selectedApproval, setSelectedApproval] = useState<Approval | null>(null);
-  const [rejectReason, setRejectReason] = useState('');
 
   useEffect(() => {
     let active = true;
-    async function load() {
-      try {
-        setLoading(true);
-        setError(null);
-        const params = new URLSearchParams();
-        const refType =
-          activeApprovalType === 'adjustment'
-            ? 'ADJUSTMENT'
-            : activeApprovalType === 'return'
-              ? 'RETURN'
-              : activeApprovalType === 'invoice'
-                ? 'INVOICE'
-                : 'ORDER';
-        params.set('referenceType', refType);
-        const data = await apiFetch<any[]>(`/approvals?${params.toString()}`);
+    async function loadDetail() {
+      if (!id) {
+        setError('رقم الموافقة غير صالح.');
+        setLoading(false);
+        return;
+      }
+      setLoading(true);
+      setError(null);
+      const fromCache = Object.values(approvalsByFilter).flat().find((item) => item.id === id) ?? null;
+      if (fromCache) {
         if (!active) return;
-        const mapped: Approval[] = (Array.isArray(data) ? data : []).map((a) => {
-          const orderInfo = a.orderInfo as { orderNumber?: string; client?: { name?: string; code?: string }; warehouse?: { name?: string }; status?: string } | null | undefined;
-          const orderType =
-            a.approvalStep === 'INBOUND_ORDER' ? 'inbound' :
-            a.approvalStep === 'OUTBOUND_ORDER' ? 'outbound' :
-            a.referenceType === 'ADJUSTMENT' ? 'adjustment' :
-            a.referenceType === 'RETURN' ? 'return' :
-            a.referenceType === 'INVOICE' ? 'invoice' : 'order';
-
-          return {
-            id: a.id,
-            type: orderType as Approval['type'],
-            reference: orderInfo?.orderNumber || a.referenceId || '',
-            client: orderInfo?.client?.name || '',
-            warehouse: orderInfo?.warehouse?.name || '',
-            requestedBy:
-              a.requestedByActor?.user?.email ||
-              a.requestedByActor?.clientAccount?.email ||
-              a.requestedByActorId ||
-              '-',
-            requestedAt: a.createdAt ? new Date(a.createdAt).toISOString().slice(0, 16).replace('T', ' ') : '',
-            reason: a.requestNotes || '',
-            status:
-              a.status === 'APPROVED'
-                ? ('موافق عليه' as ApprovalStatus)
-                : a.status === 'REJECTED'
-                  ? ('مرفوض' as ApprovalStatus)
-                  : ('قيد الانتظار' as ApprovalStatus),
-            details: orderInfo?.status ? `حالة الطلب: ${orderInfo.status}` : (a.approvalStep ?? ''),
-            notes: a.decisionNotes || undefined,
-          };
-        });
-        setApprovals(mapped);
-      } catch (e: any) {
-        console.error('Failed to load approvals', e);
-        if (active) {
-          setError('تعذر تحميل الموافقات. يرجى المحاولة مرة أخرى.');
-          setApprovals([]);
+        setApproval(fromCache);
+        setLoading(false);
+        return;
+      }
+      try {
+        for (const filter of APPROVAL_FILTERS) {
+          const fetched = await fetchApprovalsByFilter(filter);
+          const found = fetched.find((item) => item.id === id);
+          if (found) {
+            if (!active) return;
+            setApproval(found);
+            upsertApprovalToCache(found);
+            setLoading(false);
+            return;
+          }
         }
-      } finally {
-        if (active) setLoading(false);
+        if (active) {
+          setError('لم يتم العثور على الموافقة المطلوبة.');
+          setApproval(null);
+          setLoading(false);
+        }
+      } catch (e) {
+        if (!active) return;
+        setError(e instanceof Error ? e.message : 'تعذر تحميل تفاصيل الموافقة.');
+        setApproval(null);
+        setLoading(false);
       }
     }
-    void load();
-    return () => { active = false; };
-  }, [activeApprovalType]);
+    void loadDetail();
+    return () => {
+      active = false;
+    };
+  }, [id, approvalsByFilter, upsertApprovalToCache]);
 
-  const handleReview = (approval: Approval) => {
-    setSelectedApproval(approval);
-    setIsReviewDialogOpen(true);
+  const handleApprove = async (comment?: string) => {
+    if (!approval) return;
+    const updated = await apiFetch<any>(`/approvals/${approval.id}/approve`, {
+      method: 'POST',
+      body: JSON.stringify({ decisionNotes: comment }),
+    });
+    updateApprovalInCache(approval.id, 'موافق عليه', updated?.decisionNotes || comment);
+    navigate('/approvals');
   };
 
-  const handleApprove = async () => {
-    if (!selectedApproval) return;
-    try {
-      setError(null);
-      const updated = await apiFetch<any>(`/approvals/${selectedApproval.id}/approve`, {
-        method: 'POST',
-        body: JSON.stringify({ decisionNotes: selectedApproval.notes || undefined }),
-      });
-      setApprovals((prev) =>
-        prev.map((a) =>
-          a.id === selectedApproval.id
-            ? {
-                ...a,
-                status: updated.status === 'APPROVED' ? 'موافق عليه' : a.status,
-                notes: updated.decisionNotes || a.notes,
-              }
-            : a,
-        ),
-      );
-    } catch (e: any) {
-      setError(e instanceof Error ? e.message : 'فشل اعتماد الموافقة');
-    }
-    setIsReviewDialogOpen(false);
-    setSelectedApproval(null);
+  const handleReject = async (comment: string) => {
+    if (!approval) return;
+    const updated = await apiFetch<any>(`/approvals/${approval.id}/reject`, {
+      method: 'POST',
+      body: JSON.stringify({ decisionNotes: comment }),
+    });
+    updateApprovalInCache(approval.id, 'مرفوض', updated?.decisionNotes || comment);
+    navigate('/approvals');
   };
 
-  const handleReject = () => {
-    if (!selectedApproval) return;
-    setIsReviewDialogOpen(false);
-    setRejectReason('');
-    setIsRejectDialogOpen(true);
-  };
+  if (loading) {
+    return (
+      <Card>
+        <CardContent className="p-6 text-center text-sm text-gray-500">جارِ تحميل تفاصيل الموافقة...</CardContent>
+      </Card>
+    );
+  }
 
-  const handleConfirmReject = async () => {
-    if (!selectedApproval || !rejectReason.trim()) return;
-    try {
-      setError(null);
-      const updated = await apiFetch<any>(`/approvals/${selectedApproval.id}/reject`, {
-        method: 'POST',
-        body: JSON.stringify({ decisionNotes: rejectReason }),
-      });
-      setApprovals((prev) =>
-        prev.map((a) =>
-          a.id === selectedApproval.id
-            ? {
-                ...a,
-                status: updated.status === 'REJECTED' ? 'مرفوض' : a.status,
-                notes: updated.decisionNotes || rejectReason,
-              }
-            : a,
-        ),
-      );
-    } catch (e: any) {
-      setError(e instanceof Error ? e.message : 'فشل رفض الموافقة');
-    }
-    setIsRejectDialogOpen(false);
-    setSelectedApproval(null);
-    setRejectReason('');
-  };
-
-  const currentApprovals = approvals;
+  if (error || !approval) {
+    return (
+      <Card>
+        <CardContent className="p-6 space-y-4">
+          <p className="text-sm text-red-700">{error || 'تعذر عرض تفاصيل الموافقة.'}</p>
+          <Button variant="outline" onClick={() => navigate('/approvals')}>العودة إلى مركز الموافقات</Button>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => navigate('/approvals')}>العودة إلى القائمة</Button>
+      <ApprovalDetailsView
+        approval={approval}
+        onApprove={handleApprove}
+        onReject={handleReject}
+      />
+    </div>
+  );
+}
+
+function ApprovalsOverviewRoute({
+  activeApprovalType,
+  setActiveApprovalType,
+  approvals,
+  loading,
+  error,
+}: {
+  activeApprovalType: ApprovalFilterType;
+  setActiveApprovalType: (type: ApprovalFilterType) => void;
+  approvals: Approval[];
+  loading: boolean;
+  error: string | null;
+}) {
+  const navigate = useNavigate();
+  return (
     <div className="space-y-6">
-      {/* Approval Type Buttons */}
       <Card>
         <CardContent className="p-4">
           <div className="flex flex-wrap gap-2">
-            <Button
-              variant={activeApprovalType === 'order' ? 'default' : 'outline'}
-              onClick={() => setActiveApprovalType('order')}
-              size="sm"
-            >
-              موافقات الطلبات
-            </Button>
-            <Button
-              variant={activeApprovalType === 'adjustment' ? 'default' : 'outline'}
-              onClick={() => setActiveApprovalType('adjustment')}
-              size="sm"
-            >
-              موافقات التعديل
-            </Button>
-            <Button
-              variant={activeApprovalType === 'return' ? 'default' : 'outline'}
-              onClick={() => setActiveApprovalType('return')}
-              size="sm"
-            >
-              موافقات المرتجعات
-            </Button>
-            <Button
-              variant={activeApprovalType === 'invoice' ? 'default' : 'outline'}
-              onClick={() => setActiveApprovalType('invoice')}
-              size="sm"
-            >
-              موافقات الفواتير
-            </Button>
+            {APPROVAL_FILTERS.map((filter) => (
+              <Button
+                key={filter}
+                variant={activeApprovalType === filter ? 'default' : 'outline'}
+                onClick={() => setActiveApprovalType(filter)}
+                size="sm"
+              >
+                {APPROVAL_FILTER_LABELS[filter]}
+              </Button>
+            ))}
           </div>
         </CardContent>
       </Card>
 
-      {/* Approvals Table */}
       <Card>
         <CardContent className="p-0">
           {error && (
@@ -10121,218 +10065,258 @@ function ApprovalsCenterPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="text-right">النوع</TableHead>
+                <TableHead className="text-right">نوع الموافقة</TableHead>
                 <TableHead className="text-right">المرجع</TableHead>
                 <TableHead className="text-right">العميل</TableHead>
-                <TableHead className="text-right">المستودع</TableHead>
-                <TableHead className="text-right">طلب بواسطة</TableHead>
-                <TableHead className="text-right">تم الطلب في</TableHead>
                 <TableHead className="text-right">الحالة</TableHead>
+                <TableHead className="text-right">السبب</TableHead>
+                <TableHead className="text-right">المستودع</TableHead>
                 <TableHead className="text-right">الإجراءات</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading ? (
                 <TableRow>
-                  <TableCell colSpan={8} className="py-8 text-center text-sm text-gray-500">
+                  <TableCell colSpan={7} className="py-8 text-center text-sm text-gray-500">
                     جارِ تحميل الموافقات...
                   </TableCell>
                 </TableRow>
-              ) : currentApprovals.length === 0 ? (
+              ) : approvals.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={8} className="py-8 text-center text-sm text-gray-500">
+                  <TableCell colSpan={7} className="py-8 text-center text-sm text-gray-500">
                     لا توجد موافقات مطابقة للفلاتر الحالية.
                   </TableCell>
                 </TableRow>
               ) : (
-                currentApprovals.map((approval) => (
-                <TableRow key={approval.id}>
-                  <TableCell>
-                    <Badge variant="outline" className="text-xs whitespace-nowrap">
-                      {approval.type === 'inbound' ? 'وارد' :
-                       approval.type === 'outbound' ? 'صادر' :
-                       approval.type === 'adjustment' ? 'تعديل' :
-                       approval.type === 'return' ? 'مرتجع' :
-                       approval.type === 'invoice' ? 'فاتورة' : 'طلب'}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="font-mono">{approval.reference}</TableCell>
-                  <TableCell>{approval.client}</TableCell>
-                  <TableCell>{approval.warehouse}</TableCell>
-                  <TableCell>{approval.requestedBy}</TableCell>
-                  <TableCell className="font-mono text-sm">{approval.requestedAt}</TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={
-                        approval.status === 'موافق عليه'
-                          ? 'default'
-                          : approval.status === 'مرفوض'
-                          ? 'destructive'
-                          : 'secondary'
-                      }
-                    >
-                      {approval.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    {approval.status === 'قيد الانتظار' && (
+                approvals.map((approval) => (
+                  <TableRow key={approval.id}>
+                    <TableCell>
+                      <Badge variant="outline" className="text-xs whitespace-nowrap">
+                        {approvalTypeLabel(approval.type)}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="font-mono">{approval.reference || '-'}</TableCell>
+                    <TableCell>{approval.client || '-'}</TableCell>
+                    <TableCell>
+                      <Badge
+                        variant={
+                          approval.status === 'موافق عليه'
+                            ? 'default'
+                            : approval.status === 'مرفوض'
+                              ? 'destructive'
+                              : 'secondary'
+                        }
+                      >
+                        {approval.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>{approval.reason || '-'}</TableCell>
+                    <TableCell>{approval.warehouse || '-'}</TableCell>
+                    <TableCell>
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handleReview(approval)}
+                        onClick={() => navigate(`/approvals/${approval.id}`)}
                       >
-                        <EyeIcon className="w-4 h-4 ml-2" />
-                        مراجعة
+                        عرض التفاصيل
                       </Button>
-                    )}
-                  </TableCell>
-                </TableRow>
+                    </TableCell>
+                  </TableRow>
                 ))
               )}
             </TableBody>
           </Table>
         </CardContent>
       </Card>
-
-      {/* Review Dialog */}
-      <Dialog open={isReviewDialogOpen} onOpenChange={setIsReviewDialogOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>مراجعة الموافقة</DialogTitle>
-          </DialogHeader>
-          {selectedApproval && (
-            <div className="space-y-4 py-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-gray-500">النوع</label>
-                  <p className="text-base font-semibold mt-1">
-                    {selectedApproval.type === 'inbound' ? 'موافقة طلب وارد' :
-                     selectedApproval.type === 'outbound' ? 'موافقة طلب صادر' :
-                     selectedApproval.type === 'adjustment' ? 'موافقة تعديل' :
-                     selectedApproval.type === 'return' ? 'موافقة مرتجع' :
-                     selectedApproval.type === 'invoice' ? 'موافقة فاتورة' :
-                     'موافقة طلب'}
-                  </p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">المرجع</label>
-                  <p className="text-base font-mono mt-1">{selectedApproval.reference}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">العميل</label>
-                  <p className="text-base mt-1">{selectedApproval.client}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">المستودع</label>
-                  <p className="text-base mt-1">{selectedApproval.warehouse}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">طلب بواسطة</label>
-                  <p className="text-base mt-1">{selectedApproval.requestedBy}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">تم الطلب في</label>
-                  <p className="text-base font-mono text-sm mt-1">{selectedApproval.requestedAt}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">الحالة</label>
-                  <div className="mt-1">
-                    <Badge
-                      variant={
-                        selectedApproval.status === 'موافق عليه'
-                          ? 'default'
-                          : selectedApproval.status === 'مرفوض'
-                          ? 'destructive'
-                          : 'secondary'
-                      }
-                    >
-                      {selectedApproval.status}
-                    </Badge>
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-500">السبب أو الملخص</label>
-                  <p className="text-base mt-1">{selectedApproval.reason}</p>
-                </div>
-                {selectedApproval.details && (
-                  <div className="col-span-2">
-                    <label className="text-sm font-medium text-gray-500">تفاصيل أخرى</label>
-                    <p className="text-base mt-1">{selectedApproval.details}</p>
-                  </div>
-                )}
-                {selectedApproval.notes && (
-                  <div className="col-span-2">
-                    <label className="text-sm font-medium text-gray-500">ملاحظات</label>
-                    <p className="text-base mt-1">{selectedApproval.notes}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setIsReviewDialogOpen(false)}>
-              إغلاق
-            </Button>
-            {selectedApproval?.status === 'قيد الانتظار' && (
-              <>
-                <Button
-                  variant="destructive"
-                  onClick={handleReject}
-                >
-                  <XSquare className="w-4 h-4 ml-2" />
-                  رفض
-                </Button>
-                <Button
-                  onClick={handleApprove}
-                  className="bg-gradient-to-r from-[#176C33] to-[#104920] hover:from-[#104920] hover:to-[#176C33] text-white"
-                >
-                  <CheckSquare className="w-4 h-4 ml-2" />
-                  موافقة
-                </Button>
-              </>
-            )}
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      {/* Reject Dialog */}
-      <Dialog open={isRejectDialogOpen} onOpenChange={setIsRejectDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>رفض الموافقة</DialogTitle>
-            <DialogDescription>
-              يرجى إدخال سبب رفض هذه الموافقة
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">سبب الرفض</label>
-              <Textarea
-                value={rejectReason}
-                onChange={(e) => setRejectReason(e.target.value)}
-                placeholder="أدخل سبب رفض الموافقة..."
-                rows={4}
-              />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => {
-              setIsRejectDialogOpen(false);
-              setRejectReason('');
-            }}>
-              إلغاء
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={handleConfirmReject}
-              disabled={!rejectReason.trim()}
-            >
-              تأكيد الرفض
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
+  );
+}
+
+function ApprovalsCenterPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentType = searchParams.get('type');
+  const safeType: ApprovalFilterType = APPROVAL_FILTERS.includes(currentType as ApprovalFilterType)
+    ? (currentType as ApprovalFilterType)
+    : 'order';
+  const [activeApprovalType, setActiveApprovalType] = useState<ApprovalFilterType>(safeType);
+  const [approvalsByFilter, setApprovalsByFilter] = useState<ApprovalCache>({
+    order: [],
+    adjustment: [],
+    return: [],
+    invoice: [],
+  });
+  const [loadingByFilter, setLoadingByFilter] = useState<Record<ApprovalFilterType, boolean>>({
+    order: false,
+    adjustment: false,
+    return: false,
+    invoice: false,
+  });
+  const [errorByFilter, setErrorByFilter] = useState<Record<ApprovalFilterType, string | null>>({
+    order: null,
+    adjustment: null,
+    return: null,
+    invoice: null,
+  });
+
+  useEffect(() => {
+    setSearchParams({ type: activeApprovalType }, { replace: true });
+  }, [activeApprovalType, setSearchParams]);
+
+  useEffect(() => {
+    setActiveApprovalType(safeType);
+  }, [safeType]);
+
+  useEffect(() => {
+    let active = true;
+    async function loadCurrentType() {
+      if (approvalsByFilter[activeApprovalType].length > 0) return;
+      setLoadingByFilter((prev) => ({ ...prev, [activeApprovalType]: true }));
+      setErrorByFilter((prev) => ({ ...prev, [activeApprovalType]: null }));
+      try {
+        const list = await fetchApprovalsByFilter(activeApprovalType);
+        if (!active) return;
+        setApprovalsByFilter((prev) => ({ ...prev, [activeApprovalType]: list }));
+      } catch (e) {
+        if (!active) return;
+        setErrorByFilter((prev) => ({
+          ...prev,
+          [activeApprovalType]: e instanceof Error ? e.message : 'تعذر تحميل الموافقات.',
+        }));
+      } finally {
+        if (active) {
+          setLoadingByFilter((prev) => ({ ...prev, [activeApprovalType]: false }));
+        }
+      }
+    }
+    void loadCurrentType();
+    return () => {
+      active = false;
+    };
+  }, [activeApprovalType, approvalsByFilter]);
+
+  const updateApprovalInCache = (approvalId: string, nextStatus: Approval['status'], notes?: string) => {
+    setApprovalsByFilter((prev) => {
+      const next = { ...prev };
+      for (const key of APPROVAL_FILTERS) {
+        next[key] = prev[key].map((item) =>
+          item.id === approvalId ? { ...item, status: nextStatus, notes: notes || item.notes } : item,
+        );
+      }
+      return next;
+    });
+  };
+
+  const upsertApprovalToCache = (approval: Approval) => {
+    const targetFilter: ApprovalFilterType =
+      approval.type === 'adjustment'
+        ? 'adjustment'
+        : approval.type === 'return'
+          ? 'return'
+          : approval.type === 'invoice'
+            ? 'invoice'
+            : 'order';
+    setApprovalsByFilter((prev) => {
+      const existing = prev[targetFilter];
+      const found = existing.some((item) => item.id === approval.id);
+      return {
+        ...prev,
+        [targetFilter]: found
+          ? existing.map((item) => (item.id === approval.id ? approval : item))
+          : [approval, ...existing],
+      };
+    });
+  };
+
+  return (
+    <Routes>
+      <Route
+        path="/approvals"
+        element={
+          <ApprovalsOverviewRoute
+            activeApprovalType={activeApprovalType}
+            setActiveApprovalType={setActiveApprovalType}
+            approvals={approvalsByFilter[activeApprovalType]}
+            loading={loadingByFilter[activeApprovalType]}
+            error={errorByFilter[activeApprovalType]}
+          />
+        }
+      />
+      <Route
+        path="/approvals/:id"
+        element={
+          <ApprovalDetailsRoute
+            approvalsByFilter={approvalsByFilter}
+            updateApprovalInCache={updateApprovalInCache}
+            upsertApprovalToCache={upsertApprovalToCache}
+          />
+        }
+      />
+      <Route path="*" element={<Navigate to="/approvals" replace />} />
+    </Routes>
+  );
+}
+
+function OrdersLayout() {
+  const tabs = [
+    { to: '/orders/inbound-orders', label: 'طلبات الوارد' },
+    { to: '/orders/outbound-orders', label: 'طلبات الصادر' },
+    { to: '/orders/returns', label: 'الإرجاعات' },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-wrap gap-2 border-b border-gray-200 pb-3">
+        {tabs.map((tab) => (
+          <NavLink
+            key={tab.to}
+            to={tab.to}
+            className={({ isActive }) =>
+              `px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive
+                  ? 'bg-[#176C33] text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`
+            }
+          >
+            {tab.label}
+          </NavLink>
+        ))}
+      </div>
+      <Outlet />
+    </div>
+  );
+}
+
+function InboundOrderWorkspaceRoute() {
+  const { orderId = '' } = useParams<{ orderId: string }>();
+  const navigate = useNavigate();
+  return (
+    <InboundOrderWorkspacePage
+      orderId={orderId}
+      onBack={() => navigate('/orders/inbound-orders')}
+    />
+  );
+}
+
+function OutboundOrderWorkspaceRoute() {
+  const { orderId = '' } = useParams<{ orderId: string }>();
+  const navigate = useNavigate();
+  return (
+    <OutboundOrderWorkspacePage
+      orderId={orderId}
+      onBack={() => navigate('/orders/outbound-orders')}
+    />
+  );
+}
+
+function ReturnOrderWorkspaceRoute() {
+  const { returnId = '' } = useParams<{ returnId: string }>();
+  const navigate = useNavigate();
+  return (
+    <ReturnOrderWorkspacePage
+      returnId={returnId}
+      onBack={() => navigate('/orders/returns')}
+    />
   );
 }
 
@@ -10346,11 +10330,7 @@ function App() {
     typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
   );
   const [activePage, setActivePage] = useState<AdminPage>('overview');
-  const [selectedInboundOrderId, setSelectedInboundOrderId] = useState<string>('');
-  const [selectedOutboundOrderId, setSelectedOutboundOrderId] = useState<string>('');
   const [selectedInventoryItemId, setSelectedInventoryItemId] = useState<string>('');
-  const [selectedReturnId, setSelectedReturnId] = useState<string>('');
-  const [selectedReportType, setSelectedReportType] = useState<ReportType | null>(null);
   const [overviewData, setOverviewData] = useState<OverviewResponse | null>(null);
   const [overviewLoading, setOverviewLoading] = useState(false);
   const [overviewError, setOverviewError] = useState<string | null>(null);
@@ -10360,6 +10340,10 @@ function App() {
   useEffect(() => {
     if (!authenticated) return;
     const pathname = location.pathname;
+    if (pathname === '/login') {
+      navigate('/overview', { replace: true });
+      return;
+    }
     // Redirect root to overview so overview has a proper route like other pages
     if (pathname === '/') {
       navigate('/overview', { replace: true });
@@ -10372,26 +10356,16 @@ function App() {
     if (pathname === '/work-management') { setActivePage('work-management'); return; }
     if (pathname === '/identity-access') { setActivePage('identity-access'); return; }
     if (pathname === '/master-data') { setActivePage('master-data'); return; }
-    const inboundMatch = pathname.match(/^\/inbound-orders\/([^/]+)$/);
-    if (inboundMatch) {
-      setSelectedInboundOrderId(inboundMatch[1]);
-      setActivePage('inbound-order-workspace');
+    if (pathname === '/orders' || pathname.startsWith('/orders/')) {
+      setActivePage('orders');
       return;
     }
-    if (pathname === '/inbound-orders') {
-      setActivePage('inbound-orders');
-      setSelectedInboundOrderId('');
+    if (pathname === '/inbound-orders' || pathname.startsWith('/inbound-orders/')) {
+      navigate(pathname.replace('/inbound-orders', '/orders/inbound-orders'), { replace: true });
       return;
     }
-    const outboundMatch = pathname.match(/^\/outbound-orders\/([^/]+)$/);
-    if (outboundMatch) {
-      setSelectedOutboundOrderId(outboundMatch[1]);
-      setActivePage('outbound-order-workspace');
-      return;
-    }
-    if (pathname === '/outbound-orders') {
-      setActivePage('outbound-orders');
-      setSelectedOutboundOrderId('');
+    if (pathname === '/outbound-orders' || pathname.startsWith('/outbound-orders/')) {
+      navigate(pathname.replace('/outbound-orders', '/orders/outbound-orders'), { replace: true });
       return;
     }
     const ledgerMatch = pathname.match(/^\/inventory\/ledger(?:\/([^/]+))?$/);
@@ -10406,32 +10380,19 @@ function App() {
       return;
     }
     if (pathname === '/adjustments') { setActivePage('adjustments'); return; }
-    const returnMatch = pathname.match(/^\/returns\/([^/]+)$/);
-    if (returnMatch) {
-      setSelectedReturnId(returnMatch[1]);
-      setActivePage('return-workspace');
+    if (pathname === '/returns' || pathname.startsWith('/returns/')) {
+      navigate(pathname.replace('/returns', '/orders/returns'), { replace: true });
       return;
     }
-    if (pathname === '/returns') {
-      setActivePage('returns');
-      setSelectedReturnId('');
+    if (pathname === '/reports' || pathname.startsWith('/reports/')) {
+      navigate('/overview', { replace: true });
       return;
     }
-    const reportMatch = pathname.match(/^\/reports\/([^/]+)$/);
-    if (reportMatch) {
-      const reportType = reportMatch[1] as ReportType;
-      setSelectedReportType(reportType);
-      setActivePage('report-detail');
+    if (pathname === '/billing' || pathname === '/value-added-services' || pathname === '/value-added-service') {
+      navigate('/overview', { replace: true });
       return;
     }
-    if (pathname === '/reports') {
-      setActivePage('reports');
-      setSelectedReportType(null);
-      return;
-    }
-    if (pathname === '/billing') { setActivePage('billing'); return; }
-    if (pathname === '/value-added-services') { setActivePage('value-added-services'); return; }
-    if (pathname === '/approvals') { setActivePage('approvals-center'); return; }
+    if (pathname === '/approvals' || pathname.startsWith('/approvals/')) { setActivePage('approvals-center'); return; }
   }, [location.pathname, authenticated]);
 
   // Overview: always loaded from GET /dashboard/overview when visiting /overview
@@ -10486,6 +10447,7 @@ function App() {
     if (userInfo) {
       setUser(userInfo);
       setAuthenticated(true);
+      navigate('/overview', { replace: true });
     }
   };
 
@@ -10509,7 +10471,12 @@ function App() {
 
   // Show login page if not authenticated
   if (!authenticated) {
-    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+    return (
+      <Routes>
+        <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    );
   }
 
   return (
@@ -10569,21 +10536,9 @@ function App() {
             >
               <Menu className="w-5 h-5 text-gray-600" />
             </button>
-            <div className="relative flex-1 max-w-xs hidden sm:block">
-              <Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                placeholder="البحث..."
-                className="w-full min-w-0 pr-9 pl-3 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#176C33]/20 focus:bg-white transition-all"
-              />
-            </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-4 shrink-0">
-            <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="الإشعارات">
-              <Bell className="w-5 h-5 text-gray-600" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity">
@@ -10594,9 +10549,9 @@ function App() {
                   </Avatar>
                   <div className="hidden md:block text-right">
                     <p className="text-sm font-medium text-gray-900">
-                      {user?.role || 'مدير النظام'}
+                      {user?.sub || 'الحساب الحالي'}
                     </p>
-                    <p className="text-xs text-gray-500">{user?.actorType === 'INTERNAL_USER' ? 'موظف' : 'عميل'}</p>
+                    <p className="text-xs text-gray-500">{user?.role || 'STAFF'}</p>
                   </div>
                   <ChevronDown className="w-4 h-4 text-gray-400" />
                 </button>
@@ -10665,23 +10620,6 @@ function App() {
                       </div>
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                         <Warehouse className="w-6 h-6 text-green-600" />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="stat-card">
-                  <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">مستخدمون نشطون</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-2xl font-bold text-gray-900">{(overviewData.summary?.activeUsersCount ?? 0).toLocaleString('ar-SA')}</p>
-                        <p className="text-xs text-gray-500 mt-1">عدد المستخدمين النشطين</p>
-                      </div>
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                        <UserCheck className="w-6 h-6 text-purple-600" />
                       </div>
                     </div>
                   </CardContent>
@@ -10801,171 +10739,9 @@ function App() {
               </div>
             </div>
 
-            {/* Reports Section - dynamic charts from API */}
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">التقارير</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="stat-card">
-                  <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">الصادر الشهري</CardTitle>
-                    <p className="text-xs text-gray-500 font-normal">كمية الطلبات الصادرة (وحدات) وعدد الطلبات</p>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-64 w-full">
-                      {(() => {
-                        const salesData = Array.isArray(overviewData.salesByMonth) ? overviewData.salesByMonth : [];
-                        const hasData = salesData.some((r) => (r.sales ?? 0) > 0 || (r.orders ?? 0) > 0);
-                        if (!hasData) {
-                          return (
-                            <div className="h-full flex items-center justify-center text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg">
-                              لا توجد طلبات صادرة في آخر 6 أشهر
-                            </div>
-                          );
-                        }
-                        return (
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                          data={salesData}
-                          margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                          <XAxis
-                            dataKey="month"
-                            tick={{ fill: '#6b7280', fontSize: 12 }}
-                            tickLine={{ stroke: '#9ca3af' }}
-                            axisLine={{ stroke: '#d1d5db' }}
-                          />
-                          <YAxis
-                            tick={{ fill: '#6b7280', fontSize: 12 }}
-                            tickLine={{ stroke: '#9ca3af' }}
-                            axisLine={{ stroke: '#d1d5db' }}
-                          />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: '#fff',
-                              border: '1px solid #e5e7eb',
-                              borderRadius: '8px',
-                              padding: '8px 12px',
-                              fontSize: '12px',
-                              direction: 'rtl',
-                            }}
-                            formatter={(value: number, name: string) => [
-                              value.toLocaleString('ar-SA'),
-                              name === 'orders' ? 'عدد الطلبات' : 'الكمية (وحدات)',
-                            ]}
-                            labelStyle={{ fontWeight: 600, marginBottom: '4px' }}
-                          />
-                          <Bar
-                            dataKey="sales"
-                            fill="#176C33"
-                            radius={[8, 8, 0, 0]}
-                            name="الكمية"
-                          />
-                        </BarChart>
-                      </ResponsiveContainer>
-                        );
-                      })()}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="stat-card">
-                  <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">حركة دفتر المخزون</CardTitle>
-                    <p className="text-xs text-gray-500 font-normal">من سجل الحركات (آخر 6 أشهر)</p>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-64 w-full">
-                      {(() => {
-                        const invData = Array.isArray(overviewData.inventoryByMonth) ? overviewData.inventoryByMonth : [];
-                        const hasInv = invData.some((r) => (r.total ?? 0) > 0);
-                        if (!hasInv) {
-                          return (
-                            <div className="h-full flex items-center justify-center text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg">
-                              لا توجد حركات مخزون في آخر 6 أشهر
-                            </div>
-                          );
-                        }
-                        return (
-                      <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart
-                          data={invData}
-                          margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
-                        >
-                          <defs>
-                            <linearGradient id="colorUsed" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#176C33" stopOpacity={0.8} />
-                              <stop offset="95%" stopColor="#176C33" stopOpacity={0.1} />
-                            </linearGradient>
-                            <linearGradient id="colorAvailable" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                              <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
-                            </linearGradient>
-                          </defs>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                          <XAxis
-                            dataKey="month"
-                            tick={{ fill: '#6b7280', fontSize: 12 }}
-                            tickLine={{ stroke: '#9ca3af' }}
-                            axisLine={{ stroke: '#d1d5db' }}
-                          />
-                          <YAxis
-                            tick={{ fill: '#6b7280', fontSize: 12 }}
-                            tickLine={{ stroke: '#9ca3af' }}
-                            axisLine={{ stroke: '#d1d5db' }}
-                          />
-                          <Tooltip
-                            contentStyle={{
-                              backgroundColor: '#fff',
-                              border: '1px solid #e5e7eb',
-                              borderRadius: '8px',
-                              padding: '8px 12px',
-                              fontSize: '12px',
-                              direction: 'rtl',
-                            }}
-                            formatter={(value: number, name: string) => [
-                              value.toLocaleString('ar-SA'),
-                              name === 'used' ? 'مستخدم' : name === 'available' ? 'متاح' : 'إجمالي'
-                            ]}
-                            labelStyle={{ fontWeight: 600, marginBottom: '4px' }}
-                          />
-                          <Legend
-                            wrapperStyle={{ paddingTop: '10px' }}
-                            formatter={(value) => {
-                              if (value === 'used') return 'مستخدم';
-                              if (value === 'available') return 'متاح';
-                              return value;
-                            }}
-                          />
-                          <Area
-                            type="monotone"
-                            dataKey="used"
-                            stroke="#176C33"
-                            fillOpacity={1}
-                            fill="url(#colorUsed)"
-                            name="used"
-                          />
-                          <Area
-                            type="monotone"
-                            dataKey="available"
-                            stroke="#10b981"
-                            fillOpacity={1}
-                            fill="url(#colorAvailable)"
-                            name="available"
-                          />
-                        </AreaChart>
-                      </ResponsiveContainer>
-                        );
-                      })()}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
             {/* Activity from audit + recent orders */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">أنشطة أخرى</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">أحدث الأنشطة</h2>
               <Card>
                 <CardContent className="p-0">
                   <Table className="data-table">
@@ -11014,30 +10790,40 @@ function App() {
 
           {activePage === 'master-data' && <MasterDataPage />}
 
-          {activePage === 'inbound-orders' && (
-            <InboundOrdersPage
-              onOpenOrder={(orderId) => navigate(`/inbound-orders/${orderId}`)}
-            />
-          )}
-
-          {activePage === 'inbound-order-workspace' && (
-            <InboundOrderWorkspacePage
-              orderId={selectedInboundOrderId}
-              onBack={() => navigate('/inbound-orders')}
-            />
-          )}
-
-          {activePage === 'outbound-orders' && (
-            <OutboundOrdersPage
-              onOpenOrder={(orderId) => navigate(`/outbound-orders/${orderId}`)}
-            />
-          )}
-
-          {activePage === 'outbound-order-workspace' && (
-            <OutboundOrderWorkspacePage
-              orderId={selectedOutboundOrderId}
-              onBack={() => navigate('/outbound-orders')}
-            />
+          {activePage === 'orders' && (
+            <Routes>
+              <Route path="/orders" element={<OrdersLayout />}>
+                <Route index element={<Navigate to="inbound-orders" replace />} />
+                <Route
+                  path="inbound-orders"
+                  element={
+                    <InboundOrdersPage
+                      onOpenOrder={(orderId) => navigate(`/orders/inbound-orders/${orderId}`)}
+                    />
+                  }
+                />
+                <Route path="inbound-orders/:orderId" element={<InboundOrderWorkspaceRoute />} />
+                <Route
+                  path="outbound-orders"
+                  element={
+                    <OutboundOrdersPage
+                      onOpenOrder={(orderId) => navigate(`/orders/outbound-orders/${orderId}`)}
+                    />
+                  }
+                />
+                <Route path="outbound-orders/:orderId" element={<OutboundOrderWorkspaceRoute />} />
+                <Route
+                  path="returns"
+                  element={
+                    <ReturnsPage
+                      onProcessReturn={(returnId) => navigate(`/orders/returns/${returnId}`)}
+                    />
+                  }
+                />
+                <Route path="returns/:returnId" element={<ReturnOrderWorkspaceRoute />} />
+                <Route path="*" element={<Navigate to="inbound-orders" replace />} />
+              </Route>
+            </Routes>
           )}
 
           {activePage === 'inventory' && (
@@ -11054,134 +10840,6 @@ function App() {
           )}
 
           {activePage === 'adjustments' && <AdjustmentsPage />}
-
-          {activePage === 'returns' && (
-            <ReturnsPage
-              onProcessReturn={(returnId) => navigate(`/returns/${returnId}`)}
-            />
-          )}
-
-          {activePage === 'return-workspace' && (
-            <ReturnOrderWorkspacePage
-              returnId={selectedReturnId}
-              onBack={() => navigate('/returns')}
-            />
-          )}
-
-          {activePage === 'reports' && (
-            <ReportsPage
-              onOpenReport={(reportType) => navigate(`/reports/${reportType}`)}
-            />
-          )}
-
-          {activePage === 'report-detail' && selectedReportType === 'inventory' && (
-            <InventoryReportPage onBack={() => navigate('/reports')} />
-          )}
-
-          {activePage === 'report-detail' && selectedReportType === 'orders' && (
-            <OrdersReportPage onBack={() => navigate('/reports')} />
-          )}
-
-          {activePage === 'report-detail' && selectedReportType && !['inventory', 'orders'].includes(selectedReportType) && (
-            <BaseReportPage
-              reportType={selectedReportType}
-              title={reportCards.find(c => c.id === selectedReportType)?.title || 'تقرير'}
-              filters={
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">المستودع</label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="اختر المستودع" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">الكل</SelectItem>
-                        {warehouses.map((w) => (
-                          <SelectItem key={w.id} value={w.name}>{w.name}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">العميل</label>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="اختر العميل" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">الكل</SelectItem>
-                        {clients.map((c) => (
-                          <SelectItem key={c.id} value={c.name}>{c.name}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">التاريخ من</label>
-                    <Input type="date" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">التاريخ إلى</label>
-                    <Input type="date" />
-                  </div>
-                </div>
-              }
-              tableColumns={['العمود 1', 'العمود 2', 'العمود 3']}
-              tableData={[
-                { 'العمود 1': 'بيانات', 'العمود 2': 'بيانات', 'العمود 3': 'بيانات' },
-              ]}
-              charts={
-                <>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>إحصائيات</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={[{ name: 'قيمة', value: 100 }]}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Bar dataKey="value" fill="#176C33" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>التوزيع</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <PieChart>
-                            <Pie
-                              data={[{ name: 'قيمة', value: 100 }]}
-                              dataKey="value"
-                              nameKey="name"
-                              cx="50%"
-                              cy="50%"
-                              outerRadius={80}
-                              fill="#176C33"
-                            />
-                            <Tooltip />
-                          </PieChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </>
-              }
-              onBack={() => navigate('/reports')}
-            />
-          )}
-
-          {activePage === 'billing' && <BillingPage />}
-
-          {activePage === 'value-added-services' && <ValueAddedServicesPage />}
 
           {activePage === 'approvals-center' && <ApprovalsCenterPage />}
         </div>

@@ -276,7 +276,7 @@ export function UsersPage() {
               u.email,
               u.roleName,
               statusLabel(u.isActive),
-              new Date(u.createdAt).toLocaleString('ar-SA'),
+              new Date(u.createdAt).toLocaleString('en-US'),
             ]}
             filename="users"
             disabled={loading}
@@ -403,7 +403,7 @@ export function UsersPage() {
                           </span>
                         </td>
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                          {new Date(user.createdAt).toLocaleString('ar-SA')}
+                          {new Date(user.createdAt).toLocaleString('en-US')}
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex flex-wrap items-center gap-2">

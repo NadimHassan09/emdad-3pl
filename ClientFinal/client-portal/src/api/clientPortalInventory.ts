@@ -63,7 +63,7 @@ export function mapStockToTableRow(row: ClientPortalCurrentStockRow) {
     uom: row.product?.defaultUom?.code || '—',
     currentQuantity: qty,
     lastMovementDate: row.updatedAt
-      ? new Date(row.updatedAt).toLocaleString('ar-SA')
+      ? new Date(row.updatedAt).toLocaleString('en-US')
       : '—',
     notes: detailParts.length > 0 ? detailParts.join(' · ') : '',
   };

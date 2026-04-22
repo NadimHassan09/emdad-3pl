@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Plus, Trash2 } from 'lucide-react';
 import { CsvButton } from '@/components/CsvButton';
+import { ProductCreateModal } from '@/components/ProductCreateModal';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -38,6 +39,7 @@ export function CreateOrderPage({
   >([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [productModalOpen, setProductModalOpen] = useState(false);
 
   const loadMeta = useCallback(async () => {
     try {
@@ -55,6 +57,11 @@ export function CreateOrderPage({
   useEffect(() => {
     void loadMeta();
   }, [loadMeta]);
+
+  const reloadProductsOnly = useCallback(async () => {
+    const pr = await fetchClientPortalProducts();
+    setProducts(pr);
+  }, []);
 
   const addOrderItem = () => {
     setOrderItems((prev) => [
@@ -132,6 +139,13 @@ export function CreateOrderPage({
 
   return (
     <>
+      <ProductCreateModal
+        open={productModalOpen}
+        onOpenChange={setProductModalOpen}
+        onCreated={() => {
+          void reloadProductsOnly();
+        }}
+      />
       <h1 className="text-2xl font-bold text-gray-900">
         {orderType === 'وارد' ? 'إرسال طلب وارد' : 'إرسال طلب صادر'}
       </h1>
@@ -191,6 +205,16 @@ export function CreateOrderPage({
               <Plus className="w-4 h-4" />
               إضافة بند
             </Button>
+            {orderType === 'وارد' && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setProductModalOpen(true)}
+                className="text-[#176C33] border-[#176C33]/30"
+              >
+                إضافة منتج
+              </Button>
+            )}
           </div>
         </div>
         <Card className="border-0 shadow-sm">

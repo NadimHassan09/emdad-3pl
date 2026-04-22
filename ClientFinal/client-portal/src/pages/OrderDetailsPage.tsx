@@ -107,17 +107,17 @@ export function OrderDetailsPage({
   const orderNum = (order.orderNumber as string) || String(order.id).slice(0, 8);
   const expRaw = isInbound ? order.expectedDate : order.expectedShipDate;
   const expectedDate = expRaw
-    ? new Date(expRaw as string).toLocaleDateString('ar-SA')
+    ? new Date(expRaw as string).toLocaleDateString('en-US')
     : '—';
   const creationTime = order.createdAt
-    ? new Date(order.createdAt as string).toLocaleString('ar-SA')
+    ? new Date(order.createdAt as string).toLocaleString('en-US')
     : '—';
   const completed =
     String(order.status) === 'COMPLETED' ||
     String(order.status) === 'SHIPPED' ||
     String(order.status) === 'CANCELLED';
   const completionDate = completed && order.updatedAt
-    ? new Date(order.updatedAt as string).toLocaleString('ar-SA')
+    ? new Date(order.updatedAt as string).toLocaleString('en-US')
     : '—';
   const wh = order.warehouse as { name?: string; code?: string } | undefined;
 
@@ -129,7 +129,7 @@ export function OrderDetailsPage({
   ];
   if (order.updatedAt && order.updatedAt !== order.createdAt) {
     statusHistory.push({
-      dateTime: new Date(order.updatedAt as string).toLocaleString('ar-SA'),
+      dateTime: new Date(order.updatedAt as string).toLocaleString('en-US'),
       status: `آخر تحديث — ${st}`,
     });
   }

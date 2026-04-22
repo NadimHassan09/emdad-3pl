@@ -5,27 +5,11 @@ import {
   ArrowDown,
   ArrowUp,
   Activity,
-  MoreHorizontal,
   RefreshCw,
 } from 'lucide-react';
 import { CsvButton } from '@/components/CsvButton';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  AreaChart,
-  Area,
-} from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
@@ -33,13 +17,12 @@ import {
   getDashboardErrorMessage,
   type ClientPortalDashboardResponse,
 } from '@/api/clientPortalDashboard';
-import { assignStockColors, computeMovementMonthOverMonthPercent } from './dashboardUtils';
 
 function mapRecentMovements(
   entries: ClientPortalDashboardResponse['recentMovements'],
 ) {
   return entries.map((entry) => ({
-    date: entry.date ? new Date(entry.date).toLocaleString('ar-SA') : '',
+    date: entry.date ? new Date(entry.date).toLocaleString('en-US') : '',
     type:
       entry.movementType === 'RECEIPT'
         ? 'وارد'
@@ -62,9 +45,6 @@ function mapRecentMovements(
 
 export function DashboardPage() {
   const [data, setData] = useState<ClientPortalDashboardResponse | null>(null);
-  const [stockDistribution, setStockDistribution] = useState<
-    { name: string; value: number; color: string }[]
-  >([]);
   const [recentRows, setRecentRows] = useState<ReturnType<typeof mapRecentMovements>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -75,7 +55,6 @@ export function DashboardPage() {
       setError(null);
       const dashboard = await fetchClientPortalDashboard();
       setData(dashboard);
-      setStockDistribution(assignStockColors(dashboard.stockDistribution));
       setRecentRows(mapRecentMovements(dashboard.recentMovements));
     } catch (e) {
       console.error('Failed to load client portal dashboard', e);
@@ -97,15 +76,12 @@ export function DashboardPage() {
     outgoingOrders: 0,
     recentMovements: 0,
   };
-  const movementByMonth = data?.movementByMonth ?? [];
-  const weeklyTrend = data?.weeklyTrend ?? [];
-  const mom = data ? computeMovementMonthOverMonthPercent(data.movementByMonth) : null;
 
   const statsCards = [
     { title: 'إجمالي المنتجات', value: stats.totalProducts, icon: Package, color: 'bg-blue-500' },
     {
       title: 'إجمالي المخزون',
-      value: stats.totalStock.toLocaleString('ar-SA'),
+      value: stats.totalStock.toLocaleString('en-US'),
       icon: TrendingUp,
       color: 'bg-green-500',
     },
@@ -178,164 +154,6 @@ export function DashboardPage() {
               </Card>
             ))}
       </div>
-
-      {!error && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          <Card className="border-0 shadow-sm">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-bold">حركات المخزون</CardTitle>
-                <Button variant="ghost" size="sm" className="text-gray-500">
-                  <MoreHorizontal className="w-4 h-4" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {loading && !data ? (
-                <Skeleton className="h-[300px] w-full rounded-lg" />
-              ) : movementByMonth.length === 0 ? (
-                <p className="text-sm text-gray-500 text-center py-16">لا توجد حركات في الأشهر الأخيرة.</p>
-              ) : (
-                <div className="chart-container">
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={movementByMonth}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                      <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                      <YAxis tick={{ fontSize: 12 }} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: '#fff',
-                          border: '1px solid #e5e7eb',
-                          borderRadius: '8px',
-                          fontSize: '12px',
-                        }}
-                      />
-                      <Bar dataKey="inbound" name="وارد" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="outbound" name="صادر" fill="#ef4444" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          <Card className="border-0 shadow-sm">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-bold">توزيع المخزون حسب المنتج</CardTitle>
-                <Button variant="ghost" size="sm" className="text-gray-500">
-                  <MoreHorizontal className="w-4 h-4" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {loading && !data ? (
-                <Skeleton className="h-[300px] w-full rounded-lg" />
-              ) : stockDistribution.length === 0 ? (
-                <p className="text-sm text-gray-500 text-center py-16">لا يوجد مخزون مسجل لمنتجاتك.</p>
-              ) : (
-                <div className="chart-container flex items-center justify-center min-h-[300px]">
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={stockDistribution}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={100}
-                        paddingAngle={4}
-                        dataKey="value"
-                      >
-                        {stockDistribution.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: '#fff',
-                          border: '1px solid #e5e7eb',
-                          borderRadius: '8px',
-                          fontSize: '12px',
-                        }}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
-      {!error && (
-        <Card className="border-0 shadow-sm mt-6">
-          <CardHeader className="pb-2">
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <CardTitle className="text-lg font-bold">إحصائيات الأداء</CardTitle>
-              <div className="flex items-center gap-2">
-                {mom ? (
-                  <Badge
-                    variant="secondary"
-                    className={
-                      mom.percent >= 0
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-rose-100 text-rose-700'
-                    }
-                  >
-                    {mom.label}
-                  </Badge>
-                ) : !loading || data ? (
-                  <Badge variant="secondary" className="bg-gray-100 text-gray-600">
-                    غير متاح — بيانات الشهر السابق
-                  </Badge>
-                ) : null}
-                <Button variant="ghost" size="sm" className="text-gray-500">
-                  <MoreHorizontal className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            {loading && !data ? (
-              <Skeleton className="h-[250px] w-full rounded-lg" />
-            ) : weeklyTrend.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-12">لا توجد بيانات أسبوعية كافية.</p>
-            ) : (
-              <div className="chart-container">
-                <ResponsiveContainer width="100%" height={250}>
-                  <AreaChart data={weeklyTrend}>
-                    <defs>
-                      <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                    <YAxis tick={{ fontSize: 12 }} />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: '#fff',
-                        border: '1px solid #e5e7eb',
-                        borderRadius: '8px',
-                        fontSize: '12px',
-                      }}
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="value"
-                      stroke="#3b82f6"
-                      strokeWidth={2}
-                      fillOpacity={1}
-                      fill="url(#colorValue)"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      )}
 
       {!error && (
         <Card className="border-0 shadow-sm mt-6">

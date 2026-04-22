@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Download, RefreshCw, ArrowRight } from 'lucide-react';
+import { RefreshCw, ArrowRight } from 'lucide-react';
 import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -120,8 +120,8 @@ export function InvoiceDetailsPage({
               getRow={(line) => [
                 lineLabel(line),
                 Number(line.quantity),
-                centsToAmount(line.unitPriceCents).toLocaleString('ar-SA'),
-                centsToAmount(line.totalAmountCents).toLocaleString('ar-SA'),
+                centsToAmount(line.unitPriceCents).toLocaleString('en-US'),
+                centsToAmount(line.totalAmountCents).toLocaleString('en-US'),
               ]}
               filename={`فاتورة-${detail.invoiceNumber}-بنود`}
             />
@@ -136,10 +136,6 @@ export function InvoiceDetailsPage({
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
               تحديث
             </Button>
-            <Button variant="outline" className="gap-2 text-[#176C33] border-[#176C33]/30" disabled>
-              <Download className="w-4 h-4" />
-              تنزيل PDF
-            </Button>
           </div>
         </div>
 
@@ -153,13 +149,13 @@ export function InvoiceDetailsPage({
               <div>
                 <p className="text-sm text-gray-500 mb-1">بداية الفترة</p>
                 <p className="text-lg font-bold text-gray-900 font-mono">
-                  {new Date(detail.periodStart).toLocaleDateString('ar-SA')}
+                  {new Date(detail.periodStart).toLocaleDateString('en-US')}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">نهاية الفترة</p>
                 <p className="text-lg font-bold text-gray-900 font-mono">
-                  {new Date(detail.periodEnd).toLocaleDateString('ar-SA')}
+                  {new Date(detail.periodEnd).toLocaleDateString('en-US')}
                 </p>
               </div>
               <div>
@@ -178,14 +174,14 @@ export function InvoiceDetailsPage({
                 <div>
                   <p className="text-sm text-gray-500 mb-1">تاريخ الاستحقاق</p>
                   <p className="text-lg font-bold text-gray-900 font-mono">
-                    {new Date(detail.dueDate).toLocaleDateString('ar-SA')}
+                    {new Date(detail.dueDate).toLocaleDateString('en-US')}
                   </p>
                 </div>
               )}
               <div className="md:col-span-2">
                 <p className="text-sm text-gray-500 mb-1">إجمالي المبلغ</p>
                 <p className="text-2xl font-bold text-[#176C33]">
-                  {total.toLocaleString('ar-SA')} {cur}
+                  {total.toLocaleString('en-US')} {cur}
                 </p>
               </div>
             </div>
@@ -226,12 +222,12 @@ export function InvoiceDetailsPage({
                         return (
                           <tr key={line.id} className="border-b border-gray-50 hover:bg-gray-50/50">
                             <td className="py-4 px-4 text-sm font-medium">{lineLabel(line)}</td>
-                            <td className="py-4 px-4 text-sm">{Number.isFinite(qty) ? qty.toLocaleString('ar-SA') : String(line.quantity)}</td>
+                            <td className="py-4 px-4 text-sm">{Number.isFinite(qty) ? qty.toLocaleString('en-US') : String(line.quantity)}</td>
                             <td className="py-4 px-4 text-sm">
-                              {unit.toLocaleString('ar-SA')} {cur}
+                              {unit.toLocaleString('en-US')} {cur}
                             </td>
                             <td className="py-4 px-4 text-sm font-medium">
-                              {amt.toLocaleString('ar-SA')} {cur}
+                              {amt.toLocaleString('en-US')} {cur}
                             </td>
                           </tr>
                         );
@@ -251,26 +247,26 @@ export function InvoiceDetailsPage({
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-600">المجموع الفرعي</p>
                 <p className="text-sm font-medium text-gray-900">
-                  {subtotal.toLocaleString('ar-SA')} {cur}
+                  {subtotal.toLocaleString('en-US')} {cur}
                 </p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-600">الضريبة</p>
                 <p className="text-sm font-medium text-gray-900">
-                  {tax.toLocaleString('ar-SA')} {cur}
+                  {tax.toLocaleString('en-US')} {cur}
                 </p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-600">الخصم</p>
                 <p className="text-sm font-medium text-gray-900">
-                  {discount.toLocaleString('ar-SA')} {cur}
+                  {discount.toLocaleString('en-US')} {cur}
                 </p>
               </div>
               <div className="pt-4 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <p className="text-base font-semibold text-gray-900">الإجمالي</p>
                   <p className="text-xl font-bold text-[#176C33]">
-                    {total.toLocaleString('ar-SA')} {cur}
+                    {total.toLocaleString('en-US')} {cur}
                   </p>
                 </div>
               </div>

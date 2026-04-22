@@ -43,12 +43,13 @@ import {
   type MyProduct,
   type UomOption,
 } from '@/api/clientPortalProducts';
+import { buildCreateProductPayload } from '@/lib/productCreatePayload';
 
 function formatPrice(val: number | string | null | undefined): string {
   if (val == null || val === '') return '-';
   const n = typeof val === 'string' ? parseFloat(val) : val;
   if (Number.isNaN(n)) return '-';
-  return n.toLocaleString('ar-SA', { minimumFractionDigits: 2 });
+  return n.toLocaleString('en-US', { minimumFractionDigits: 2 });
 }
 
 export function ProductsPage() {
@@ -157,54 +158,34 @@ export function ProductsPage() {
   };
 
   const handleCreate = async () => {
-    const weight = parseFloat(createWeight);
-    const length = parseFloat(createLength);
-    const width = parseFloat(createWidth);
-    const height = parseFloat(createHeight);
-    const unitsPerCarton = parseInt(createUnitsPerCarton, 10);
-    if (!createName.trim() || !createUomId) {
-      setCreateError('الاسم ووحدة القياس مطلوبة.');
-      return;
-    }
-    if (Number.isNaN(weight) || weight < 0) {
-      setCreateError('الوزن مطلوب ويجب أن يكون 0 أو أكثر.');
-      return;
-    }
-    if (Number.isNaN(length) || length < 0 || Number.isNaN(width) || width < 0 || Number.isNaN(height) || height < 0) {
-      setCreateError('الطول والعرض والارتفاع مطلوبة ويجب أن تكون 0 أو أكثر.');
-      return;
-    }
-    if (Number.isNaN(unitsPerCarton) || unitsPerCarton < 1) {
-      setCreateError('الوحدات لكل كرتون مطلوبة ويجب أن تكون 1 أو أكثر.');
+    const built = buildCreateProductPayload({
+      createName,
+      createDescription,
+      createCategory,
+      createBrand,
+      createWeight,
+      createLength,
+      createWidth,
+      createHeight,
+      createUnitsPerCarton,
+      createUomId,
+      createBarcode,
+      createIsSerialized,
+      createIsBatchTracked,
+      createRequiresExpiryDate,
+      createMinThreshold,
+      createReorderPoint,
+      createDeclaredValue,
+      createPrice,
+    });
+    if (!built.ok) {
+      setCreateError(built.error);
       return;
     }
     try {
       setCreateSubmitting(true);
       setCreateError(null);
-      const minTh = createMinThreshold ? parseFloat(createMinThreshold) : undefined;
-      const reorder = createReorderPoint ? parseFloat(createReorderPoint) : undefined;
-      const declared = createDeclaredValue ? parseFloat(createDeclaredValue) : undefined;
-      const priceVal = createPrice ? parseFloat(createPrice) : undefined;
-      await createProduct({
-        name: createName.trim(),
-        description: createDescription.trim() || undefined,
-        category: createCategory.trim() || undefined,
-        brand: createBrand.trim() || undefined,
-        weight,
-        length,
-        width,
-        height,
-        unitsPerCarton,
-        defaultUomId: createUomId,
-        barcode: createBarcode.trim() || undefined,
-        isSerialized: createIsSerialized,
-        isBatchTracked: createIsBatchTracked,
-        requiresExpiryDate: createRequiresExpiryDate,
-        minThreshold: minTh != null && !Number.isNaN(minTh) ? minTh : undefined,
-        reorderPoint: reorder != null && !Number.isNaN(reorder) ? reorder : undefined,
-        declaredValue: declared != null && !Number.isNaN(declared) ? declared : undefined,
-        price: priceVal != null && !Number.isNaN(priceVal) ? priceVal : undefined,
-      });
+      await createProduct(built.payload);
       setCreateOpen(false);
       void load();
     } catch (e) {
@@ -516,10 +497,15 @@ export function ProductsPage() {
 
               {/* Logistics Information */}
               <div className="space-y-4 pt-2">
-                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">معلومات الشحن</h4>
+                <h4 className="text-sm font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-1">
+                  معلومات الشحن (اختياري)
+                </h4>
+                <p className="text-xs text-gray-500">
+                  إذا تركت الحقول فارغة، يُستخدم وزن 0 وأبعاد 0 ووحدة واحدة لكل كرتون تلقائياً.
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>الوزن (كجم) *</Label>
+                    <Label>الوزن (كجم)</Label>
                     <Input
                       type="number"
                       step="0.01"
@@ -530,7 +516,7 @@ export function ProductsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>الوحدات لكل كرتون *</Label>
+                    <Label>الوحدات لكل كرتون</Label>
                     <Input
                       type="number"
                       min="1"
@@ -540,7 +526,7 @@ export function ProductsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>الطول (سم) *</Label>
+                    <Label>الطول (سم)</Label>
                     <Input
                       type="number"
                       step="0.01"
@@ -551,7 +537,7 @@ export function ProductsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>العرض (سم) *</Label>
+                    <Label>العرض (سم)</Label>
                     <Input
                       type="number"
                       step="0.01"
@@ -562,7 +548,7 @@ export function ProductsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>الارتفاع (سم) *</Label>
+                    <Label>الارتفاع (سم)</Label>
                     <Input
                       type="number"
                       step="0.01"

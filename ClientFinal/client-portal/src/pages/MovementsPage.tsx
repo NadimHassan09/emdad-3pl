@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Download } from 'lucide-react';
 import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -65,7 +63,7 @@ function mapLedgerToMovement(entry: LedgerEntry): MappedMovement {
   const typeAr = MOVEMENT_TYPE_MAP[entry.movementType] ?? entry.movementType;
   return {
     id: entry.id,
-    dateTime: entry.createdAt ? new Date(entry.createdAt).toLocaleString('ar-SA') : '',
+    dateTime: entry.createdAt ? new Date(entry.createdAt).toLocaleString('en-US') : '',
     movementType: typeAr,
     productName: entry.product?.name ?? '',
     sku: entry.product?.sku ?? '',
@@ -189,13 +187,6 @@ export function MovementsPage() {
               disabled={loading}
               className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50"
             />
-            <Button
-              variant="outline"
-              className="text-[#176C33] border-[#176C33]/30 hover:bg-gradient-to-r hover:from-[#176C33]/10 hover:to-[#104920]/10 hover:border-[#176C33]/50 gap-2"
-            >
-              <Download className="w-4 h-4" />
-              تصدير PDF
-            </Button>
           </div>
         </div>
 

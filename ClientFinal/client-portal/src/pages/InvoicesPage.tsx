@@ -104,13 +104,13 @@ export function InvoicesPage({ onViewInvoice }: { onViewInvoice: (invoiceId: str
               const total = centsToAmount(inv.totalAmountCents);
               return [
                 inv.invoiceNumber,
-                new Date(inv.periodStart).toLocaleDateString('ar-SA'),
-                new Date(inv.periodEnd).toLocaleDateString('ar-SA'),
+                new Date(inv.periodStart).toLocaleDateString('en-US'),
+                new Date(inv.periodEnd).toLocaleDateString('en-US'),
                 stAr,
-                total.toLocaleString('ar-SA'),
+                total.toLocaleString('en-US'),
                 inv.currency,
-                inv.issuedAt ? new Date(inv.issuedAt).toLocaleDateString('ar-SA') : '—',
-                inv.paidAt ? new Date(inv.paidAt).toLocaleDateString('ar-SA') : '—',
+                inv.issuedAt ? new Date(inv.issuedAt).toLocaleDateString('en-US') : '—',
+                inv.paidAt ? new Date(inv.paidAt).toLocaleDateString('en-US') : '—',
               ];
             }}
             filename="invoices"
@@ -199,10 +199,10 @@ export function InvoicesPage({ onViewInvoice }: { onViewInvoice: (invoiceId: str
                       <tr key={invoice.id} className="border-b border-gray-50 hover:bg-gray-50/50">
                         <td className="py-4 px-4 text-sm font-mono font-medium">{invoice.invoiceNumber}</td>
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                          {new Date(invoice.periodStart).toLocaleDateString('ar-SA')}
+                          {new Date(invoice.periodStart).toLocaleDateString('en-US')}
                         </td>
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                          {new Date(invoice.periodEnd).toLocaleDateString('ar-SA')}
+                          {new Date(invoice.periodEnd).toLocaleDateString('en-US')}
                         </td>
                         <td className="py-4 px-4">
                           <span
@@ -211,15 +211,15 @@ export function InvoicesPage({ onViewInvoice }: { onViewInvoice: (invoiceId: str
                             {stAr}
                           </span>
                         </td>
-                        <td className="py-4 px-4 text-sm font-medium">{total.toLocaleString('ar-SA')}</td>
+                        <td className="py-4 px-4 text-sm font-medium">{total.toLocaleString('en-US')}</td>
                         <td className="py-4 px-4 text-sm text-gray-600">{invoice.currency}</td>
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
                           {invoice.issuedAt
-                            ? new Date(invoice.issuedAt).toLocaleDateString('ar-SA')
+                            ? new Date(invoice.issuedAt).toLocaleDateString('en-US')
                             : '—'}
                         </td>
                         <td className="py-4 px-4 text-sm text-gray-600 font-mono">
-                          {invoice.paidAt ? new Date(invoice.paidAt).toLocaleDateString('ar-SA') : '—'}
+                          {invoice.paidAt ? new Date(invoice.paidAt).toLocaleDateString('en-US') : '—'}
                         </td>
                         <td className="py-4 px-4">
                           <Button

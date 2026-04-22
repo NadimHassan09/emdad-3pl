@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Download, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import { CsvButton } from '@/components/CsvButton';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -82,7 +82,7 @@ export function InventoryPage() {
               r.productName,
               r.productCode,
               r.uom,
-              r.currentQuantity.toLocaleString('ar-SA'),
+              r.currentQuantity.toLocaleString('en-US'),
               r.lastMovementDate,
               r.notes || '-',
             ]}
@@ -90,10 +90,6 @@ export function InventoryPage() {
             disabled={loading}
             className="text-[#176C33] border-[#176C33]/30"
           />
-          <Button variant="outline" className="text-[#176C33] border-[#176C33]/30 gap-2" disabled>
-            <Download className="w-4 h-4" />
-            تصدير PDF
-          </Button>
         </div>
       </div>
 
@@ -188,7 +184,7 @@ export function InventoryPage() {
                       </td>
                       <td className="py-4 px-4 text-sm text-gray-600">{row.uom}</td>
                       <td className="py-4 px-4 text-sm text-gray-900 font-medium">
-                        {row.currentQuantity.toLocaleString('ar-SA')}
+                        {row.currentQuantity.toLocaleString('en-US')}
                       </td>
                       <td className="py-4 px-4 text-sm text-gray-600 font-mono">{row.lastMovementDate}</td>
                       <td className="py-4 px-4">
@@ -209,7 +205,7 @@ export function InventoryPage() {
                             <div className="mt-4 space-y-2 text-right text-sm text-gray-700">
                               <p>
                                 <span className="font-medium">الكمية:</span>{' '}
-                                {row.currentQuantity.toLocaleString('ar-SA')} {row.uom}
+                                {row.currentQuantity.toLocaleString('en-US')} {row.uom}
                               </p>
                               <p>
                                 <span className="font-medium">آخر تحديث:</span> {row.lastMovementDate}

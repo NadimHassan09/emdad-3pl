@@ -11,7 +11,7 @@ import {
 } from '@/api/clientPortalBilling';
 
 function formatUsd(n: number) {
-  return new Intl.NumberFormat('ar-SA', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2,
@@ -140,13 +140,13 @@ export function BillingPage() {
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">الكمية الحالية (إجمالي وحدات)</span>
                       <span className="font-medium text-gray-900">
-                        {usage?.space.usedUnits.toLocaleString('ar-SA') ?? '0'}
+                        {usage?.space.usedUnits.toLocaleString('en-US') ?? '0'}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">السقف / المرجع</span>
                       <span className="font-medium text-gray-900">
-                        {usage?.space.totalUnits.toLocaleString('ar-SA') ?? '—'}
+                        {usage?.space.totalUnits.toLocaleString('en-US') ?? '—'}
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-3">
@@ -182,7 +182,7 @@ export function BillingPage() {
                   <div className="space-y-2">
                     <p className="text-sm text-gray-500">عدد حركات الاستلام هذا الشهر</p>
                     <p className="text-3xl font-bold text-gray-900">
-                      {(usage?.incomingMovements.count ?? 0).toLocaleString('ar-SA')}
+                      {(usage?.incomingMovements.count ?? 0).toLocaleString('en-US')}
                     </p>
                   </div>
                   <div className="pt-3 border-t border-gray-200">
@@ -208,7 +208,7 @@ export function BillingPage() {
                   <div className="space-y-2">
                     <p className="text-sm text-gray-500">عدد حركات الشحن هذا الشهر</p>
                     <p className="text-3xl font-bold text-gray-900">
-                      {(usage?.outgoingOrders.count ?? 0).toLocaleString('ar-SA')}
+                      {(usage?.outgoingOrders.count ?? 0).toLocaleString('en-US')}
                     </p>
                   </div>
                   <div className="pt-3 border-t border-gray-200">
